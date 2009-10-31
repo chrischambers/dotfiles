@@ -343,8 +343,20 @@ let g:SuperTabLongestHighlight = 1
 " UTL Options: {{{
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=293>
+" To configure, visit: <url:config:#r=map_http>.
 " --------------------------------------------------------------------------
 " let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
+" FIXME: UTL currently either ignores fragments, or fails when urls with no
+" fragment are used:
+if has("mac")
+    " This version play nicely with url fragments, but borks on urls without
+    " specified fragments:
+    " let g:utl_cfg_hdl_scm_http_system = "silent !open -a Firefox '%u#%f'"
+    " This version completely disregards url fragments:
+    let g:utl_cfg_hdl_scm_http_system = "silent !open -a Firefox '%u'"
+endif
+" This version doesn't work at all:
+" let g:utl_cfg_hdl_scm_http_system = "silent !firefox -remote 'ping()' && firefox -remote 'openURL( %u )' || firefox '%u#%f' &"
 " --------------------------------------------------------------------------
 " }}}
 
@@ -894,7 +906,6 @@ let g:snips_author="Chris Chambers"
 " non-python buffers
 " FIXME: FuzzyfinderTaggedFile- CWD seems to need to be the same as the tags
 " file atm.
-" FIXME: UTL not activating browser properly.
 " FIXME: NERD_Tree is being quite greedy in how much space it opens sometimes.
 " Also, occasionally, opens file underneath the tree rather than to the right
 " of it.
