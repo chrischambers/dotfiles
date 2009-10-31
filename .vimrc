@@ -1,6 +1,8 @@
 " Variables To Customise:
 let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
 let s:thesaurus_location="/home/nestor/moby_thesaurus.txt"
+let s:django_location="$HOME/src/py/django/django-1.1"
+let s:python_location="/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5"
 " TODO: Refactor .vimrc to use these!
 
 " Settings Which Must Be Initialised Early: {{{
@@ -39,6 +41,7 @@ filetype plugin on     " enable filetype specific plugins
 filetype indent on     " enable filetype-specific indenting where available,
 
 colorscheme ir_black   " slightly tweaked to fit, but totally awesome.
+" alternatives include - eclipse, xoria256
 
 set backspace=indent,eol,start " Intuitive backspacing in insert mode
 set nu            " line numbering
@@ -169,6 +172,7 @@ set completeopt=menu,preview,longest
 " }}}
 
 " Folding: {{{
+" --------------------------------------------------------------------------
 " Example - python:
 " # name for the folded text {{{
 " to begin marker and
@@ -178,23 +182,31 @@ set completeopt=menu,preview,longest
 " set foldmethod=syntax " By default, use syntax to determine folds
 " set foldlevelstart=99 " All folds open by default
 set foldmethod=marker
+" --------------------------------------------------------------------------
 " }}}
 
 " Completion: Dictionary And Thesaurus: {{{
+" --------------------------------------------------------------------------
 set dictionary=/usr/lib/openoffice/share/dict/ooo/en-GB.dic
 "set thesaurus=/usr/lib/openoffice/share/dict/ooo/th_en_US_v2.idx
 set thesaurus=/home/nestor/moby_thesaurus.txt
+" --------------------------------------------------------------------------
 " }}}
 
 " Completion: Omni-Completion: {{{
+" --------------------------------------------------------------------------
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+" --------------------------------------------------------------------------
 " }}}
 
 " Command Line Mode: {{{
+" --------------------------------------------------------------------------
     set cmdheight=2 " Sets command-line height
+ 
+" --------------------------------------------------------------------------
     " Emacs Mappings At Command Line: {{{
     " For Emacs-style editing on the command-line: <url:vimhelp:emacs-keys>
         " start of line
@@ -218,25 +230,32 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
         " kill line
         :cnoremap <C-K>    <C-U>
     " }}}
+" --------------------------------------------------------------------------
 " }}}
 
 " Setting Useful Status Line: {{{
-" Informative status line -- ninjaed from:
-" http://www.linux.com/archive/feature/120126
+" --------------------------------------------------------------------------
+" Source: <url:http://www.linux.com/archive/feature/120126>
 " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] 
 set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)
+" --------------------------------------------------------------------------
 " }}}
 
 " Set Grep Program To Ack: {{{
+" --------------------------------------------------------------------------
 " Note: ack will need to be on your path, and on certain systems (e.g. *Buntu,
 " perhaps other Linux distros) you'll need to alias ack-grep to ack.
 " Source: <url:http://weblog.jamisbuck.org/2008/11/17/vim-follow-up>
+" --------------------------------------------------------------------------
 set grepprg=ack
 set grepformat=%f:%l:%m
+" --------------------------------------------------------------------------
 " }}}
+
 " Plugin Configuration:
 
 " NERDTree Options: {{{
+" --------------------------------------------------------------------------
 " Toggle the following off with 'f'!
 let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$']
 let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD
@@ -249,22 +268,29 @@ nnoremap <leader>d :NERDTreeToggle<CR>
 map <leader><S-d> :NERDTreeFromBookmark 
 " map <leader><S-d> :NERDTree 
 "
+" --------------------------------------------------------------------------
 " Python Project Specific:
 " We're really not interested in these binary files for the most part:
 let NERDTreeIgnore=['\.py\(c\|o\)$', '\~$', '^#.*#$', '\.gif', '\.jpg','\.png','\.jpeg','\.ico', '\.psd', '\.flv', '\.swf', '\.pdf', '\.doc']
 " python files will take precedence over .csv, .log, .txt, etc.
 let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
+" --------------------------------------------------------------------------
 " }}}
 
 " Ultisnips Options: {{{
+" --------------------------------------------------------------------------
 set runtimepath+=~/src/vim/ultisnips
+" --------------------------------------------------------------------------
 " }}}
 
 " Trac Options: {{{
+" --------------------------------------------------------------------------
 source ~/.vimrc_trac
+" --------------------------------------------------------------------------
 " }}}
 
 " ShowMarks Options: {{{
+" --------------------------------------------------------------------------
 let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 let g:showmarks_enable = 1
 " For marks a-z
@@ -275,9 +301,11 @@ highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
 highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
 " For multiple marks on the same line.
 highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+" --------------------------------------------------------------------------
 " }}}
 
 " SuperTab Options: {{{
+" --------------------------------------------------------------------------
 " let g:SuperTabDefaultCompletionType='context'
 " let g:SuperTabLongestHighlight = 1
 " let g:SuperTabMidWordCompletion=0
@@ -289,26 +317,36 @@ let g:SuperTabRetainCompletionDuration="completion"
 " let g:SuperTabMappingTabLiteral = '<c-tab>'
 let g:SuperTabLongestHighlight = 1
 "pre-highlights first match in completion menu.
+" --------------------------------------------------------------------------
 " }}}
 
 " UTL Options: {{{
+" --------------------------------------------------------------------------
 " let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
+" --------------------------------------------------------------------------
 " }}}
 
 " UTL Mappings: {{{
+" --------------------------------------------------------------------------
+" NOTE: this clobbers `go-to-<count>-byte` command
 nmap go :Utl<CR>
-" clobbered go-to-<count>-byte
+" --------------------------------------------------------------------------
 " }}}
 
 " GetScript Options: {{{
+" --------------------------------------------------------------------------
 let g:GetLatestVimScripts_allowautoinstall=1
+" --------------------------------------------------------------------------
 " }}}
 
 " BufOnly Options: {{{
+" --------------------------------------------------------------------------
 nmap <silent> <leader>bo :BufOnly<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " MiniBufExpl Options: {{{
+" --------------------------------------------------------------------------
 " minibufexpl.vim - Extracted all useful settings, 24-10-2009
 " C-j,k,l,m do as you would expect:
 let g:miniBufExplMapWindowNavVim = 1
@@ -326,65 +364,81 @@ let g:miniBufExplUseSingleClick = 1
 " Try and avoid placing buffer contents into non-modifiable buffers, like
 " NERDTree!
 let g:miniBufExplModSelTarget = 1
+" --------------------------------------------------------------------------
 " }}}
 
 " Align Mappings: {{{
+" --------------------------------------------------------------------------
 vmap <leader>t{ :Align'[^']\+':<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " FuzzyFinder Mappings: {{{
+" --------------------------------------------------------------------------
 nmap <leader>, :FuzzyFinderBuffer<CR>
 "nmap <leader>f :FuzzyFinderFile<CR>
 nmap <leader><S-f> :FuzzyFinderTextMate<CR>
 nmap <leader>f :FuzzyFinderTaggedFile<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " FuzzyFinder Options: {{{
+" --------------------------------------------------------------------------
 let g:fuzzy_ignore="*.pyc,*.pyo,*~,#*#,*.gif,*.jpg,*.JPG,*.png,*.PNG,*.jpeg,*.JPEG,*.ico,*.psd,*.flv,*.swf,*.pdf,*.doc,*.db,*.jar"
+" --------------------------------------------------------------------------
 " }}}
 
 " AutoTag Options: {{{
+" --------------------------------------------------------------------------
 " let g:autotagCtagsCmd="ctags --links=no --exclude='rosetta/' --python-kinds=-i --regex-Python='/\s*([_A-Z][A-Z_1-9]+)\s*=/\1/' -R"
 " let g:autotagCtagsCmd="ctags --regex-Python='/\s*([_A-Z][A-Z_1-9]+)\s*=/\1/'"
 let g:autotagCtagsCmd="ctags -a --links=no --exclude='rosetta/' --python-kinds=-i --regex-Python='/\s*([_A-Z][A-Z_1-9]+)\s*=/\1/' -R"
+" --------------------------------------------------------------------------
 " }}}
 
 " CSApprox Options: {{{
-set t_Co=256
+" --------------------------------------------------------------------------
+set t_Co=256        " Sets terminal colors to 256
+" --------------------------------------------------------------------------
 " }}}
 
 " Pydoc Autocommands: {{{
+" --------------------------------------------------------------------------
 autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(expand("<cWORD>"))<Cr>
+" --------------------------------------------------------------------------
 " }}}
 
 """ Disabled:
 " ScrollColors Mappings: {{{
+" --------------------------------------------------------------------------
 " map <silent><leader>n :NEXTCOLOR<cr>
 " map <silent><leader>p :PREVCOLOR<cr> 
-" Nice colors:
-" ir_black (by far)
-" eclipse
-" xoria256 /w tweaks
+" --------------------------------------------------------------------------
 " }}}
 
 """ Unused:
 " Pydiction Options: {{{
+" --------------------------------------------------------------------------
 " let g:pydiction_location = '/Users/Chris/.vim/python/complete-dict'
+" --------------------------------------------------------------------------
 " }}}
 
 " Pylint Options: {{{
+" --------------------------------------------------------------------------
 " http://vim.sourceforge.net/scripts/script.php?script_id=891
 " set path+=$HOME/.virtualenvs/langlab/bin - this doesn't do anything
 " autocmd FileType python compiler pylint
+" --------------------------------------------------------------------------
 "}}}
 
 " Useful Functions:
 
 " Function: Highlight Overlength Lines: {{{
+" --------------------------------------------------------------------------
 " Provides subtle red-highlighting for lines with a length that exceeds 80
 " characters.
 " Source: <url:http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns>
-
+" --------------------------------------------------------------------------
 if has("autocmd")
   augroup highlight
   au!
@@ -399,6 +453,7 @@ endif
 " }}}
 
 " Function: Automatically Trim Trailing Spaces: {{{
+" --------------------------------------------------------------------------
 " autocmd BufWritePre * normal m`:%s/\s\+$//e`
 " autocmd BufWritePre *.py normal m`:%s/\s\+$//e`
 " Removes trailing spaces
@@ -416,16 +471,20 @@ function TrimWhiteSpace()
 
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " Funciton: Pretty Print XML: {{{
+" --------------------------------------------------------------------------
 function! DoPrettyXML()
   1,$!xmllint --format --recover -
 endfunction
 command! PrettyXML call DoPrettyXML()
+" --------------------------------------------------------------------------
 " }}}
 
 " Show Invisible Characters: {{{
+" --------------------------------------------------------------------------
 " from godlygeek:
 if &enc =~ '^u\(tf\|cs\)' " When running in a Unicode environment,
   set list " visually represent certain invisible characters:
@@ -440,9 +499,11 @@ if &enc =~ '^u\(tf\|cs\)' " When running in a Unicode environment,
   " I don't like this, but I probably would if I didn't use line numbers.
   let &sbr=nr2char(8618).' '
 endif
+" --------------------------------------------------------------------------
 " }}}
 
 " Resume Last Editing Spot When Reading File: {{{
+" --------------------------------------------------------------------------
 if has("autocmd")
   " Try to jump to the last spot the cursor was at in a file when reading it.
   au BufReadPost *
@@ -450,13 +511,15 @@ if has("autocmd")
       \ exe "normal g`\"" |
       \ endif
 endif
+" --------------------------------------------------------------------------
 " }}}
 
 " Function: Use Visual Range As Search Pattern: {{{
+" --------------------------------------------------------------------------
 " Select visual range, then use * or # to search on current selection(!)
 " From an idea by Michael Naumann
 " Source: <url:http://amix.dk/vim/vimrc.html>
-
+" --------------------------------------------------------------------------
 function! VisualSearch(direction) range
   let l:saved_reg = @"
   execute "normal! vgvy"
@@ -473,10 +536,13 @@ endfunction
 
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " Function: Pipe Output of Command Into New Tab: {{{
+" --------------------------------------------------------------------------
 " Function that pipes the output of a command into a new tab (Vim 7.0):
+" --------------------------------------------------------------------------
 function! PipeToTab(cmd)
  redir => message
  silent execute a:cmd
@@ -486,7 +552,9 @@ function! PipeToTab(cmd)
  set nomodified
 endfunction
 command! -nargs=+ -complete=command PipeToTab call PipeToTab(<q-args>)
+" --------------------------------------------------------------------------
 " }}}
+
 " TODO: Conditional to check for non-windows system:
 " :W writes to files which require superuser access to modify.
 command W w !sudo tee % > /dev/null
@@ -494,6 +562,7 @@ command W w !sudo tee % > /dev/null
 " HTML Specific:
 
 " Autocommand: Prepare HTML File Defaults: {{{
+" --------------------------------------------------------------------------
 augroup html_setup
 au!
 fun! Html_fold()
@@ -507,11 +576,13 @@ endfun
 autocmd FileType html call Html_fold()
 autocmd FileType htmldjango call Html_fold()
 augroup END
+" --------------------------------------------------------------------------
 " }}}
 
 " Python Specific:
 
 " Autocommand: Prepare Python File Defaults: {{{
+" --------------------------------------------------------------------------
 augroup python_setup
 au!
 fun! Python_fold()
@@ -546,18 +617,23 @@ autocmd FileType python call Python_fold()
 " Unsure what this does:
 autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
 augroup END
+" --------------------------------------------------------------------------
 " }}}
 
 " Pythonpath File Jumping: {{{
+" --------------------------------------------------------------------------
 " Freely jump between code and Python libraries
 " Use 'gf' on your import statements to jump directly to that file.
 " Also useful for quickfix w/vimgrep or grep.
 " Source: <url:http://www.sontek.net/post/Python-with-a-modular-IDE-(Vim).aspx>
+" --------------------------------------------------------------------------
 
 " Performance Note: {{{ 
+" --------------------------------------------------------------------------
 " Make sure your complete option does NOT include i, as this will
 " result in a very laborious search through every file in your python path for
 " completion options!
+" --------------------------------------------------------------------------
 " }}}
 
 " set complete=.,w,b,u
@@ -572,9 +648,11 @@ python << EOF
 EOF
 set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.
 set path+=/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5
+" --------------------------------------------------------------------------
 " }}}
 
 " Python File Syntax Checking: {{{
+" --------------------------------------------------------------------------
 " Check for missing colons at the end of command statements:
 syn match pythonError "^\s*def\s\+\w\+(.*)\s*$" display
 syn match pythonError "^\s*class\s\+\w\+(.*)\s*$" display
@@ -594,50 +672,59 @@ syn keyword pythonError         do
 " type :clist to see all the errors
 autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
 autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+" --------------------------------------------------------------------------
 " }}}
 
 " Not working.
 " Run Selection Through Python Interpreter: {{{
-  " Implementation 1:
-   function! Python_Eval_VSplit() range
-     let src = tempname()
-     let dst = tempname()
-     execute ": " . a:firstline . "," . a:lastline . "w " . src
-     execute ":!python " . src . " > " . dst
-     execute ":pedit! " . dst
-   endfunction
-   au FileType python vmap <F7> :call Python_Eval_VSplit()<cr>
-
+" --------------------------------------------------------------------------
+" Implementation 1:
+function! Python_Eval_VSplit() range
+  let src = tempname()
+  let dst = tempname()
+  execute ": " . a:firstline . "," . a:lastline . "w " . src
+  execute ":!python " . src . " > " . dst
+  execute ":pedit! " . dst
+endfunction
+au FileType python vmap <F7> :call Python_Eval_VSplit()<cr>
+" --------------------------------------------------------------------------
   " Implementation 2:
   " visually select a method/class and execute it by hitting “Ctrl+h”
   " (leader-h, now).
+" --------------------------------------------------------------------------
 python << EOL
 import vim
 def EvaluateCurrentRange():
     eval(compile('\n'.join(vim.current.range),'','exec'),globals())
 EOL
 map <leader>h :py EvaluateCurrentRange()<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " Run Current File Through Python Interpreter: {{{
+" --------------------------------------------------------------------------
   " Implementation 1:
   " from Yopi:
 :map <F5> :!python %<CR>
 " Run python on this program when pressing F5
 "map <silent> <F5> :!xterm -bg lightblue -fg red -geometry 172x14+100+774 -e "python % \|\| read"<CR><CR>
-
+" --------------------------------------------------------------------------
   " Implementation 2:
   " Source: <url:http://ed.cranford.googlepages.com/vimrc>
   " in normal mode, hit f5 to save and run.
 :nnoremap <f5> :up<CR>!python %<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " Evaluate Python Range And Replace With Output: {{{
+" --------------------------------------------------------------------------
 " Source: <url:http://ed.cranford.googlepages.com/vimrc>
 " in visual mode, highlight one or more lines
 " and hit f5 and the block will be replaced with
 " its python output.
+" --------------------------------------------------------------------------
 :vnoremap <f5> :!python<CR>
+" --------------------------------------------------------------------------
 " }}}
 
 " python << EOL
@@ -646,14 +733,6 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 "     vim.current.range[:] = [EvaluateCurrentRange()]
 " EOL
 " map <leader>r :py EvalAndReplaceCurrentRange()<CR>
-
-
-" Add Django tags.
-" !sed '/    v/d'
-" set tags+=$HOME/src/py/django/django-1.1/django/tags
-" Slows down omnicompletion too much, sadly!
-
-
 
 " " Mine:
 " " Setting path according to virtualenv
@@ -684,10 +763,12 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 
 " MY PROJECT SPECIFIC SETTINGS: {{{
 
+" --------------------------------------------------------------------------
 " Prepare Django Environment:
 " Monkey-patches sys.path to achieve desired result
 
 " FIXME: This will need to come BEFORE the PythonPath File Jumping Facility:
+" --------------------------------------------------------------------------
 python << EOF
 import sys, os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'llcom.settings'
@@ -736,8 +817,10 @@ custom_sys_path = [
 ]
 sys.path = custom_sys_path
 EOF
+" --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
 set tags+=~/documents/code/llab/llcom/tags
+" --------------------------------------------------------------------------
 
 " set tags+=$HOME/documents/code/llab/tags
 " Necessary run-time command to activate Django atm:
@@ -747,11 +830,19 @@ set tags+=~/documents/code/llab/llcom/tags
 " set tags+=/usr/lib/python2.5/site-packages/Django-1.0.2_final-py2.5.egg/django/tags
 " temporary mapping - sets tag-open to smart tag open
 
-" }}}
+" Add Django tags.
+" !sed '/    v/d'
+" set tags+=$HOME/src/py/django/django-1.1/django/tags
+" Slows down omnicompletion too much, sadly!
 " --------------------------------------------------------------------------
+" }}}
 
-" Unknown:
+" Unknown: {{{
+" --------------------------------------------------------------------------
 let python_highlight_all=1
 let do_syntax_sel_menu=1
 let g:snips_author="Chris Chambers"
+" --------------------------------------------------------------------------
+" }}}
+
 " TODO: Retrieve the NERDTree filetype you created which remaps <c-j><c-k>
