@@ -26,7 +26,7 @@ ScriptID SourceID Filename
 # 1066 7618 :AutoInstall: cecutil.vim
 # 120 9388 :AutoInstall: Decho.vim
 # 1203 4188 :AutoInstall: WhereFrom.vim
-# 294 10110 :AutoInstall: Align.vim
+294 10110 :AutoInstall: Align.vim
 # 1343 11095 :AutoInstall: autotag.vim
 642 8136 :AutoInstall: getscript.vim
 1075 9816 :AutoInstall: netrw.vim
