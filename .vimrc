@@ -1,6 +1,6 @@
 " Variables To Customise:
 let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
-let s:thesaurus_location="/home/nestor/moby_thesaurus.txt"
+let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:django_location="$HOME/src/py/django/django-1.1"
 let s:python_location="/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5"
 let s:baseline_vim_path=""
@@ -17,9 +17,9 @@ let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/p
 " than packages, but probably for packages too, or...
 " 2) Avoid using easy_install, and opt to use pip instead.
 
-" The reason for this is that vim doesn't know how to look for, say, pytz
-" in the following directory (assuming your environment's site-packages is on
-" the pythonpath, which it should probably /always/ be using the VirtualEnv
+" The reason for this is that vim doesn't know how to look for, say, pytz in
+" the following directory (assuming your environment's site-packages is part
+" of vim's &path setting, which it should /always/ be using the VirtualEnv
 " functionality):
 
 " [...]/lib/site-packages/pytz-2009j-py2.5.egg
@@ -32,9 +32,11 @@ let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/p
 " }}}
 
 " Settings Which Must Be Initialised Early: {{{
+" --------------------------------------------------------------------------
 set nocompatible     " Force this at the start of the file
                      " (changes subsequent options)
 let mapleader = ","  " Only affects subsequent <leader> commands
+" --------------------------------------------------------------------------
 " }}}
 
 " Backups: {{{
@@ -923,13 +925,16 @@ custom_sys_path = [
  '..',
 ]
 # sys.path = custom_sys_path
-vim.command('call VirtualEnv("languagelab")')
-from pprint import pprint
-pprint(vim.command("py import sys; from pprint import pprint; pprint(sys.path)"))
-print 50 * '-'
-pprint(vim.eval('&path').split(','))
-print 50 * '-'
-pprint(custom_sys_path)
+
+# Debugging Commands:
+
+# vim.command('call VirtualEnv("languagelab")')
+# from pprint import pprint
+# pprint(vim.command("py import sys; from pprint import pprint; pprint(sys.path)"))
+# print 50 * '-'
+# pprint(vim.eval('&path').split(','))
+# print 50 * '-'
+# pprint(custom_sys_path)
 EOF
 " --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
