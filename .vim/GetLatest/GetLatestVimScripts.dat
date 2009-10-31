@@ -5,8 +5,7 @@ ScriptID SourceID Filename
 # # 451 4 EasyAccents.vim
 # 195 6351 :AutoInstall: engspchk.vim
 642 8136 GetLatestVimScripts.vim
-489 1 :AutoInstall: Manpageview.vim
-# 1896 7356 :AutoInstall: allml.vim
+670 8073 :AutoInstall: visincr.vim
 1071 3388 :AutoInstall: BufOnly.vim
 1658 11500 :AutoInstall: NERD_tree.vim
 # # 2317 11036 :AutoInstall: qname.vim
@@ -20,7 +19,7 @@ ScriptID SourceID Filename
 90 11049 :AutoInstall: vcscommand.vim
 # # 1112 3570 :AutoInstall: pydoc.vim
 159 3640 :AutoInstall: minibufexpl.vim
-# 670 8073 :AutoInstall: visincr.vim
+670 1 :AutoInstall: visincr.vim
 2390 10336 :AutoInstall: CSApprox.vim
 1066 7618 :AutoInstall: cecutil.vim
 # 120 9388 :AutoInstall: Decho.vim
@@ -32,3 +31,4 @@ ScriptID SourceID Filename
 1066 7618 :AutoInstall: cecutil.vim
 1502 8743 :AutoInstall: vimball.vim
 489 9573 :AutoInstall: Manpageview.vim
+1984 1 :AutoInstall: FuzzyFinder
