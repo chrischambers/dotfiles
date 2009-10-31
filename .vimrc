@@ -289,6 +289,7 @@ let NERDTreeIgnore=['\.py\(c\|o\)$', '\~$', '^#.*#$', '\.gif', '\.jpg','\.png','
 let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
 " --------------------------------------------------------------------------
 " }}}
+
 " Ultisnips Options: {{{
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=2715>
@@ -360,6 +361,9 @@ nmap go :Utl<CR>
 " GetLatestVimScripts Options: {{{
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=642>
+" Requires wget:
+" Debian: sudo apt-get install wget (though it's likely installed)
+" Mac: sudo port install wget
 " --------------------------------------------------------------------------
 let g:GetLatestVimScripts_allowautoinstall=1
 " --------------------------------------------------------------------------
