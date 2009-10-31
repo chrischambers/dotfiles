@@ -1,0 +1,192 @@
+ResetSnippets()
+
+snippet comment html
+	<!-- ${1:} -->
+	${2:}
+snippet comment js
+	// ${1:}
+	${2:}
+snippet stub
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>${1:page_title}</title>
+		<link rel="stylesheet" href="${2:your_css}.css" type="text/css" media="screen" /> 
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="author" content="${3:`g:snips_author`}" />
+		<meta name="description" content="${5:page_description}" />
+	</head>
+	<body>
+		${6:}
+	</body>
+	</html>
+
+snippet v
+	{{ ${1:variable} }}${2:}
+snippet block
+	{% block ${1:blockname} %}
+	${2:}
+	{% endblock $1 %}
+	${3:}
+snippet comment django-full
+	{% comment %}
+	${1:}
+	{% endcomment %}
+	${2:}
+snippet comment django-minimal
+	{# ${1:} #}
+	${2:}
+snippet for
+	{% for ${1:item} in ${2:container} %}
+	${3:}
+	{% endfor %}
+	${4:}
+snippet if else
+	{% if ${1:cond} %}
+	${2:}
+	{% else %}
+	${3:}
+	{% endif %}
+	${4:}
+snippet if plain
+	{% if ${1:cond} %}
+	${2:}
+	{% endif %}
+	${3:}
+snippet load
+	{% load ${1:templatetags} %}
+	${2:}
+snippet include
+	{% include ${1:template_path_or_var} %}
+	${2:}
+snippet extends
+	{% extends ${1:template_path_or_var} %}
+	${2:}
+
+# http://github.com/robhudson/snipmate_for_django/blob/9635c9922cf5b1f88e5ff6a54661305a608e6ce6/snippets/django_template.snippets
+snippet autoescape
+	{% autoescape ${1:off} %}
+	${2}
+	{% endautoescape %}
+snippet block
+	{% block ${1} %}
+	${2}
+	{% endblock %}
+snippet #
+	{# ${1:comment} #}
+snippet comment
+	{% comment %}
+	${1}
+	{% endcomment %}
+snippet cycle
+	{% cycle ${1:val1} ${2:val2} ${3:as ${4}} %}
+snippet debug
+	{% debug %}
+snippet extends
+	{% extends "${1:base.html}" %}
+snippet filter
+	{% filter ${1} %}
+	${2}
+	{% endfilter %}
+snippet firstof
+	{% firstof ${1} %}
+snippet for
+	{% for ${1} in ${2} %}
+	${3}
+	{% endfor %}
+snippet empty
+	{% empty %}
+	${1}
+snippet if
+	{% if ${1} %}
+	${2}
+	{% endif %}
+snippet else
+	{% else %}
+	${1}
+snippet ifchanged
+	{% ifchanged %}${1}{% endifchanged %}
+snippet ifequal
+	{% ifequal ${1} ${2} %}
+	${3}
+	{% endifequal %}
+snippet ifnotequal
+	{% ifnotequal ${1} ${2} %}
+	${3}
+	{% endifnotequal %}
+snippet include
+	{% include "${1}" %}
+snippet load
+	{% load ${1} %}
+snippet now
+	{% now "${1:jS F Y H:i}" %}
+snippet regroup
+	{% regroup ${1} by ${2} as ${3} %}
+snippet spaceless
+	{% spaceless %}${1}{% endspaceless %}
+snippet ssi
+	{% ssi ${1} %}
+snippet trans
+	{% trans "${1:string}" %}
+snippet url
+	{% url ${1} as ${2} %}
+snippet widthratio
+	{% widthratio ${1:this_value} ${2:max_value} ${3:100} %}
+snippet with
+	{% with ${1} as ${2} %}
+ 
+# Template Filters
+ 
+# Note: Since SnipMate can't determine which template filter you are
+# expanding without the "|" character, these do not add the "|"
+# character. These save a few keystrokes still.
+ 
+# Note: Template tags that take no arguments are not implemented.
+ 
+snippet add
+	add:"${1}"
+snippet center
+	center:"${1}"
+snippet cut
+	cut:"${1}"
+snippet date
+	date:"${1}"
+snippet default
+	default:"${1}"
+snippet defaultifnone
+	default_if_none:"${1}"
+snippet dictsort
+	dictsort:"${1}"
+snippet dictsortrev
+	dictsortreversed:"${1}"
+snippet divisibleby
+	divisibleby:"${1}"
+snippet floatformat
+	floatformat:"${1}"
+snippet getdigit
+	get_digit:"${1}"
+snippet join
+	join:"${1}"
+snippet lengthis
+	length_is:"${1}"
+snippet pluralize
+	pluralize:"${1}"
+snippet removetags
+	removetags:"${1}"
+snippet slice
+	slice:"${1}"
+snippet stringformat
+	stringformat:"${1}"
+snippet time
+	time:"${1}"
+snippet truncatewords
+	truncatewords:${1}
+snippet truncatewordshtml
+	truncatewords_html:${1}
+snippet urlizetrunc
+	urlizetrunc:${1}
+snippet wordwrap
+	wordwrap:${1}
+

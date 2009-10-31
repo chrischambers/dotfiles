@@ -1,0 +1,535 @@
+ResetSnippets()
+
+# Shebang:
+snippet #!
+	#!/usr/bin/env python
+	# -*- coding: UTF-8 -*-
+	${1}
+snippet sb Plain
+	#!/usr/bin/env python
+	# -*- coding: ${1:UTF-8} -*-
+	${2}
+snippet sb Unicode
+	#!/usr/bin/env python
+	# -*- coding: UTF-8 -*-
+	${1}
+snippet sb Latin-1
+	#!/usr/bin/env python
+	# -*- coding: Latin-1 -*-
+	${1}
+
+# Imports:
+snippet i
+	import ${1:module}
+	${2}
+snippet from
+	from ${1:package/module} import ${2:module/function/class}
+	${3}
+
+# Module Docstring
+snippet docs
+	'''
+	File: ${1:`Filename('$1.py', 'foo.py')`}
+	Author: ${2:`g:snips_author`}
+	Description: ${3}
+	'''
+
+# Loops
+snippet wh
+	while ${1:condition}:
+		${2:# code...}
+snippet for
+	for ${1:needle} in ${2:haystack}:
+		${3:# code...}
+# New Class
+snippet classy
+	class ${1:ClassName}(${2:object}):
+		"""${3:docstring for $1}"""
+		def __init__(self, ${4:`PyGetVariableInitializationFromVars('$4')`}):
+			${5:super($1, self).__init__()}
+			self.$4 = $4
+			${6}
+# New Function
+snippet def
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		${3:pass}
+# New Method
+snippet meth
+	def ${1:mname}(self, ${2:arg}):
+		${3:pass}
+# New Property
+snippet property
+	def ${1:foo}():
+		doc = "${2:The $1 property.}"
+		def fget(self):
+			${3:return self._$1}
+		def fset(self, value):
+			${4:self._$1 = value}
+# Lambda
+snippet ld
+	${1:var} = lambda ${2:vars} : ${3:action}
+snippet .
+	self.
+snippet try Try/Except
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	${5}
+snippet try Try/Except/Else
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5:pass}
+	${6}
+snippet try Try/Except/Finally
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	finally:
+		${5:pass}
+	${6}
+snippet try Try/Except/Else/Finally
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5:pass}
+	finally:
+		${6:pass}
+	${7}
+# if __name__ == '__main__':
+snippet ifmain
+	${2:}
+	if __name__ == '__main__':
+		${1:main()}
+# __magic__
+snippet _
+	__${1:init}__${2}
+# ----------------
+# Debugging:
+# ----------------
+snippet ipdb
+	import ipdb
+	ipdb.set_trace()
+	${1}
+snippet traceback
+	import sys, traceback
+
+	exc_type, exc_value, tb = sys.exc_info()
+	error_output = "Type: <%s>\n%s\n\nTraceback:\n%s" % (
+		exc_type.__name__, exc_value, "\n".join(traceback.format_tb(tb))
+	)
+
+
+# ----------------
+# Testing:
+# ----------------
+snippet testcase
+	class Test${1:Object}(${2:unittest.TestCase}):
+
+		def setUp(self):
+			${3:pass}
+
+		def tearDown(self):
+			${4:pass}
+			
+snippet ase
+	self.assertEqual(${1:expected}, ${2:actual})
+	${3}
+snippet as_
+	self.assert_(${1:expression})
+	${3}
+snippet asne
+	self.assertNotEqual(${1:first}, ${2:second})
+	${3}
+snippet asr
+	self.assertRaises(${1:Exception}, ${2:callable}, ${3:args_or_kwargs})
+	${4}
+snippet asnr
+	try:
+		${1:#operation}
+	except ${2:Exception}, e:
+		self.fail("${3:failure message}")
+	${4}
+snippet ast
+	self.assertTrue(${1:expression})
+	${2}
+snippet asf
+	self.assertFalse(${1:expression})
+	${2}
+
+snippet asred
+	self.assertRedirects(${1:response}, reverse('${2:expected_url}'), ${3:status_code=302, target_status_code=200})
+	${4:}
+
+snippet asfe
+	self.assertFormError(${1:response}, '${2:form_name}', ${3:field}, ${4:error_string_or_list})
+	${5:}
+
+snippet asc
+	self.assertContains(${1:response}, ${2:text}, ${3:count=None, status_code=200})
+	${4:}
+
+snippet asnc
+	self.assertNotContains(${1:response}, ${2:text}, ${3:status_code=200})
+	${4:}
+
+snippet astu
+	self.assertTemplateUsed(${1:response}, '${2:template_name}')
+	${3:}
+
+snippet astnu
+	self.assertTemplateNotUsed(${1:response}, '${2:template_name}')
+	${3:}
+# ----------------
+# Django:
+# ----------------
+snippet objget
+	${1:var} = ${2:Object}.${3:objects}.get(${4:id}=${5:value})
+	${6}
+snippet objgettry
+	try:
+	    ${1:var} = ${2:Object}.${3:objects}.get(${4:id}=${5:value})
+	except $2.DoesNotExist, e:
+	    $1 = ${6:None}
+	${7}
+
+snippet objfilter
+	${1:var} = ${2:Object}.${3:objects}.filter(${4:id}=${5:value})
+	${6}
+# -------
+# Models:
+# -------
+snippet modelimports
+	from django.db import models
+	from datetime import datetime
+	${1}
+
+snippet djmod
+	class ${1:ModelName}(models.Model):
+	${2:# fields}
+	datetime_created = models.DateTimeField(default=datetime.now)
+	datetime_modifed = models.DateTimeField(auto...)
+	
+		class Meta(object):
+			ordering = ['-datetime_created']
+			get_latest_by = 'datetime_created'
+
+		def __unicode__(self):
+			return u"${2:"unicode string"}" % (${3:subs},)
+
+		def save(self, force_insert=False, force_update=False):
+			$1 = super($1, self).save(force_insert, force_update) 
+			$1.save_m2m() # only if commit=False
+			return $1
+
+		@models.permalink
+		def get_absolute_url(self):
+		    return ('${4:url_name}', ${5:(args,), {kwargs}})
+		${6}
+
+snippet mchar
+	${1:fieldname} = models.CharField('$1', blank=True, max_length=${2:255})
+	${3}
+snippet mtext
+	${1:fieldname} = models.TextField('$1', blank=True, max_length=${2:255})
+	${3}
+snippet mslug
+	${1:fieldname} = models.SlugField('$1', blank=True, max_length=${2:50})
+	${3}
+snippet mcsi
+	${1:fieldname} = models.CommaSeparatedIntegerField('${2}', max_length=${3:255})
+	${4}
+snippet memail
+	${1:fieldname} = models.EmailField('$1', blank=True)
+	${3}
+snippet murl
+	${1:fieldname} = models.UrlField('$1', blank=True, verify_exists=${2:True})
+	${3}
+snippet mxml
+	${1:fieldname} = models.XMLField('$1', blank=True, schema_path=${2:None})
+	${3}
+
+
+
+snippet mint
+	${1:fieldname} = models.IntegerField('$1', null=True, blank=True)
+	${2}
+snippet mintsmall
+	${1:fieldname} = models.SmallIntegerField('$1', null=True, blank=True)
+	${2}
+snippet mintpos
+	${1:fieldname} = models.PositiveIntegerField('$1', null=True, blank=True)
+	${2}
+snippet mintpossmall
+	${1:fieldname} = models.PositiveSmallIntegerField('$1', null=True, blank=True)
+	${2}
+snippet mfloat
+	${1:fieldname} = models.FloatField('$1', null=True, blank=True, decimal_places=${2})
+	${3}
+snippet mdec
+	${1:fieldname} = models.DecimalField('$1', blank=True, null=True, 
+		max_digits=${2:None}, 
+		decimal_places=${3:2}
+	)
+	${4}
+snippet mip
+	${1:fieldname} = models.IPAddressField('$1', null=True, blank=True)
+	${2}
+	
+snippet mfk
+	${1:fieldname} = models.ForeignKey('${2:RelatedModel}',
+		null=True, verbose_name='$1', related_name='${3}'
+	)
+	${4}
+snippet m2m
+	${1:fieldname} = models.ManyToManyField('${2:RelatedModel}',
+		null=True, verbose_name='$1', related_name='${3}'
+	)
+	${4}
+snippet o2o
+	${1:fieldname} = models.OneToOneField('${2:RelatedModel}',
+		null=True, verbose_name='$1', related_name='${3}'
+	)
+	${4}
+snippet mbool
+	${1:fieldname} = models.BooleanField('${2}')
+snippet mboolnull
+	${1:fieldname} = models.NullBooleanField('${2}')
+snippet mfield
+	${1:fieldname} = models.${2:FieldType}Field('${3:verbose_name}', ${4:other_params})
+
+snippet mff
+	${1:fieldname} = models.FileField('$1', upload_to=None)
+	${2}
+snippet mif
+	${1:fieldname} = models.ImageField('$1', upload_to=None, height_field=None, width_field=None, max_length=100)
+	${2}
+snippet mfpf
+	${1:fieldname} = models.FilePathField('$1', 
+		path=${2:unix_style_path}, 
+		match=r'${3:regex_for_basename}', 
+		recursive=${4:False}
+	)
+	${5}
+snippet mdate
+	${1:fieldname} = models.DateField('$1')
+	${2}
+snippet mtime
+	${1:fieldname} = models.DateTimeField('$1')
+	${2}
+snippet mdt
+	${1:fieldname} = models.TimeField('$1')
+	${2}
+# Iabbr addmodel class <>(meta.Model):<CR><><CR><CR>def __repr__(self):<CR>return "%s" % (<>)<CR><CR>class META:<CR>admin = meta.Admin()
+# Iabbr mif meta.ImageField(upload_to='<>')<CR><>
+# Iabbr mff meta.FileField(upload_to='<>')<CR><>
+
+# Snippet ffld models.FileField(upload_to=<{}>)<CR><{}>
+# Snippet fpfld models.FilePathField(path=<{}>, match="<{""}>", recursive=<{False}>)<CR><{}>
+# Snippet floatfld models.FloatField(max_digits=<{}>, decimal_places=<{}>)<CR><{}>
+snippet choices
+	${1:type_of}_CHOICES = (
+		(${2:database_entry}, u'${3:human_readable_name}'),
+		${4:}
+	)
+	${5:}
+
+snippet modelsave
+	def save(self, force_insert=False, force_update=False):
+		# ${1:do_something}
+		${2:obj} = super(${2:ClassName}, self).save(force_insert, force_update) 
+		# ${3:do_something_else}
+		$2.save_m2m() # only if commit=False
+		return $2
+	${4}
+
+# -------
+# Admin:
+# -------
+snippet admin
+	from django.contrib import admin
+
+	class ${1:ClassName}Admin(admin.ModelAdmin):
+		pass
+	admin.site.register($1, $1Admin)
+	${2}
+
+snippet adminaction
+	def ${1:make_action_happen}(modeladmin, request, queryset):
+		for ${2:obj} in queryset:
+			${3:# do something}
+	$1.short_description = "${4:$1}"
+	${5:}
+# -------
+# Forms:
+# -------
+snippet formsave
+	def save(self, commit=False, *args, **kwargs):
+		# ${1:do_something}
+		${2:obj} = super(${3:ClassName}, self).save(commit, *args, **kwargs) 
+		# ${4:modify $2}
+		$2.save()
+		$2.save_m2m() # only if commit=False
+		return $2
+		${5}
+
+
+# -------
+# Views:
+# -------
+snippet viewimports
+	from django import forms
+	from django.core.urlresolvers import reverse
+	from django.shortcuts import render_to_response, get_object_or_404
+	from django.template import RequestContext
+	${1}
+
+# Snippet formview def <{"form view"}>(request, *args, **kwargs):<CR>if request.method == 'POST':<CR>form = <{form}>(request.POST)<CR><{}>if form.is_valid():<CR><{instructions}><CR>return HttpResponseRedirect(reverse("<{"url name"}>"))<CR><CR>else:<CR>form = <{form}>()<CR><CR>data = { 'form': form, <{}>}<CR><CR>return render_to_response("<{"path to template"}>.html",data,<CR>context_instance=RequestContext(request))<CR><CR><{}>
+
+snippet djview
+	def ${1:view_name}(request, ${2}*args, **kwargs):
+		data = {$3}
+		return render_to_response("${4:path_to_template}.html", data,
+								context_instance=RequestContext(request))
+	${5:}
+
+snippet formview
+	def ${1:form_view}(request, *args, **kwargs):
+		if request.method == 'POST':
+			form = ${2:FormClass}(${3:}request.POST)
+			if form.is_valid():
+				${4:# Do Stuff}
+				return HttpResponseRedirect(reverse("${5:url name}"))
+		else:
+			form = $2($3)
+		
+		data = { 'form': form, ${6:}}
+		
+		return render_to_response("${7:path_to_template}.html", data,
+								context_instance=RequestContext(request))
+	${8}
+
+snippet rr
+	return render_to_response("${1:path_to_template}.html", ${2:data},
+							context_instance=RequestContext(request))
+	${3}
+
+
+snippet djemail
+	from django.core.mail import send_mail
+	from django.template import Context, loader
+
+	template = loader.get_template('${1:email_template_path}')
+	data = {
+		${2},
+	}
+	send_mail(
+		${3:email subject} % $4, 
+		template.render(Context(data)), 
+		${5:email from}, 
+		[${6:email recipients}],
+		fail_silently=True
+	)
+	${7}
+#         c = RequestContext(self._create_HttpRequest(r.request))
+#         c['user'] = user # simulate auth context processor
+#         c['first_name'] = self.avatar_inputs['first_name']
+#         c['last_name'] = self.avatar_inputs['last_name']
+#         c['password'] =  password,
+#         self.assertEqual(template.render(c), avatar_email.body)
+
+ 
+
+# -------
+# Urls:
+# -------
+snippet url Full
+	url(r'${1:regex}', '${2:view_function}', name='${3:name_for_view}'),
+	${4}
+snippet url Full with Context
+	url(r'${1:regex}', '${2:view_function}', {${3:extra_context},}, name='${4:name_for_view}'),
+	${5}
+snippet url Barebones
+	(r'${1:regex}', '${2:view_function}',),
+	${3:}
+snippet url Include
+	(r"${1:url_prefix}", include('${2:path.to.urlconf}'),
+	${3:}
+
+snippet urlp Set
+	from django.conf.urls.defaults import *
+	urlpatterns = patterns('${1:django.views.generic}',
+		${2}
+	)
+	${3}
+snippet urlp Extend
+	urlpatterns += patterns('${1:django.views.generic}',
+		${2}
+	)
+	${3}
+
+
+# -------
+# DjangoTest:
+# -------
+snippet djemailtest
+	self.assertEqual(0, len(mail.outbox))
+
+	# Run action here
+	
+	${1:relevant_email} = None
+	data = {
+		${2}
+	}
+	expected_subject = ${3:expected_subject} % (
+		${4}
+	)
+
+	for email in mail.outbox:
+		if email.subject == expected_subject:
+			$1 = email
+			break
+	self.assert_($1)
+	template = loader.get_template('${5:email_template}')
+	self.assertEqual(template.render(Context(data)),
+			$1.body)
+	self.assertEqual(${6:expected_sender}, $1.from_email)
+	self.assertEqual(${7:expected_recipients},
+			 $1.recipients())
+
+	expected_email_context = (
+		${8}
+	)
+	for c in expected_email_context:
+		self.assertTrue(c in $1.body)
+	${9}
+snippet clilogin
+	self.assertTrue(self.client.login(username=${1:username}, password='${2:password}'))
+	${3}
+snippet clipost
+	${4:response} = self.client.post(reverse('${1:urlname}'${2:, args=(,), kwargs={}}), data=${3:data})
+	${5}
+snippet cliget
+	${4:response} = self.client.get(reverse('${1:urlname}'${2:, args=(,), kwargs={}}), data=${3:data})
+	${5}
+# -------
+# Template Tags:
+# -------
+snippet tag Inclusion
+	from django import template
+	register = template.Library()
+
+	@register.inclusion_tag('${4:path_to_template}', takes_context=${5:True})
+	def ${1:tag_name}(context, $2):
+		$3
+	${6}
+
+snippet zomg
+	${1:test}${2:foo}`tolower("$1")`
+	    

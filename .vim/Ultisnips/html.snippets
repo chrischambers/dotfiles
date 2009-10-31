@@ -1,0 +1,67 @@
+snippet # "html" w
+<!-- ${1:} -->
+$0
+endsnippet
+
+snippet # "js" w
+// ${1:}
+$0
+endsnippet
+
+snippet css "link" b
+<link rel="stylesheet" type="text/css" media="${1:screen}" 
+      href="${2:path/to/your/css}.css" />
+$0
+endsnippet
+
+snippet css "inline" b
+<style type="text/css">
+  $1
+</style>
+$0
+endsnippet
+
+snippet js "link" b
+<script type="text/javascript" 
+        src="${1:path/to/javascript}"></script>
+$0
+endsnippet
+
+snippet js "inline" b
+<script type="text/javascript">
+  //<![CDATA[
+    $1
+  //]]>
+</script>
+$0
+endsnippet
+
+snippet htmlstub "HTML file stub" b
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>${1:page_title}</title>
+  <meta name="author" content="${2:`!v g:snips_author`}" />
+  <meta name="description" content="${3: page description}" />
+
+  <link rel="icon" type="image/x-icon" href="${4:media/path/}favicon.ico" />
+  <link rel="shortcut icon" href="$4/favicon.png" type="image/png" />
+
+  <link rel="stylesheet" type="text/css" media="all" 
+        href="$4/css/reset.css" />
+  <link rel="stylesheet" type="text/css" media="screen" 
+        href="$4${5:your_css}.css" /> 
+</head>
+<body>
+  $0
+</body>
+</html>
+endsnippet
+
+snippet submit "Form submit button" w
+<input type="submit" value="${1:Submit}" />
+$0
+endsnippet
