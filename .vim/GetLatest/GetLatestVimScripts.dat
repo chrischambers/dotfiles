@@ -21,7 +21,7 @@ ScriptID SourceID Filename
 # # 1112 3570 :AutoInstall: pydoc.vim
 159 3640 :AutoInstall: minibufexpl.vim
 # 670 8073 :AutoInstall: visincr.vim
-# 2390 10336 :AutoInstall: CSApprox.vim
+2390 10336 :AutoInstall: CSApprox.vim
 1066 7618 :AutoInstall: cecutil.vim
 # 120 9388 :AutoInstall: Decho.vim
 # 1203 4188 :AutoInstall: WhereFrom.vim
