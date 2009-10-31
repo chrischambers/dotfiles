@@ -3,6 +3,7 @@ let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
 let s:thesaurus_location="/home/nestor/moby_thesaurus.txt"
 let s:django_location="$HOME/src/py/django/django-1.1"
 let s:python_location="/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5"
+let s:baseline_vim_path=""
 " TODO: Refactor .vimrc to use these!
 
 " Settings Which Must Be Initialised Early: {{{
@@ -695,6 +696,11 @@ augroup END
 " set complete=.,w,b,u
 set complete-=t,i "tags deactivated, includes deactivated
 function! SetVimPathFromPyPath()
+""" Reset path to baseline_vim_path, then update with vim's internal 
+""" PYTHONPATH
+
+exec "set path=" . s:baseline_vim_path
+
 python << EOF
 import os
 import sys
@@ -704,8 +710,8 @@ for p in sys.path:
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
 endfunction
-set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.
-set path+=/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5
+" set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.
+" set path+=/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5
 " --------------------------------------------------------------------------
 " }}}
 
@@ -792,29 +798,43 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " EOL
 " map <leader>r :py EvalAndReplaceCurrentRange()<CR>
 
-" " Mine:
-function! PyVirtualEnv(name)
-" Setting path according to virtualenv
+""" My Hackish Additions To The Vim Arsenal: {{{
+function! StoreVirtualEnv(virtualenv)
+    """ Stores virtualenv's sys.path in a global vim variable,
+    """ g:virtualenv_sys_path
+
 python << EOF
-# def get_virtualenvs_sys_path(virtualenv):
+virtualenv = vim.eval('a:virtualenv')
 virtualenv_dir = os.environ.get("WORKON_HOME")
+if not virtualenv_dir:
+    print "$WORKON_HOME environment variable not found!"
 python_exe = os.path.join(virtualenv_dir, virtualenv, 'bin', 'python')
 if os.path.exists(python_exe):
     cmd = python_exe + ' -c "import sys; print sys.path"'
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    venv_sys_path = proc.communicate()[0]
-    print venv_sys_path
-    # vim.command('let g:virtualenv_sys_path = venv_sys_path')
+    virtualenv_sys_path = proc.communicate()[0]
+    vim.command('let g:virtualenv_sys_path = %s' % virtualenv_sys_path)
+else:
+    print 'virtualenv "%s" not found!' % (virtualenv,)
+    # raise vim.error('virtualenv %s not found!' % (virtualenv,))
 EOF
-" call get_virtualenvs_sys_path(a:name)
 endfunc
 
 function! VirtualEnv(name)
-    let new_sys_path = PyVirtualEnv(name)
-    py import sys, vim; sys.path = new_sys_path
-endfunc
+""" Update vim's path and its internal-python sys.path to agree with
+""" the virtualenv's sys.path
 
-" "
+    " First, set g:virtualenv_sys_path to the virtualenv's sys path:
+    call StoreVirtualEnv(a:name)
+
+    " Then, monkey patch vim's internal python so that its sys.path is now the
+    " virtualenv's sys.path!
+    py import sys, vim; sys.path = vim.eval('g:virtualenv_sys_path')
+
+    " Finally, update vim's path to agree with pythonpath:
+    call SetVimPathFromPyPath()
+endfunc
+" }}}
 " --------------------------------------------------------------------------
 " python << EOF
 " import os, sys
