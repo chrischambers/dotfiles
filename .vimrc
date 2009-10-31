@@ -295,7 +295,7 @@ endif
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1658>
 " --------------------------------------------------------------------------
 " Toggle the following off with 'f'!
-let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$']
+let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$', '\.swp']
 let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD
 let NERDChristmasTree=1 " Extra-colourful Tree
 let NERDTreeMouseMode=2 " If you do use the mouse, this is probably what you want.
