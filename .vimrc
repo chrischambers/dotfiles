@@ -384,12 +384,6 @@ nmap <silent> <leader>bo :BufOnly<CR>
 " minibufexpl.vim - Extracted all useful settings, 24-10-2009
 " C-j,k,l,m do as you would expect:
 let g:miniBufExplMapWindowNavVim = 1
-" FIXME: Currently, the above fails in NERD_tree
-" nmap <C-h> <C-w>h
-" nmap <C-j> <C-w>j
-" nmap <C-k> <C-w>k
-" nmap <C-l> <C-w>l
-
 " Ctrl and arrow keys also do as you would expect:
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
