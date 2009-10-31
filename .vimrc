@@ -709,6 +709,8 @@ import vim
 for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+    #  else:
+    #      print p
 EOF
 endfunction
 " set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.
@@ -899,6 +901,8 @@ custom_sys_path = [
 # sys.path = custom_sys_path
 vim.command('call VirtualEnv("langlab")')
 from pprint import pprint
+pprint(vim.command("py import sys; from pprint import pprint; pprint(sys.path)"))
+print 50 * '-'
 pprint(vim.eval('&path').split(','))
 print 50 * '-'
 pprint(custom_sys_path)
@@ -940,3 +944,9 @@ let g:snips_author="Chris Chambers"
 " Also, occasionally, opens file underneath the tree rather than to the right
 " of it.
 " FIXME: SpellBad is broken dotted line, rather than 'undercurl'
+" FIXME: VirtualEnv changes:
+" * you need a way of adding extra packages that won't necessarily be in
+"   sys.path by default. For example, the languagelab project contains
+"   external_apps, which should be added to the system path.
+" * the os.path.is_dir check in `Pythonpath file jumping` isn't detecting some
+"   of the eggs - feedparser, for one.
