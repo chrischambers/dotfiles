@@ -4,8 +4,32 @@ let s:thesaurus_location="/home/nestor/moby_thesaurus.txt"
 let s:django_location="$HOME/src/py/django/django-1.1"
 let s:python_location="/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5"
 let s:baseline_vim_path=""
+" Note: ropevim requires ropemode, ropevim and rope in the python path,
+" pyflakes.vim requires .vim/after/ftplugin/python.
 let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/py/ropevim', '/Users/Chris/src/py/rope', '/Users/Chris/.vim/after/ftplugin/python/' ]
 " TODO: Refactor .vimrc to use these!
+
+" README: {{{
+" --------------------------------------------------------------------------
+" To make use of the virtualenv sys-path detection functionality, you should
+" either:
+" 1) Force easy_install not to use .egg files, especially for modules rather
+" than packages, but probably for packages too, or...
+" 2) Avoid using easy_install, and opt to use pip instead.
+
+" The reason for this is that vim doesn't know how to look for, say, pytz
+" in the following directory (assuming your environment's site-packages is on
+" the pythonpath, which it should probably /always/ be using the VirtualEnv
+" functionality):
+
+" [...]/lib/site-packages/pytz-2009j-py2.5.egg
+
+" It /DOES/, however, know how to look in the following directory:
+
+" [...]/lib/site-packages/pytz
+
+" --------------------------------------------------------------------------
+" }}}
 
 " Settings Which Must Be Initialised Early: {{{
 set nocompatible     " Force this at the start of the file
@@ -899,7 +923,7 @@ custom_sys_path = [
  '..',
 ]
 # sys.path = custom_sys_path
-vim.command('call VirtualEnv("langlab")')
+vim.command('call VirtualEnv("languagelab")')
 from pprint import pprint
 pprint(vim.command("py import sys; from pprint import pprint; pprint(sys.path)"))
 print 50 * '-'
@@ -948,5 +972,3 @@ let g:snips_author="Chris Chambers"
 " * you need a way of adding extra packages that won't necessarily be in
 "   sys.path by default. For example, the languagelab project contains
 "   external_apps, which should be added to the system path.
-" * the os.path.is_dir check in `Pythonpath file jumping` isn't detecting some
-"   of the eggs - feedparser, for one.
