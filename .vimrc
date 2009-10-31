@@ -892,5 +892,10 @@ let g:snips_author="Chris Chambers"
 " TODO: Retrieve the NERDTree filetype you created which remaps <c-j><c-k>
 " TODO: Change python autocommmands so that they are deactivated for
 " non-python buffers
-" TODO: Fix FuzzyfinderTaggedFile to work with files in the directory BELOW
-" TODO: Fix UTL
+" FIXME: FuzzyfinderTaggedFile- CWD seems to need to be the same as the tags
+" file atm.
+" FIXME: UTL not activating browser properly.
+" FIXME: NERD_Tree is being quite greedy in how much space it opens sometimes.
+" Also, occasionally, opens file underneath the tree rather than to the right
+" of it.
+" FIXME: SpellBad is broken dotted line, rather than 'undercurl'
