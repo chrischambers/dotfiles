@@ -205,7 +205,6 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 " Command Line Mode: {{{
 " --------------------------------------------------------------------------
     set cmdheight=2 " Sets command-line height
- 
 " --------------------------------------------------------------------------
     " Emacs Mappings At Command Line: {{{
     " For Emacs-style editing on the command-line: <url:vimhelp:emacs-keys>
@@ -407,10 +406,10 @@ vmap <leader>t{ :Align'[^']\+':<CR>
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1984>
 " --------------------------------------------------------------------------
-nmap <leader>, :FuzzyFinderBuffer<CR>
+nmap <leader>, :FufBuffer<CR>
 "nmap <leader>f :FuzzyFinderFile<CR>
-nmap <leader><S-f> :FuzzyFinderTextMate<CR>
-nmap <leader>f :FuzzyFinderTaggedFile<CR>
+nmap <leader><S-f> :FufTextMate<CR>
+nmap <leader>f :FufTaggedFile<CR>
 " --------------------------------------------------------------------------
 " }}}
 
@@ -864,7 +863,7 @@ sys.path = custom_sys_path
 EOF
 " --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
-set tags+=~/documents/code/llab/llcom/tags
+" set tags+=~/documents/code/llab/llcom/tags
 " --------------------------------------------------------------------------
 
 " set tags+=$HOME/documents/code/llab/tags
@@ -893,4 +892,5 @@ let g:snips_author="Chris Chambers"
 " TODO: Retrieve the NERDTree filetype you created which remaps <c-j><c-k>
 " TODO: Change python autocommmands so that they are deactivated for
 " non-python buffers
-" TODO: Fix SuperTab
+" TODO: Fix FuzzyfinderTaggedFile to work with files in the directory BELOW
+" TODO: Fix UTL
