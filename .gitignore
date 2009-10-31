@@ -5,6 +5,15 @@
 # All dotfiles/dirs beginning with vim
 # !/*.vim*
 
-!/*.vim/*
 !/*vim/
+!/*.vim/*
+!/*vim/*/**
+!/*vim/*/*/**
+!/*vim/*/*/*/**
 
+/*.vim/.netrwhist
+/*.vim/.VimballRecord
+*.swp
+*.svn/
+**~
+.DS_Store
