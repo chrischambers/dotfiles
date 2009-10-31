@@ -935,7 +935,6 @@ let g:snips_author="Chris Chambers"
 " --------------------------------------------------------------------------
 " }}}
 
-" TODO: Retrieve the NERDTree filetype you created which remaps <c-j><c-k>
 " TODO: Change python autocommmands so that they are deactivated for
 " non-python buffers
 " FIXME: FuzzyfinderTaggedFile- CWD seems to need to be the same as the tags
