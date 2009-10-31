@@ -11,7 +11,7 @@ ScriptID SourceID Filename
 # 1071 3388 :AutoInstall: BufOnly.vim
 1658 11500 :AutoInstall: NERD_tree.vim
 # # 2317 11036 :AutoInstall: qname.vim
-# 2136 8206 :AutoInstall: repeat.vim
+2136 8206 :AutoInstall: repeat.vim
 # # ??? 1 ropevim.vim
 # 2120 9356 :AutoInstall: speeddating.vim
 # 152 3342 :AutoInstall: showmarks.vim
