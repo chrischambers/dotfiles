@@ -195,7 +195,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " Command Line Mode: {{{
     set cmdheight=2 " Sets command-line height
-    " Emacs Metacontrols At Command Line: {{{
+    " Emacs Mappings At Command Line: {{{
     " For Emacs-style editing on the command-line: <url:vimhelp:emacs-keys>
         " start of line
         :cnoremap <C-A>        <Home>
@@ -215,6 +215,8 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
         :cnoremap <Esc><C-B>    <S-Left>
         " forward one word
         :cnoremap <Esc><C-F>    <S-Right>
+        " kill line
+        :cnoremap <C-K>    <C-U>
     " }}}
 " }}}
 
@@ -225,6 +227,13 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)
 " }}}
 
+" Set Grep Program To Ack: {{{
+" Note: ack will need to be on your path, and on certain systems (e.g. *Buntu,
+" perhaps other Linux distros) you'll need to alias ack-grep to ack.
+" Source: <url:http://weblog.jamisbuck.org/2008/11/17/vim-follow-up>
+set grepprg=ack
+set grepformat=%f:%l:%m
+" }}}
 " Plugin Configuration:
 
 " NERDTree Options: {{{
@@ -234,7 +243,8 @@ let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD
 let NERDChristmasTree=1 " Extra-colourful Tree
 let NERDTreeMouseMode=2 " If you do use the mouse, this is probably what you want.
 
-map <leader>d :NERDTreeToggle<CR>
+" map <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>d :NERDTreeToggle<CR>
 " Note the trailing space after each of the following commands:
 map <leader><S-d> :NERDTreeFromBookmark 
 " map <leader><S-d> :NERDTree 
@@ -343,6 +353,10 @@ let g:autotagCtagsCmd="ctags -a --links=no --exclude='rosetta/' --python-kinds=-
 set t_Co=256
 " }}}
 
+" Pydoc Autocommands: {{{
+autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(expand("<cWORD>"))<Cr>
+" }}}
+
 """ Disabled:
 " ScrollColors Mappings: {{{
 " map <silent><leader>n :NEXTCOLOR<cr>
@@ -357,6 +371,12 @@ set t_Co=256
 " Pydiction Options: {{{
 " let g:pydiction_location = '/Users/Chris/.vim/python/complete-dict'
 " }}}
+
+" Pylint Options: {{{
+" http://vim.sourceforge.net/scripts/script.php?script_id=891
+" set path+=$HOME/.virtualenvs/langlab/bin - this doesn't do anything
+" autocmd FileType python compiler pylint
+"}}}
 
 " Useful Functions:
 
@@ -471,6 +491,23 @@ command! -nargs=+ -complete=command PipeToTab call PipeToTab(<q-args>)
 " :W writes to files which require superuser access to modify.
 command W w !sudo tee % > /dev/null
 
+" HTML Specific:
+
+" Autocommand: Prepare HTML File Defaults: {{{
+augroup html_setup
+au!
+fun! Html_fold()
+  set autoindent
+  set foldmethod=syntax
+  " set foldopen=all foldclose=all
+  set foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
+  set fillchars=vert:\|,fold:\
+  set softtabstop=2 shiftwidth=2 nowrap
+endfun
+autocmd FileType html call Html_fold()
+autocmd FileType htmldjango call Html_fold()
+augroup END
+" }}}
 
 " Python Specific:
 
@@ -493,6 +530,7 @@ fun! Python_fold()
   " set foldopen=all foldclose=all
   " set foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
   set fillchars=vert:\|,fold:\
+  set softtabstop=4 shiftwidth=4 nowrap 
 
   " EXPERIMENT: Try to Use '_' as word seperator: {{{
   " let &isk = substitute(&isk, '_,', '', '')
@@ -503,11 +541,10 @@ fun! Python_fold()
   " * affects supertab word completion
   " }}}
 
-  " set tabstop=4 shiftwidth=4 nowrap guioptions+=b
-  " runtime! ftplugin/django_model_snippets.vim
-  nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(expand("<cWORD>"))<Cr>
 endfun
 autocmd FileType python call Python_fold()
+" Unsure what this does:
+autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
 augroup END
 " }}}
 
@@ -583,10 +620,24 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " }}}
 
 " Run Current File Through Python Interpreter: {{{
-" from Yopi:
+  " Implementation 1:
+  " from Yopi:
 :map <F5> :!python %<CR>
 " Run python on this program when pressing F5
 "map <silent> <F5> :!xterm -bg lightblue -fg red -geometry 172x14+100+774 -e "python % \|\| read"<CR><CR>
+
+  " Implementation 2:
+  " Source: <url:http://ed.cranford.googlepages.com/vimrc>
+  " in normal mode, hit f5 to save and run.
+:nnoremap <f5> :up<CR>!python %<CR>
+" }}}
+
+" Evaluate Python Range And Replace With Output: {{{
+" Source: <url:http://ed.cranford.googlepages.com/vimrc>
+" in visual mode, highlight one or more lines
+" and hit f5 and the block will be replaced with
+" its python output.
+:vnoremap <f5> :!python<CR>
 " }}}
 
 " python << EOL
@@ -596,227 +647,12 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " EOL
 " map <leader>r :py EvalAndReplaceCurrentRange()<CR>
 
-" Pylint.vim: 
-" http://vim.sourceforge.net/scripts/script.php?script_id=891
-" set path+=$HOME/.virtualenvs/langlab/bin - this doesn't do anything
-" autocmd FileType python compiler pylint
 
 " Add Django tags.
 " !sed '/    v/d'
 " set tags+=$HOME/src/py/django/django-1.1/django/tags
 " Slows down omnicompletion too much, sadly!
 
-let python_highlight_all=1
-
-" autocmd BufWritePre * normal m`:%s/\s\+$//e`
-" autocmd BufWritePre *.py normal m`:%s/\s\+$//e`
-" Removes trailing spaces
-function TrimWhiteSpace()
-  %s/\s*$//
-  ''
-:endfunction
-
-" set list listchars=trail:.,extends:>
-" Deactivated temporarily.
-" autocmd FileWritePre *.py :call TrimWhiteSpace()
-" autocmd FileAppendPre *.py :call TrimWhiteSpace()
-" autocmd FilterWritePre *.py :call TrimWhiteSpace()
-" autocmd BufWritePre *.py :call TrimWhiteSpace()
-
-map <F2> :call TrimWhiteSpace()<CR>
-map! <F2> :call TrimWhiteSpace()<CR>
-
-" --------------------------------------------------------------------------
-nnoremap <leader>d :NERDTreeToggle<CR>
-
-" TODO: Conditional to check for non-windows system:
-" :W writes to files which require superuser access to modify.
-command W w !sudo tee % > /dev/null
-"
-"
-" from Yopi:
-" run current file through python:
-:map <F5> :!python %<CR>
-" Run python on this program when pressing F5
-"map <silent> <F5> :!xterm -bg lightblue -fg red -geometry 172x14+100+774 -e "python % \|\| read"<CR><CR>
-
-" cool idea: if saving models.py, post-save hook - project_root manage.py validate
-" :nnoremap ,P :!python $WIDGET/manage.py dbshell<CR>
-" :map <F6> :!python $WIDGET/manage.py validate<CR>
-" :map <F7> :!python $WIDGET/manage.py shell<CR>
-
-" another cool idea: when cwd is changed via NERDTree, inspect current
-" directory for ropeproject settings: if found, print status message.
-" also: then adds tags file, perhaps prompts for an update?
-
-" hijack make, build tags?
-"
-
-if &enc =~ '^u\(tf\|cs\)' " When running in a Unicode environment,
-  set list " visually represent certain invisible characters:
-  let s:arr = nr2char(9655) " using U+25B7 (▷) for an arrow, and
-  let s:dot = nr2char(8901) " using U+22C5 (⋅) for a very light dot,
-  " display tabs as an arrow followed by some dots (▷⋅⋅⋅⋅⋅⋅⋅),
-  exe "set listchars=tab:" . s:arr . s:dot
-  " and display trailing and non-breaking spaces as U+22C5 (⋅).
-  exe "set listchars+=trail:" . s:dot
-  exe "set listchars+=nbsp:" . s:dot
-  " Also show an arrow+space (↪ ) at the beginning of any wrapped long lines?
-  " I don't like this, but I probably would if I didn't use line numbers.
-  " let &sbr=nr2char(8618).' '
-endif
-
-if has("autocmd")
-  " Try to jump to the last spot the cursor was at in a file when reading it.
-  au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \ exe "normal g`\"" |
-      \ endif
-endif
-
-set showfulltag " Show more information while completing tags.
-
-" <C-l> redraws the screen and removes any search highlighting.
-" guifont is a bugfix to make invisible cursor reappear.
-nnoremap <silent> <C-l> :let &guifont=&guifont<CR><C-l> :nohl<CR><C-l>
-
-" Y behaves like D rather than like dd
-nnoremap Y y$
-
-" =====================================================================
-" Not working.
-" Run in the Python interpreter {{{
-   function! Python_Eval_VSplit() range
-     let src = tempname()
-     let dst = tempname()
-     execute ": " . a:firstline . "," . a:lastline . "w " . src
-     execute ":!python " . src . " > " . dst
-     execute ":pedit! " . dst
-   endfunction
-   au FileType python vmap <F7> :call Python_Eval_VSplit()<cr>
-" }}}
-
-"
-" http://github.com/sjbach/env/blob/master/dotfiles/vimrc
-" Vi-style editing in the command-line
-" nnoremap : q:a
-" nnoremap / q/a
-" nnoremap ? q?a
-set history=200   " Command history length.
-
-" Indent XML readably
-function! DoPrettyXML()
-  1,$!xmllint --format --recover -
-endfunction
-command! PrettyXML call DoPrettyXML()
-" =====================================================================
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-" set tags+=$HOME/documents/code/llab/tags
-" Necessary run-time command to activate Django atm:
-" (see http://blog.fluther.com/blog/2008/10/17/django-vim/)
-" DJANGO_SETTINGS_MODULE='llcom.settings' PYTHONPATH='/home/nestor/documents/code/llab' vim -g
-" set tags+=$HOME/.vim/tags/python.ctags
-" set tags+=/usr/lib/python2.5/site-packages/Django-1.0.2_final-py2.5.egg/django/tags
-" temporary mapping - sets tag-open to smart tag open
-" cabbr ta tj
-
-augroup python_prog
-au!
-fun! Python_fold()
-  execute 'syntax clear pythonStatement'
-  execute 'syntax keyword pythonStatement break continue del'
-  execute 'syntax keyword pythonStatement except exec finally'
-  execute 'syntax keyword pythonStatement pass print raise'
-  execute 'syntax keyword pythonStatement return try'
-  execute 'syntax keyword pythonStatement global assert'
-  execute 'syntax keyword pythonStatement lambda yield'
-  execute 'syntax match pythonStatement /\<def\>/ nextgroup=pythonFunction skipwhite'
-  execute 'syntax match pythonStatement /\<class\>/ nextgroup=pythonFunction skipwhite'
-  execute 'syntax region pythonFold start="^\z(\s*\)\%(class\|def\)" end="^\%(\n*\z1\s\)\@!" transparent fold'
-  execute 'syntax sync minlines=2000 maxlines=4000'
-  set foldmethod=syntax
-  " set foldopen=all foldclose=all
-  " set foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
-  set fillchars=vert:\|,fold:\
-  " EXPERIMENT:
-  " let &isk = substitute(&isk, '_,', '', '')
-  " removes the underscore from python 'words'
-  " PROBLEMS:
-  " * affects syntax highlighting (e.g. 'type' will be highlighted as keyword
-  " for variable 'sub_type'
-  " * affects supertab word completion
-
-  " set softabstop=4 shiftwidth=4 nowrap guioptions+=b
-  " runtime! ftplugin/django_model_snippets.vim
-  set softtabstop=4 shiftwidth=4 nowrap 
-endfun
-autocmd FileType python call Python_fold()
-augroup END
-autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
-" =====================================================================
-augroup html_file
-au!
-fun! Html_fold()
-  set autoindent
-  set foldmethod=syntax
-  " set foldopen=all foldclose=all
-  set foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
-  set fillchars=vert:\|,fold:\
-  set softtabstop=2 shiftwidth=2 nowrap 
-endfun
-autocmd FileType html call Html_fold()
-autocmd FileType htmldjango call Html_fold()
-augroup END
-" =====================================================================
-" Function that pipes the output of a command into a new tab (Vim 7.0):
-function! PipeToTab(cmd)
- redir => message
- silent execute a:cmd
- redir END
- tabnew
- silent put=message
- set nomodified
-endfunction
-command! -nargs=+ -complete=command PipeToTab call PipeToTab(<q-args>)
-
-let g:SuperTabDefaultCompletionType='context'
-" let g:SuperTabLongestHighlight = 1
-let g:SuperTabMidWordCompletion=0
-let do_syntax_sel_menu=1
-let g:snips_author="Chris Chambers"
-
-" http://weblog.jamisbuck.org/2008/11/17/vim-follow-up
-set grepprg=ack
-set grepformat=%f:%l:%m
-
-let mapleader = ","
-
-map <leader>f :FuzzyFinderFile<CR>
-map <leader>b :FuzzyFinderBuffer<CR>
-
-" http://ed.cranford.googlepages.com/vimrc
-
-" in visual mode, highlight one or more lines
-" and hit f5 and the block will be replaced with
-" its python output.
-:vnoremap <f5> :!python<CR>
-
-" in normal mode, hit f5 to save and run.
-:nnoremap <f5> :up<CR>!python %<CR> 
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Command-line config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Bash like
-cnoremap <C-A>    <Home>
-cnoremap <C-E>    <End>
-cnoremap <C-K>    <C-U>
 
 
 " " Mine:
