@@ -4,6 +4,7 @@ let s:thesaurus_location="/home/nestor/moby_thesaurus.txt"
 let s:django_location="$HOME/src/py/django/django-1.1"
 let s:python_location="/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5"
 let s:baseline_vim_path=""
+let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/py/ropevim', '/Users/Chris/src/py/rope', '/Users/Chris/.vim/after/ftplugin/python/' ]
 " TODO: Refactor .vimrc to use these!
 
 " Settings Which Must Be Initialised Early: {{{
@@ -812,8 +813,15 @@ python_exe = os.path.join(virtualenv_dir, virtualenv, 'bin', 'python')
 if os.path.exists(python_exe):
     cmd = python_exe + ' -c "import sys; print sys.path"'
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    virtualenv_sys_path = proc.communicate()[0]
-    vim.command('let g:virtualenv_sys_path = %s' % virtualenv_sys_path)
+    virtualenv_sys_path = eval(proc.communicate()[0])
+    pythonpath_fixtures = vim.eval('s:pythonpath_fixtures')
+    # print type(virtualenv_sys_path), virtualenv_sys_path
+    # print 20 * '-'
+    # print type(pythonpath_fixtures), pythonpath_fixtures
+    new_sys_path = pythonpath_fixtures + virtualenv_sys_path
+    # print 20 * '-'
+    # print type(new_sys_path), new_sys_path
+    vim.command('let g:virtualenv_sys_path = %s' % new_sys_path)
 else:
     print 'virtualenv "%s" not found!' % (virtualenv,)
     # raise vim.error('virtualenv %s not found!' % (virtualenv,))
@@ -835,14 +843,6 @@ function! VirtualEnv(name)
     call SetVimPathFromPyPath()
 endfunc
 " }}}
-" --------------------------------------------------------------------------
-" python << EOF
-" import os, sys
-" v_env = os.environ.get('VIRTUAL_ENV')
-" if v_env:
-"     site_packages = os.path.join(v_env, 'lib', 'python2.5', 'site-packages')
-" EOF
-" --------------------------------------------------------------------------
 
 " MY PROJECT SPECIFIC SETTINGS: {{{
 
@@ -851,7 +851,7 @@ endfunc
 " Monkey-patches sys.path to achieve desired result
 " --------------------------------------------------------------------------
 python << EOF
-import sys, os
+import sys, os, vim
 os.environ['DJANGO_SETTINGS_MODULE'] = 'llcom.settings'
 custom_sys_path = [
  '/Users/Chris/src/py/ropemode',
@@ -896,7 +896,12 @@ custom_sys_path = [
  '.',
  '..',
 ]
-sys.path = custom_sys_path
+# sys.path = custom_sys_path
+vim.command('call VirtualEnv("langlab")')
+from pprint import pprint
+pprint(vim.eval('&path').split(','))
+print 50 * '-'
+pprint(custom_sys_path)
 EOF
 " --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
@@ -935,4 +940,3 @@ let g:snips_author="Chris Chambers"
 " Also, occasionally, opens file underneath the tree rather than to the right
 " of it.
 " FIXME: SpellBad is broken dotted line, rather than 'undercurl'
-call SetVimPathFromPyPath()
