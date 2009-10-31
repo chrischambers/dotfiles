@@ -344,7 +344,7 @@ let g:SuperTabLongestHighlight = 1
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=293>
 " --------------------------------------------------------------------------
-let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
+" let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
 " --------------------------------------------------------------------------
 " }}}
 
@@ -682,6 +682,7 @@ augroup END
 
 " set complete=.,w,b,u
 set complete-=t,i "tags deactivated, includes deactivated
+function! SetVimPathFromPyPath()
 python << EOF
 import os
 import sys
@@ -690,6 +691,7 @@ for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
+endfunction
 set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.
 set path+=/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5
 " --------------------------------------------------------------------------
@@ -810,8 +812,6 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " --------------------------------------------------------------------------
 " Prepare Django Environment:
 " Monkey-patches sys.path to achieve desired result
-
-" FIXME: This will need to come BEFORE the PythonPath File Jumping Facility:
 " --------------------------------------------------------------------------
 python << EOF
 import sys, os
@@ -899,3 +899,4 @@ let g:snips_author="Chris Chambers"
 " Also, occasionally, opens file underneath the tree rather than to the right
 " of it.
 " FIXME: SpellBad is broken dotted line, rather than 'undercurl'
+call SetVimPathFromPyPath()
