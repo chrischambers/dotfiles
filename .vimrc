@@ -639,12 +639,12 @@ augroup END
 " set complete=.,w,b,u
 set complete-=t,i "tags deactivated, includes deactivated
 python << EOF
-    import os
-    import sys
-    import vim
-    for p in sys.path:
-        if os.path.isdir(p):
-            vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+import os
+import sys
+import vim
+for p in sys.path:
+    if os.path.isdir(p):
+        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
 EOF
 set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.
 set path+=/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5
