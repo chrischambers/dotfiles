@@ -253,8 +253,21 @@ set grepformat=%f:%l:%m
 " }}}
 
 " Plugin Configuration:
+""" Used:
+" Pyflakes Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://vim.sourceforge.net/scripts/script.php?script_id=2441>
+" --------------------------------------------------------------------------
+if has("gui_running")
+  highlight SpellBad term=underline gui=undercurl guisp=Orange
+  " highlight SpellBad term=reverse ctermbg=12 gui=undercurl guisp=Orange
+endif
+" --------------------------------------------------------------------------
+" }}}
 
 " NERDTree Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1658>
 " --------------------------------------------------------------------------
 " Toggle the following off with 'f'!
 let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$']
@@ -276,8 +289,9 @@ let NERDTreeIgnore=['\.py\(c\|o\)$', '\~$', '^#.*#$', '\.gif', '\.jpg','\.png','
 let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
 " --------------------------------------------------------------------------
 " }}}
-
 " Ultisnips Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=2715>
 " --------------------------------------------------------------------------
 set runtimepath+=~/src/vim/ultisnips
 " --------------------------------------------------------------------------
@@ -285,11 +299,15 @@ set runtimepath+=~/src/vim/ultisnips
 
 " Trac Options: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=2147>
+" --------------------------------------------------------------------------
 source ~/.vimrc_trac
 " --------------------------------------------------------------------------
 " }}}
 
 " ShowMarks Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=152>
 " --------------------------------------------------------------------------
 let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 let g:showmarks_enable = 1
@@ -305,6 +323,8 @@ highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 " }}}
 
 " SuperTab Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=182>
 " --------------------------------------------------------------------------
 " let g:SuperTabDefaultCompletionType='context'
 " let g:SuperTabLongestHighlight = 1
@@ -322,18 +342,24 @@ let g:SuperTabLongestHighlight = 1
 
 " UTL Options: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=293>
+" --------------------------------------------------------------------------
 " let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
 " --------------------------------------------------------------------------
 " }}}
 
 " UTL Mappings: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=293>
+" --------------------------------------------------------------------------
 " NOTE: this clobbers `go-to-<count>-byte` command
 nmap go :Utl<CR>
 " --------------------------------------------------------------------------
 " }}}
 
-" GetScript Options: {{{
+" GetLatestVimScripts Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=642>
 " --------------------------------------------------------------------------
 let g:GetLatestVimScripts_allowautoinstall=1
 " --------------------------------------------------------------------------
@@ -341,11 +367,15 @@ let g:GetLatestVimScripts_allowautoinstall=1
 
 " BufOnly Options: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1071>
+" --------------------------------------------------------------------------
 nmap <silent> <leader>bo :BufOnly<CR>
 " --------------------------------------------------------------------------
 " }}}
 
 " MiniBufExpl Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=159>
 " --------------------------------------------------------------------------
 " minibufexpl.vim - Extracted all useful settings, 24-10-2009
 " C-j,k,l,m do as you would expect:
@@ -369,11 +399,15 @@ let g:miniBufExplModSelTarget = 1
 
 " Align Mappings: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=294>
+" --------------------------------------------------------------------------
 vmap <leader>t{ :Align'[^']\+':<CR>
 " --------------------------------------------------------------------------
 " }}}
 
 " FuzzyFinder Mappings: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1984>
 " --------------------------------------------------------------------------
 nmap <leader>, :FuzzyFinderBuffer<CR>
 "nmap <leader>f :FuzzyFinderFile<CR>
@@ -384,11 +418,15 @@ nmap <leader>f :FuzzyFinderTaggedFile<CR>
 
 " FuzzyFinder Options: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1984>
+" --------------------------------------------------------------------------
 let g:fuzzy_ignore="*.pyc,*.pyo,*~,#*#,*.gif,*.jpg,*.JPG,*.png,*.PNG,*.jpeg,*.JPEG,*.ico,*.psd,*.flv,*.swf,*.pdf,*.doc,*.db,*.jar"
 " --------------------------------------------------------------------------
 " }}}
 
 " AutoTag Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1343>
 " --------------------------------------------------------------------------
 " let g:autotagCtagsCmd="ctags --links=no --exclude='rosetta/' --python-kinds=-i --regex-Python='/\s*([_A-Z][A-Z_1-9]+)\s*=/\1/' -R"
 " let g:autotagCtagsCmd="ctags --regex-Python='/\s*([_A-Z][A-Z_1-9]+)\s*=/\1/'"
@@ -398,11 +436,15 @@ let g:autotagCtagsCmd="ctags -a --links=no --exclude='rosetta/' --python-kinds=-
 
 " CSApprox Options: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=2390>
+" --------------------------------------------------------------------------
 set t_Co=256        " Sets terminal colors to 256
 " --------------------------------------------------------------------------
 " }}}
 
 " Pydoc Autocommands: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1112>
 " --------------------------------------------------------------------------
 autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(expand("<cWORD>"))<Cr>
 " --------------------------------------------------------------------------
@@ -410,6 +452,8 @@ autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(ex
 
 """ Disabled:
 " ScrollColors Mappings: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1488>
 " --------------------------------------------------------------------------
 " map <silent><leader>n :NEXTCOLOR<cr>
 " map <silent><leader>p :PREVCOLOR<cr> 
@@ -419,13 +463,16 @@ autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(ex
 """ Unused:
 " Pydiction Options: {{{
 " --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=850>
+" --------------------------------------------------------------------------
 " let g:pydiction_location = '/Users/Chris/.vim/python/complete-dict'
 " --------------------------------------------------------------------------
 " }}}
 
 " Pylint Options: {{{
 " --------------------------------------------------------------------------
-" http://vim.sourceforge.net/scripts/script.php?script_id=891
+" Source: <url:http://vim.sourceforge.net/scripts/script.php?script_id=891>
+" --------------------------------------------------------------------------
 " set path+=$HOME/.virtualenvs/langlab/bin - this doesn't do anything
 " autocmd FileType python compiler pylint
 " --------------------------------------------------------------------------
