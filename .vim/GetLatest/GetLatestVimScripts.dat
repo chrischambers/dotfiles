@@ -6,19 +6,19 @@ ScriptID SourceID Filename
 # 195 6351 :AutoInstall: engspchk.vim
 # 642 8136 GetLatestVimScripts.vim
 # 489 9573 :AutoInstall: Manpageview.vim
-# 1984 11537 fuzzyfinder.vim
-# 1896 7356 allml.vim
-# 1071 3388 BufOnly.vim
+# 1984 11537 :AutoInstall: fuzzyfinder.vim
+# 1896 7356 :AutoInstall: allml.vim
+# 1071 3388 :AutoInstall: BufOnly.vim
 1658 11500 :AutoInstall: NERD_tree.vim
-# # 2317 11036 qname.vim
-# 2136 8206 repeat.vim
+# # 2317 11036 :AutoInstall: qname.vim
+# 2136 8206 :AutoInstall: repeat.vim
 # # ??? 1 ropevim.vim
 # 2120 9356 :AutoInstall: speeddating.vim
-# 152 3342 showmarks.vim
-# 182 5938 supertab.vim
-# 1697 8283 surround.vim
-# 293 9060 utl.vim
-# 90 11049 vcscommand.vim
+# 152 3342 :AutoInstall: showmarks.vim
+# 182 5938 :AutoInstall: supertab.vim
+# 1697 8283 :AutoInstall: surround.vim
+# 293 9060 :AutoInstall: utl.vim
+# 90 11049 :AutoInstall: vcscommand.vim
 # # 1112 3570 :AutoInstall: pydoc.vim
 # 159 3640 :AutoInstall: minibufexpl.vim
 # 670 8073 :AutoInstall: visincr.vim
