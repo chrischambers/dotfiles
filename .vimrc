@@ -843,10 +843,11 @@ if os.path.exists(python_exe):
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     virtualenv_sys_path = eval(proc.communicate()[0])
     pythonpath_fixtures = vim.eval('s:pythonpath_fixtures')
+    cwd = [os.getcwd()]
     # print type(virtualenv_sys_path), virtualenv_sys_path
     # print 20 * '-'
     # print type(pythonpath_fixtures), pythonpath_fixtures
-    new_sys_path = pythonpath_fixtures + virtualenv_sys_path
+    new_sys_path = cwd + pythonpath_fixtures + virtualenv_sys_path
     # print 20 * '-'
     # print type(new_sys_path), new_sys_path
     vim.command('let g:virtualenv_sys_path = %s' % new_sys_path)
