@@ -1,2 +1,10 @@
 *
-!.vim/*
+# All dotfiles/dirs
+# !/*.*
+
+# All dotfiles/dirs beginning with vim
+# !/*.vim*
+
+!/*.vim/*
+!/*vim/
+
