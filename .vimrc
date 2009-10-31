@@ -1,7 +1,7 @@
 " Variables To Customise:
 let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
-let s:dictionary_location="/home/nestor/moby_thesaurus.txt"
-" TODO: Use these!
+let s:thesaurus_location="/home/nestor/moby_thesaurus.txt"
+" TODO: Refactor .vimrc to use these!
 
 " Settings Which Must Be Initialised Early: {{{
 set nocompatible     " Force this at the start of the file
@@ -952,3 +952,4 @@ set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
 
 " Unknown:
 let python_highlight_all=1
+" TODO: Retrieve the NERDTree filetype you created which remaps <c-j><c-k>
