@@ -1,19 +1,22 @@
+# Blanket-exclude ALL files from home directory!
 *
-# All dotfiles/dirs
-# !/*.*
 
-# All dotfiles/dirs beginning with vim
-# !/*.vim*
-
+# Crude as this is, it works:
+# Make exceptions for .vim and its containing files, up to 6 levels deep:
 !/*vim/
 !/*.vim/*
 !/*vim/*/**
 !/*vim/*/*/**
 !/*vim/*/*/*/**
+!/*vim/*/*/*/*/**
+!/*vim/*/*/*/*/*/**
+!/*vim/*/*/*/*/*/*/**
 
+# Specific exceptions:
 /*.vim/.netrwhist
 /*.vim/.VimballRecord
 *.swp
 *.svn/
+*.pyc
 **~
 .DS_Store
