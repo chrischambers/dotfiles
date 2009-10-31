@@ -793,22 +793,27 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " map <leader>r :py EvalAndReplaceCurrentRange()<CR>
 
 " " Mine:
-" " Setting path according to virtualenv
-" python << EOF
-" virtualenv = "langlab"
-" virtualenv_dir = os.environ.get("WORKON_HOME")
-" python_exe = os.path.join(virtualenv_dir, virtualenv, 'bin', 'python')
-" if os.path.exists(python_exe):
-"     proc = subprocess.Popen(
-"         'python -c "import sys; print ",".join(sys.path)"',
-"         shell=True,
-"         stdout=subprocess.PIPE,
-"     )
-"     venv_sys_path = proc.communicate()[0]
-"     return venv_sys_path
-" EOF
-" func VirtualEnv(name):
-" endfunc
+function! PyVirtualEnv(name)
+" Setting path according to virtualenv
+python << EOF
+# def get_virtualenvs_sys_path(virtualenv):
+virtualenv_dir = os.environ.get("WORKON_HOME")
+python_exe = os.path.join(virtualenv_dir, virtualenv, 'bin', 'python')
+if os.path.exists(python_exe):
+    cmd = python_exe + ' -c "import sys; print sys.path"'
+    proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    venv_sys_path = proc.communicate()[0]
+    print venv_sys_path
+    # vim.command('let g:virtualenv_sys_path = venv_sys_path')
+EOF
+" call get_virtualenvs_sys_path(a:name)
+endfunc
+
+function! VirtualEnv(name)
+    let new_sys_path = PyVirtualEnv(name)
+    py import sys, vim; sys.path = new_sys_path
+endfunc
+
 " "
 " --------------------------------------------------------------------------
 " python << EOF
