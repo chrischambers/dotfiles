@@ -1,6 +1,6 @@
 " Variables To Customise:
 let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
-let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
+let s:thesaurus_location="/Users/Chris/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:django_location="$HOME/src/py/django/django-1.1"
 let s:python_location="/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5"
 let s:baseline_vim_path=""
@@ -215,9 +215,9 @@ set foldmethod=marker
 
 " Completion: Dictionary And Thesaurus: {{{
 " --------------------------------------------------------------------------
-set dictionary=/usr/lib/openoffice/share/dict/ooo/en-GB.dic
+exec 'set dictionary=' . s:dictionary_location
 "set thesaurus=/usr/lib/openoffice/share/dict/ooo/th_en_US_v2.idx
-set thesaurus=/home/nestor/moby_thesaurus.txt
+exec 'set thesaurus=' . s:thesaurus_location
 " --------------------------------------------------------------------------
 " }}}
 
