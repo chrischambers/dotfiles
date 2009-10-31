@@ -1,1 +1,0 @@
-/Users/Chris/src/vim/pysmell/pysmell.vim
