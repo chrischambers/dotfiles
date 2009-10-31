@@ -943,6 +943,7 @@ let g:snips_author="Chris Chambers"
 " Also, occasionally, opens file underneath the tree rather than to the right
 " of it.
 " FIXME: SpellBad is broken dotted line, rather than 'undercurl'
+" Note: this seems to be an OSX/MacVim thing, and was probably always the case.
 " FIXME: VirtualEnv changes:
 " * you need a way of adding extra packages that won't necessarily be in
 "   sys.path by default. For example, the languagelab project contains
