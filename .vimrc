@@ -457,7 +457,7 @@ endif
 " autocmd BufWritePre * normal m`:%s/\s\+$//e`
 " autocmd BufWritePre *.py normal m`:%s/\s\+$//e`
 " Removes trailing spaces
-function TrimWhiteSpace()
+function! TrimWhiteSpace()
   %s/\s*$//
   ''
 :endfunction
