@@ -6,7 +6,7 @@ ScriptID SourceID Filename
 # 195 6351 :AutoInstall: engspchk.vim
 # 642 8136 GetLatestVimScripts.vim
 # 489 9573 :AutoInstall: Manpageview.vim
-# 1984 11537 :AutoInstall: fuzzyfinder.vim
+1984 11537 :AutoInstall: fuzzyfinder.vim
 # 1896 7356 :AutoInstall: allml.vim
 # 1071 3388 :AutoInstall: BufOnly.vim
 1658 11500 :AutoInstall: NERD_tree.vim
@@ -23,7 +23,7 @@ ScriptID SourceID Filename
 159 3640 :AutoInstall: minibufexpl.vim
 # 670 8073 :AutoInstall: visincr.vim
 # 2390 10336 :AutoInstall: CSApprox.vim
-1066 1 :AutoInstall: cecutil.vim
+1066 7618 :AutoInstall: cecutil.vim
 # 120 9388 :AutoInstall: Decho.vim
 # 1203 4188 :AutoInstall: WhereFrom.vim
 294 10110 :AutoInstall: Align.vim
@@ -31,3 +31,4 @@ ScriptID SourceID Filename
 642 8136 :AutoInstall: getscript.vim
 1075 9816 :AutoInstall: netrw.vim
 1066 7618 :AutoInstall: cecutil.vim
+1502 8743 :AutoInstall: vimball.vim
