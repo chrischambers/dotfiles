@@ -345,7 +345,7 @@ let g:SuperTabLongestHighlight = 1
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=293>
 " --------------------------------------------------------------------------
-" let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
+let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
 " --------------------------------------------------------------------------
 " }}}
 
@@ -891,3 +891,6 @@ let g:snips_author="Chris Chambers"
 " }}}
 
 " TODO: Retrieve the NERDTree filetype you created which remaps <c-j><c-k>
+" TODO: Change python autocommmands so that they are deactivated for
+" non-python buffers
+" TODO: Fix SuperTab
