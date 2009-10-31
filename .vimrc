@@ -615,7 +615,7 @@ command! -nargs=+ -complete=command PipeToTab call PipeToTab(<q-args>)
 
 " TODO: Conditional to check for non-windows system:
 " :W writes to files which require superuser access to modify.
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 " HTML Specific:
 
@@ -879,7 +879,7 @@ custom_sys_path = [
  '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-tk',
  '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/virtualenv-1.2-py2.5 .egg',
  '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/hgsvn-0.1.6-py2.5.egg',
- '/Library/Frameworks/Python.framework/Versions/2 .5/lib/python2.5/site-packages/hashlib-20081119-py2.5-macosx-10.3-i386.egg',
+ '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/hashlib-20081119-py2.5-macosx-10.3-i386.egg',
  '/Library/Frameworks/Python.framework/Versions/2.5/li b/python2.5/site-packages/ipdb-0.1dev_r1716-py2.5.egg',
  '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/ipython-0.9.1-py2.5 .egg',
  '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages',
