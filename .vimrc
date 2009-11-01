@@ -126,8 +126,8 @@ nnoremap <Home> :e $MYVIMRC<CR>
 nnoremap Y y$
 
 " <C-l> redraws the screen and removes any search highlighting.
-" guifont is a bugfix to make invisible cursor reappear.
-nnoremap <silent> <C-S-l> :let &guifont=&guifont<CR><C-l> :nohl<CR><C-l>
+" guifont is a bugfix to make an invisible cursor reappear.
+nnoremap <silent> <leader><C-l> :let &guifont=&guifont<CR> :nohl<CR><C-l>
 " }}}
 
 " Use tag-jump menu rather than guessing most likely tag:
@@ -991,4 +991,7 @@ let g:snips_author="Chris Chambers"
 " FIXME:
 " Re-sourcing .vimrc causes 2 anomalies:
 " * <url:.#line=130> becomes remapped to <C-l> from <C-S-l>
+" not properly mapped anyway: <C-S-l> not cls
+" SOLUTION: Remapped to <leader><C-l>. Not sure <C-S-l> is possible.
 " * NERDTree loses highlighting
+" FIXME: temporarily add parent dir of current file to pythonpath?
