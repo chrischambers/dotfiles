@@ -19,7 +19,7 @@ let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/p
 
 " The reason for this is that vim doesn't know how to look for, say, pytz in
 " the following directory (assuming your environment's site-packages is part
-" of vim's &path setting, which it should /always/ be using the VirtualEnv
+" of vim's &path setting, which it should /always/ be using the SetupVirtualEnv
 " functionality):
 
 " [...]/lib/site-packages/pytz-2009j-py2.5.egg
@@ -828,7 +828,7 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " map <leader>r :py EvalAndReplaceCurrentRange()<CR>
 
 """ My Hackish Additions To The Vim Arsenal: {{{
-function! StoreVirtualEnv(virtualenv)
+function! StoreVirtualEnvSysPath(virtualenv)
     """ Stores virtualenv's sys.path in a global vim variable,
     """ g:virtualenv_sys_path
 
@@ -857,12 +857,12 @@ else:
 EOF
 endfunc
 
-function! VirtualEnv(name)
+function! SetupVirtualEnv(name)
 """ Update vim's path and its internal-python sys.path to agree with
 """ the virtualenv's sys.path
 
     " First, set g:virtualenv_sys_path to the virtualenv's sys path:
-    call StoreVirtualEnv(a:name)
+    call StoreVirtualEnvSysPath(a:name)
 
     " Then, monkey patch vim's internal python so that its sys.path is now the
     " virtualenv's sys.path!
@@ -929,7 +929,7 @@ custom_sys_path = [
 
 # Debugging Commands:
 
-# vim.command('call VirtualEnv("languagelab")')
+# vim.command('call SetupVirtualEnv("languagelab")')
 # from pprint import pprint
 # pprint(vim.command("py import sys; from pprint import pprint; pprint(sys.path)"))
 # print 50 * '-'
@@ -939,10 +939,9 @@ custom_sys_path = [
 EOF
 " --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
-" set tags+=~/documents/code/llab/llcom/tags
+call SetupVirtualEnv('languagelab')
+set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/external_apps
 " --------------------------------------------------------------------------
-
-" set tags+=$HOME/documents/code/llab/tags
 " Necessary run-time command to activate Django atm:
 " (see http://blog.fluther.com/blog/2008/10/17/django-vim/)
 " DJANGO_SETTINGS_MODULE='llcom.settings' PYTHONPATH='/home/nestor/documents/code/llab' vim -g
@@ -974,7 +973,7 @@ let g:snips_author="Chris Chambers"
 " of it.
 " FIXME: SpellBad is broken dotted line, rather than 'undercurl'
 " Note: this seems to be an OSX/MacVim thing, and was probably always the case.
-" FIXME: VirtualEnv changes:
+" FIXME: SetupVirtualEnv changes:
 " * you need a way of adding extra packages that won't necessarily be in
 "   sys.path by default. For example, the languagelab project contains
 "   external_apps, which should be added to the system path.
