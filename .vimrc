@@ -855,6 +855,10 @@ if not virtualenv_dir:
 python_exe = os.path.join(virtualenv_dir, virtualenv, 'bin', 'python')
 if os.path.exists(python_exe):
     cmd = python_exe + ' -c "import sys; print sys.path"'
+    # Note: may need to change implementation as subprocess isn't found when
+    # vim is initially started. Note that you'll need to capture STDOUT with
+    # the os.system method, not the return value.
+    # virtualenv_sys_path = os.system(cmd)
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     virtualenv_sys_path = eval(proc.communicate()[0])
     pythonpath_fixtures = vim.eval('s:pythonpath_fixtures')
@@ -955,6 +959,8 @@ EOF
 " --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
 call SetupVirtualEnv('languagelab')
+" FIXME: Not finding django via django.pth file when run at startup - may be
+" due to subprocess module not being found.
 " FIXME: PythonPath as WELL as Vim path!
 set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/external_apps
 set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/llcom
