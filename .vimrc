@@ -835,6 +835,15 @@ let python_highlight_all=1
 " --------------------------------------------------------------------------
 " }}}
 
+" Python Indentation Improved: {{{
+" --------------------------------------------------------------------------
+" Install indent/python.vim from <url:http://www.vim.org/scripts/script.php?script_id=974>
+" Modify setlocal indentkeys (see <url:.vim/indent/python.vim#line=17>)
+" setlocal indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except,0#
+" Source: <url:http://henry.precheur.org/2008/4/18/Indenting_Python_with_VIM.html>
+" --------------------------------------------------------------------------
+" }}}
+
 " python << EOL
 " import vim
 " def EvalAndReplaceCurrentRange():
