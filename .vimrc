@@ -984,6 +984,10 @@ let g:snips_author="Chris Chambers"
     "   File "/Users/Chris/.virtualenvs/languagelab/lib/python2.5/distutils/__init__.py", line 71, in sysconfig_get_python_lib
     "     prefix = sys.real_prefix
     " AttributeError: 'module' object has no attribute 'real_prefix'
+" SOLUTION: very hackish, but monkeypatching resolves this problem:
+
+    "py import sys; sys.real_prefix = '/Library/Frameworks/Python.framework/Versions/2.5'"
+
 " FIXME:
 " Re-sourcing .vimrc causes 2 anomalies:
 " * <url:.#line=130> becomes remapped to <C-l> from <C-S-l>
