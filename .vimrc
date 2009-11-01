@@ -347,6 +347,16 @@ highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
 highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
 " For multiple marks on the same line.
 highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+
+" Ultisnips Fix: {{{
+" --------------------------------------------------------------------------
+" Showmarks assigns a select mapping to the 'm' key, which causes
+" over-typing selected text to raise an "E481: No range allowed" error.
+" This is easily averted (when you know the cause!) via sunmap:
+" Source: <url:https://bugs.launchpad.net/ultisnips/+bug/427298>
+" Fixed via the 'sunmap m' /after/plugin/sunmap.vim
+" --------------------------------------------------------------------------
+" }}}
 " --------------------------------------------------------------------------
 " }}}
 
@@ -438,7 +448,19 @@ let g:miniBufExplModSelTarget = 1
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=294>
 " --------------------------------------------------------------------------
-vmap <leader>a{ :Align'[^']\+':<CR>
+" There are three families of commands for defining mappings related to visual
+" and select modes:
+"
+" :smap select mode only
+" :xmap visual mode only
+" :vmap both visual and select modes
+"
+" It's unfortunate that :vmap doesn't mean visual-only. I believe this
+" naming imprecision is the root cause for plugins that define select-mode
+" mappings.
+" Source: <url:https://bugs.launchpad.net/ultisnips/+bug/427298/comments/2>
+
+xmap <leader>a{ :Align'[^']\+':<CR>
 " --------------------------------------------------------------------------
 " }}}
 
