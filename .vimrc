@@ -557,7 +557,7 @@ map! <F2> :call TrimWhiteSpace()<CR>
 " --------------------------------------------------------------------------
 " }}}
 
-" Funciton: Pretty Print XML: {{{
+" Function: Pretty Print XML: {{{
 " --------------------------------------------------------------------------
 function! DoPrettyXML()
   1,$!xmllint --format --recover -
@@ -625,6 +625,10 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 " Function: Pipe Output of Command Into New Tab: {{{
 " --------------------------------------------------------------------------
 " Function that pipes the output of a command into a new tab (Vim 7.0):
+" Example Usage:
+" :call PipeToTab('py import sys; from pprint import pprint; pprint(sys.path)')
+" (Note that the argument must be a string - recommended single quotes, for
+" better escaping.)
 " --------------------------------------------------------------------------
 function! PipeToTab(cmd)
  redir => message
@@ -944,6 +948,7 @@ EOF
 " --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
 call SetupVirtualEnv('languagelab')
+" FIXME: PythonPath as WELL as Vim path!
 set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/external_apps
 set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/llcom
 " --------------------------------------------------------------------------
