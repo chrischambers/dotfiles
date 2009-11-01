@@ -828,6 +828,13 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " --------------------------------------------------------------------------
 " }}}
 
+" Python Syntax Highlighting Improved: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=790>
+let python_highlight_all=1
+" --------------------------------------------------------------------------
+" }}}
+
 " python << EOL
 " import vim
 " def EvalAndReplaceCurrentRange():
@@ -968,7 +975,6 @@ set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/llcom
 
 " Unknown: {{{
 " --------------------------------------------------------------------------
-let python_highlight_all=1
 let do_syntax_sel_menu=1
 let g:snips_author="Chris Chambers"
 " --------------------------------------------------------------------------
