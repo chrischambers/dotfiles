@@ -111,6 +111,7 @@ set hidden        " Allows you to switch to different buffers without
                   " * When a background buffer becomes current again, marks
                   "   and undo-history are remembered.
 set history=200   " Command history length.
+set laststatus=2  " always include status line, even if only one window
 
 " from godlygeek:
 set virtualedit=block " Let cursor move past the last char in <C-v> mode
@@ -688,7 +689,7 @@ fun! Python_fold()
   " set foldopen=all foldclose=all
   " set foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
   set fillchars=vert:\|,fold:\
-  set softtabstop=4 shiftwidth=4 nowrap 
+  set softtabstop=4 shiftwidth=4 nowrap nosmartindent
 
   " EXPERIMENT: Try to Use '_' as word seperator: {{{
   " let &isk = substitute(&isk, '_,', '', '')
