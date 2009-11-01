@@ -7,7 +7,6 @@ let s:baseline_vim_path=""
 " Note: ropevim requires ropemode, ropevim and rope in the python path,
 " pyflakes.vim requires .vim/after/ftplugin/python.
 let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/py/ropevim', '/Users/Chris/src/py/rope', '/Users/Chris/.vim/after/ftplugin/python/' ]
-" TODO: Refactor .vimrc to use these!
 
 " README: {{{
 " --------------------------------------------------------------------------
@@ -698,8 +697,13 @@ fun! Python_fold()
 
 endfun
 autocmd FileType python call Python_fold()
-" Unsure what this does:
-autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+" Adds keyword-dictionary as complete option. For the most part, I found this
+" /not/ to be useful:
+" autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+" from <url:vimhelp:'complete'>:
+" k{dict}  scan the file {dict}.  Several "k" flags can be given,
+"          patterns are valid too.  For example:
+"          :set cpt=k/usr/dict/*,k~/spanish
 augroup END
 " --------------------------------------------------------------------------
 " }}}
