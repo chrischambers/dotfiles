@@ -945,6 +945,7 @@ EOF
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
 call SetupVirtualEnv('languagelab')
 set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/external_apps
+set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/llcom
 " --------------------------------------------------------------------------
 " Necessary run-time command to activate Django atm:
 " (see http://blog.fluther.com/blog/2008/10/17/django-vim/)
