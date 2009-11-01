@@ -668,6 +668,23 @@ augroup END
 " }}}
 
 " Python Specific:
+"
+" --------------------------------------------------------------------------
+" Useful Commmands:
+" --------------------------------------------------------------------------
+" Outputting external python process into buffer/line-range/visual range:
+" :<range>!python -c "command"    ==> Redirect stdout of cmd into buffer
+"                                     (visual?) range
+"
+" Outputting internal python process into buffer/line-range:
+" :py[thon] import vim; cb = vim.current.buffer; cb[start:end] = [useful_output]
+
+" -- Note: this latter approach doesn't require you to direct the useful
+"  output to stdout, via print statements or whatever. Moreover, write strings
+"  to single indexes, and lists to to slices- e.g.
+" ... cb[1] = 'a string'
+" ... cb[1:5] = ['a string']
+" --------------------------------------------------------------------------
 
 " Autocommand: Prepare Python File Defaults: {{{
 " --------------------------------------------------------------------------
@@ -777,23 +794,7 @@ autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^
 " --------------------------------------------------------------------------
 " }}}
 
-" Not working.
-" Run Selection Through Python Interpreter: {{{
-" --------------------------------------------------------------------------
-" Implementation 1:
-function! Python_Eval_VSplit() range
-  let src = tempname()
-  let dst = tempname()
-  execute ": " . a:firstline . "," . a:lastline . "w " . src
-  execute ":!python " . src . " > " . dst
-  execute ":pedit! " . dst
-endfunction
-au FileType python vmap <F7> :call Python_Eval_VSplit()<cr>
-" --------------------------------------------------------------------------
-  " Implementation 2:
-  " visually select a method/class and execute it by hitting “Ctrl+h”
-  " (leader-h, now).
-" --------------------------------------------------------------------------
+" Print Range Evaluated Via Python Interpreter: {{{
 python << EOL
 import vim
 def EvaluateCurrentRange():
@@ -805,16 +806,10 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 
 " Run Current File Through Python Interpreter: {{{
 " --------------------------------------------------------------------------
-  " Implementation 1:
-  " from Yopi:
-:map <F5> :!python %<CR>
-" Run python on this program when pressing F5
-"map <silent> <F5> :!xterm -bg lightblue -fg red -geometry 172x14+100+774 -e "python % \|\| read"<CR><CR>
+" Made obsolete by Bexec plugin (<leader>bx)
+" Source: <url:http://ed.cranford.googlepages.com/vimrc>
 " --------------------------------------------------------------------------
-  " Implementation 2:
-  " Source: <url:http://ed.cranford.googlepages.com/vimrc>
-  " in normal mode, hit f5 to save and run.
-:nnoremap <f5> :up<CR>!python %<CR>
+" :nnoremap <f5> :up<CR>!python %<CR>
 " --------------------------------------------------------------------------
 " }}}
 
@@ -845,14 +840,9 @@ let python_highlight_all=1
 " --------------------------------------------------------------------------
 " }}}
 
-" python << EOL
-" import vim
-" def EvalAndReplaceCurrentRange():
-"     vim.current.range[:] = [EvaluateCurrentRange()]
-" EOL
-" map <leader>r :py EvalAndReplaceCurrentRange()<CR>
+" My Hackish Additions To The Vim Arsenal:
 
-""" My Hackish Additions To The Vim Arsenal: {{{
+""" VirtualEnv Configuration: {{{
 function! StoreVirtualEnvSysPath(virtualenv)
     """ Stores virtualenv's sys.path in a global vim variable,
     """ g:virtualenv_sys_path
