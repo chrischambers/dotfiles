@@ -977,3 +977,14 @@ let g:snips_author="Chris Chambers"
 " * you need a way of adding extra packages that won't necessarily be in
 "   sys.path by default. For example, the languagelab project contains
 "   external_apps, which should be added to the system path.
+" FIXME: Problem with pytz import -
+    " Traceback (most recent call last):
+    "   File "<string>", line 1, in <module>
+    "   [...]
+    "   File "/Users/Chris/.virtualenvs/languagelab/lib/python2.5/distutils/__init__.py", line 71, in sysconfig_get_python_lib
+    "     prefix = sys.real_prefix
+    " AttributeError: 'module' object has no attribute 'real_prefix'
+" FIXME:
+" Re-sourcing .vimrc causes 2 anomalies:
+" * <url:.#line=130> becomes remapped to <C-l> from <C-S-l>
+" * NERDTree loses highlighting
