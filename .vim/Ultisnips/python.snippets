@@ -30,7 +30,7 @@ import ${1:module}
 $0
 endsnippet
 
-snippet! from "From foo import bar" b!
+snippet from "From foo import bar" b!
 from ${1:package/module} import ${2:module/function/class}
 $0
 endsnippet
@@ -131,7 +131,7 @@ def __unicode__(self):
 $0
 endsnippet
 # ====================
-snippet! try "Try/Except" b!
+snippet try "Try/Except" b!
 try:
     ${1:pass}
 except ${2:Exception}, ${3:e}:
@@ -139,7 +139,7 @@ except ${2:Exception}, ${3:e}:
 $0
 endsnippet
 
-snippet! try "Try/Except/Else" b
+snippet try "Try/Except/Else" b
 try:
     ${1:pass}
 except ${2:Exception}, ${3:e}:
@@ -149,7 +149,7 @@ else:
 $0
 endsnippet
 
-snippet! try "Try/Except/Finally" b
+snippet try "Try/Except/Finally" b
 try:
     ${1:pass}
 except ${2:Exception}, ${3:e}:
@@ -159,21 +159,21 @@ finally:
 $0
 endsnippet
 
-snippet! try "Try/Except/Else/Finally" b
+snippet try "Try/Except/Else/Finally" b
 try:
     ${1:pass}
 except${2: ${3:Exception}, ${4:e}}:
-	${5:raise}
+    ${5:raise}
 else:
-	${6:pass}
+    ${6:pass}
 finally:
-	${7:pass}
+    ${7:pass}
 $0
 endsnippet
 # ====================
 
 # if __name__ == '__main__':
-snippet! ifmain "If name == main" b!
+snippet ifmain "If name == main" b!
 $0
 if __name__ == '__main__':
     main()
@@ -264,7 +264,7 @@ class Test${1:Object}(${2:unittest.TestCase}):
     $0
 endsnippet
 
-			
+            
 snippet ase "AssertEqual" b
 self.assertEqual(${1:expected}, ${2:actual})
 $0
@@ -546,9 +546,9 @@ endsnippet
 
 snippet mfpf
 ${1:fieldname} = models.FilePathField('$1', 
-	path=${2:unix_style_path}, 
-	match=r'${3:regex_for_basename}', 
-	recursive=${4:False}
+    path=${2:unix_style_path}, 
+    match=r'${3:regex_for_basename}', 
+    recursive=${4:False}
 )
 ${5}
 endsnippet
@@ -599,7 +599,7 @@ snippet adminstub
 from django.contrib import admin
 
 class ${1:ClassName}Admin(admin.ModelAdmin):
-	pass
+    pass
 
 admin.site.register($1, $1Admin)
 $0
@@ -607,7 +607,7 @@ endsnippet
 
 snippet admin
 class ${1:ClassName}Admin(admin.ModelAdmin):
-	pass
+    pass
 
 admin.site.register($1, $1Admin)
 $0
@@ -615,8 +615,8 @@ endsnippet
 
 snippet adminaction
 def ${1:make_action_happen}(modeladmin, request, queryset):
-	for ${2:obj} in queryset:
-		${3:# do something}
+    for ${2:obj} in queryset:
+        ${3:# do something}
 $1.short_description = "${4:$1}"
 ${5:}
 endsnippet
@@ -660,11 +660,11 @@ endsnippet
 
 snippet formsave "Django Form Custom Save" b
 def save(self, commit=False, *args, **kwargs):
-	# ${1:do_something}
-	${2:obj} = super(${3:ClassName}, self).save(commit, *args, **kwargs) 
-	# ${4:modify $2}
-	return $2
-	$0
+    # ${1:do_something}
+    ${2:obj} = super(${3:ClassName}, self).save(commit, *args, **kwargs) 
+    # ${4:modify $2}
+    return $2
+    $0
 endsnippet
 
 snippet fbool "forms.BooleanField" b
@@ -761,32 +761,32 @@ endsnippet
 
 snippet djview
 def ${1:view_name}(request, ${2}*args, **kwargs):
-	data = {$3}
-	return render_to_response("${4:path_to_template}.html", data,
-							context_instance=RequestContext(request))
+    data = {$3}
+    return render_to_response("${4:path_to_template}.html", data,
+                            context_instance=RequestContext(request))
 ${5:}
 endsnippet
 
 snippet formview
 def ${1:form_view}(request, *args, **kwargs):
-	if request.method == 'POST':
-		form = ${2:FormClass}(${3:}request.POST)
-		if form.is_valid():
-			${4:# Do Stuff}
-			return HttpResponseRedirect(reverse("${5:url name}"))
-	else:
-		form = $2($3)
-	
-	data = {'form': form, ${6:}}
-	
-	return render_to_response("${7:path_to_template}.html", data,
-							context_instance=RequestContext(request))
+    if request.method == 'POST':
+        form = ${2:FormClass}(${3:}request.POST)
+        if form.is_valid():
+            ${4:# Do Stuff}
+            return HttpResponseRedirect(reverse("${5:url name}"))
+    else:
+        form = $2($3)
+    
+    data = {'form': form, ${6:}}
+    
+    return render_to_response("${7:path_to_template}.html", data,
+                            context_instance=RequestContext(request))
 ${8}
 endsnippet
 
 snippet rr
 return render_to_response("${1:path_to_template}.html", ${2:data},
-						context_instance=RequestContext(request))
+                        context_instance=RequestContext(request))
 ${3}
 endsnippet
 
@@ -797,14 +797,14 @@ from django.template import Context, loader
 
 template = loader.get_template('${1:email_template_path}')
 data = {
-	${2},
+    ${2},
 }
 send_mail(
-	${3:email subject} % $4, 
-	template.render(Context(data)), 
-	${5:email from}, 
-	[${6:email recipients}],
-	fail_silently=True
+    ${3:email subject} % $4, 
+    template.render(Context(data)), 
+    ${5:email from}, 
+    [${6:email recipients}],
+    fail_silently=True
 )
 ${7}
 endsnippet
@@ -842,14 +842,14 @@ endsnippet
 snippet urlp "Set"
 from django.conf.urls.defaults import *
 urlpatterns = patterns('${1:django.views.generic}',
-	${2}
+    ${2}
 )
 ${3}
 endsnippet
 
 snippet urlp "Extend"
 urlpatterns += patterns('${1:django.views.generic}',
-	${2}
+    ${2}
 )
 ${3}
 endsnippet
@@ -866,29 +866,29 @@ self.assertEqual(0, len(mail.outbox))
 
 ${1:relevant_email} = None
 data = {
-	${2}
+    ${2}
 }
 expected_subject = ${3:expected_subject} % (
-	${4}
+    ${4}
 )
 
 for email in mail.outbox:
-	if email.subject == expected_subject:
-		$1 = email
-		break
+    if email.subject == expected_subject:
+        $1 = email
+        break
 self.assert_($1)
 template = loader.get_template('${5:email_template}')
 self.assertEqual(template.render(Context(data)),
-		$1.body)
+        $1.body)
 self.assertEqual(${6:expected_sender}, $1.from_email)
 self.assertEqual(${7:expected_recipients},
-		 $1.recipients())
+         $1.recipients())
 
 expected_email_context = (
-	${8}
+    ${8}
 )
 for c in expected_email_context:
-	self.assertTrue(c in $1.body)
+    self.assertTrue(c in $1.body)
 ${9}
 endsnippet
 
@@ -916,6 +916,6 @@ register = template.Library()
 
 @register.inclusion_tag('${4:path_to_template}', takes_context=${5:True})
 def ${1:tag_name}(context, $2):
-	$3
+    $3
 ${6}
 endsnippet
