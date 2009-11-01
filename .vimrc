@@ -392,7 +392,7 @@ endif
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=293>
 " --------------------------------------------------------------------------
 " NOTE: this clobbers `go-to-<count>-byte` command
-nmap go :Utl<CR>
+nnoremap <leader>go :Utl<CR>
 " --------------------------------------------------------------------------
 " }}}
 
