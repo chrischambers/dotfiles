@@ -30,7 +30,8 @@ let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/p
 " --------------------------------------------------------------------------
 " }}}
 
-" Settings Which Must Be Initialised Early: {{{
+" Alpha Settings: {{{
+" i.e. settings which should come first:
 " --------------------------------------------------------------------------
 set nocompatible     " Force this at the start of the file
                      " (changes subsequent options)
@@ -322,6 +323,8 @@ let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=2715>
 " --------------------------------------------------------------------------
 set runtimepath+=~/src/vim/ultisnips
+" Mnemonic - "source snippets"
+nnoremap <leader>ss :py UltiSnips_Manager.reset()<CR>
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1008,6 +1011,7 @@ let g:snips_author="Chris Chambers"
 " --------------------------------------------------------------------------
 " }}}
 
+" Fixes and Todos: {{{
 " TODO: Change python autocommmands so that they are deactivated for
 " non-python buffers
 " FIXME: FuzzyfinderTaggedFile- CWD seems to need to be the same as the tags
@@ -1039,3 +1043,10 @@ let g:snips_author="Chris Chambers"
 " SOLUTION: Remapped to <leader><C-l>. Not sure <C-S-l> is possible.
 " * NERDTree loses highlighting
 " FIXME: temporarily add parent dir of current file to pythonpath?
+" }}}
+
+" Omega Settings: {{{
+" i.e. settings which should come last:
+py UltiSnips_Manager.reset()
+" Reload snippets
+" }}}
