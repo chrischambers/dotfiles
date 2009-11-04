@@ -207,6 +207,8 @@ VCSCommandSVNExec	vcscommand.txt	/*VCSCommandSVNExec*
 VCSCommandSplit	vcscommand.txt	/*VCSCommandSplit*
 VCSCommandVCSTypeOverride	vcscommand.txt	/*VCSCommandVCSTypeOverride*
 Vimball-copyright	pi_vimball.txt	/*Vimball-copyright*
+WF	WhereFrom.txt	/*WF*
+WhereFrom	WhereFrom.txt	/*WhereFrom*
 ZoomWin.txt	ZoomWin.txt	/*ZoomWin.txt*
 abc	fuf.txt	/*abc*
 align	Align.txt	/*align*
@@ -994,6 +996,11 @@ visincr-restrict	visincr.txt	/*visincr-restrict*
 visincr-usage	visincr.txt	/*visincr-usage*
 visincr.txt	visincr.txt	/*visincr.txt*
 vs	surround.txt	/*vs*
+whereform-manual	WhereFrom.txt	/*whereform-manual*
+wherefrom	WhereFrom.txt	/*wherefrom*
+wherefrom-history	WhereFrom.txt	/*wherefrom-history*
+wherefrom-man	WhereFrom.txt	/*wherefrom-man*
+wherefrom.txt	WhereFrom.txt	/*wherefrom.txt*
 yS	surround.txt	/*yS*
 ySS	surround.txt	/*ySS*
 ys	surround.txt	/*ys*
