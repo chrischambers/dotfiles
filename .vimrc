@@ -1070,6 +1070,6 @@ let g:snips_author="Chris Chambers"
 
 " Omega Settings: {{{
 " i.e. settings which should come last:
-py UltiSnips_Manager.reset()
+" py UltiSnips_Manager.reset() - fails on load, not defined yet!
 " Reload snippets
 " }}}
