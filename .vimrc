@@ -149,6 +149,13 @@ set ignorecase    " Default to using case insensitive searches...
 set smartcase     " unless uppercase letters are used in the regex.
 " These two options, when set together, will make /-style searches
 " case-sensitive only if there is a capital letter in the search expression.
+
+" The following command sets the regex mode for searching to 'very magic',
+" which acts like Extended Regular Expressions (TRIAL):
+nnoremap / /\v
+" Note that you still have to use the *v*ery magic slash before substitution
+" patterns - e.g:
+" :%s/\v(These parentheses now capture)|Unescaped bar alternates{2,3}/Foo/g
 " --------------------------------------------------------------------------
 " }}}
 
