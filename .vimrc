@@ -1011,6 +1011,22 @@ set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/llcom
 " --------------------------------------------------------------------------
 " }}}
 
+" Underline Current Line: {{{
+function! Underline(...)
+  if a:0 == 1
+    let l:underchar = a:1
+  else
+    let l:underchar = "-"
+  endif
+  let l:linenum = getline('.')
+  let l:linelength = len(l:linenum)
+  exec 'normal o' . l:linelength . 'i' . l:underchar . '+'
+endfunction
+
+nnoremap <leader>u :call Underline()<CR>
+nnoremap <leader><S-u> :call Underline("=")<CR>
+" }}}
+
 " Unknown: {{{
 " --------------------------------------------------------------------------
 let do_syntax_sel_menu=1
