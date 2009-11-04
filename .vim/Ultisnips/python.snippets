@@ -69,6 +69,16 @@ def ${1:fname}(${2:`!v indent('.') ? 'self' : ''`}):
 $0
 endsnippet
 
+snippet cla "smart class" b
+class ${1:MyClass}(${2:object}):
+${3:    """${4:Docstring for $1}"""
+}
+    def __init__(self${5/([^,])?(.*)/(?1:, )/}${5:arg}):
+${2/object$|(.+)/(?1:        super\($1, self\).__init__\(\)\n\n)/}${5/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2\n)/g}
+endsnippet
+# ${2/object$|(.+)/(?1:        $0.__init__\(self\)\n\n)/}${5/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2\n)/g}
+# super\($0, self).__init__\(\)\n\n
+
 # New Method
 snippet meth "Method Definition" b
 def ${1:mname}(self${2:, ${3:args}}):
