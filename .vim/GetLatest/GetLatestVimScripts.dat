@@ -34,5 +34,6 @@ ScriptID SourceID Filename
 489 9573 :AutoInstall: Manpageview.vim
 1984 11537 :AutoInstall: FuzzyFinder
 1788 6727 :AutoInstall: bexec.vim
+39 8196 :AutoInstall: matchit.vim
 # 2150 8846 :AutoInstall: css_color.vim 
 # Note: above plugin belongs in after/syntax,but auto-installed into plugin/
