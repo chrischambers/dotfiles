@@ -683,6 +683,17 @@ command! -nargs=+ -complete=command PipeToTab call PipeToTab(<q-args>)
 " --------------------------------------------------------------------------
 " }}}
 
+" Close Buffers Without Closing Windows: VimTip165: {{{
+" --------------------------------------------------------------------------
+" Depends on $VIM/plugin/bclose.vim, Vim Tip 165
+" Source: <url:http://vim.wikia.com/wiki/VimTip165>
+" Mapping taken from Gary Bernhardt's .vimrc -
+" Source: <url:http://bitbucket.org/garybernhardt/dotfiles/src/>
+" GRB: use fancy buffer closing that doesn't close the split
+cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
+" --------------------------------------------------------------------------
+" }}}
+
 " TODO: Conditional to check for non-windows system:
 " :W writes to files which require superuser access to modify.
 command! W w !sudo tee % > /dev/null
