@@ -451,6 +451,14 @@ let g:miniBufExplUseSingleClick = 1
 " Try and avoid placing buffer contents into non-modifiable buffers, like
 " NERDTree!
 let g:miniBufExplModSelTarget = 1
+" Maximum MBE window size:
+let g:miniBufExplMaxSize = 1
+" Cause the MBE window to be loaded even if no buffers are available:
+" (Set to 1 to disable)
+let g:miniBufExplorerMoreThanOne=0
+" Attempts to override bug where syntax highlighting is disabled:
+" let g:miniBufExplForceSyntaxEnable = 1
+" Note: screws up MBE and NERDtree highlighting!
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1073,3 +1081,7 @@ let g:snips_author="Chris Chambers"
 " py UltiSnips_Manager.reset() - fails on load, not defined yet!
 " Reload snippets
 " }}}
+
+" GRB: use fancy buffer closing that doesn't close the split
+cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
+
