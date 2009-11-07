@@ -1016,6 +1016,8 @@ call SetupVirtualEnv('languagelab')
 " FIXME: PythonPath as WELL as Vim path!
 set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/external_apps
 set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/llcom
+" !source /Users/Chris/.virtualenvwrapper && workon languagelab && python
+" $HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/manage.py validate
 " --------------------------------------------------------------------------
 " Necessary run-time command to activate Django atm:
 " (see http://blog.fluther.com/blog/2008/10/17/django-vim/)
@@ -1055,13 +1057,17 @@ let g:snips_author="Chris Chambers"
 " }}}
 
 " Fixes and Todos: {{{
+" --------------------------------------------------------------------------
 " TODO: Change python autocommmands so that they are deactivated for
 " non-python buffers
 " FIXME: FuzzyfinderTaggedFile- CWD seems to need to be the same as the tags
 " file atm.
+" SOLUTION: Fixed upon rollback to fuzzyfinder 2.22.3
 " FIXME: NERD_Tree is being quite greedy in how much space it opens sometimes.
 " Also, occasionally, opens file underneath the tree rather than to the right
 " of it.
+" WORKAROUND: Setting minibufexpl to permanent position, and using Bclose
+" function.
 " FIXME: SpellBad is broken dotted line, rather than 'undercurl'
 " Note: this seems to be an OSX/MacVim thing, and was probably always the case.
 " FIXME: SetupVirtualEnv changes:
@@ -1086,14 +1092,15 @@ let g:snips_author="Chris Chambers"
 " SOLUTION: Remapped to <leader><C-l>. Not sure <C-S-l> is possible.
 " * NERDTree loses highlighting
 " FIXME: temporarily add parent dir of current file to pythonpath?
+" --------------------------------------------------------------------------
 " }}}
 
 " Omega Settings: {{{
+" --------------------------------------------------------------------------
 " i.e. settings which should come last:
 " py UltiSnips_Manager.reset() - fails on load, not defined yet!
 " Reload snippets
+" --------------------------------------------------------------------------
 " }}}
 
-" GRB: use fancy buffer closing that doesn't close the split
-cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
