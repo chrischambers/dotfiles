@@ -4,11 +4,8 @@ ScriptID SourceID Filename
 # # 40 3 DrawIt.tar.gz
 # # 451 4 EasyAccents.vim
 # 195 6351 :AutoInstall: engspchk.vim
-642 8136 GetLatestVimScripts.vim
-670 8073 :AutoInstall: visincr.vim
 1071 3388 :AutoInstall: BufOnly.vim
 1658 11500 :AutoInstall: NERD_tree.vim
-# # 2317 11036 :AutoInstall: qname.vim
 2136 8206 :AutoInstall: repeat.vim
 # # ??? 1 ropevim.vim
 2120 9356 :AutoInstall: speeddating.vim
@@ -26,14 +23,14 @@ ScriptID SourceID Filename
 1203 4188 :AutoInstall: WhereFrom.vim
 294 10110 :AutoInstall: Align.vim
 1343 11095 :AutoInstall: autotag.vim
-670 8073 :AutoInstall: visincr.vim
 642 8136 :AutoInstall: getscript.vim
 1075 9816 :AutoInstall: netrw.vim
-1066 7618 :AutoInstall: cecutil.vim
 1502 8743 :AutoInstall: vimball.vim
 489 9573 :AutoInstall: Manpageview.vim
-1984 11537 :AutoInstall: FuzzyFinder
+# 1984 11537 :AutoInstall: FuzzyFinder
+# Latest versions won't work with fuzzyfinder-textmate dir-pattern matching!
 1788 6727 :AutoInstall: bexec.vim
 39 8196 :AutoInstall: matchit.vim
-# 2150 8846 :AutoInstall: css_color.vim 
+# 2150 8846 :AutoInstall: css_color.vim
 # Note: above plugin belongs in after/syntax,but auto-installed into plugin/
+# 1896 7356 :AutoInstall: allml.vim
