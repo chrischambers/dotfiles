@@ -33,9 +33,10 @@ let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/p
 " Alpha Settings: {{{
 " i.e. settings which should come first:
 " --------------------------------------------------------------------------
-set nocompatible     " Force this at the start of the file
-                     " (changes subsequent options)
-let mapleader = ","  " Only affects subsequent <leader> commands
+set nocompatible                 " Force this at the start of the file
+                                 " (changes subsequent options)
+let mapleader = ','              " Only affects subsequent <leader> commands
+let g:loaded_AlignMapsPlugin = 1 " Don't load align mappings
 " --------------------------------------------------------------------------
 " }}}
 
@@ -486,10 +487,15 @@ xmap <leader>a{ :Align'[^']\+':<CR>
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1984>
 " --------------------------------------------------------------------------
-nmap <leader>, :FuzzyFinderBuffer<CR>
+nnoremap <leader>, :FuzzyFinderBuffer<CR>
 "nmap <leader>f :FuzzyFinderFile<CR>
-nmap <leader><S-f> :FuzzyFinderTextMate<CR>
-nmap <leader>f :FuzzyFinderTaggedFile<CR>
+nnoremap <leader><S-f> :FuzzyFinderTextMate<CR>
+nnoremap <leader>f :FuzzyFinderTaggedFile<CR>
+nnoremap <leader>ta :FuzzyFinderTag<CR>
+
+" Remap :ta[g] to use fuzzytagfinding. Leave :tj alone though, as that will
+" complete faster if you know the exact tag name / for large tag files:
+cnoremap <expr> ta<space> (getcmdtype() == ':' ? 'FuzzyFinderTag<CR>' : 'tj')
 " --------------------------------------------------------------------------
 " }}}
 
@@ -697,6 +703,7 @@ cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 " TODO: Conditional to check for non-windows system:
 " :W writes to files which require superuser access to modify.
 command! W w !sudo tee % > /dev/null
+
 
 " HTML Specific:
 
