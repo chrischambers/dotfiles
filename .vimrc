@@ -905,6 +905,7 @@ if not virtualenv_dir:
     print "$WORKON_HOME environment variable not found!"
 python_exe = os.path.join(virtualenv_dir, virtualenv, 'bin', 'python')
 if os.path.exists(python_exe):
+    import subprocess
     cmd = python_exe + ' -c "import sys; print sys.path"'
     # Note: may need to change implementation as subprocess isn't found when
     # vim is initially started. Note that you'll need to capture STDOUT with
