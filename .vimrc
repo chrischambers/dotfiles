@@ -478,10 +478,10 @@ xmap <leader>a{ :Align'[^']\+':<CR>
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1984>
 " --------------------------------------------------------------------------
-nmap <leader>, :FufBuffer<CR>
+nmap <leader>, :FuzzyFinderBuffer<CR>
 "nmap <leader>f :FuzzyFinderFile<CR>
-nmap <leader><S-f> :FufTextMate<CR>
-nmap <leader>f :FufTaggedFile<CR>
+nmap <leader><S-f> :FuzzyFinderTextMate<CR>
+nmap <leader>f :FuzzyFinderTaggedFile<CR>
 " --------------------------------------------------------------------------
 " }}}
 
