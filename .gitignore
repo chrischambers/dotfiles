@@ -12,9 +12,20 @@
 !/*vim/*/*/*/*/*/**
 !/*vim/*/*/*/*/*/*/**
 
+# Make exceptions for .vimperator and its containing files, up to 6 levels deep:
+!/*vimperator/
+!/*.vimperator/*
+!/*vimperator/*/**
+!/*vimperator/*/*/**
+!/*vimperator/*/*/*/**
+!/*vimperator/*/*/*/*/**
+!/*vimperator/*/*/*/*/*/**
+!/*vimperator/*/*/*/*/*/*/**
+
 # Specific exceptions:
 /*.vim/.netrwhist
 /*.vim/.VimballRecord
+/*.vimperator/info/**
 *.swp
 *.svn/
 *.pyc

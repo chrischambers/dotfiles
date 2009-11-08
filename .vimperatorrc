@@ -1,0 +1,35 @@
+" Guioptions: {{{
+set guioptions=
+" add menu bar (no-op on OSX):
+set guioptions+=m
+" add Toolbar (i.e. main bar):
+set guioptions+=T
+" add Bookmark Bar:
+set guioptions+=B
+" add bottom scrollbar:
+set guioptions+=b
+" add right scrollbar:
+set guioptions+=r
+" numbered tabs (OVER favicons, use lowercase for alongside):
+set guioptions+=N
+" }}}
+
+set runtimepath=/Users/Chris/.vimperator
+" source! /Users/Chris/.vimperatorrc.local
+
+set defsearch=yubnub
+
+" For Mac OSX:
+" Make External commands (!) use the settings from your standard login shells:
+" Source: <url:http://phaseportrait.blogspot.com/2008/12/making-macvim-work-with-vimperators.html>
+:set shellcmdflag='-lc'
+" FIXME: curl-fetching of source files fails very frequently; gF won't match gf
+set editor='bash -lc "gvim -f --remote-silent \$*" gvim '
+
+let mapleader=','
+
+" Bookmark Organiser Mapping:
+map <silent> <leader>bmo :dia places<CR>
+
+" vim: set ft=vimperator:
+
