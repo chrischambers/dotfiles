@@ -166,7 +166,7 @@ nnoremap / /\v
 " echo &columns &lines
 if has("gui_running")
     set guioptions-=T " disables Toolbar
-    set columns=130
+    set columns=95
     set lines=57
     " set columns=105 lines=60
     set guifont=Andale\ Mono:h12
@@ -311,8 +311,23 @@ let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD
 let NERDChristmasTree=1 " Extra-colourful Tree
 let NERDTreeMouseMode=2 " If you do use the mouse, this is probably what you want.
 
-" map <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>d :NERDTreeToggle<CR>
+function! NERDToggle()
+  let l:gui_active = has('gui_running')
+  let l:visible_buffers = map(tabpagebuflist(), 'bufname(v:val)')
+  if count(l:visible_buffers, 'NERD_tree_1')
+    NERDTreeToggle
+    if l:gui_active
+      exec 'set columns-=' . g:NERDTreeWinSize
+    endif
+  else
+    NERDTreeToggle
+    if l:gui_active
+      exec 'set columns+=' . g:NERDTreeWinSize
+    endif
+  endif
+endfunction
+" nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>d :echo NERDToggle()<CR>
 " Note the trailing space after each of the following commands:
 map <leader><S-d> :NERDTreeFromBookmark 
 " map <leader><S-d> :NERDTree 
