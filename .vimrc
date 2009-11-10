@@ -13,7 +13,7 @@ let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/p
 " To make use of the virtualenv sys-path detection functionality, you should
 " either:
 " 1) Force easy_install not to use .egg files, especially for modules rather
-" than packages, but probably for packages too, or...
+" than packages (but probably for packages too), or...
 " 2) Avoid using easy_install, and opt to use pip instead.
 
 " The reason for this is that vim doesn't know how to look for, say, pytz in
@@ -27,6 +27,9 @@ let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/p
 
 " [...]/lib/site-packages/pytz
 
+" DEPENDENCIES:
+" FuzzyFinderTextmate requires that your vim be compiled with ruby.
+" ... a LOT of this stuff depends on your vim being compiled with python.
 " --------------------------------------------------------------------------
 " }}}
 
