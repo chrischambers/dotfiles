@@ -473,7 +473,7 @@ let g:miniBufExplUseSingleClick = 1
 " NERDTree!
 let g:miniBufExplModSelTarget = 1
 " Maximum MBE window size:
-let g:miniBufExplMaxSize = 1
+" let g:miniBufExplMaxSize = 1
 " Cause the MBE window to be loaded even if no buffers are available:
 " (Set to 1 to disable)
 let g:miniBufExplorerMoreThanOne=0
