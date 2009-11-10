@@ -715,9 +715,12 @@ cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 " --------------------------------------------------------------------------
 " }}}
 
-" TODO: Conditional to check for non-windows system:
+" Superuser Write To File: (Unix/OSX only): {{{
 " :W writes to files which require superuser access to modify.
-command! W w !sudo tee % > /dev/null
+if has('unix') " includes OSX
+  command! W w !sudo tee % > /dev/null
+endif
+" }}}
 
 
 " HTML Specific:
