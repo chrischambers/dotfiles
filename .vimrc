@@ -332,7 +332,7 @@ function! NERDToggle()
   endif
 endfunction
 " nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>d :echo NERDToggle()<CR>
+nnoremap <leader>d :call NERDToggle()<CR>
 " Note the trailing space after each of the following commands:
 map <leader><S-d> :NERDTreeFromBookmark 
 " map <leader><S-d> :NERDTree 
