@@ -742,12 +742,12 @@ endif
 augroup html_setup
 au!
 fun! Html_fold()
-  set autoindent
-  set foldmethod=syntax
-  " set foldopen=all foldclose=all
-  set foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
-  set fillchars=vert:\|,fold:\
-  set softtabstop=2 shiftwidth=2 nowrap
+  setl autoindent
+  setl foldmethod=syntax
+  " setl foldopen=all foldclose=all
+  setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
+  setl fillchars=vert:\|,fold:\
+  setl softtabstop=2 shiftwidth=2 nowrap
 endfun
 autocmd FileType html call Html_fold()
 autocmd FileType htmldjango call Html_fold()
@@ -790,11 +790,11 @@ fun! Python_fold()
   execute 'syntax match pythonStatement /\<class\>/ nextgroup=pythonFunction skipwhite'
   execute 'syntax region pythonFold start="^\z(\s*\)\%(class\|def\)" end="^\%(\n*\z1\s\)\@!" transparent fold'
   execute 'syntax sync minlines=2000 maxlines=4000'
-  set foldmethod=syntax
-  " set foldopen=all foldclose=all
-  " set foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
-  set fillchars=vert:\|,fold:\
-  set softtabstop=4 shiftwidth=4 nowrap nosmartindent
+  setl foldmethod=syntax
+  " setl foldopen=all foldclose=all
+  " setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
+  setl fillchars=vert:\|,fold:\
+  setl softtabstop=4 shiftwidth=4 nowrap nosmartindent
 
   " EXPERIMENT: Try to Use '_' as word seperator: {{{
   " let &isk = substitute(&isk, '_,', '', '')
