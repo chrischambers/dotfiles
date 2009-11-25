@@ -546,7 +546,9 @@ let g:autotagCtagsCmd="ctags -a --links=no --exclude='rosetta/' --python-kinds=-
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=2390>
 " --------------------------------------------------------------------------
-set t_Co=256        " Sets terminal colors to 256
+" Note: Definitely do not set this - causes flashing in terminals that do not
+" actually support 256 colours!
+" set t_Co=256        " Sets terminal colors to 256
 " --------------------------------------------------------------------------
 " }}}
 
