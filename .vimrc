@@ -317,18 +317,23 @@ let NERDChristmasTree=1 " Extra-colourful Tree
 let NERDTreeMouseMode=2 " If you do use the mouse, this is probably what you want.
 
 function! NERDToggle()
-  let l:gui_active = has('gui_running')
-  let l:visible_buffers = map(tabpagebuflist(), 'bufname(v:val)')
-  if count(l:visible_buffers, 'NERD_tree_1')
+  if !exists('s:gui_active')
+    let s:gui_active = has('gui_running')
+  endif
+  if !s:gui_active
     NERDTreeToggle
-    if l:gui_active
-      exec 'set columns-=' . g:NERDTreeWinSize
-    endif
+    return
+  endif
+
+  let l:visible_buffers = map(tabpagebuflist(), 'bufname(v:val)')
+  call filter(l:visible_buffers, 'v:val =~# "NERD_tree"')
+  if !empty(l:visible_buffers)
+  " if count(l:visible_buffers, 'NERD_tree_1')
+    NERDTreeToggle
+    exec 'set columns-=' . g:NERDTreeWinSize
   else
     NERDTreeToggle
-    if l:gui_active
-      exec 'set columns+=' . g:NERDTreeWinSize
-    endif
+    exec 'set columns+=' . g:NERDTreeWinSize
   endif
 endfunction
 " nnoremap <leader>d :NERDTreeToggle<CR>
