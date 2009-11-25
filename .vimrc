@@ -1137,6 +1137,8 @@ let g:snips_author="Chris Chambers"
 " i.e. settings which should come last:
 " py UltiSnips_Manager.reset() - fails on load, not defined yet!
 " Reload snippets
+source ~/.vimrc_local
+
 " --------------------------------------------------------------------------
 " }}}
 
