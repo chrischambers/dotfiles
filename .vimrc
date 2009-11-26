@@ -172,9 +172,9 @@ if has("gui_running")
     set columns=95
     set lines=57
     " set columns=105 lines=60
-    if has('unix') || has('mac')
+    if has('unix') || has('macunix')
       set guifont=Andale\ Mono:h12,Consolas\ 9,Liberation\ Mono\ 8
-    elseif has('windows')
+    elseif has('win32')
       set guifont=Dina:h8:cANSI,Consolas:h9:cANSI
     endif
 endif
