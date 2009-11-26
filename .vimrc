@@ -1,4 +1,6 @@
 " Variables To Customise:
+" --------------------------------------------------------------------------
+
 " <url:vimhelp:feature-list>
 if has('win32')
     let g:vimfiles_path = '$HOME/vimfiles'
@@ -16,8 +18,9 @@ let s:baseline_vim_path=""
 " pyflakes.vim requires .vim/after/ftplugin/python.
 let g:pythonpath_fixtures= [ '$HOME/src/py/ropemode', '$HOME/src/py/ropevim',
             \                '$HOME/src/py/rope',
-            \                '$HOME/.vim/after/ftplugin/python/' ]
+            \                g:vimfiles_path . '/after/ftplugin/python/' ]
 call map(g:pythonpath_fixtures, 'glob(v:val)')
+" Ref for file finding: {{{
 " The "**" item can be used to search in a directory tree.
 " For example, to find all "README.txt" files in the directories
 " in 'runtimepath' and below: >
@@ -31,6 +34,7 @@ call map(g:pythonpath_fixtures, 'glob(v:val)')
 " let g:vimrc = getcwd() . getreg('%')
 " STORED as home location
 " echo g:vimrc
+" }}}
 
 " README: {{{
 " --------------------------------------------------------------------------
