@@ -1,12 +1,36 @@
 " Variables To Customise:
+" <url:vimhelp:feature-list>
+if has('win32')
+    let g:vimfiles_path = '$HOME/vimfiles'
+    let g:vimrc_path    = '$HOME/_vimrc'
+else
+    let g:vimfiles_path = '$HOME/.vim'
+    let g:vimrc_path    = '$HOME/.vimrc'
+endif
+
 let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
-let s:thesaurus_location="/Users/Chris/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
+let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:django_location="$HOME/src/py/django/django-1.1"
-let s:python_location="/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5"
 let s:baseline_vim_path=""
 " Note: ropevim requires ropemode, ropevim and rope in the python path,
 " pyflakes.vim requires .vim/after/ftplugin/python.
-let s:pythonpath_fixtures= [ '/Users/Chris/src/py/ropemode', '/Users/Chris/src/py/ropevim', '/Users/Chris/src/py/rope', '/Users/Chris/.vim/after/ftplugin/python/' ]
+let g:pythonpath_fixtures= [ '$HOME/src/py/ropemode', '$HOME/src/py/ropevim',
+            \                '$HOME/src/py/rope',
+            \                '$HOME/.vim/after/ftplugin/python/' ]
+call map(g:pythonpath_fixtures, 'glob(v:val)')
+" The "**" item can be used to search in a directory tree.
+" For example, to find all "README.txt" files in the directories
+" in 'runtimepath' and below: >
+"     :echo globpath(&rtp, "**/README.txt")
+" Upwards search and limiting the depth of "**" is not
+" supported, thus using 'path' will not always work properly.
+
+
+" py import vim; vim.command("let g:vimrc2 = '%s'" % (vim.eval('getreg("%")'),))
+" STORES None
+" let g:vimrc = getcwd() . getreg('%')
+" STORED as home location
+" echo g:vimrc
 
 " README: {{{
 " --------------------------------------------------------------------------
@@ -950,7 +974,7 @@ if os.path.exists(python_exe):
     # virtualenv_sys_path = os.system(cmd)
     proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     virtualenv_sys_path = eval(proc.communicate()[0])
-    pythonpath_fixtures = vim.eval('s:pythonpath_fixtures')
+    pythonpath_fixtures = vim.eval('g:pythonpath_fixtures')
     cwd = [os.getcwd()]
     # print type(virtualenv_sys_path), virtualenv_sys_path
     # print 20 * '-'
