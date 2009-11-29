@@ -61,7 +61,24 @@ snippet htmlstub "HTML file stub" b
 </html>
 endsnippet
 
-snippet submit "Form submit button" w
+snippet submit "Form submit input" w
 <input type="submit" value="${1:Submit}" />
 $0
+endsnippet
+
+snippet submit "Form submit button" w
+<button class="$1">${2:Submit}</button>
+$0
+endsnippet
+
+snippet <
+<${1:p}>$2</$1>$0
+endsnippet
+
+snippet a
+<a href="$1">$2</a>$0
+endsnippet
+
+snippet img
+<img src="$1" height="" width="" alt="$2" />$0
 endsnippet

@@ -838,13 +838,15 @@ endsnippet
 snippet url "Full with Context"
 url(r'${1:regex}', '${2:view_function}', {${3:extra_context},}, name='${4:name_for_view}'),
 ${5}
+endsnippet
+
 snippet url "Barebones"
 (r'${1:regex}', '${2:view_function}',),
 ${3:}
 endsnippet
 
 snippet url "Include"
-(r"${1:url_prefix}", include('${2:path.to.urlconf}'),
+(r"${1:url_prefix}", include('${2:path.to.urlconf}')),
 ${3:}
 endsnippet
 
