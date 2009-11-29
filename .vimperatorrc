@@ -1,3 +1,7 @@
+" Alpha Settings: {{{
+let mapleader=','
+" }}}
+
 " Guioptions: {{{
 set guioptions=
 " add menu bar (no-op on OSX):
@@ -14,10 +18,12 @@ set guioptions+=r
 set guioptions+=N
 " }}}
 
-set runtimepath=/Users/Chris/.vimperator
-" source! /Users/Chris/.vimperatorrc.local
-
 set defsearch=yubnub
+" Avoid automatic focussing on first form-field - i.e., keeps vimp in normal
+" mode unless otherwise specified.
+set nofocuscontent
+set ignorecase
+set smartcase
 
 " For Mac OSX:
 " Make External commands (!) use the settings from your standard login shells:
@@ -26,10 +32,39 @@ set defsearch=yubnub
 " FIXME: curl-fetching of source files fails very frequently; gF won't match gf
 set editor='bash -lc "gvim -f --remote-silent \$*" gvim '
 
-let mapleader=','
+" Custom Mappings: {{{
+nnoremap 0gt g0
+nnoremap $gt g$
+" cnoremap :b$ :tablast<CR>
+
+nnoremap <leader>bo :tabonly<CR>
+nnoremap U :undoall<CR>
+
+" Quick toggle buffers:
+" ---------------------
+" Activate mapping, then type filter-term: this could be part of the buffer
+" name, or part of the url. You can use RET to switch to buffer, or even use
+" tab completion. Also works well in conjunction with gb/gB, which will allow
+" you to cycle between buffers with similar names.
+nnoremap <leader>, :buffers<CR>:b! 
+
+" Firebug Specific:
+nnoremap <silent> <leader>fo :emenu Tools.Firebug.Open Firebug<CR>
+" Press RET to cycle through elements:
+nnoremap <leader>fs :emenu Tools.Firebug.Search<CR>
+" nnoremap <leader>fi :emenu Tools.Firebug.Inspect Element<CR>
+nnoremap <leader>fi <M-S-c>
+
+nnoremap <leader>ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
+" nnoremap <leader>nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
+nnoremap <leader>nc  <M-S-s>
+nnoremap <leader>vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
+nnoremap <leader>vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
 
 " Bookmark Organiser Mapping:
-map <silent> <leader>bmo :dia places<CR>
+nnoremap <silent> <leader>bms :sb Bookmarks<CR>
+nnoremap <silent> <leader>bmo :dia places<CR>
+" }}}
 
 " vim: set ft=vimperator:
 
