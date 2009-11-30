@@ -55,11 +55,15 @@ nnoremap <leader>fs :emenu Tools.Firebug.Search<CR>
 " nnoremap <leader>fi :emenu Tools.Firebug.Inspect Element<CR>
 nnoremap <leader>fi <M-S-c>
 
+" Web Developer Specific:
 nnoremap <leader>ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
 " nnoremap <leader>nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
 nnoremap <leader>nc  <M-S-s>
 nnoremap <leader>vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
 nnoremap <leader>vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
+
+" Stumbleupon Specific:
+nnoremap <silent> <leader>su :stumble<CR>
 
 " Bookmark Organiser Mapping:
 nnoremap <silent> <leader>bms :sb Bookmarks<CR>
