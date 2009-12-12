@@ -34,3 +34,4 @@
 # 2150 8846 :AutoInstall: css_color.vim
 # Note: above plugin belongs in after/syntax,but auto-installed into plugin/
 # 1896 7356 :AutoInstall: allml.vim
+1218 10318 :AutoInstall: NERD_commenter.vim
