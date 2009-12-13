@@ -1,0 +1,67 @@
+set editing-mode vi
+# set keymap vi-insert
+set expand-tilde on
+set mark-symlinked-directories on
+
+# Source: <url:http://bbs.archlinux.org/viewtopic.php?pid=428760#p428760>
+# The history search... commands are awesome: type part of a command, and use
+# the up/down arrows to search through the history for commands which match the
+# prefix you've typed!
+$if mode=vi
+set keymap vi-command
+# these are for vi-command mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+set keymap vi-insert
+# these are for vi-insert mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+ 
+# Meta Commands don't work! NOTE: replacing with escape mapping does.
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-f": forward-char
+"\C-b": backward-char
+"\ef": forward-word
+"\eb": backward-word
+
+"\C-d": delete-char
+"\ed": kill-word
+# "\eDEL": backward-kill-word
+# "\C-xDEL": backward-kill-line
+"\C-u": unix-line-discard
+"\C-k": kill-line
+
+"\C-v": quoted-insert
+"\C-t": transpose-chars
+"\et": transpose-words
+
+# "\e?": possible-completions
+"\e*": insert-completions
+
+# "\C-x": start-kbd-macro
+# "\C-x": end-kbd-macro
+# "\C-xe": call-last-kbd-macro
+# 
+# "\C-x\C-r": re-read-init-file
+$endif
+
+# Edit options before rerunning previous command, eg: ls a b c -> ls -al a b c
+"\e-": "\C-p\C-a\M-f "
+
+# Cycle thru completions.
+"\e/": menu-complete
+
+# Expand glob patterns without executing, eg: 'rm *x'
+"\ee": glob-expand-word
+
+# Vim style history search
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+"\e[C": forward-char
+"\e[D": backward-char
+
+# Two escapes clear command line.
+# "\e\e": "\e0\C-ki"
+
