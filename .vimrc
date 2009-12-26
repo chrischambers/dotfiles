@@ -197,6 +197,7 @@ nnoremap / /\v
 " echo &columns &lines
 if has("gui_running")
     set guioptions-=T " disables Toolbar
+    set guioptions-=L " disables left-hand vertical scrollbar when vsplit
     set columns=95
     set lines=57
     " set columns=105 lines=60
