@@ -603,14 +603,6 @@ autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(ex
 " }}}
 
 """ Unused:
-" Pydiction Options: {{{
-" --------------------------------------------------------------------------
-" Source: <url:http://www.vim.org/scripts/script.php?script_id=850>
-" --------------------------------------------------------------------------
-" let g:pydiction_location = '/Users/Chris/.vim/python/complete-dict'
-" --------------------------------------------------------------------------
-" }}}
-
 " Pylint Options: {{{
 " --------------------------------------------------------------------------
 " Source: <url:http://vim.sourceforge.net/scripts/script.php?script_id=891>
@@ -1017,74 +1009,17 @@ endfunc
 
 " --------------------------------------------------------------------------
 " Prepare Django Environment:
-" Monkey-patches sys.path to achieve desired result
-" --------------------------------------------------------------------------
+
 python << EOF
-import sys, os, vim
 os.environ['DJANGO_SETTINGS_MODULE'] = 'llcom.settings'
-custom_sys_path = [
- '/Users/Chris/src/py/ropemode',
- '/Users/Chris/src/py/ropevim',
- '/Users/Chris/src/py/rope',
- '/Users/Chris/.vim/after/ftplugin/python/',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/setuptools-0.6c8-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/ipython-0.9.1-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/beatbox-0.12-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/feedparser-4.1-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/pycountry-0.11-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/lxml-2.2.2-py2.5-macosx-10.5-i386.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/MySQL_python-1.2.3c1-py2.5-macosx-10.3-i386.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/python_dateutil-1.4.1-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/django_extensions-0.4.1-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/pytz-2009j-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/pygooglechart-0.2.1-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/pip-0.4-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/docutils-0.5-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/ipdb-0.1dev_r1716-py2.5.egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/Werkzeug-0.5.1-py2.5.egg',
- '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5',
- '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-tk',
- '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/virtualenv-1.2-py2.5 .egg',
- '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/hgsvn-0.1.6-py2.5.egg',
- '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/hashlib-20081119-py2.5-macosx-10.3-i386.egg',
- '/Library/Frameworks/Python.framework/Versions/2.5/li b/python2.5/site-packages/ipdb-0.1dev_r1716-py2.5.egg',
- '/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages/ipython-0.9.1-py2.5 .egg',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages',
- '/Users/Chris/.virtualenvs/langlab/lib/python25.zip',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/plat-darwin',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/plat-mac',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/plat-mac/lib-scriptpackages',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/lib-tk',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/lib-dynload',
- '/Users/Chris/src/py/django/django-1.1',
- '/Users/Chris/src/py/django/_mine/languagelab/llab-trunk',
- '/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/external_apps',
- '/Users/Chris/.virtualenvs/langlab/lib/python2.5/site-packages/ipython-0.9.1-py2.5.egg/IPython/Extensions',
- '/Users/Chris/.ipython',
- '.',
- '..',
-]
-# sys.path = custom_sys_path
-
-# Debugging Commands:
-
-# vim.command('call SetupVirtualEnv("languagelab")')
-# from pprint import pprint
-# pprint(vim.command("py import sys; from pprint import pprint; pprint(sys.path)"))
-# print 50 * '-'
-# pprint(vim.eval('&path').split(','))
-# print 50 * '-'
-# pprint(custom_sys_path)
 EOF
-" --------------------------------------------------------------------------
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
 call SetupVirtualEnv('languagelab')
 " FIXME: Not finding django via django.pth file when run at startup - may be
 " due to subprocess module not being found.
 " FIXME: PythonPath as WELL as Vim path!
-set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/external_apps
-set path+=/Users/Chris/src/py/django/_mine/languagelab/llab-trunk/llcom
+set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
+set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom
 " !source /Users/Chris/.virtualenvwrapper && workon languagelab && python
 " $HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/manage.py validate
 " --------------------------------------------------------------------------
