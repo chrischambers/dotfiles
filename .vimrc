@@ -394,7 +394,10 @@ nnoremap <leader>ss :py UltiSnips_Manager.reset()<CR>
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=2147>
 " --------------------------------------------------------------------------
-source ~/.vimrc_trac
+let s:TRAC_FILE = '~/.vimrc_trac'
+if filereadable(s:TRAC_FILE)
+    source s:TRAC_FILE
+endif
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1166,7 +1169,10 @@ let g:snips_author="Chris Chambers"
 " i.e. settings which should come last:
 " py UltiSnips_Manager.reset() - fails on load, not defined yet!
 " Reload snippets
-source ~/.vimrc_local
+let s:LOCAL_VIMRC = '~/.vimrc_local'
+if filereadable(s:LOCAL_VIMRC)
+    source s:LOCAL_VIMRC
+endif
 
 " --------------------------------------------------------------------------
 " }}}
