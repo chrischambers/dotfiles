@@ -16,6 +16,9 @@ set keymap vi-insert
 # these are for vi-insert mode
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+# Emacs-style:
+"\C-p": history-search-backward
+"\C-n": history-search-forward
  
 # Meta Commands don't work! NOTE: replacing with escape mapping does.
 "\C-a": beginning-of-line
@@ -39,11 +42,12 @@ set keymap vi-insert
 # "\e?": possible-completions
 "\e*": insert-completions
 
+"\C-l": clear-screen
 # "\C-x": start-kbd-macro
 # "\C-x": end-kbd-macro
 # "\C-xe": call-last-kbd-macro
 # 
-# "\C-x\C-r": re-read-init-file
+#"\C-x\C-r": re-read-init-file
 $endif
 
 # Edit options before rerunning previous command, eg: ls a b c -> ls -al a b c
