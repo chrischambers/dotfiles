@@ -14,12 +14,28 @@ let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
 let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:django_location="$HOME/src/py/django/django-1.1"
 let s:baseline_vim_path=""
+let g:pythonpath_fixtures= [ g:vimfiles_path . '/python',
+              \              g:vimfiles_path . '/after/ftplugin/python/' ]
+
+" PythonPath Initialisation: {{{
+" --------------------------------------------------------------------------
 " Note: ropevim requires ropemode, ropevim and rope in the python path,
 " pyflakes.vim requires .vim/after/ftplugin/python.
-let g:pythonpath_fixtures= [ '$HOME/src/py/ropemode', '$HOME/src/py/ropevim',
-            \                '$HOME/src/py/rope',
-            \                g:vimfiles_path . '/after/ftplugin/python/' ]
 call map(g:pythonpath_fixtures, 'glob(v:val)')
+
+function! UpdatePythonPathWithFixtures()
+    """ Takes a list of absolute filenames, and appends them to the
+    """ pythonpath.
+
+python << EOF
+import vim, sys
+fixture_list = vim.eval('g:pythonpath_fixtures')
+sys.path.extend(fixture_list)
+EOF
+endfunc
+" --------------------------------------------------------------------------
+" }}}
+
 " Ref for file finding: {{{
 " The "**" item can be used to search in a directory tree.
 " For example, to find all "README.txt" files in the directories
@@ -64,10 +80,12 @@ call map(g:pythonpath_fixtures, 'glob(v:val)')
 " Alpha Settings: {{{
 " i.e. settings which should come first:
 " --------------------------------------------------------------------------
-set nocompatible                 " Force this at the start of the file
-                                 " (changes subsequent options)
-let mapleader = ','              " Only affects subsequent <leader> commands
-let g:loaded_AlignMapsPlugin = 1 " Don't load align mappings
+set nocompatible                    " Force this at the start of the file
+                                    " (changes subsequent options)
+let mapleader = ','                 " Only affects subsequent <leader> commands
+let g:loaded_AlignMapsPlugin = 1    " Don't load align mappings
+call UpdatePythonPathWithFixtures() " initialise with required pythonpath
+                                    " fixtures
 " --------------------------------------------------------------------------
 " }}}
 
