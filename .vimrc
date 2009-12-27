@@ -28,7 +28,7 @@ function! UpdatePythonPathWithFixtures()
     """ pythonpath.
 
 python << EOF
-import vim, sys
+import vim, sys, os
 fixture_list = vim.eval('g:pythonpath_fixtures')
 sys.path.extend(fixture_list)
 EOF
