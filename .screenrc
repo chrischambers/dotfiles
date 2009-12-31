@@ -22,7 +22,7 @@ maptimeout 200
 # fix scrollback in putty (edit: and for Mac Terminal)
 # Source: <url:http://www.samsarin.com/blog/2007/03/11/gnu-screen-working-with-the-scrollback-buffer/>
 # Totally awesome and essential:
-altscreen on
+# altscreen on
 termcapinfo xterm*|xs|rxvt ti@:te@
 
 # Display useful statusbar:
@@ -31,6 +31,7 @@ hardstatus alwayslastline
 hardstatus string "%w%=%m/%d %c"
 #hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
 #caption string '%{= wk}[ %{k}%H %{k}][%= %{= wk}%?%-Lw%?%{r}(%{r}%n*%f%t%?(%u)%?%{r})%{k}%?%+Lw%?%?%= %{k}][%{b} %d/%m %{k}%c %{k}]' # good looking window bar
+#caption always "%{= kw}%-w%{= gW}%n %t%{-}%+w %-= %c %D %M/%d/%Y "
 
 # Keybindings:
 # Source: <url:http://www.hanhuy.com/pfn/integrating_screen_and_clipboard;jsessionid=B9CC24D29ACCBF10682149ACFA7F86D2>
