@@ -1,0 +1,48 @@
+# Fink and Macports Configuration: {{{
+# ----------------------------------------------------------------------------
+# Automatically added by Fink ==> /sw/bin/pathsetup.sh
+test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
+# Enabled for Macports:
+# MacPorts Installer addition on 2009-11-22_at_01:31:13: adding an appropriate
+# PATH variable for use with MacPorts.
+# export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export MANPATH="/opt/local/share/man:$MANPATH"
+
+# Activate bash-completion from ports:
+if [ -f /opt/local/etc/bash_completion ]; then
+    . /opt/local/etc/bash_completion
+fi
+
+# Mysql Configuration (via Macports)
+# Fix for "EnvironmentError: mysql_config not found" error message when
+# easy_installing python-mysql
+export PATH="/opt/local/lib/mysql5/bin:$PATH"
+alias mysqlstart='sudo /opt/local/bin/mysqld_safe5 &'
+alias mysqlstop='/opt/local/bin/mysqladmin5 -u root -p shutdown'
+# ----------------------------------------------------------------------------
+# }}}
+
+# OSX specific aliases: {{{
+# ----------------------------------------------------------------------------
+alias finder='open /System/Library/CoreServices/Finder.app/'
+alias firefox='open /Applications/Firefox.app'
+# ----------------------------------------------------------------------------
+# }}}
+
+# MacVim Configuration: {{{
+# ----------------------------------------------------------------------------
+# alias vim='/Applications/MacVim-snapshot-47/MacVim.app/Contents/MacOS/Vim'
+# note: can't symlink to the above, ergo using alias to override default
+# OSX vim. Annoyingly, 'which vim' doesn't work in these circumstances.
+
+# For Macvim: (symlinked mvim script in /usr/local/bin/ )--
+export VIM_APP_DIR="/Applications/MacVim/"
+export EDITOR="mvim -v"
+alias vim=$EDITOR
+alias gvim='mvim'
+# ----------------------------------------------------------------------------
+# }}}
+
