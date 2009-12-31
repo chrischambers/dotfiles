@@ -789,7 +789,7 @@ fun! Html_fold()
   " setl foldopen=all foldclose=all
   setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
   setl fillchars=vert:\|,fold:\
-  setl softtabstop=2 shiftwidth=2 nowrap
+  setl expandtab softtabstop=2 shiftwidth=2 nowrap
 endfun
 autocmd FileType html call Html_fold()
 autocmd FileType htmldjango call Html_fold()
