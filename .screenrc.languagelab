@@ -1,0 +1,18 @@
+# read in your full screenrc before anything else...
+source $HOME/.screenrc
+
+screen -t runserver 0
+stuff "workon languagelab; python manage.py runserver_plus 0.0.0.0:8000"
+screen -t ipy       1
+stuff "workon languagelab; python manage.py shell_plus"
+screen -t emails    2
+stuff "workon languagelab; python email_debugger.py"
+screen -t tests     3
+stuff "workon languagelab"
+screen -t git       4
+stuff "workon languagelab; cd .."
+screen -t mail 5 mutt
+#screen -t daemon 9 tail -f /var/log/daemon.log
+
+select 4
+
