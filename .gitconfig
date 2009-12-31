@@ -1,0 +1,14 @@
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	showremote = !sh -c 'git for-each-ref --format=\"%(upstream:short)\" $(git rev-parse --symbolic-full-name --default HEAD $1)' -
+[user]
+	name = Chris Chambers
+	email = magma.chambers@gmail.com
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
