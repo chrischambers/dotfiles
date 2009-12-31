@@ -776,6 +776,20 @@ if has('unix') " includes OSX
 endif
 " }}}
 
+" Text And ReST Specific:
+
+" Autocommand: Prepare Text / ReST File Defaults: {{{
+" --------------------------------------------------------------------------
+augroup txt_setup
+au!
+fun! Txt_fold()
+  setl textwidth=78
+endfun
+autocmd FileType txt call Txt_fold()
+autocmd FileType rst call Txt_fold()
+augroup END
+" --------------------------------------------------------------------------
+" }}}
 
 " HTML Specific:
 
