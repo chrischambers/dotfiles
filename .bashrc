@@ -148,7 +148,7 @@ display_project_env() {
 jobs_count() {
     # Formats and returns the jobs count, in the format 'jobs: NUM'.
     if [[ $(jobs | wc -l | tr -d " ") -gt 0 ]]; then
-        echo " ${YELLOW}[ ${PURPLE}jobs: \j${YELLOW} ]";
+        echo " ${YELLOW}[${PURPLE}jobs: \j${YELLOW}]";
     fi
 }
 cache_exit_status() {
