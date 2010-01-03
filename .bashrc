@@ -190,11 +190,12 @@ update_titlebar() {
 # [498] ajax@Locris (jobs:1)
 # (languagelab/redesign[!])[/Users/ajax/src/py/django/_mine/languagelab/llab-trunk/llcom] $ 
 
-cwd_path="${YELLOW}[ ${BOLD_BLUE}\w${YELLOW} ]"
-user_sys_info="${CYAN}\u${YELLOW}@${BLUE}\h"
 hist_num="${YELLOW}[${GREEN}\!${YELLOW}]"
+user_sys_info="${CYAN}\u${YELLOW}@${BLUE}\h"
+time_stamp="${YELLOW}[${RED}\t${YELLOW}]"
+cwd_path="${YELLOW}[ ${BOLD_BLUE}\w${YELLOW} ]"
 PROMPT_COMMAND='status=$(cache_exit_status);
-PS1="$(update_titlebar)\n${hist_num} ${user_sys_info}$(jobs_count)
+PS1="$(update_titlebar)\n${hist_num} ${user_sys_info} ${time_stamp}$(jobs_count)
 $(display_project_env)${cwd_path} $(main_prompt $status)${RESET} "'
 
 # Old Prompts: {{{
