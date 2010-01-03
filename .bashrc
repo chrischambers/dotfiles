@@ -72,7 +72,7 @@ export bold_grey=$'\e[00;37m'
 export white=$'\e[01;37m'
 export reset=$'\e[0m'
 
-export COLOUR_PALETTE='
+export COLOUR_PALETTE="
 ${dark_grey}dark_grey
 ${blue}blue
 ${bold_blue}bold_blue
@@ -89,7 +89,7 @@ ${yellow}yellow
 ${bold_grey}bold_grey
 ${white}white
 ${reset}reset
-'
+"
 # We need to surround all non-printing characters with special bash escape
 # sequences, "\[" and "\]". These sequences will tell bash that the enclosed
 # characters don't take up any space on the line, which will allow
