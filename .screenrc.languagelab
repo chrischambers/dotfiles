@@ -2,9 +2,9 @@
 source $HOME/.screenrc
 
 screen -t runserver 0
-stuff "workon languagelab; python manage.py runserver_plus 0.0.0.0:8000"
+stuff "workon languagelab; python manage.py runserver_plus --settings='llcom.mysql_settings' 0.0.0.0:8000"
 screen -t ipy       1
-stuff "workon languagelab; python manage.py shell_plus"
+stuff "workon languagelab; python manage.py shell_plus --settings='llcom.mysql_settings'"
 screen -t emails    2
 stuff "workon languagelab; python email_debugger.py"
 screen -t tests     3
