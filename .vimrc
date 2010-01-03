@@ -799,7 +799,10 @@ augroup html_setup
 au!
 fun! Html_fold()
   setl autoindent
-  setl foldmethod=syntax
+  setl foldmethod=indent
+  setl foldnestmax=10
+  setl nofoldenable
+  setl foldlevel=1
   " setl foldopen=all foldclose=all
   setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
   setl fillchars=vert:\|,fold:\
