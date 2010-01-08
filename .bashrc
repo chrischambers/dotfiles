@@ -139,7 +139,7 @@ display_project_env() {
     elif [[ -z $virtualenv ]]; then
         echo ${WHITE}'('${GREEN}${git_branch}${WHITE}') '
     elif [[ -z $git_branch ]]; then
-        echo ${WHITE}'('${BLUE}${virtualenv}${wHITE}') '
+        echo ${WHITE}'('${BLUE}${virtualenv}${WHITE}') '
     else
         echo ${WHITE}'('${BLUE}${virtualenv}${WHITE}'/'${GREEN}${git_branch}${WHITE}') '
     fi
