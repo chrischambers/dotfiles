@@ -22,7 +22,7 @@ fi
 # Post OS-specific Customisation Tweaks: {{{
 # ----------------------------------------------------------------------------
 export SVN_EDITOR=$EDITOR
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
 # ----------------------------------------------------------------------------
 # }}}
 
