@@ -137,11 +137,11 @@ display_project_env() {
     if [[ -z $virtualenv ]] && [[ -z $git_branch ]]; then
         echo ''
     elif [[ -z $virtualenv ]]; then
-        echo ${WHITE}'('${GREEN}${git_branch}${WHITE}') '
+        echo ${WHITE}'('${BOLD_GREEN}${git_branch}${WHITE}') '
     elif [[ -z $git_branch ]]; then
-        echo ${WHITE}'('${BLUE}${virtualenv}${wHITE}') '
+        echo ${WHITE}'('${BOLD_BLUE}${virtualenv}${wHITE}') '
     else
-        echo ${WHITE}'('${BLUE}${virtualenv}${WHITE}'/'${GREEN}${git_branch}${WHITE}') '
+        echo ${WHITE}'('${BOLD_BLUE}${virtualenv}${WHITE}'/'${BOLD_GREEN}${git_branch}${WHITE}') '
     fi
 }
 
@@ -190,8 +190,8 @@ update_titlebar() {
 # [498] ajax@Locris (jobs:1)
 # (languagelab/redesign[!])[/Users/ajax/src/py/django/_mine/languagelab/llab-trunk/llcom] $ 
 
-hist_num="${YELLOW}[${GREEN}\!${YELLOW}]"
-user_sys_info="${CYAN}\u${YELLOW}@${BLUE}\h"
+hist_num="${YELLOW}[${BOLD_GREEN}\!${YELLOW}]"
+user_sys_info="${BOLD_BLUE}\u${YELLOW}@${BOLD_BLUE}\h"
 time_stamp="${YELLOW}[${RED}\t${YELLOW}]"
 cwd_path="${YELLOW}[ ${BOLD_BLUE}\w${YELLOW} ]"
 PROMPT_COMMAND='status=$(cache_exit_status);
