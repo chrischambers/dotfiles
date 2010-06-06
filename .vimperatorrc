@@ -61,6 +61,7 @@ nnoremap <leader>ni :emenu Tools.Web Developer.Images.Disable Images.All Images<
 nnoremap <leader>nc  <M-S-s>
 nnoremap <leader>vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
 nnoremap <leader>vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
+nnoremap <leader>vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
 
 " Stumbleupon Specific:
 nnoremap <silent> <leader>su :stumble<CR>
