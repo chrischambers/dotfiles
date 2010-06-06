@@ -681,7 +681,6 @@ g:netrw_winsize	pi_netrw.txt	/*g:netrw_winsize*
 g:netrw_xstrlen	pi_netrw.txt	/*g:netrw_xstrlen*
 g:vimball_home	pi_vimball.txt	/*g:vimball_home*
 g:vimball_mkdir	pi_vimball.txt	/*g:vimball_mkdir*
-g:vimball_path_escape	pi_vimball.txt	/*g:vimball_path_escape*
 g:visincr_datedivset	visincr.txt	/*g:visincr_datedivset*
 getlatestvimscripts-install	pi_getscript.txt	/*getlatestvimscripts-install*
 getscript	pi_getscript.txt	/*getscript*
