@@ -3,19 +3,20 @@ let mapleader=','
 " }}}
 
 " Guioptions: {{{
-set guioptions=
+" set guioptions=
 " add menu bar (no-op on OSX):
-set guioptions+=m
+" set guioptions+=m
 " add Toolbar (i.e. main bar):
-set guioptions+=T
+" set guioptions+=T
 " add Bookmark Bar:
-set guioptions+=B
+" set guioptions+=B
 " add bottom scrollbar:
-set guioptions+=b
+" set guioptions+=b
 " add right scrollbar:
-set guioptions+=r
+" set guioptions+=r
 " numbered tabs (OVER favicons, use lowercase for alongside):
-set guioptions+=N
+" set guioptions+=N
+set guioptions=mTBbrN
 " }}}
 
 set defsearch=yubnub
