@@ -88,6 +88,7 @@
 :MkVimball	pi_vimball.txt	/*:MkVimball*
 :NERDTree	NERD_tree.txt	/*:NERDTree*
 :NERDTreeClose	NERD_tree.txt	/*:NERDTreeClose*
+:NERDTreeFind	NERD_tree.txt	/*:NERDTreeFind*
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
@@ -101,6 +102,7 @@
 :RM	visincr.txt	/*:RM*
 :Rexplore	pi_netrw.txt	/*:Rexplore*
 :RmVimball	pi_vimball.txt	/*:RmVimball*
+:SpeedDatingFormat	speeddating.txt	/*:SpeedDatingFormat*
 :Texplore	pi_netrw.txt	/*:Texplore*
 :UseVimball	pi_vimball.txt	/*:UseVimball*
 :VCSAdd	vcscommand.txt	/*:VCSAdd*
@@ -441,6 +443,7 @@ ex-visincr-IM	visincr.txt	/*ex-visincr-IM*
 ex-visincr-IMDY	visincr.txt	/*ex-visincr-IMDY*
 ex-visincr-IYMD	visincr.txt	/*ex-visincr-IYMD*
 fetch	pi_netrw.txt	/*fetch*
+ft-gitcommit-plugin	ft-gitcommit-plugin.txt	/*ft-gitcommit-plugin*
 ftp	pi_netrw.txt	/*ftp*
 fuzzyfinder	fuzzyfinder.txt	/*fuzzyfinder*
 fuzzyfinder-abbreviation	fuzzyfinder.txt	/*fuzzyfinder-abbreviation*
@@ -924,6 +927,19 @@ showmarks-contents	showmarks.txt	/*showmarks-contents*
 showmarks-highlighting	showmarks.txt	/*showmarks-highlighting*
 showmarks-mappings	showmarks.txt	/*showmarks-mappings*
 showmarks.txt	showmarks.txt	/*showmarks.txt*
+speeddating	speeddating.txt	/*speeddating*
+speeddating-.	speeddating.txt	/*speeddating-.*
+speeddating-CTRL-A	speeddating.txt	/*speeddating-CTRL-A*
+speeddating-CTRL-X	speeddating.txt	/*speeddating-CTRL-X*
+speeddating-author	speeddating.txt	/*speeddating-author*
+speeddating-caveats	speeddating.txt	/*speeddating-caveats*
+speeddating-d_CTRL-A	speeddating.txt	/*speeddating-d_CTRL-A*
+speeddating-d_CTRL-X	speeddating.txt	/*speeddating-d_CTRL-X*
+speeddating-formats	speeddating.txt	/*speeddating-formats*
+speeddating-maps	speeddating.txt	/*speeddating-maps*
+speeddating-v_CTRL-A	speeddating.txt	/*speeddating-v_CTRL-A*
+speeddating-v_CTRL-X	speeddating.txt	/*speeddating-v_CTRL-X*
+speeddating.vim	speeddating.txt	/*speeddating.vim*
 surround	surround.txt	/*surround*
 surround-author	surround.txt	/*surround-author*
 surround-customizing	surround.txt	/*surround-customizing*
