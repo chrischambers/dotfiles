@@ -23,7 +23,7 @@
 294 10110 :AutoInstall: Align.vim
 1343 11095 :AutoInstall: autotag.vim
 642 8136 :AutoInstall: getscript.vim
-1075 9816 :AutoInstall: netrw.vim
+1075 11979 :AutoInstall: netrw.vim
 1502 8743 :AutoInstall: vimball.vim
 489 9573 :AutoInstall: Manpageview.vim
 # Latest versions won't work with fuzzyfinder-textmate dir-pattern matching!
