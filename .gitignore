@@ -2,7 +2,7 @@
 *
 
 # Crude as this is, it works:
-# Make exceptions for .vim and its containing files, up to 6 levels deep:
+# Make exceptions for .vim and its containing files, up to 10 levels deep:
 !/*vim/
 !/*.vim/*
 !/*vim/*/**
@@ -11,6 +11,9 @@
 !/*vim/*/*/*/*/**
 !/*vim/*/*/*/*/*/**
 !/*vim/*/*/*/*/*/*/**
+!/*vim/*/*/*/*/*/*/*/**
+!/*vim/*/*/*/*/*/*/*/*/**
+!/*vim/*/*/*/*/*/*/*/*/*/**
 
 # Make exceptions for .vimperator and its containing files, up to 6 levels deep:
 !/*vimperator/
