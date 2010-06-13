@@ -195,6 +195,19 @@ __${1:init}__${2}
 endsnippet
 
 # ----------------
+# Subprocess:
+# ----------------
+snippet shell "Open a shell subprocess" b
+import subprocess
+proc = subprocess.Popen(
+    '${1:command}',
+    shell=True,
+    stdout=subprocess.PIPE
+)
+out, returned = proc.communicate()
+endsnippet
+
+# ----------------
 # Optparse:
 # ----------------
 snippet optparse "Optparse Stub" b
