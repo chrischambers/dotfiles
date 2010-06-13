@@ -832,6 +832,10 @@ augroup END
 " ... cb[1:5] = ['a string']
 " --------------------------------------------------------------------------
 
+" Source useful python utility functions: {{{
+exec "source " . g:.vimfiles_path . '/scripts/python.vim'
+" }}}
+"
 " Autocommand: Prepare Python File Defaults: {{{
 " --------------------------------------------------------------------------
 augroup python_setup
