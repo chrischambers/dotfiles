@@ -194,6 +194,28 @@ snippet _
 __${1:init}__${2}
 endsnippet
 
+snippet metaclass
+class ${1:MyMetaClass}(type):
+    def__init__(cls, name, bases, attrs):
+        super($1, cls).__init__(name, bases, attrs)
+        $2
+endsnippet
+
+
+# ----------------
+# Descriptors:
+# ----------------
+snippet get
+def __get__(self, instance, owner):
+    $0
+endsnippet
+
+snippet set
+def __set__(self, instance, value):
+    $0
+endsnippet
+
+
 # ----------------
 # Subprocess:
 # ----------------
