@@ -609,6 +609,31 @@ autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(ex
 " --------------------------------------------------------------------------
 " }}}
 
+" TVO Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=517>
+" --------------------------------------------------------------------------
+let otl_bold_headers=0
+let maplocalleader = ","
+" au BufWinLeave *.otl mkview
+" au BufWinEnter *.otl silent loadview
+
+augroup otl_setup
+""" Do not display hidden characters (like tabs)
+au!
+autocmd FileType otl setl nolist
+augroup END
+
+" Highlighting overrides
+hi otlTab0 gui=bold, guifg=#E18964
+hi otlTab1 gui=bold, guifg=#96CBFE
+hi otlTab2 gui=bold, guifg=#A8FF60
+hi otlTab3 gui=bold, guifg=#FFFFB6
+hi otlTab4 gui=bold, guifg=#FFD2A7
+hi otlTextLeader guifg=gray20
+" --------------------------------------------------------------------------
+" }}}
+
 """ Disabled:
 " ScrollColors Mappings: {{{
 " --------------------------------------------------------------------------
