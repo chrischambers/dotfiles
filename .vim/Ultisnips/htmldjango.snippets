@@ -13,7 +13,7 @@ $0
 endsnippet
 
 snippet js "link" b!
-<script type="text/javascript" 
+<script type="text/javascript"
         src="{{ MEDIA_URL }}js/${1:path/to/javascript}"></script>
 $0
 endsnippet
@@ -50,6 +50,16 @@ snippet htmlstub "HTML file stub" b!
   $0
 </body>
 </html>
+endsnippet
+
+snippet stub "Template Stub" b
+{% extends "${1:base.html}" %}
+
+{% block title %}${2:Page Title} - {{ block.super }}{% endblock %}
+
+{% block main_content %}
+$0
+{% endblock main_content %}
 endsnippet
 
 snippet v "Django Variable"
