@@ -404,6 +404,7 @@ let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
 set runtimepath+=~/src/vim/ultisnips
 " Mnemonic - "source snippets"
 nnoremap <leader>ss :py UltiSnips_Manager.reset()<CR>
+autocmd BufRead *.snippets setl ft=conf
 " --------------------------------------------------------------------------
 " }}}
 
