@@ -593,16 +593,6 @@ let g:autotagCtagsCmd="ctags -a --sort=foldcase --links=no --exclude='rosetta/' 
 " --------------------------------------------------------------------------
 " }}}
 
-" CSApprox Options: {{{
-" --------------------------------------------------------------------------
-" Source: <url:http://www.vim.org/scripts/script.php?script_id=2390>
-" --------------------------------------------------------------------------
-" Note: Definitely do not set this - causes flashing in terminals that do not
-" actually support 256 colours!
-" set t_Co=256        " Sets terminal colors to 256
-" --------------------------------------------------------------------------
-" }}}
-
 " Pydoc Autocommands: {{{
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1112>
@@ -643,6 +633,16 @@ hi otlTextLeader guifg=gray20
 " --------------------------------------------------------------------------
 " map <silent><leader>n :NEXTCOLOR<cr>
 " map <silent><leader>p :PREVCOLOR<cr> 
+" --------------------------------------------------------------------------
+" }}}
+
+" CSApprox Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=2390>
+" --------------------------------------------------------------------------
+" Note: Definitely do not set this - causes flashing in terminals that do not
+" actually support 256 colours!
+" set t_Co=256        " Sets terminal colors to 256
 " --------------------------------------------------------------------------
 " }}}
 
