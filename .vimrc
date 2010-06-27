@@ -687,15 +687,25 @@ function! TrimWhiteSpace()
 endfunction
 
 function! RegulateClassDefSpacing()
+""" For algorithm, see comments below.
+"""
+""" Possible improvement: factor out common regex components, and use some
+""" kind of string interpolation. Note that we're using the "very magic"
+""" option to keep the regexes a little cleaner.
+"""
+""" Function/class definition:        ((\s*def |\s*class )[^\(]+\([^\)]+\):)
+""" Class definition:                 ((\s*class )[^\(]+\([^\)]+\):)
+""" Blank line (ending):              (\s*\n)
   try
-    " force all class/function definitions to have a single preceding blank
-    " line,if none:
-    " %s/[^\n]\n\(\s*class\|\s*def\)/\1/g
     " trim all class/function definitions so that they have only a single
     " preceding blank line:
-    %s/\n\{3,\}\(\s*class\|\s*def\)/\1/g
+    %s/\v^(\s*\n){2,}((.+\n)*)((\s*def |\s*class )[^\(]+\([^\)]+\):)/\2\4/g
+    "%s/\v^(\s*\n){2,}((.+\n)*)(\s*def|\s*class)/\2\4/g
+    " if a class/function definition line is immediately followed by blank
+    " lines, remove them:
+    %s/\v((\s*def |\s*class )[^\(]+\([^\)]+\):)(\s*\n)+/\1/g
     " ensure all classes definitions now have 2 preceding blank lines:
-    %s/\n\n\(\s*class\)/\1/g
+    %s/\v^(\s*\n)+((.+\n)*)((\s*class )[^\(]+\([^\)]+\):)/\2\4/g
   catch /E486/   " regex didn't match
   endtry
 endfunction
