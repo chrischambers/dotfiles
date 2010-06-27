@@ -529,9 +529,10 @@ let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplModSelTarget = 1
 " Maximum MBE window size:
 " let g:miniBufExplMaxSize = 1
-" Cause the MBE window to be loaded even if no buffers are available:
-" (Set to 1 to disable)
-let g:miniBufExplorerMoreThanOne=1
+" Causes the MBE window to be only be loaded if 2 buffers are open:
+" (0 for always active, other numbers correspond to amount of buffers required
+" before minibufexpl is displayed)
+let g:miniBufExplorerMoreThanOne=2
 " Attempts to override bug where syntax highlighting is disabled:
 " let g:miniBufExplForceSyntaxEnable = 1
 " Note: screws up MBE and NERDtree highlighting!
