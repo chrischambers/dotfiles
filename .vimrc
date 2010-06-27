@@ -684,14 +684,33 @@ endif
 function! TrimWhiteSpace()
   %s/\s*$//
   ''
-:endfunction
+endfunction
+
+function! RegulateClassDefSpacing()
+  try
+    " force all class/function definitions to have a single preceding blank
+    " line,if none:
+    " %s/[^\n]\n\(\s*class\|\s*def\)/\1/g
+    " trim all class/function definitions so that they have only a single
+    " preceding blank line:
+    %s/\n\{3,\}\(\s*class\|\s*def\)/\1/g
+    " ensure all classes definitions now have 2 preceding blank lines:
+    %s/\n\n\(\s*class\)/\1/g
+  catch /E486/   " regex didn't match
+  endtry
+endfunction
+
+function! PrettifyPythonWhitespace()
+  silent call TrimWhiteSpace()
+  silent call RegulateClassDefSpacing()
+endfunction
 
 " set list listchars=trail:.,extends:>
 " Deactivated temporarily.
-autocmd FileWritePre *.py :call TrimWhiteSpace()
-autocmd FileAppendPre *.py :call TrimWhiteSpace()
-autocmd FilterWritePre *.py :call TrimWhiteSpace()
-autocmd BufWritePre *.py :call TrimWhiteSpace()
+autocmd FileWritePre *.py :call PrettifyPythonWhitespace()
+autocmd FileAppendPre *.py :call PrettifyPythonWhitespace()
+autocmd FilterWritePre *.py :call PrettifyPythonWhitespace()
+autocmd BufWritePre *.py :call PrettifyPythonWhitespace()
 
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
