@@ -688,10 +688,10 @@ function! TrimWhiteSpace()
 
 " set list listchars=trail:.,extends:>
 " Deactivated temporarily.
-" autocmd FileWritePre *.py :call TrimWhiteSpace()
-" autocmd FileAppendPre *.py :call TrimWhiteSpace()
-" autocmd FilterWritePre *.py :call TrimWhiteSpace()
-" autocmd BufWritePre *.py :call TrimWhiteSpace()
+autocmd FileWritePre *.py :call TrimWhiteSpace()
+autocmd FileAppendPre *.py :call TrimWhiteSpace()
+autocmd FilterWritePre *.py :call TrimWhiteSpace()
+autocmd BufWritePre *.py :call TrimWhiteSpace()
 
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
