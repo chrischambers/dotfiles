@@ -697,6 +697,12 @@ function! RegulateClassDefSpacing()
 """ Class definition:                 ((\s*class )[^\(]+\([^\)]+\):)
 """ Blank line (ending):              (\s*\n)
   try
+    " First, squeeze all concurrent blank lines at EOF down to 1:
+    %s/\v(^\s*\n)*%$//
+    " ...and append an empty line to the end of the file, if required.
+    " if !empty(getline('$'))
+    "    %s/\%$//g
+    " endif
     " trim all class/function definitions so that they have only a single
     " preceding blank line:
     %s/\v^(\s*\n){2,}((.+\n)*)((\s*def |\s*class )[^\(]+\([^\)]+\):)/\2\4/g
