@@ -706,7 +706,7 @@ function! RegulateClassDefSpacing()
     %s/\v((\s*def |\s*class )[^\(]+\([^\)]+\):)(\s*\n)+/\1/g
     " ensure all classes definitions now have 2 preceding blank lines:
     %s/\v^(\s*\n)+((.+\n)*)((\s*class )[^\(]+\([^\)]+\):)/\2\4/g
-  catch /E486/   " regex didn't match
+  catch /^Vim\%((\a\+)\)\=:E486/   " regex didn't match
   endtry
 endfunction
 
