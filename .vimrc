@@ -683,7 +683,6 @@ endif
 " Removes trailing spaces
 function! TrimWhiteSpace()
   %s/\s*$//
-  ''
 endfunction
 
 function! RegulateClassDefSpacing()
