@@ -717,10 +717,13 @@ endfunction
 
 " set list listchars=trail:.,extends:>
 " Deactivated temporarily.
+augroup python_prettify
+au!
 autocmd FileWritePre *.py :call PrettifyPythonWhitespace()
 autocmd FileAppendPre *.py :call PrettifyPythonWhitespace()
 autocmd FilterWritePre *.py :call PrettifyPythonWhitespace()
 autocmd BufWritePre *.py :call PrettifyPythonWhitespace()
+augroup END
 
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
