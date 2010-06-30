@@ -930,8 +930,10 @@ function! RegulateClassDefSpacing()
 endfunction
 
 function! PrettifyPythonWhitespace()
+  let cursor_position = getpos('.')
   silent call TrimWhiteSpace()
   silent call RegulateClassDefSpacing()
+  call setpos('.', cursor_position)
 endfunction
 
 " set list listchars=trail:.,extends:>
