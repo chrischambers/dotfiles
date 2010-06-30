@@ -944,7 +944,6 @@ autocmd FilterWritePre *.py :silent call PrettifyPythonWhitespace()
 autocmd BufWritePre *.py :silent call PrettifyPythonWhitespace()
 augroup END
 
-map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
 " --------------------------------------------------------------------------
 " }}}
