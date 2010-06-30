@@ -17,7 +17,7 @@
 159 3640 :AutoInstall: minibufexpl.vim
 # 2390 10336 :AutoInstall: CSApprox.vim
 1066 7618 :AutoInstall: cecutil.vim
-# 120 9388 :AutoInstall: Decho.vim
+120 9388 :AutoInstall: Decho.vim
 1203 4188 :AutoInstall: WhereFrom.vim
 294 10110 :AutoInstall: Align.vim
 1343 12473 :AutoInstall: autotag.vim
