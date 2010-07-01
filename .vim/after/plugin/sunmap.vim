@@ -127,6 +127,9 @@ function! SunmapAll()
     Sunmap ]]
     " Modified - Chris Chambers, 1/11/2009
     Sunmap m
+    " Modified - Chris Chambers, 1/07/2010
+    Sunmap #
+    Sunmap u
 endfunction
 
 command! -nargs=+ Sunmap call Sunmap(<f-args>)
