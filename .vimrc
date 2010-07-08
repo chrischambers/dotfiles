@@ -813,11 +813,11 @@ augroup END
 " --------------------------------------------------------------------------
 augroup txt_setup
 au!
-fun! Txt_fold()
+fun! Txt_wrap()
   setl textwidth=78
 endfun
-autocmd FileType txt call Txt_fold()
-autocmd FileType rst call Txt_fold()
+autocmd FileType txt call Txt_wrap()
+autocmd FileType rst call Txt_wrap()
 augroup END
 " --------------------------------------------------------------------------
 " }}}
@@ -954,11 +954,11 @@ endfunction
 " set list listchars=trail:.,extends:>
 " Deactivated temporarily.
 augroup python_prettify
-au!
-autocmd FileWritePre *.py :silent call PrettifyPythonWhitespace()
-autocmd FileAppendPre *.py :silent call PrettifyPythonWhitespace()
-autocmd FilterWritePre *.py :silent call PrettifyPythonWhitespace()
-autocmd BufWritePre *.py :silent call PrettifyPythonWhitespace()
+  au!
+  autocmd FileWritePre *.py :silent call PrettifyPythonWhitespace()
+  autocmd FileAppendPre *.py :silent call PrettifyPythonWhitespace()
+  autocmd FilterWritePre *.py :silent call PrettifyPythonWhitespace()
+  autocmd BufWritePre *.py :silent call PrettifyPythonWhitespace()
 augroup END
 
 map! <F2> :call TrimWhiteSpace()<CR>
