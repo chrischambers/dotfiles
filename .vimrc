@@ -121,6 +121,7 @@ filetype on            " enable filetype detection
 filetype plugin on     " enable filetype specific plugins
 filetype indent on     " enable filetype-specific indenting where available,
 
+set background=dark
 colorscheme ir_black   " slightly tweaked to fit, but totally awesome.
 " alternatives include - eclipse, xoria256
 
