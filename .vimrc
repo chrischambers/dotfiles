@@ -131,6 +131,7 @@ set nowrap        " prevent lines from wrapping automatically
 
 set softtabstop=4 " no. spaces that <Tab> counts for
 set shiftwidth=4  " no. spaces used for auto-indent, <<, >>, etc.
+set shiftround    " Rounds indent to multiple of shiftwidth
 set expandtab     " replaces \t characters with spaces
 set autoindent    " copy indent from current line when starting new line
                   " also try set smartindent
