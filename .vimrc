@@ -308,10 +308,15 @@ exec 'set thesaurus=' . s:thesaurus_location
 
 " Completion: Omni-Completion: {{{
 " --------------------------------------------------------------------------
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+if has("autocmd")
+  augroup omnicompletion
+    au!
+    au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    au FileType html set omnifunc=htmlcomplete#CompleteTags
+    au FileType css set omnifunc=csscomplete#CompleteCSS
+    au FileType python set omnifunc=pythoncomplete#Complete
+  augroup END
+endif
 
 if has("python")
 function! FixVimPythonSysModule()
@@ -330,6 +335,7 @@ EOL
 endfunction
   call FixVimPythonSysModule()
 endif
+
 " --------------------------------------------------------------------------
 " }}}
 
@@ -457,12 +463,14 @@ function! ModifyQuickFixList()
   call setqflist(qflist)
 endfunction
 
-augroup Quickfix_settings
-  au!
-  au Filetype qf let b:no_highlight_overlength = 1
-  au Filetype qf setl nobuflisted
-  au Filetype qf match Special /<<[^>]\{-}>>/
-augroup END
+if has("autocmd")
+  augroup quickfix_settings
+    au!
+    au Filetype qf let b:no_highlight_overlength = 1
+    au Filetype qf setl nobuflisted
+    au Filetype qf match Special /<<[^>]\{-}>>/
+  augroup END
+endif
 " au Filetype qf match String />>\s*\zs\(.*\)\ze/
 " au Filetype qf match Function /[a-zA-Z]*(/
 " --------------------------------------------------------------------------
@@ -540,7 +548,10 @@ let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
 set runtimepath+=~/src/vim/ultisnips
 " Mnemonic - "source snippets"
 nnoremap <leader>ss :py UltiSnips_Manager.reset()<CR>
-autocmd BufRead *.snippets setl ft=conf
+augroup snippet_setup
+ au!
+ au BufRead *.snippets setl ft=conf
+augroup END
 " --------------------------------------------------------------------------
 " }}}
 
@@ -750,7 +761,12 @@ let g:autotagCtagsCmd="ctags -a --sort=foldcase --links=no --exclude='rosetta/' 
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1112>
 " --------------------------------------------------------------------------
-autocmd FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(expand("<cWORD>"))<Cr>
+if has("autocmd")
+  augroup pydoc_mapping
+    au!
+    au FileType python nnoremap <silent> <buffer> K :call <SID>:KeyPydocLoad(expand("<cWORD>"))<Cr>
+  augroup END
+endif
 " --------------------------------------------------------------------------
 " }}}
 
@@ -763,11 +779,13 @@ let maplocalleader = ","
 " au BufWinLeave *.otl mkview
 " au BufWinEnter *.otl silent loadview
 
-augroup otl_setup
-""" Do not display hidden characters (like tabs)
-au!
-autocmd FileType otl setl nolist
-augroup END
+if has("autocmd")
+  augroup otl_setup
+  """ Do not display hidden characters (like tabs)
+    au!
+    autocmd FileType otl setl nolist
+  augroup END
+endif
 
 " Highlighting overrides
 hi otlTab0 gui=bold, guifg=#E18964
@@ -912,10 +930,13 @@ endif
 " --------------------------------------------------------------------------
 if has("autocmd")
   " Try to jump to the last spot the cursor was at in a file when reading it.
-  au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \ exe "normal g`\"" |
-      \ endif
+  augroup resume_last_editing_spot
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ exe "normal g`\"" |
+        \ endif
+  augroup END
 endif
 " --------------------------------------------------------------------------
 " }}}
@@ -1008,24 +1029,28 @@ runtime! scripts/ide_tools.vim
 " Vim Specific:
 
 " Autocommand: Prepare Vim File Defaults: {{{
-augroup vim_setup
-au!
-autocmd FileType vim setl shiftwidth=2
-augroup END
+if has("autocmd")
+  augroup vim_setup
+    au!
+    autocmd FileType vim setl shiftwidth=2
+  augroup END
+endif
 " }}}
 
 " Text And ReST Specific:
 
 " Autocommand: Prepare Text / ReST File Defaults: {{{
 " --------------------------------------------------------------------------
-augroup txt_setup
-au!
-fun! Txt_wrap()
-  setl textwidth=78
-endfun
-autocmd FileType txt call Txt_wrap()
-autocmd FileType rst call Txt_wrap()
-augroup END
+if has("autocmd")
+  augroup txt_setup
+    au!
+    fun! Txt_wrap()
+      setl textwidth=78
+    endfun
+    au FileType txt call Txt_wrap()
+    au FileType rst call Txt_wrap()
+  augroup END
+endif
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1033,22 +1058,24 @@ augroup END
 
 " Autocommand: Prepare HTML File Defaults: {{{
 " --------------------------------------------------------------------------
-augroup html_setup
-au!
-fun! Html_fold()
-  setl autoindent
-  setl foldmethod=indent
-  setl foldnestmax=10
-  setl nofoldenable
-  setl foldlevel=1
-  " setl foldopen=all foldclose=all
-  setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
-  setl fillchars=vert:\|,fold:\
-  setl expandtab softtabstop=2 shiftwidth=2 nowrap
-endfun
-autocmd FileType html call Html_fold()
-autocmd FileType htmldjango call Html_fold()
-augroup END
+if has("autocmd")
+  augroup html_setup
+    au!
+    fun! Html_fold()
+      setl autoindent
+      setl foldmethod=indent
+      setl foldnestmax=10
+      setl nofoldenable
+      setl foldlevel=1
+      " setl foldopen=all foldclose=all
+      setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
+      setl fillchars=vert:\|,fold:\
+      setl expandtab softtabstop=2 shiftwidth=2 nowrap
+    endfun
+    au FileType html call Html_fold()
+    au FileType htmldjango call Html_fold()
+  augroup END
+endif
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1077,45 +1104,46 @@ exec "source " . g:.vimfiles_path . '/scripts/python.vim'
 "
 " Autocommand: Prepare Python File Defaults: {{{
 " --------------------------------------------------------------------------
-augroup python_setup
-au!
-fun! Python_fold()
-  execute 'syntax clear pythonStatement'
-  execute 'syntax keyword pythonStatement break continue del'
-  execute 'syntax keyword pythonStatement except exec finally'
-  execute 'syntax keyword pythonStatement pass print raise'
-  execute 'syntax keyword pythonStatement return try'
-  execute 'syntax keyword pythonStatement global assert'
-  execute 'syntax keyword pythonStatement lambda yield'
-  execute 'syntax match pythonStatement /\<def\>/ nextgroup=pythonFunction skipwhite'
-  execute 'syntax match pythonStatement /\<class\>/ nextgroup=pythonFunction skipwhite'
-  execute 'syntax region pythonFold start="^\z(\s*\)\%(class\|def\)" end="^\%(\n*\z1\_s\)\@!" transparent fold'
-  execute 'syntax sync minlines=2000 maxlines=4000'
-  setl foldmethod=syntax
-  " setl foldopen=all foldclose=all
-  " setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
-  setl fillchars=vert:\|,fold:\
-  setl softtabstop=4 shiftwidth=4 nowrap nosmartindent
+if has("autocmd")
+  augroup python_setup
+    au!
+    fun! Python_fold()
+      execute 'syntax clear pythonStatement'
+      execute 'syntax keyword pythonStatement break continue del'
+      execute 'syntax keyword pythonStatement except exec finally'
+      execute 'syntax keyword pythonStatement pass print raise'
+      execute 'syntax keyword pythonStatement return try'
+      execute 'syntax keyword pythonStatement global assert'
+      execute 'syntax keyword pythonStatement lambda yield'
+      execute 'syntax match pythonStatement /\<def\>/ nextgroup=pythonFunction skipwhite'
+      execute 'syntax match pythonStatement /\<class\>/ nextgroup=pythonFunction skipwhite'
+      execute 'syntax region pythonFold start="^\z(\s*\)\%(class\|def\)" end="^\%(\n*\z1\_s\)\@!" transparent fold'
+      execute 'syntax sync minlines=2000 maxlines=4000'
+      setl foldmethod=syntax
+      " setl foldopen=all foldclose=all
+      " setl foldtext=substitute(getline(v:foldstart),'\\t','\ \ \ \ ','g')
+      setl fillchars=vert:\|,fold:\
+      setl softtabstop=4 shiftwidth=4 nowrap nosmartindent
 
-  " EXPERIMENT: Try to Use '_' as word seperator: {{{
-  " let &isk = substitute(&isk, '_,', '', '')
-  " removes the underscore from python 'words'
-  " PROBLEMS:
-  " * affects syntax highlighting (e.g. 'type' will be highlighted as keyword
-  " for variable 'sub_type'
-  " * affects supertab word completion
-  " }}}
-
-endfun
-autocmd FileType python call Python_fold()
-" Adds keyword-dictionary as complete option. For the most part, I found this
-" /not/ to be useful:
-" autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
-" from <url:vimhelp:'complete'>:
-" k{dict}  scan the file {dict}.  Several "k" flags can be given,
-"          patterns are valid too.  For example:
-"          :set cpt=k/usr/dict/*,k~/spanish
-augroup END
+      " EXPERIMENT: Try to Use '_' as word seperator: {{{
+      " let &isk = substitute(&isk, '_,', '', '')
+      " removes the underscore from python 'words'
+      " PROBLEMS:
+      " * affects syntax highlighting (e.g. 'type' will be highlighted as keyword
+      " for variable 'sub_type'
+      " * affects supertab word completion
+      " }}}
+    endfun
+    au FileType python call Python_fold()
+    " Adds keyword-dictionary as complete option. For the most part, I found this
+    " /not/ to be useful:
+    " autocmd FileType python set complete+=k~/.vim/syntax/python.vim isk+=.,(
+    " from <url:vimhelp:'complete'>:
+    " k{dict}  scan the file {dict}.  Several "k" flags can be given,
+    "          patterns are valid too.  For example:
+    "          :set cpt=k/usr/dict/*,k~/spanish
+  augroup END
+endif
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1160,13 +1188,15 @@ endfunction
 
 " set list listchars=trail:.,extends:>
 " Deactivated temporarily.
-augroup python_prettify
-  au!
-  autocmd FileWritePre *.py :silent call PrettifyPythonWhitespace()
-  autocmd FileAppendPre *.py :silent call PrettifyPythonWhitespace()
-  autocmd FilterWritePre *.py :silent call PrettifyPythonWhitespace()
-  autocmd BufWritePre *.py :silent call PrettifyPythonWhitespace()
-augroup END
+if has("autocmd")
+  augroup python_prettify
+    au!
+    au FileWritePre *.py :silent call PrettifyPythonWhitespace()
+    au FileAppendPre *.py :silent call PrettifyPythonWhitespace()
+    au FilterWritePre *.py :silent call PrettifyPythonWhitespace()
+    au BufWritePre *.py :silent call PrettifyPythonWhitespace()
+  augroup END
+endif
 
 map! <F2> :call TrimWhiteSpace()<CR>
 " --------------------------------------------------------------------------
@@ -1217,8 +1247,13 @@ endfunction
 " type :make and get a list of syntax errors
 " type :cn and :cp to move around the error list. 
 " type :clist to see all the errors
-autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+if has("autocmd")
+  augroup python_makeprg
+    au!
+    au BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+    au BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+  augroup END
+endif
 " --------------------------------------------------------------------------
 " }}}
 
