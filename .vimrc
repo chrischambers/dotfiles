@@ -1130,16 +1130,21 @@ endfunc
 " --------------------------------------------------------------------------
 " Prepare Django Environment:
 
+call SetupVirtualEnv('languagelab')
 python << EOF
 os.environ['DJANGO_SETTINGS_MODULE'] = 'llcom.settings'
+sys.path.append(os.path.join(
+    os.path.expanduser('~'),
+    'src', 'py', 'django', '_mine', 'languagelab', 'llab-trunk'
+))
 EOF
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
-call SetupVirtualEnv('languagelab')
 " FIXME: Not finding django via django.pth file when run at startup - may be
 " due to subprocess module not being found.
 " FIXME: PythonPath as WELL as Vim path!
-set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
+set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk
 set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom
+set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
 " !source /Users/Chris/.virtualenvwrapper && workon languagelab && python
 " $HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/manage.py validate
 " --------------------------------------------------------------------------
