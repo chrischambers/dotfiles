@@ -686,9 +686,11 @@ endif
 " autocmd BufWritePre * normal m`:%s/\s\+$//e`
 " autocmd BufWritePre *.py normal m`:%s/\s\+$//e`
 
-function! TrimWhiteSpace()
+function! TrimWhiteSpace() range
 """ Removes trailing spaces
-  %s/\s*$//
+  let start = a:firstline == a:lastline ? 1 : a:firstline
+  let end   = a:firstline == a:lastline ? line('$') : a:lastline
+  exe start . "," . end . 's/\s*$//'
 endfunction
 " --------------------------------------------------------------------------
 " }}}
