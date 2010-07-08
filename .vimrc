@@ -105,7 +105,7 @@ call UpdatePythonPathWithFixtures() " initialise with required pythonpath
 " set backupdir^=~/.backup " Backups are written to ~/.backup/ if possible.
 " set directory^=~/.backup " Swap files are also written to ~/.backup, too.
 " set updatetime=2000      " Write swap files after 2 seconds of inactivity.
-" set backupext=~ " Backup for "file" is "file~"
+" set backupext=~          " Backup for "file" is "file~"
 " --------------------------------------------------------------------------
 " }}}
 
