@@ -795,6 +795,15 @@ if has('unix') " includes OSX
 endif
 " }}}
 
+" Vim Specific:
+
+" Autocommand: Prepare Vim File Defaults: {{{
+augroup vim_setup
+au!
+autocmd FileType vim setl shiftwidth=2
+augroup END
+" }}}
+
 " Text And ReST Specific:
 
 " Autocommand: Prepare Text / ReST File Defaults: {{{
