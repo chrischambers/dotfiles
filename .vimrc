@@ -1196,7 +1196,8 @@ function! Underline(...)
   endif
   let l:linenum = getline('.')
   let l:linelength = len(l:linenum)
-  exec 'normal o' . l:linelength . 'i' . l:underchar . '+'
+  exec "normal o\<Esc>" . l:linelength . 'i' . l:underchar . "\<Esc>+"
+
 endfunction
 
 nnoremap <leader>u :call Underline()<CR>
