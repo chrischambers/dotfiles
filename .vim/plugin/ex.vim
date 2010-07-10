@@ -21,18 +21,18 @@ endif
 " MAPPINGS
 " Feel free to change these. Where possible I've tried to mimic the Emacs
 " key-bindings...
-cnoremap  <Home>
-cnoremap  <End>
-cnoremap  <Left>
-cnoremap  <Right>
-cnoremap  <C-\>eCopyText()
-cnoremap  <C-\>eBackwardsPositionCursor()
-cnoremap  <C-\>eKillLine()
-cnoremap  
-cnoremap  <S-Left>
-cnoremap  <S-Right>
-cnoremap  <C-\>eReverse_Search_History()
-cnoremap  <Home>BufferMessage 
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-B> <Left>
+cnoremap <C-F> <Right>
+cnoremap <C-S> <C-\>eCopyText()<CR>
+cnoremap <C-T> <C-\>eBackwardsPositionCursor()<CR>
+cnoremap <C-U> <C-\>eKillLine()<CR>
+cnoremap <C-O> <C-R>
+cnoremap <C-Z> <S-Left>
+cnoremap <C-X> <S-Right>
+cnoremap <C-R> <C-\>eReverse_Search_History()<CR>
+cnoremap <C-G> <Home>BufferMessage <CR>
 
 
 function! CopyText()
