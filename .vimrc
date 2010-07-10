@@ -292,6 +292,24 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+if has("python")
+function! FixVimPythonSysModule()
+  """ Certain modules which rely on sys.real_prefix to exist will raise
+  """ AttributeErrors on import, and subsequently fail to be imported
+  """ correctly. Likewise, pythoncomplete won't work correctly when
+  """ it fails to import a module for whatever reason. This function
+  """ monkey-patches the sys module to make sure it has a useful 
+  """ 'real_prefix' attribute.
+python << EOL
+import os, sys
+from distutils.sysconfig import get_python_lib
+if not hasattr(sys, 'real_prefix'):
+    sys.real_prefix = os.path.dirname(get_python_lib())
+EOL
+endfunction
+  call FixVimPythonSysModule()
+endif
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1209,17 +1227,6 @@ let g:snips_author="Chris Chambers"
 " * you need a way of adding extra packages that won't necessarily be in
 "   sys.path by default. For example, the languagelab project contains
 "   external_apps, which should be added to the system path.
-" FIXME: Problem with pytz import -
-    " Traceback (most recent call last):
-    "   File "<string>", line 1, in <module>
-    "   [...]
-    "   File "/Users/Chris/.virtualenvs/languagelab/lib/python2.5/distutils/__init__.py", line 71, in sysconfig_get_python_lib
-    "     prefix = sys.real_prefix
-    " AttributeError: 'module' object has no attribute 'real_prefix'
-" SOLUTION: very hackish, but monkeypatching resolves this problem:
-
-    "py import sys; sys.real_prefix = '/Library/Frameworks/Python.framework/Versions/2.5'"
-
 " FIXME:
 " Re-sourcing .vimrc causes 2 anomalies:
 " * <url:.#line=130> becomes remapped to <C-l> from <C-S-l>
