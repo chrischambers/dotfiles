@@ -10,8 +10,9 @@
 " You can feel free to map each function however you see fit though. 
 "
 " Author: Joel Jackson (boboat3000@hotmail.com)
-" Version: 1.0
-" Last Modified: Wed Dec 30 20:12:56 CST 2009
+" Version: 1.0.1
+" Last Modified: Sun Jul 11 00:21:03 BST 2010
+" Last Modified By: Chris Chambers (magma.chambers@gmail.com)
 
 " It might work for versions less than this, but I haven't tried it.
 if v:version < 700
@@ -25,14 +26,14 @@ cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 cnoremap <C-B> <Left>
 cnoremap <C-F> <Right>
-cnoremap <C-S> <C-\>eCopyText()<CR>
+cnoremap <C-Y> <C-\>eCopyText()<CR>
 cnoremap <C-T> <C-\>eBackwardsPositionCursor()<CR>
 cnoremap <C-U> <C-\>eKillLine()<CR>
-cnoremap <C-O> <C-R>
 cnoremap <C-Z> <S-Left>
 cnoremap <C-X> <S-Right>
-cnoremap <C-R> <C-\>eReverse_Search_History()<CR>
+cnoremap <C-S> <C-\>eReverse_Search_History()<CR>
 cnoremap <C-G> <Home>BufferMessage <CR>
+cnoremap <C-K> <C-\>eKillToEndOfLine()<CR>
 
 
 function! CopyText()
@@ -57,6 +58,15 @@ endfunction
 function! KillLine()
 	let @" = getcmdline()
 	return ""
+endfunction
+" --------------------------------------------------------------------------------
+function! KillToEndOfLine()
+  let currpos = getcmdpos() - 1 " 0-indexed, for slicing.
+  let currline = getcmdline()
+  let deletion = currline[currpos : ]
+  let replacement = (currpos ? currline[0 : currpos-1] : "")
+  let @" = deletion
+  return replacement
 endfunction
 " --------------------------------------------------------------------------------
 
