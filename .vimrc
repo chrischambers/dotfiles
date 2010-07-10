@@ -1219,27 +1219,21 @@ set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
 
 " Fixes and Todos: {{{
 " --------------------------------------------------------------------------
-" FIXME: FuzzyfinderTaggedFile- CWD seems to need to be the same as the tags
-" file atm.
-" SOLUTION: Fixed upon rollback to fuzzyfinder 2.22.3
-" FIXME: NERD_Tree is being quite greedy in how much space it opens sometimes.
-" Also, occasionally, opens file underneath the tree rather than to the right
-" of it.
-" WORKAROUND: Setting minibufexpl to permanent position, and using Bclose
-" function.
-" FIXME: SpellBad is broken dotted line, rather than 'undercurl'
-" Note: this seems to be an OSX/MacVim thing, and was probably always the case.
+" FIXME: FuzzyfinderTaggedFile- CWD must be set to the location of the tags
+" file.
+" FIXME: Window alignment sometimes gets out of whack: occasionally the
+" NERD_Tree window becomes huge, sometimes the cmdline window takes up all but
+" a couple of lines from the top of the gvim frame.
+" FIXME: Macvim 'undercurl' is actually a broken dotted line; similarly,
+" Macvim doesn't display italicised or emboldened text.
 " FIXME: SetupVirtualEnv changes:
 " * you need a way of adding extra packages that won't necessarily be in
 "   sys.path by default. For example, the languagelab project contains
 "   external_apps, which should be added to the system path.
+" TODO: temporarily add parent dir of current file to pythonpath?
 " FIXME:
-" Re-sourcing .vimrc causes 2 anomalies:
-" * <url:.#line=130> becomes remapped to <C-l> from <C-S-l>
-" not properly mapped anyway: <C-S-l> not cls
-" SOLUTION: Remapped to <leader><C-l>. Not sure <C-S-l> is possible.
-" * NERDTree loses highlighting
-" FIXME: temporarily add parent dir of current file to pythonpath?
+" Re-sourcing .vimrc causes anomalies:
+" * NERDTree / minibufexpl temporarily lose highlighting
 " --------------------------------------------------------------------------
 " }}}
 
