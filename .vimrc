@@ -1108,8 +1108,8 @@ let python_highlight_all=1
 
 """ VirtualEnv Configuration: {{{
 function! StoreVirtualEnvSysPath(virtualenv)
-    """ Stores virtualenv's sys.path in a global vim variable,
-    """ g:virtualenv_sys_path
+  """ Stores virtualenv's sys.path in a global vim variable,
+  """ g:virtualenv_sys_path
 
 python << EOF
 virtualenv = vim.eval('a:virtualenv')
@@ -1117,46 +1117,36 @@ virtualenv_dir = os.environ.get("WORKON_HOME")
 if virtualenv_dir:
   python_exe = os.path.join(virtualenv_dir, virtualenv, 'bin', 'python')
   if os.path.exists(python_exe):
-      import subprocess
-      cmd = python_exe + ' -c "import sys; print sys.path"'
-      # Note: may need to change implementation as subprocess isn't found when
-      # vim is initially started. Note that you'll need to capture STDOUT with
-      # the os.system method, not the return value.
-      # virtualenv_sys_path = os.system(cmd)
-      proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-      virtualenv_sys_path = eval(proc.communicate()[0])
-      pythonpath_fixtures = vim.eval('g:pythonpath_fixtures')
-      cwd = [os.getcwd()]
-      # print type(virtualenv_sys_path), virtualenv_sys_path
-      # print 20 * '-'
-      # print type(pythonpath_fixtures), pythonpath_fixtures
-      new_sys_path = cwd + pythonpath_fixtures + virtualenv_sys_path
-      # print 20 * '-'
-      # print type(new_sys_path), new_sys_path
-      vim.command('let g:virtualenv_sys_path = %s' % new_sys_path)
+    import subprocess
+    cmd = python_exe + ' -c "import sys; print sys.path"'
+    proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    virtualenv_sys_path = eval(proc.communicate()[0])
+    pythonpath_fixtures = vim.eval('g:pythonpath_fixtures')
+    cwd = [os.getcwd()]
+    new_sys_path = cwd + pythonpath_fixtures + virtualenv_sys_path
+    vim.command('let g:virtualenv_sys_path = %s' % new_sys_path)
   else:
-      print 'virtualenv "%s" not found!' % (virtualenv,)
-      # raise vim.error('virtualenv %s not found!' % (virtualenv,))
+    print 'virtualenv "%s" not found!' % (virtualenv,)
 else:
   print "$WORKON_HOME environment variable not found!"
 EOF
 endfunc
 
 function! SetupVirtualEnv(name)
-""" Update vim's path and its internal-python sys.path to agree with
-""" the virtualenv's sys.path
+  """ Update vim's path and its internal-python sys.path to agree with
+  """ the virtualenv's sys.path
 
-    " First, set g:virtualenv_sys_path to the virtualenv's sys path:
-    call StoreVirtualEnvSysPath(a:name)
+  " First, set g:virtualenv_sys_path to the virtualenv's sys path:
+  call StoreVirtualEnvSysPath(a:name)
 
-    " Then, monkey patch vim's internal python so that its sys.path is now the
-    " virtualenv's sys.path!
-    if exists('g:virtualenv_sys_path') && !empty(g:virtualenv_sys_path)
-      py import sys, vim; sys.path = vim.eval('g:virtualenv_sys_path')
-    endif
+  " Then, monkey patch vim's internal python so that its sys.path is now the
+  " virtualenv's sys.path!
+  if exists('g:virtualenv_sys_path') && !empty(g:virtualenv_sys_path)
+    py import sys, vim; sys.path = vim.eval('g:virtualenv_sys_path')
+  endif
 
-    " Finally, update vim's path to agree with pythonpath:
-    call SetVimPathFromPyPath()
+  " Finally, update vim's path to agree with pythonpath:
+  call SetVimPathFromPyPath()
 endfunc
 " }}}
 
