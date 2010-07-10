@@ -1123,6 +1123,10 @@ let python_highlight_all=1
 
 " My Hackish Additions To The Vim Arsenal:
 
+" TODO:
+" * Incorporate virtualenvwrapper hooks:
+"   <url:http://www.doughellmann.com/docs/virtualenvwrapper/scripts.html>
+
 """ VirtualEnv Configuration: {{{
 function! StoreVirtualEnvSysPath(virtualenv)
   """ Stores virtualenv's sys.path in a global vim variable,
@@ -1206,8 +1210,6 @@ set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
 
 " Fixes and Todos: {{{
 " --------------------------------------------------------------------------
-" TODO: Change python autocommmands so that they are deactivated for
-" non-python buffers
 " FIXME: FuzzyfinderTaggedFile- CWD seems to need to be the same as the tags
 " file atm.
 " SOLUTION: Fixed upon rollback to fuzzyfinder 2.22.3
