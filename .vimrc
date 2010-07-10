@@ -827,6 +827,23 @@ if has('unix') " includes OSX
 endif
 " }}}
 
+" Underline Current Line: {{{
+function! Underline(...)
+  if a:0 == 1
+    let l:underchar = a:1
+  else
+    let l:underchar = "-"
+  endif
+  let l:linenum = getline('.')
+  let l:linelength = len(l:linenum)
+  exec "normal o\<Esc>" . l:linelength . 'i' . l:underchar . "\<Esc>+"
+
+endfunction
+
+nnoremap <leader>u :call Underline()<CR>
+nnoremap <leader><S-u> :call Underline("=")<CR>
+" }}}
+
 " Vim Specific:
 
 " Autocommand: Prepare Vim File Defaults: {{{
@@ -1185,23 +1202,6 @@ set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
 " set tags+=$HOME/src/py/django/django-1.1/django/tags
 " Slows down omnicompletion too much, sadly!
 " --------------------------------------------------------------------------
-" }}}
-
-" Underline Current Line: {{{
-function! Underline(...)
-  if a:0 == 1
-    let l:underchar = a:1
-  else
-    let l:underchar = "-"
-  endif
-  let l:linenum = getline('.')
-  let l:linelength = len(l:linenum)
-  exec "normal o\<Esc>" . l:linelength . 'i' . l:underchar . "\<Esc>+"
-
-endfunction
-
-nnoremap <leader>u :call Underline()<CR>
-nnoremap <leader><S-u> :call Underline("=")<CR>
 " }}}
 
 " Fixes and Todos: {{{
