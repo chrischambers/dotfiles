@@ -669,6 +669,31 @@ Arpeggio inoremap jk <Esc>
 " --------------------------------------------------------------------------
 " }}}
 
+" Gist Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=2423>
+" --------------------------------------------------------------------------
+" Detect syntax-colorisation to use based on filetype:
+let g:gist_detect_filetype = 1
+
+" Command to use to copy to clipboard for ``Gist -c XXXXX``:
+if has("mac")
+  let g:gist_clip_command = 'pbcopy'
+elseif has("unix")
+  let g:gist_clip_command = 'xclip -selection clipboard'
+elseif has("win32") || has("win34")
+  " Not sure here
+elseif has("win32unix") " cygwin
+  let g:gist_clip_command = 'putclip'
+endif
+
+if has("mac")
+  let g:gist_open_browser_after_post = 1
+  let g:gist_browser_command = "open -a Firefox %URL%"
+endif
+" --------------------------------------------------------------------------
+" }}}
+
 """ Disabled:
 " ScrollColors Mappings: {{{
 " --------------------------------------------------------------------------
