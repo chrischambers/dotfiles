@@ -14,3 +14,8 @@
 	status = auto
 [core]
 	pager = less -FRSX
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = magma.chambers@gmail.com
+	smtpserverport = 587
