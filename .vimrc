@@ -13,7 +13,6 @@ endif
 let g:user_name  = "Chris Chambers"
 let g:user_email = "magma.chambers@gmail.com"
 let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
-"let s:thesaurus_location=/usr/lib/openoffice/share/dict/ooo/th_en_US_v2.idx
 let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:baseline_vim_path=""
 let g:pythonpath_fixtures= [ g:vimfiles_path . '/python',
