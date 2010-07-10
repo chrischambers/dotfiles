@@ -18,6 +18,9 @@ let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:baseline_vim_path=""
 let g:pythonpath_fixtures= [ g:vimfiles_path . '/python',
               \              g:vimfiles_path . '/after/ftplugin/python/' ]
+" For overriding these settings or adding sensitive data (such as github
+" token):
+let s:local_vimrc = fnamemodify('~/.vimrc_local', ':p')
 
 " PythonPath Initialisation: {{{
 " --------------------------------------------------------------------------
@@ -1250,12 +1253,9 @@ set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
 " i.e. settings which should come last:
 " py UltiSnips_Manager.reset() - fails on load, not defined yet!
 " Reload snippets
-let s:LOCAL_VIMRC = '~/.vimrc_local'
-if filereadable(s:LOCAL_VIMRC)
-    source s:LOCAL_VIMRC
+if filereadable(s:local_vimrc)
+    exe 'source ' . s:local_vimrc
 endif
 
 " --------------------------------------------------------------------------
 " }}}
-
-
