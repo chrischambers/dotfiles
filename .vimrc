@@ -362,6 +362,17 @@ set grepformat=%f:%l:%m
 " --------------------------------------------------------------------------
 " }}}
 
+" Show Filetypes In Syntax Menu: {{{
+" --------------------------------------------------------------------------
+" See: <url:vimhelp:menu.vim>
+if has("gui_running")
+  let do_syntax_sel_menu=1
+  runtime! synmenu.vim
+  aunmenu &Syntax.&Show\ filetypes\ in\ menu
+endif
+" --------------------------------------------------------------------------
+" }}}
+
 " Plugin Configuration:
 """ Used:
 " Pyflakes Options: {{{
@@ -1200,13 +1211,6 @@ endfunction
 
 nnoremap <leader>u :call Underline()<CR>
 nnoremap <leader><S-u> :call Underline("=")<CR>
-" }}}
-
-" Unknown: {{{
-" --------------------------------------------------------------------------
-let do_syntax_sel_menu=1
-let g:snips_author="Chris Chambers"
-" --------------------------------------------------------------------------
 " }}}
 
 " Fixes and Todos: {{{
