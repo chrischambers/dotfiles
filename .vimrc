@@ -3,11 +3,11 @@
 
 " <url:vimhelp:feature-list>
 if has('win32')
-    let g:vimfiles_path = '$HOME/vimfiles'
-    let g:vimrc_path    = '$HOME/_vimrc'
+    let g:vimfiles_path = fnamemodify('$HOME/vimfiles', ':p')
+    let g:vimrc_path    = fnamemodify('$HOME/_vimrc', ':p')
 else
-    let g:vimfiles_path = '$HOME/.vim'
-    let g:vimrc_path    = '$HOME/.vimrc'
+    let g:vimfiles_path = fnamemodify('$HOME/.vim', ':p')
+    let g:vimrc_path    = fnamemodify('$HOME/.vimrc', ':p')
 endif
 
 let g:user_name  = "Chris Chambers"
