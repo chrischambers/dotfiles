@@ -1121,6 +1121,15 @@ let python_highlight_all=1
 " --------------------------------------------------------------------------
 " }}}
 
+" Useful Python Modules Already Imported: {{{
+" --------------------------------------------------------------------------
+if has("python")
+  py import os, sys, vim
+  py from pprint import pprint as pp
+endif
+" --------------------------------------------------------------------------
+" }}}
+
 " My Hackish Additions To The Vim Arsenal:
 
 " TODO:
