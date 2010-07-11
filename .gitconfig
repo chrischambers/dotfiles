@@ -14,6 +14,7 @@
 	status = auto
 [core]
 	pager = less -FRSX
+	# Avoids using pager if output fits onscreen
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.gmail.com
