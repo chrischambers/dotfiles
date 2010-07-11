@@ -211,7 +211,7 @@ set smartcase     " unless uppercase letters are used in the regex.
 
 " The following command sets the regex mode for searching to 'very magic',
 " which acts like Extended Regular Expressions (TRIAL):
-nnoremap / /\v
+" nnoremap / /\v
 " Note that you still have to use the *v*ery magic slash before substitution
 " patterns - e.g:
 " :%s/\v(These parentheses now capture)|Unescaped bar alternates{2,3}/Foo/g
