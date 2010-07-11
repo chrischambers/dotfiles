@@ -48,6 +48,8 @@ nnoremap U :undoall<CR>
 " tab completion. Also works well in conjunction with gb/gB, which will allow
 " you to cycle between buffers with similar names.
 nnoremap <leader>, :buffers<CR>:b! 
+" Convenient alias for switching back and forth between alternate buffer:
+nnoremap <leader>. <C-^>
 
 " Firebug Specific:
 nnoremap <silent> <leader>fo :emenu Tools.Firebug.Open Firebug<CR>

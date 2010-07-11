@@ -182,6 +182,9 @@ nnoremap <Home> :e $MYVIMRC<CR>
 " Y behaves like D rather than like dd
 nnoremap Y y$
 
+" Convenient alias for switching back and forth between alternate buffer:
+nnoremap <leader>. <C-^>
+
 " <C-l> redraws the screen and removes any search highlighting.
 " guifont is a bugfix to make an invisible cursor reappear.
 nnoremap <silent> <leader><C-l> :let &guifont=&guifont<CR> :nohl<CR><C-l>
