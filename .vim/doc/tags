@@ -42,6 +42,9 @@
 'showmarks_include'	showmarks.txt	/*'showmarks_include'*
 'showmarks_textother'	showmarks.txt	/*'showmarks_textother'*
 'showmarks_textupper'	showmarks.txt	/*'showmarks_textupper'*
+,b	camelcasemotion.txt	/*,b*
+,e	camelcasemotion.txt	/*,e*
+,w	camelcasemotion.txt	/*,w*
 :Arpeggio	arpeggio.txt	/*:Arpeggio*
 :Arpeggiocmap	arpeggio.txt	/*:Arpeggiocmap*
 :Arpeggiocmap_l	arpeggio.txt	/*:Arpeggiocmap_l*
@@ -501,6 +504,16 @@ bexec-tips	bexec.txt	/*bexec-tips*
 bexec-usage	bexec.txt	/*bexec-usage*
 bexec.txt	bexec.txt	/*bexec.txt*
 buffer-execute	bexec.txt	/*buffer-execute*
+camelcasemotion-configuration	camelcasemotion.txt	/*camelcasemotion-configuration*
+camelcasemotion-dependencies	camelcasemotion.txt	/*camelcasemotion-dependencies*
+camelcasemotion-description	camelcasemotion.txt	/*camelcasemotion-description*
+camelcasemotion-history	camelcasemotion.txt	/*camelcasemotion-history*
+camelcasemotion-installation	camelcasemotion.txt	/*camelcasemotion-installation*
+camelcasemotion-known-problems	camelcasemotion.txt	/*camelcasemotion-known-problems*
+camelcasemotion-todo	camelcasemotion.txt	/*camelcasemotion-todo*
+camelcasemotion-usage	camelcasemotion.txt	/*camelcasemotion-usage*
+camelcasemotion.txt	camelcasemotion.txt	/*camelcasemotion.txt*
+camelcasemotion.vim	camelcasemotion.txt	/*camelcasemotion.vim*
 cecutil	cecutil.txt	/*cecutil*
 cecutil-cmd	cecutil.txt	/*cecutil-cmd*
 cecutil-contents	cecutil.txt	/*cecutil-contents*
