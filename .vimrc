@@ -303,7 +303,7 @@ function! FixVimPythonSysModule()
   """ AttributeErrors on import, and subsequently fail to be imported
   """ correctly. Likewise, pythoncomplete won't work correctly when
   """ it fails to import a module for whatever reason. This function
-  """ monkey-patches the sys module to make sure it has a useful 
+  """ monkey-patches the sys module to make sure it has a useful
   """ 'real_prefix' attribute.
 python << EOL
 import os, sys
@@ -1047,7 +1047,7 @@ map! <F2> :call TrimWhiteSpace()<CR>
 " Source: <url:http://www.sontek.net/post/Python-with-a-modular-IDE-(Vim).aspx>
 " --------------------------------------------------------------------------
 
-" Performance Note: {{{ 
+" Performance Note: {{{
 " --------------------------------------------------------------------------
 " Make sure your complete option does NOT include i, as this will
 " result in a very laborious search through every file in your python path for
