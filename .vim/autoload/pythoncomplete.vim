@@ -399,6 +399,9 @@ class PyParser:
         imports = []
         while True:
             name, token = self._parsedotname()
+            if token == "(":
+                imports.extend([(i,i) for i in self._parenparse()])
+                return imports
             if not name: break
             name2 = ''
             if token == 'as': name2, token = self._parsedotname()
