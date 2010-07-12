@@ -956,7 +956,7 @@ fun! Python_fold()
   execute 'syntax keyword pythonStatement lambda yield'
   execute 'syntax match pythonStatement /\<def\>/ nextgroup=pythonFunction skipwhite'
   execute 'syntax match pythonStatement /\<class\>/ nextgroup=pythonFunction skipwhite'
-  execute 'syntax region pythonFold start="^\z(\s*\)\%(class\|def\)" end="^\%(\n*\z1\s\)\@!" transparent fold'
+  execute 'syntax region pythonFold start="^\z(\s*\)\%(class\|def\)" end="^\%(\n*\z1\_s\)\@!" transparent fold'
   execute 'syntax sync minlines=2000 maxlines=4000'
   setl foldmethod=syntax
   " setl foldopen=all foldclose=all
