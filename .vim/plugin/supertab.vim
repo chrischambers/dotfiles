@@ -2,7 +2,8 @@
 "   Original: Gergely Kontra <kgergely@mcl.hu>
 "   Current:  Eric Van Dewoestine <ervandew@gmail.com> (as of version 0.4)
 "   Please direct all correspondence to Eric.
-" Version: 0.61
+" Version: 1.1
+" GetLatestVimScripts: 1643 1 :AutoInstall: supertab.vim
 "
 " Description: {{{
 "   Use your tab key to do all your completion in insert mode!
@@ -13,9 +14,7 @@
 " }}}
 "
 " License: {{{
-"   Software License Agreement (BSD License)
-"
-"   Copyright (c) 2002 - 2009
+"   Copyright (c) 2002 - 2010
 "   All rights reserved.
 "
 "   Redistribution and use of this software in source and binary forms, with
@@ -62,155 +61,31 @@ if exists('complType') " Integration with other completion functions.
   finish
 endif
 
+let s:save_cpo=&cpo
+set cpo&vim
+
 " Global Variables {{{
 
-  " Used to set the default completion type.
-  " There is no need to escape this value as that will be done for you when
-  " the type is set.
-  " Ex.  let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-  "
-  " Note: a special value of 'context' is supported which will result in
-  " super tab attempting to use the text preceding the cursor to decide which
-  " type of completion to attempt.  Currently super tab can recognize method
-  " calls or attribute references via '.', '::' or '->', and file path
-  " references containing '/'.
-  " Ex. let g:SuperTabDefaultCompletionType = 'context'
-  " /usr/l<tab>  # will use filename completion
-  " myvar.t  # will use user completion if completefunc set, or omni
-  "          # completion if omnifunc set.
-  " myvar->  # same as above
-  "
-  " When using context completion, super tab will fall back to a secondary
-  " default completion type set by g:SuperTabContextDefaultCompletionType.
-  "
-  " Note: once the buffer has been initialized, changing the value of this
-  " setting will not change the default complete type used.  If you want to
-  " change the default completion type for the current buffer after it has
-  " been set, perhaps in an ftplugin, you'll need to call
-  " SuperTabSetDefaultCompletionType like so, supplying the completion type
-  " you wish to switch to:
-  "   call SuperTabSetDefaultCompletionType("<c-x><c-u>")
   if !exists("g:SuperTabDefaultCompletionType")
     let g:SuperTabDefaultCompletionType = "<c-p>"
   endif
 
-  " Sets the default completion type used when g:SuperTabDefaultCompletionType
-  " is set to 'context' and no completion type is returned by any of the
-  " configured contexts.
   if !exists("g:SuperTabContextDefaultCompletionType")
     let g:SuperTabContextDefaultCompletionType = "<c-p>"
   endif
 
-  " Sets the list of contexts used for context completion.  This value should
-  " be a list of function names which provide the context implementation.
-  "
-  " When super tab starts the default completion, each of these contexts will
-  " be consulted in order to determine the completion type to use.  If a
-  " context returns a completion type, that type will be used, otherwise the
-  " next context in the list will be consulted.  If after executing all the
-  " context functions, no completion type has been determined, then the value
-  " of g:SuperTabContextDefaultCompletionType will be used.
-  "
-  " Built in completion contexts:
-  "   s:ContextText - The text context will examine the text near the cursor
-  "     to decide which type of completion to attempt.  Currently the text
-  "     context can recognize method calls or attribute references via '.',
-  "     '::' or '->', and file path references containing '/'.
-  "     Ex.
-  "     /usr/l<tab>  # will use filename completion
-  "     myvar.t      # will use user completion if completefunc set, or omni
-  "                  # completion if omnifunc set.
-  "     myvar->      # same as above
-  "
-  "     Supported configuration attributes:
-  "       g:SuperTabContextTextFileTypeExclusions
-  "         List of file types for which the text context will be skipped.
-  "       g:SuperTabContextTextOmniPrecedence
-  "         List of omni completion option names in the order of precendence
-  "         that they should be used if available. By default, user completion
-  "         will be given precedence over omni completion, but you can use
-  "         this variable to give omni completion higher precedence by placing
-  "         it first in the list.
-  "
-  "  s:ContextDiscover - This context will use the
-  "    'g:SuperTabContextDiscoverDiscovery' variable to determine the
-  "    completion type to use.  It will evaluate each value in order until a
-  "    variable evaluates to a non-zero or non-empty value, then the
-  "    associated completion type is used.
-  "
-  "     Supported configuration properties:
-  "       g:SuperTabContextDiscoverDiscovery:
-  "         List of variable:completionType mappings.
-  "
-  "  Example context configuration:
-  "    let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-  "    let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-  "    let g:SuperTabContextDiscoverDiscovery =
-  "      \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-  "
-  "  In addition to the default completion contexts, you can plug in your own
-  "  implementation by creating a globally accessible function that returns
-  "  the completion type to use (eg. "\<c-x>\<c-u>").
-  "
-  "  Ex.
-  "    function MyTagContext()
-  "      if filereadable(expand('%:p:h') . '/tags')
-  "        return "\<c-x>\<c-]>"
-  "      endif
-  "      " no return will result in the evaluation of the next configured context
-  "    endfunction
-  "    let g:SuperTabCompletionContexts =
-  "      \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
-  "
-  "  Note: supertab also supports the b:SuperTabCompletionContexts variable
-  "  allowing you to set the list of contexts separately for the current
-  "  buffer, like from an ftplugin for example.
-  "
   if !exists("g:SuperTabCompletionContexts")
     let g:SuperTabCompletionContexts = ['s:ContextText']
   endif
 
-  " Determines if, and for how long, the current completion type is retained.
-  " The possible values include:
-  " 'completion' - The current completion type is only retained for the
-  "                current completion.  Once you have chosen a completion
-  "                result or exited the completion mode, the default
-  "                completion type is restored.
-  " 'insert'     - The current completion type is saved until you exit insert
-  "                mode (via ESC).  Once you exit insert mode the default
-  "                completion type is restored. (supertab default)
-  " 'session'    - The current completion type is saved for the duration of
-  "                your vim session or until you enter a different completion
-  "                mode.
   if !exists("g:SuperTabRetainCompletionDuration")
     let g:SuperTabRetainCompletionDuration = 'insert'
   endif
 
-  " Sets whether or not mid word completion is enabled.
-  " When enabled, <tab> will kick off completion when ever a non whitespace
-  " character is to the left of the cursor.  When disabled, completion will
-  " only occur if the char to the left is non whitespace char and the char to
-  " the right is not a keyword character (you are at the end of the word).
   if !exists("g:SuperTabMidWordCompletion")
     let g:SuperTabMidWordCompletion = 1
   endif
 
-  " The following two variables allow you to set the key mapping used to kick
-  " off the current completion.  By default this is <tab> and <s-tab>.  To
-  " change to something like <c-space> and <s-c-space>, you can add the
-  " following to your vimrc.
-  "
-  "   let g:SuperTabMappingForward = '<c-space>'
-  "   let g:SuperTabMappingBackward = '<s-c-space>'
-  "
-  " Note: if the above does not have the desired effect (which may happen in
-  " console version of vim), you can try the following mappings.  Although the
-  " backwards mapping still doesn't seem to work in the console for me, your
-  " milage may vary.
-  "
-  "   let g:SuperTabMappingForward = '<nul>'
-  "   let g:SuperTabMappingBackward = '<s-nul>'
-  "
   if !exists("g:SuperTabMappingForward")
     let g:SuperTabMappingForward = '<tab>'
   endif
@@ -218,21 +93,20 @@ endif
     let g:SuperTabMappingBackward = '<s-tab>'
   endif
 
-  " Sets the key mapping used to insert a literal tab where supertab would
-  " otherwise attempt to kick off insert completion.
-  " The default is '<c-tab>' (ctrl-tab) which unfortunately might not work at
-  " the console.  So if you are using a console vim and want this
-  " functionality, you'll have to change it to something that is supported.
   if !exists("g:SuperTabMappingTabLiteral")
     let g:SuperTabMappingTabLiteral = '<c-tab>'
   endif
 
-  " Sets whether or not to pre-highlight first match when completeopt has
-  " the popup menu enabled and the 'longest' option as well.
-  " When enabled, <tab> will kick off completion and pre-select the first
-  " entry in the popup menu, allowing you to simply hit <enter> to use it.
+  if !exists("g:SuperTabLongestEnhanced")
+    let g:SuperTabLongestEnhanced = 0
+  endif
+
   if !exists("g:SuperTabLongestHighlight")
     let g:SuperTabLongestHighlight = 0
+  endif
+
+  if !exists("g:SuperTabCrMapping")
+    let g:SuperTabCrMapping = 1
   endif
 
 " }}}
@@ -351,9 +225,13 @@ endfunction " }}}
 " s:InitBuffer {{{
 " Per buffer initilization.
 function! s:InitBuffer()
-  if exists("b:complType")
+  if exists('b:complType')
     return
   endif
+
+  let b:complReset = 0
+  let b:complTypeContext = ''
+  let b:capturing = 0
 
   " init hack for <c-x><c-v> workaround.
   let b:complCommandLine = 0
@@ -387,6 +265,11 @@ function! s:ManualCompletionEnter()
     " Hack to workaround bug when invoking command line completion via <c-r>=
     if complType == "\<c-x>\<c-v>"
       return s:CommandLineCompletion()
+    endif
+
+    " optionally enable enhanced longest completion
+    if g:SuperTabLongestEnhanced && &completeopt =~ 'longest'
+      call s:EnableLongestEnhancement()
     endif
 
     return complType
@@ -427,19 +310,45 @@ function! s:SuperTab(command)
     " supertab vars.
     call s:InitBuffer()
 
-    let key = ''
+    " optionally enable enhanced longest completion
+    if g:SuperTabLongestEnhanced && &completeopt =~ 'longest'
+      call s:EnableLongestEnhancement()
+    endif
+
     " highlight first result if longest enabled
     if g:SuperTabLongestHighlight && !pumvisible() && &completeopt =~ 'longest'
-      let key = (b:complType == "\<c-p>") ? "\<c-p>" : "\<c-n>"
+      let key = (b:complType == "\<c-p>") ? b:complType : "\<c-n>"
+      call feedkeys(key)
     endif
 
     " exception: if in <c-p> mode, then <c-n> should move up the list, and
     " <c-p> down the list.
-    if a:command == 'p' &&
+    if a:command == 'p' && !b:complReset &&
       \ (b:complType == "\<c-p>" ||
       \   (b:complType == 'context' &&
       \    tolower(g:SuperTabContextDefaultCompletionType) == '<c-p>'))
       return "\<c-n>"
+
+    elseif a:command == 'p' && !b:complReset &&
+      \ (b:complType == "\<c-n>" ||
+      \   (b:complType == 'context' &&
+      \    tolower(g:SuperTabContextDefaultCompletionType) == '<c-n>'))
+      return "\<c-p>"
+
+    " this used to handle call from captured keys with the longest enhancement
+    " enabled, but also must work when the enhancement is disabled.
+    elseif a:command == 'n' && pumvisible() && !b:complReset
+      if b:complType == 'context'
+        exec "let contextDefault = \"" .
+          \ escape(g:SuperTabContextDefaultCompletionType, '<') . "\""
+        " if we are in another completion mode, just scroll to the next
+        " completion
+        if b:complTypeContext != contextDefault
+          return "\<c-n>"
+        endif
+        return contextDefault
+      endif
+      return b:complType == "\<c-p>" ? b:complType : "\<c-n>"
     endif
 
     " handle 'context' completion.
@@ -449,14 +358,21 @@ function! s:SuperTab(command)
         exec "let complType = \"" .
           \ escape(g:SuperTabContextDefaultCompletionType, '<') . "\""
       endif
-      return complType . key
-    endif
+      let b:complTypeContext = complType
 
     " Hack to workaround bug when invoking command line completion via <c-r>=
-    if b:complType == "\<c-x>\<c-v>"
-      return s:CommandLineCompletion()
+    elseif b:complType == "\<c-x>\<c-v>"
+      let complType = s:CommandLineCompletion()
+    else
+      let complType = b:complType
     endif
-    return b:complType . key
+
+    if b:complReset
+      let b:complReset = 0
+      return "\<c-e>" . complType
+    endif
+
+    return complType
   endif
 
   return "\<tab>"
@@ -519,6 +435,54 @@ function! s:WillComplete()
   "endif
 
   return 1
+endfunction " }}}
+
+" s:EnableLongestEnhancement() {{{
+function! s:EnableLongestEnhancement()
+  augroup supertab_reset
+    autocmd!
+    autocmd InsertLeave,CursorMovedI <buffer>
+      \ call s:ReleaseKeyPresses() | autocmd! supertab_reset
+    call s:CaptureKeyPresses()
+  augroup END
+endfunction " }}}
+
+" s:CompletionReset() {{{
+function! s:CompletionReset(char)
+  let b:complReset = 1
+  return a:char
+endfunction " }}}
+
+" s:CaptureKeyPresses() {{{
+function! s:CaptureKeyPresses()
+  if !b:capturing
+    let b:capturing = 1
+    " TODO: use &keyword to get an accurate list of chars to map
+    for c in split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_', '.\zs')
+      exec 'imap <buffer> ' . c . ' <c-r>=<SID>CompletionReset("' . c . '")<cr>'
+    endfor
+    imap <buffer> <bs> <c-r>=<SID>CompletionReset("\<lt>c-h>")<cr>
+    imap <buffer> <c-h> <c-r>=<SID>CompletionReset("\<lt>c-h>")<cr>
+    exec 'imap <buffer> ' . g:SuperTabMappingForward . ' <c-r>=<SID>SuperTab("n")<cr>'
+  endif
+endfunction " }}}
+
+" s:ReleaseKeyPresses() {{{
+function! s:ReleaseKeyPresses()
+  if b:capturing
+    let b:capturing = 0
+    for c in split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_', '.\zs')
+      exec 'iunmap <buffer> ' . c
+    endfor
+    iunmap <buffer> <bs>
+    iunmap <buffer> <c-h>
+    exec 'iunmap <buffer> ' . g:SuperTabMappingForward
+    if mode() == 'i'
+      " force full exit from completion mode (don't exit insert mode since
+      " that will break repeating with '.')
+      call feedkeys("\<space>\<bs>", 'n')
+    endif
+  endif
 endfunction " }}}
 
 " s:CommandLineCompletion() {{{
@@ -622,6 +586,10 @@ endfunction " }}}
   " <Tab>, but I hope it may not be a problem...
   inoremap <c-n> <c-r>=<SID>SuperTab('n')<cr>
   inoremap <c-p> <c-r>=<SID>SuperTab('p')<cr>
+
+  if g:SuperTabCrMapping
+    inoremap <expr> <cr> pumvisible() ? "\<space>\<bs>" : "\<cr>"
+  endif
 " }}}
 
 " Command Mappings {{{
@@ -631,5 +599,7 @@ endfunction " }}}
 " }}}
 
 call s:Init()
+
+let &cpo = s:save_cpo
 
 " vim:ft=vim:fdm=marker
