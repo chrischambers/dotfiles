@@ -487,6 +487,8 @@ let g:SuperTabRetainCompletionDuration="completion"
 " May have to choose alternative (miniBufExplr conflict):
 " let g:SuperTabMappingTabLiteral = '<c-tab>'
 let g:SuperTabLongestHighlight = 1
+" let g:SuperTabMappingForward = '<s-tab>'
+" let g:SuperTabMappingBackward = '<tab>'
 "pre-highlights first match in completion menu.
 " --------------------------------------------------------------------------
 " }}}
@@ -877,7 +879,7 @@ nnoremap <leader><S-u> :call Underline("=")<CR>
 " Autocommand: Prepare Vim File Defaults: {{{
 augroup vim_setup
 au!
-autocmd FileType vim setl shiftwidth=2
+" autocmd FileType vim setl shiftwidth=2
 augroup END
 " }}}
 
