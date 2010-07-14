@@ -220,15 +220,11 @@ endsnippet
 # Debugging: {{{
 # ----------
 snippet ipdb "ipdb" b
-import ipdb
-ipdb.set_trace()
-$0
+import ipdb; ipdb.set_trace()
 endsnippet
 
 snippet pudb "pudb" b
-import pudb
-pudb.set_trace()
-$0
+import pudb; pudb.set_trace()
 endsnippet
 
 snippet traceback "Traceback stub" b
