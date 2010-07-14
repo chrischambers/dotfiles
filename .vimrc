@@ -879,7 +879,7 @@ nnoremap <leader><S-u> :call Underline("=")<CR>
 " Autocommand: Prepare Vim File Defaults: {{{
 augroup vim_setup
 au!
-" autocmd FileType vim setl shiftwidth=2
+autocmd FileType vim setl shiftwidth=2
 augroup END
 " }}}
 
