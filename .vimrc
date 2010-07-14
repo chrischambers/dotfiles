@@ -160,6 +160,9 @@ set autoindent    " copy indent from current line when starting new line
 set showcmd       " Show (partial) command in status line.
 set showmatch     " Show matching brackets...
 set matchtime=2   " for only .2 seconds.
+"set autoread      " Watch for file changes and update accordingly
+                  " Note: the above change updates the file without prompting
+                  " the user. This could potentially overwrite work.
 set autowrite     " Automatically save before commands like :next and :make
 set hidden        " Allows you to switch to different buffers without
                   " having to save changes.
@@ -169,7 +172,13 @@ set hidden        " Allows you to switch to different buffers without
                   "   and undo-history are remembered.
 set history=200   " Command history length.
 set laststatus=2  " always include status line, even if only one window
+set tags=tags;/   " Look for tags file up through dirs until one is found.
 
+set scrolloff=2       " Keep 2 lines above/below cursor when scrolling up/down
+set sidescrolloff=2   " Keep 2 lines left/right of cursor when scrolling
+                      " left/right
+
+set updatecount=100   " Write to swapfile after typing 100 characters
 " from godlygeek:
 set virtualedit=block " Let cursor move past the last char in <C-v> mode
 set showfulltag       " Show more information while completing tags.
