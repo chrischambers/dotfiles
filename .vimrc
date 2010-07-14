@@ -487,9 +487,9 @@ let g:SuperTabRetainCompletionDuration="completion"
 " May have to choose alternative (miniBufExplr conflict):
 " let g:SuperTabMappingTabLiteral = '<c-tab>'
 let g:SuperTabLongestHighlight = 1
+"pre-highlights first match in completion menu.
 " let g:SuperTabMappingForward = '<s-tab>'
 " let g:SuperTabMappingBackward = '<tab>'
-"pre-highlights first match in completion menu.
 " --------------------------------------------------------------------------
 " }}}
 
