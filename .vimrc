@@ -90,6 +90,12 @@ let mapleader = ','                 " Only affects subsequent <leader> commands
 let g:loaded_AlignMapsPlugin = 1    " Don't load align mappings
 call UpdatePythonPathWithFixtures() " initialise with required pythonpath
                                     " fixtures
+
+if exists('*NERDTreeVisible') && NERDTreeVisible()
+  " This file has already been sourced once and NERDTree is still open -
+  " deactivate it!
+  call NERDToggle()
+endif
 " --------------------------------------------------------------------------
 " }}}
 
