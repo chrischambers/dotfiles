@@ -372,7 +372,7 @@ set grepformat=%f:%l:%m
 if has("gui_running")
   let do_syntax_sel_menu=1
   runtime! synmenu.vim
-  aunmenu &Syntax.&Show\ filetypes\ in\ menu
+  silent! aunmenu &Syntax.&Show\ filetypes\ in\ menu
 endif
 " --------------------------------------------------------------------------
 " }}}
