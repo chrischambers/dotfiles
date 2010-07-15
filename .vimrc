@@ -424,11 +424,15 @@ function! NERDToggle()
     exec 'set columns+=' . g:NERDTreeWinSize
   endif
 endfunction
-" nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>d :call NERDToggle()<CR>
-" Note the trailing space after each of the following commands:
-map <leader><S-d> :NERDTreeFromBookmark 
-"
+nnoremap <leader><S-d> :call NERDTreeFromBookmark()<CR>
+
+function! NERDTreeFromBookmark()
+  if !NERDTreeVisible()
+      call NERDToggle()
+  endif
+  call feedkeys(":NERDTreeFromBookmark \<C-D>", "n")
+endfunction
 " --------------------------------------------------------------------------
 " Python Project Specific:
 " We're really not interested in these binary files for the most part:
