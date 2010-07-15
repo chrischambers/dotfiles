@@ -400,6 +400,12 @@ let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD
 let NERDChristmasTree=1 " Extra-colourful Tree
 let NERDTreeMouseMode=2 " If you do use the mouse, this is probably what you want.
 
+function! NERDTreeVisible()
+  let l:visible_buffers = map(tabpagebuflist(), 'bufname(v:val)')
+  call filter(l:visible_buffers, 'v:val =~# "NERD_tree"')
+  return !empty(l:visible_buffers)
+endfunction
+
 function! NERDToggle()
   if !exists('s:gui_active')
     let s:gui_active = has('gui_running')
@@ -409,9 +415,7 @@ function! NERDToggle()
     return
   endif
 
-  let l:visible_buffers = map(tabpagebuflist(), 'bufname(v:val)')
-  call filter(l:visible_buffers, 'v:val =~# "NERD_tree"')
-  if !empty(l:visible_buffers)
+  if NERDTreeVisible()
   " if count(l:visible_buffers, 'NERD_tree_1')
     NERDTreeToggle
     exec 'set columns-=' . g:NERDTreeWinSize
