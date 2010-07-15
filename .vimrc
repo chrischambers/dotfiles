@@ -178,6 +178,7 @@ set scrolloff=2       " Keep 2 lines above/below cursor when scrolling up/down
 set sidescrolloff=2   " Keep 2 lines left/right of cursor when scrolling
                       " left/right
 
+set fileformats=unix
 set updatecount=100   " Write to swapfile after typing 100 characters
 " from godlygeek:
 set virtualedit=block " Let cursor move past the last char in <C-v> mode
