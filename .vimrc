@@ -612,6 +612,16 @@ xmap <leader>a{ :Align'[^']\+':<CR>
 " --------------------------------------------------------------------------
 " }}}
 
+" Cecutil Unmappings: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1066>
+" --------------------------------------------------------------------------
+" Default mappings interfering with my own ones. ELIMINATE.
+map <Plug>Useless1 <Plug>SaveWinPosn
+map <Plug>Useless2 <Plug>RestoreWinPosn
+" --------------------------------------------------------------------------
+" }}}
+
 " FuzzyFinder Mappings: {{{
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1984>
@@ -621,6 +631,9 @@ nnoremap <leader>, :FuzzyFinderBuffer<CR>
 nnoremap <leader><S-f> :FuzzyFinderTextMate<CR>
 nnoremap <leader>f :FuzzyFinderTaggedFile<CR>
 nnoremap <leader>ta :FuzzyFinderTag<CR>
+nnoremap <leader>: :FuzzyFinderMruCmd<CR>
+nnoremap <leader>r :FuzzyFinderMruFile<CR>
+
 
 " Remap :ta[g] to use fuzzytagfinding. Leave :tj alone though, as that will
 " complete faster if you know the exact tag name / for large tag files:
@@ -632,6 +645,7 @@ cnoremap <expr> ta<space> (getcmdtype() == ':' ? 'FuzzyFinderTag<CR>' : 'tj')
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1984>
 " --------------------------------------------------------------------------
+" let g:FuzzyFinderOptions.MruFile.max_item = 15
 let g:fuzzy_ignore="*.pyc,*.pyo,*~,#*#,*.gif,*.jpg,*.JPG,*.png,*.PNG,*.jpeg,*.JPEG,*.ico,*.psd,*.flv,*.swf,*.pdf,*.doc,*.db,*.jar"
 " --------------------------------------------------------------------------
 " }}}
