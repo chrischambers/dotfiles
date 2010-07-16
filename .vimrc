@@ -637,7 +637,8 @@ nnoremap <leader>r :FuzzyFinderMruFile<CR>
 
 " Remap :ta[g] to use fuzzytagfinding. Leave :tj alone though, as that will
 " complete faster if you know the exact tag name / for large tag files:
-cnoremap <expr> ta<space> (getcmdtype() == ':' ? 'FuzzyFinderTag<CR>' : 'tj')
+cnoreabbrev <expr> ta
+      \ ((getcmdtype() == ':' && getcmdpos() <= 3) ? 'FuzzyFinderTag<CR>' : 'ta')
 " --------------------------------------------------------------------------
 " }}}
 
@@ -884,7 +885,8 @@ command! -nargs=+ -complete=command PipeToTab call PipeToTab(<q-args>)
 " Mapping taken from Gary Bernhardt's .vimrc -
 " Source: <url:http://bitbucket.org/garybernhardt/dotfiles/src/>
 " GRB: use fancy buffer closing that doesn't close the split
-cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
+cnoremap <expr> bd
+      \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Bclose' : 'bd')
 " --------------------------------------------------------------------------
 " }}}
 
