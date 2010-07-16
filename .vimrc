@@ -383,6 +383,91 @@ endif
 " --------------------------------------------------------------------------
 " }}}
 
+" Cscope Settings And Mappings For Python: {{{
+" --------------------------------------------------------------------------
+"   Cscope has limited applicability to python. However, it is useful for
+"   determining:
+"     i)  Which callables call a <specified symbol>, and
+"     ii) Which callables are called by a <specified symbol>.
+"
+"   * Vim will need to be compiled with cscope enabled for this to work.
+"   * Use pycscope (pip install pycscope) to generate the cscope.out file -
+"     it's far more accurate for python files than cscope itself.
+
+if has('cscope')
+  set cscopetag         " :tag, <C-]>, etc. all leverage cscope db too
+  set cscopetagorder=1  " tags file searched before ctags db
+  set cscopeverbose     " Prints success/failure msg when sourcing cscope db
+
+  if has('quickfix')
+    " ...use it for all cscope commands, replacing existing quickfix contents
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+  else
+    set cscopepathcomp=3 " Only display 3 components of the file's path:
+                         " (displaying the absolute path is too verbose)
+  endif
+
+  " cnoreabbrev csa cs add
+  " cnoreabbrev csf cs find
+  " cnoreabbrev csk cs kill
+  " cnoreabbrev csr cs reset
+  " cnoreabbrev css cs show
+  " cnoreabbrev csh cs help
+
+  " command! -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+endif
+
+" Calls[Functions] / CalledBy[Functions] ?
+command! -nargs=1 -complete=tag CSD call Cscope('d', <q-args>)
+command! -nargs=1 -complete=tag CSC call Cscope('c', <q-args>)
+
+function! Cscope(type, search_term)
+  """ Common 'base' function for cscope commands:
+  """ 1) Executes appropriate command, depending on args passed
+  """ 2) Saves cursor position
+  """ 3) Ensures quickfix list meets the desired criterion
+  """ 4) Opens quickfix view
+  """ 5) Restores cursor position
+  exec ':cs find ' . a:type . ' ' . a:search_term
+  let save_cursor = getpos('.')
+  call ModifyQuickFixList()
+  cope
+  exe "normal \<C-W>p"
+  call setpos('.', save_cursor)
+endfunction
+
+function! ModifyQuickFixList()
+  """ Primarily used to ensure that the pathnames in the quickfix list are
+  """ relative to the cwd: By default, vim uses relative paths ONLY from
+  """ the dir you initialised it from (if any): subsequent cwd switches
+  """ have no effect.
+  let qflist = getqflist()
+  let cwd = resolve(fnamemodify(getcwd(), ':p'))
+  for d in qflist
+    " Strip out function name:
+    " let d['text'] = substitute(d['text'], '^<<.\{-}>>\(.\{-}\)\s*$', '\1', '')
+
+    " Specify path-names relative to cwd at time of execution:
+    let d['filename'] = resolve(fnamemodify(bufname(d['bufnr']), ':p'))
+    if !stridx(d['filename'], cwd)
+        let d['filename'] = d['filename'][len(cwd)+1:]
+        let d['bufnr'] = ""
+    endif
+  endfor
+  call setqflist(qflist)
+endfunction
+
+augroup Quickfix_settings
+  au!
+  au Filetype qf let b:no_highlight_overlength = 1
+  au Filetype qf setl nobuflisted
+  au Filetype qf match Special /<<[^>]\{-}>>/
+augroup END
+" au Filetype qf match String />>\s*\zs\(.*\)\ze/
+" au Filetype qf match Function /[a-zA-Z]*(/
+" --------------------------------------------------------------------------
+" }}}
+
 " Plugin Configuration:
 """ Used:
 " Pyflakes Options: {{{
@@ -770,8 +855,10 @@ if has("autocmd")
   augroup highlight
   au!
   fun! Highlight_overlength()
-    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    match OverLength /\%81v.*/
+    if !exists("b:no_highlight_overlength")
+      highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+      match OverLength /\%81v.*/
+    endif
   endfun
   autocmd BufRead * call Highlight_overlength()
   augroup END
@@ -1264,6 +1351,12 @@ sys.path.append(os.path.join(
 ))
 EOF
 set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
+try
+  cs add cscope.out
+catch /^Vim\%((\a\+)\)\=:E563/   " couldn't connect to cscope db
+catch /^Vim\%((\a\+)\)\=:E568/   " duplicate cscope db not added
+endtry
+
 " FIXME: Not finding django via django.pth file when run at startup - may be
 " due to subprocess module not being found.
 " FIXME: PythonPath as WELL as Vim path!
