@@ -277,7 +277,7 @@ set wildmode=list:longest,full
 set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,*.mp3,*.mov
 
 " set complete=.,w,b,u,t,i
-set completeopt=menu,preview,longest
+set completeopt=menu,longest
 " preview:         displays python help files when using omni-completion:
 "                  (awesome, but induces a performance hit).
 " longest:         only tab-completes up to the common elements, if any:
