@@ -1001,6 +1001,10 @@ nnoremap <leader>u :call Underline()<CR>
 nnoremap <leader><S-u> :call Underline("=")<CR>
 " }}}
 
+" Enable IDE Window Management: {{{
+runtime! scripts/ide_tools.vim
+" }}}
+
 " Vim Specific:
 
 " Autocommand: Prepare Vim File Defaults: {{{
