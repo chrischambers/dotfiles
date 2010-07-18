@@ -693,7 +693,7 @@ let g:miniBufExplorerMoreThanOne=2
 " mappings.
 " Source: <url:https://bugs.launchpad.net/ultisnips/+bug/427298/comments/2>
 
-xmap <leader>a{ :Align'[^']\+':<CR>
+xnoremap <leader>a{ :Align'[^']\+':<CR>
 " --------------------------------------------------------------------------
 " }}}
 
@@ -1224,7 +1224,7 @@ import vim
 def EvaluateCurrentRange():
     eval(compile('\n'.join(vim.current.range),'','exec'),globals())
 EOL
-map <leader>h :py EvaluateCurrentRange()<CR>
+xnoremap <leader>h :py EvaluateCurrentRange()<CR>
 " --------------------------------------------------------------------------
 " }}}
 
