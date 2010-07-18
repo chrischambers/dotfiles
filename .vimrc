@@ -1251,7 +1251,9 @@ map <leader>h :py EvaluateCurrentRange()<CR>
 " Python Syntax Highlighting Improved: {{{
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=790>
-let python_highlight_all=1
+let python_highlight_all = 1
+" For faster machines, improves performance of syntax/python.vim:
+let python_slow_sync = 1
 " --------------------------------------------------------------------------
 " }}}
 
