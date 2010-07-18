@@ -1210,20 +1210,6 @@ endfunction
 
 " Python File Syntax Checking: {{{
 " --------------------------------------------------------------------------
-" Check for missing colons at the end of command statements:
-syn match pythonError "^\s*def\s\+\w\+(.*)\s*$" display
-syn match pythonError "^\s*class\s\+\w\+(.*)\s*$" display
-syn match pythonError "^\s*for\s.*[^:]$" display
-syn match pythonError "^\s*except\s*$" display
-syn match pythonError "^\s*finally\s*$" display
-syn match pythonError "^\s*try\s*$" display
-syn match pythonError "^\s*else\s*$" display
-syn match pythonError "^\s*else\s*[^:].*" display
-syn match pythonError "^\s*if\s.*[^\:]$" display
-syn match pythonError "^\s*except\s.*[^\:]$" display
-syn match pythonError "[;]$" display
-syn keyword pythonError         do 
-
 " type :make and get a list of syntax errors
 " type :cn and :cp to move around the error list. 
 " type :clist to see all the errors
