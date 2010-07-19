@@ -28,7 +28,7 @@ let s:local_vimrc = fnamemodify('~/.vimrc_local', ':p')
 call map(g:pythonpath_fixtures, 'glob(v:val)')
 
 function! UpdatePythonPathWithFixtures()
-    """ Takes a list of absolute filenames, and appends them to the
+    """ Takes a list of absolute paths to dirs, and appends them to the
     """ pythonpath.
 
 python << EOF
