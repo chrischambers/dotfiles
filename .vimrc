@@ -1320,7 +1320,7 @@ endif
 " * Incorporate virtualenvwrapper hooks:
 "   <url:http://www.doughellmann.com/docs/virtualenvwrapper/scripts.html>
 
-""" VirtualEnv Configuration: {{{
+" VirtualEnv Configuration: {{{
 function! StoreVirtualEnvSysPath(virtualenv)
   """ Stores virtualenv's sys.path in a global vim variable,
   """ g:virtualenv_sys_path
