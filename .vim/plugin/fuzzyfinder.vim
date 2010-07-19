@@ -517,16 +517,16 @@ endfunction
 "
 function! s:OpenFile(path, mode, reuse)
   let buf_nr = bufnr('^' . a:path . '$')
-  if buf_nr > -1
-    call s:OpenBuffer(buf_nr, a:mode, a:reuse)
-  else
+  " if buf_nr > -1
+  "   call s:OpenBuffer(buf_nr, a:mode, a:reuse)
+  " else
     execute {
           \   s:OPEN_MODE_CURRENT : ':edit '   ,
           \   s:OPEN_MODE_SPLIT   : ':split '  ,
           \   s:OPEN_MODE_VSPLIT  : ':vsplit ' ,
           \   s:OPEN_MODE_TAB     : ':tabedit ',
           \ }[a:mode] . s:EscapeFilename(a:path)
-  endif
+  " endif
 endfunction
 
 "
