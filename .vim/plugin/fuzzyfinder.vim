@@ -521,7 +521,7 @@ function! s:OpenFile(path, mode, reuse)
   "   call s:OpenBuffer(buf_nr, a:mode, a:reuse)
   " else
     execute {
-          \   s:OPEN_MODE_CURRENT : ':edit '   ,
+          \   s:OPEN_MODE_CURRENT : ':Edit '   ,
           \   s:OPEN_MODE_SPLIT   : ':split '  ,
           \   s:OPEN_MODE_VSPLIT  : ':vsplit ' ,
           \   s:OPEN_MODE_TAB     : ':tabedit ',
