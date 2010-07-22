@@ -79,10 +79,30 @@ command! VSplit call VimIDEFixOpenCmds({'cmd': ':vsp'})
 cnoremap <expr> vsp
       \ (getcmdtype() == ':' && getcmdpos()<3 ? 'VSplit' : 'vsp')
 
+function! PreventClosingLastWindow()
+  """ Prevents closing the last window, *exclusive* of special buffers.
+  let opt = (a:0 >= 1 ? a:1 : {})
+  let exclude_patterns = get(opt, 'exclude_buffers', s:default_excludes)
+  let all_buffers = map(tabpagebuflist(), "bufname(v:val)")
+  let curr_buff_special = BufferNameMatchesPatterns(
+        \ bufname('%'), exclude_patterns
+        \ )
+  let special_buffers = filter(
+        \ copy(all_buffers),
+        \ 'BufferNameMatchesPatterns(v:val, exclude_patterns)'
+        \ )
+  if (len(special_buffers) + 1 == len(all_buffers)) && !curr_buff_special
+    " ..this is the only non-special buffer remaining: don't close it.
+    echoerr "E444: Cannot close last window"
+  else
+    call feedkeys("\<C-W>c", "n")
+  endif
+endfunction
+
 function! VimIDEFixCloseWindow(...)
   let window_is_nerdtree = getbufvar('%', '&ft') == "nerdtree"
-  if ! window_is_nerdtree
-    call feedkeys("\<C-W>c", "n")
+  if !window_is_nerdtree
+    call PreventClosingLastWindow()
   else
     call NERDToggle()
   endif
