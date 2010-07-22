@@ -1,7 +1,7 @@
 " list of patterns
 let s:default_excludes = [ '^-MiniBufExplorer-$', '^NERD_tree_\d*$' ]
 
-function! VimIDEFixCtrlW(...)
+function! VimIDEFixEqualizeWindows(...)
   let opt = (a:0 >= 1 ? a:1 : {})
   let exclude_patterns = get(opt, 'exclude_buffers', s:default_excludes)
   let record_size = {}
@@ -29,7 +29,7 @@ function! VimIDEFixCtrlW(...)
     call setbufvar(b, '&winfixwidth', fixwidth)
   endfor
 endfunction
-nnoremap <silent> <C-W>= :call VimIDEFixCtrlW()<CR>
+nnoremap <silent> <C-W>= :call VimIDEFixEqualizeWindows()<CR>
 
 function! BufferNameMatchesPatterns(buffername, pattern_list)
   for pattern in a:pattern_list
