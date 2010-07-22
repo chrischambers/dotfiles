@@ -44,7 +44,7 @@ snippet htmlstub "HTML file stub" b
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>${1:page_title}</title>
-  <meta name="author" content="${2:`!v g:snips_author`}" />
+  <meta name="author" content="${2:`!v exists('g:user_name') ? g:user_name : ''`}" />
   <meta name="description" content="${3: page description}" />
 
   <link rel="icon" type="image/x-icon" href="${4:media/path/}favicon.ico" />
