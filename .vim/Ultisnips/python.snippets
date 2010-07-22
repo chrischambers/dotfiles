@@ -688,7 +688,12 @@ endsnippet
 # }}}
 # Managers: {{{
 snippet manager "Manager with custom __getattr__" b
-class ${1:Foo}Manager(models.Manager):
+from django.db import models
+
+class ${1:Foo}QuerySet(models.query.QuerySet):
+    pass
+
+class $1Manager(models.Manager):
     def get_query_set(self):
         model = models.get_model('${2:appname}', '${3:modelname}')
         return $1QuerySet(model)
