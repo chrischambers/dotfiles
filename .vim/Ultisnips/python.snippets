@@ -59,7 +59,7 @@ endsnippet
 # }}}
 # Function / Class Creation: {{{
 snippet def "Function Definition" b!
-def ${1:fname}(${2:`!v indent('.') ? 'self' : ''`}):
+def ${1:fname}(`!v indent(search('^ \{-}def [^:]*: \{-}$', 'bcWn')) ? 'self' : ''`):
     ${3:pass}
 $0
 endsnippet
