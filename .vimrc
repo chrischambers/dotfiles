@@ -1234,8 +1234,6 @@ import vim
 for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-    #  else:
-    #      print p
 EOF
 endfunction
 " set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.
