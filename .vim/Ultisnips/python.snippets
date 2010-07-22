@@ -686,6 +686,21 @@ def save(self, force_insert=False, force_update=False):
 $0
 endsnippet
 # }}}
+# Managers: {{{
+snippet manager "Manager with custom __getattr__" b
+class ${1:Foo}Manager(models.Manager):
+    def get_query_set(self):
+        model = models.get_model('${2:appname}', '${3:modelname}')
+        return $1QuerySet(model)
+
+    def __getattr__(self, attr, *args):
+        try:
+            return getattr(self.__class__, attr, *args)
+        except AttributeError:
+            return getattr(self.get_query_set(), attr, *args)
+endsnippet
+
+# }}}
 # Admin: {{{
 # -------
 snippet admin
