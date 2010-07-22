@@ -65,19 +65,20 @@ function! VimIDEFixEditCmd(path, ...)
   let opt['cmd'] = ':e ' . fnameescape(a:path)
   call VimIDEFixOpenCmds(opt)
 endfunction
-command! -nargs=1 -complete=file Edit call VimIDEFixEditCmd(<q-args>)
-cnoreabbrev <expr> e
-      \ ((getcmdtype() == ':' && getcmdpos() <= 2) ? 'Edit' : 'e')
 
 command! Enew call VimIDEFixOpenCmds()
+command! Split call VimIDEFixOpenCmds({'cmd': ':sp'})
+command! VSplit call VimIDEFixOpenCmds({'cmd': ':vsp'})
+command! -nargs=1 -complete=file Edit call VimIDEFixEditCmd(<q-args>)
+
 cnoremap <expr> enew
       \ (getcmdtype() == ':' && getcmdpos()<4 ? 'Enew' : 'enew')
-command! Split call VimIDEFixOpenCmds({'cmd': ':sp'})
 cnoremap <expr> sp
       \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Split' : 'sp')
-command! VSplit call VimIDEFixOpenCmds({'cmd': ':vsp'})
 cnoremap <expr> vsp
       \ (getcmdtype() == ':' && getcmdpos()<3 ? 'VSplit' : 'vsp')
+cnoreabbrev <expr> e
+      \ ((getcmdtype() == ':' && getcmdpos() <= 2) ? 'Edit' : 'e')
 
 function! PreventClosingLastWindow()
   """ Prevents closing the last window, *exclusive* of special buffers.
