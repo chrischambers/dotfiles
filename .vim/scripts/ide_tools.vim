@@ -39,13 +39,13 @@ function! BufferNameMatchesPatterns(buffername, pattern_list)
   endfor
 endfunction
 
-function! VimIDEFixEditCmd(path, ...)
+function! VimIDEFixOpenCmds(...)
   """ The current implementation could get stuck in an infinite loop if all
   """ the buffers match the exclude patterns.
   let opt = (a:0 >= 1 ? a:1 : {})
   let exclude_patterns = get(opt, 'exclude_buffers', s:default_excludes)
+  let cmd = get(opt, 'cmd', ':enew')
 
-  let cmd = ':e ' . fnameescape(a:path)
   let bufn = bufname('%')
   while 1
   if BufferNameMatchesPatterns(bufn, exclude_patterns)
@@ -56,6 +56,14 @@ function! VimIDEFixEditCmd(path, ...)
     exec cmd
     return
   endif
+endfunction
+
+function! VimIDEFixEditCmd(path, ...)
+  """ The current implementation could get stuck in an infinite loop if all
+  """ the buffers match the exclude patterns.
+  let opt = (a:0 >= 1 ? a:1 : {})
+  let opt['cmd'] = ':e ' . fnameescape(a:path)
+  call VimIDEFixOpenCmds(opt)
 endfunction
 command! -nargs=1 -complete=file Edit call VimIDEFixEditCmd(<q-args>)
 cnoreabbrev <expr> e
