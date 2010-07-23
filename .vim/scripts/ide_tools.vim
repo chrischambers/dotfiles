@@ -1,7 +1,7 @@
 " list of patterns
 let s:default_excludes = [ '^-MiniBufExplorer-$', '^NERD_tree_\d*$' ]
 
-function! VimIDEFixCtrlW(...)
+function! VimIDEFixEqualizeWindows(...)
   let opt = (a:0 >= 1 ? a:1 : {})
   let exclude_patterns = get(opt, 'exclude_buffers', s:default_excludes)
   let record_size = {}
@@ -29,7 +29,7 @@ function! VimIDEFixCtrlW(...)
     call setbufvar(b, '&winfixwidth', fixwidth)
   endfor
 endfunction
-nnoremap <silent> <C-W>= :call VimIDEFixCtrlW()<CR>
+nnoremap <silent> <C-W>= :call VimIDEFixEqualizeWindows()<CR>
 
 function! BufferNameMatchesPatterns(buffername, pattern_list)
   for pattern in a:pattern_list
@@ -39,13 +39,13 @@ function! BufferNameMatchesPatterns(buffername, pattern_list)
   endfor
 endfunction
 
-function! VimIDEFixEditCmd(path, ...)
+function! VimIDEFixOpenCmds(...)
   """ The current implementation could get stuck in an infinite loop if all
   """ the buffers match the exclude patterns.
   let opt = (a:0 >= 1 ? a:1 : {})
   let exclude_patterns = get(opt, 'exclude_buffers', s:default_excludes)
+  let cmd = get(opt, 'cmd', ':enew')
 
-  let cmd = ':e ' . fnameescape(a:path)
   let bufn = bufname('%')
   while 1
   if BufferNameMatchesPatterns(bufn, exclude_patterns)
@@ -57,14 +57,53 @@ function! VimIDEFixEditCmd(path, ...)
     return
   endif
 endfunction
+
+function! VimIDEFixEditCmd(path, ...)
+  """ The current implementation could get stuck in an infinite loop if all
+  """ the buffers match the exclude patterns.
+  let opt = (a:0 >= 1 ? a:1 : {})
+  let opt['cmd'] = ':e ' . fnameescape(a:path)
+  call VimIDEFixOpenCmds(opt)
+endfunction
+
+command! Enew call VimIDEFixOpenCmds()
+command! Split call VimIDEFixOpenCmds({'cmd': ':sp'})
+command! VSplit call VimIDEFixOpenCmds({'cmd': ':vsp'})
 command! -nargs=1 -complete=file Edit call VimIDEFixEditCmd(<q-args>)
+
+cnoremap <expr> enew
+      \ (getcmdtype() == ':' && getcmdpos()<4 ? 'Enew' : 'enew')
+cnoremap <expr> sp
+      \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Split' : 'sp')
+cnoremap <expr> vsp
+      \ (getcmdtype() == ':' && getcmdpos()<3 ? 'VSplit' : 'vsp')
 cnoreabbrev <expr> e
       \ ((getcmdtype() == ':' && getcmdpos() <= 2) ? 'Edit' : 'e')
 
+function! PreventClosingLastWindow()
+  """ Prevents closing the last window, *exclusive* of special buffers.
+  let opt = (a:0 >= 1 ? a:1 : {})
+  let exclude_patterns = get(opt, 'exclude_buffers', s:default_excludes)
+  let all_buffers = map(tabpagebuflist(), "bufname(v:val)")
+  let curr_buff_special = BufferNameMatchesPatterns(
+        \ bufname('%'), exclude_patterns
+        \ )
+  let special_buffers = filter(
+        \ copy(all_buffers),
+        \ 'BufferNameMatchesPatterns(v:val, exclude_patterns)'
+        \ )
+  if (len(special_buffers) + 1 == len(all_buffers)) && !curr_buff_special
+    " ..this is the only non-special buffer remaining: don't close it.
+    echoerr "E444: Cannot close last window"
+  else
+    call feedkeys("\<C-W>c", "n")
+  endif
+endfunction
+
 function! VimIDEFixCloseWindow(...)
   let window_is_nerdtree = getbufvar('%', '&ft') == "nerdtree"
-  if ! window_is_nerdtree
-    call feedkeys("\<C-W>c", "n")
+  if !window_is_nerdtree
+    call PreventClosingLastWindow()
   else
     call NERDToggle()
   endif

@@ -9,7 +9,7 @@ $0
 endsnippet
 
 snippet css "link" b
-<link rel="stylesheet" type="text/css" media="${1:screen}" 
+<link rel="stylesheet" type="text/css" media="${1:screen}"
       href="${2:path/to/your/css}.css" />
 $0
 endsnippet
@@ -22,7 +22,7 @@ $0
 endsnippet
 
 snippet js "link" b
-<script type="text/javascript" 
+<script type="text/javascript"
         src="${1:path/to/javascript}"></script>
 $0
 endsnippet
@@ -44,16 +44,16 @@ snippet htmlstub "HTML file stub" b
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>${1:page_title}</title>
-  <meta name="author" content="${2:`!v g:snips_author`}" />
+  <meta name="author" content="${2:`!v exists('g:user_name') ? g:user_name : ''`}" />
   <meta name="description" content="${3: page description}" />
 
   <link rel="icon" type="image/x-icon" href="${4:media/path/}favicon.ico" />
   <link rel="shortcut icon" href="$4/favicon.png" type="image/png" />
 
-  <link rel="stylesheet" type="text/css" media="all" 
+  <link rel="stylesheet" type="text/css" media="all"
         href="$4/css/reset.css" />
-  <link rel="stylesheet" type="text/css" media="screen" 
-        href="$4${5:your_css}.css" /> 
+  <link rel="stylesheet" type="text/css" media="screen"
+        href="$4${5:your_css}.css" />
 </head>
 <body>
   $0

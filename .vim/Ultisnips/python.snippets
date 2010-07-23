@@ -59,7 +59,7 @@ endsnippet
 # }}}
 # Function / Class Creation: {{{
 snippet def "Function Definition" b!
-def ${1:fname}(${2:`!v indent('.') ? 'self' : ''`}):
+def ${1:fname}(`!v indent(search('^ \{-}def [^:]*: \{-}$', 'bcWn')) ? 'self' : ''`):
     ${3:pass}
 $0
 endsnippet
@@ -299,23 +299,23 @@ def main():
     usage = "usage: %s [options] %s" % ("%prog", "".join(required_args),)
     parser = OptionParser(usage)
 
-    parser.add_option("-f", "--file", 
+    parser.add_option("-f", "--file",
         dest="filename",
         metavar="FILE",
         help="read data from FILE"
     )
     parser.add_option("-v", "--verbose",
-        action="store_true", 
-        dest="verbose", 
+        action="store_true",
+        dest="verbose",
         default=True,
         help="Output logging at DEBUG and above [default: %default]"
     )
     parser.add_option("-q", "--quiet",
-        action="store_false", 
+        action="store_false",
         dest="verbose",
         help="Output logging at WARNING and above"
     )
-    
+
     options, args = parser.parse_args()
     if len(args) != len(required_args):
         parser.error("%s arguments are required (%s), you specified %s" % (
@@ -330,7 +330,7 @@ endsnippet
 
 snippet opt "Optparse option" b
 parser.add_option("-${1:o}", "--${2:option-longhand}",
-    ${3:action="${4:store}", 
+    ${3:action="${4:store}",
     }dest="${5:}"
 )
 $0
@@ -583,8 +583,8 @@ $0
 endsnippet
 
 snippet mdec
-${1:fieldname} = models.DecimalField('$1', blank=True, null=True, 
-    max_digits=${2:None}, 
+${1:fieldname} = models.DecimalField('$1', blank=True, null=True,
+    max_digits=${2:None},
     decimal_places=${3:2}
 )
 $0
@@ -639,9 +639,9 @@ ${2}
 endsnippet
 
 snippet mfpf
-${1:fieldname} = models.FilePathField('$1', 
-    path=${2:unix_style_path}, 
-    match=r'${3:regex_for_basename}', 
+${1:fieldname} = models.FilePathField('$1',
+    path=${2:unix_style_path},
+    match=r'${3:regex_for_basename}',
     recursive=${4:False}
 )
 ${5}
@@ -681,10 +681,30 @@ endsnippet
 snippet modelsave
 def save(self, force_insert=False, force_update=False):
     # ${1:do_something}
-    ${1:obj} = super(${2:ClassName}, self).save(force_insert, force_update) 
+    ${1:obj} = super(${2:ClassName}, self).save(force_insert, force_update)
     return $1
 $0
 endsnippet
+# }}}
+# Managers: {{{
+snippet manager "Manager with custom __getattr__" b
+from django.db import models
+
+class ${1:Foo}QuerySet(models.query.QuerySet):
+    pass
+
+class $1Manager(models.Manager):
+    def get_query_set(self):
+        model = models.get_model('${2:appname}', '${3:modelname}')
+        return $1QuerySet(model)
+
+    def __getattr__(self, attr, *args):
+        try:
+            return getattr(self.__class__, attr, *args)
+        except AttributeError:
+            return getattr(self.get_query_set(), attr, *args)
+endsnippet
+
 # }}}
 # Admin: {{{
 # -------
@@ -753,7 +773,7 @@ endsnippet
 snippet formsave "Django Form Custom Save" b
 def save(self, commit=False, *args, **kwargs):
     # ${1:do_something}
-    ${2:obj} = super(${3:ClassName}, self).save(commit, *args, **kwargs) 
+    ${2:obj} = super(${3:ClassName}, self).save(commit, *args, **kwargs)
     # ${4:modify $2}
     return $2
     $0

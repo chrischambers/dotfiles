@@ -403,7 +403,8 @@ endif
 if has('cscope')
   set cscopetag         " :tag, <C-]>, etc. all leverage cscope db too
   set cscopetagorder=1  " tags file searched before ctags db
-  set cscopeverbose     " Prints success/failure msg when sourcing cscope db
+  set nocscopeverbose   " When on, prints success/failure msg when sourcing
+                        " cscope db
 
   if has('quickfix')
     " ...use it for all cscope commands, replacing existing quickfix contents
@@ -1233,8 +1234,6 @@ import vim
 for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-    #  else:
-    #      print p
 EOF
 endfunction
 " set path=$HOME/src/py/django/django-1.1 " Don't need /usr/include - not working with C.

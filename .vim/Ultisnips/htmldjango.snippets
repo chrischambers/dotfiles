@@ -1,8 +1,8 @@
 extends html
 
 snippet css "link" b!
-  <link rel="stylesheet" type="text/css" media="${1:screen}" 
-        href="{{ MEDIA_URL }}css/${2:path/to/css}.css" /> 
+  <link rel="stylesheet" type="text/css" media="${1:screen}"
+        href="{{ MEDIA_URL }}css/${2:path/to/css}.css" />
 endsnippet
 
 snippet css "inline" b
@@ -35,16 +35,16 @@ snippet htmlstub "HTML file stub" b!
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>{% block title %}${1:page title}{% endblock %}${2:default title}</title>
-  <meta name="author" content="${3:`!v g:snips_author`}" />
+  <meta name="author" content="${3:`!v exists('g:user_name') ? g:user_name : ''`}" />
   <meta name="description" content="${4: page description}" />
 
   <link rel="icon" type="image/x-icon" href="${5:{{ MEDIA_URL }}}favicon.ico" />
   <link rel="shortcut icon" href="$5favicon.png" type="image/png" />
 
-  <link rel="stylesheet" type="text/css" media="all" 
+  <link rel="stylesheet" type="text/css" media="all"
         href="{{ MEDIA_URL }}css/reset.css" />
-  <link rel="stylesheet" type="text/css" media="screen" 
-        href="{{ MEDIA_URL }}css/${5:path/to/css}.css" /> 
+  <link rel="stylesheet" type="text/css" media="screen"
+        href="{{ MEDIA_URL }}css/${5:path/to/css}.css" />
 </head>
 <body>
   $0
@@ -220,15 +220,15 @@ endsnippet
 snippet with
 {% with ${1} as ${2} %}
 endsnippet
- 
+
 # Template Filters
- 
+
 # Note: Since SnipMate can't determine which template filter you are
 # expanding without the "|" character, these do not add the "|"
 # character. These save a few keystrokes still.
- 
+
 # Note: Template tags that take no arguments are not implemented.
- 
+
 
 snippet add
 add:"${1}"
