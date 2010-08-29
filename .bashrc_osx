@@ -22,6 +22,9 @@ fi
 export PATH="/opt/local/lib/mysql5/bin:$PATH"
 alias mysqlstart='sudo /opt/local/bin/mysqld_safe5 &'
 alias mysqlstop='/opt/local/bin/mysqladmin5 -u root -p shutdown'
+
+# Postgres Configuration (via Macports)
+export PATH="/opt/local/lib/postgresql84/bin:$PATH"
 # ----------------------------------------------------------------------------
 # }}}
 
