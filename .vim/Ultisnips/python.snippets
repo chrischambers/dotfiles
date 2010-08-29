@@ -206,12 +206,12 @@ class ${1:MyMetaClass}(type):
 endsnippet
 # }}}
 # Descriptors: {{{
-snippet get
+snippet get "get descriptor" b
 def __get__(self, instance, owner):
     $0
 endsnippet
 
-snippet set
+snippet set "set descriptor" b
 def __set__(self, instance, value):
     $0
 endsnippet
@@ -453,7 +453,7 @@ from django.template import RequestContext
 $0
 endsnippet
 
-snippet templatetagi "Django templatetag stub" b
+snippet ttagi "Django templatetag stub" b
 from django import template
 register = template.Library()
 $0
@@ -678,10 +678,10 @@ ${1:type_of}_CHOICES = (
 $0
 endsnippet
 
-snippet modelsave
-def save(self, force_insert=False, force_update=False):
+snippet msave
+def save(self, *args, **kwargs):
     # ${1:do_something}
-    ${1:obj} = super(${2:ClassName}, self).save(force_insert, force_update)
+    ${1:obj} = super(${2:ClassName}, self).save(*args, **kwargs)
     return $1
 $0
 endsnippet
@@ -708,12 +708,31 @@ endsnippet
 # }}}
 # Admin: {{{
 # -------
-snippet admin
+snippet admin "Vanilla admin" b
 class ${1:ClassName}Admin(admin.ModelAdmin):
     pass
 
 admin.site.register($1, $1Admin)
 $0
+endsnippet
+
+snippet admin "Time-stamped admin" b
+class ${1:ClassName}Admin(admin.ModelAdmin):
+    readonly_fields = ['datetime_created', 'datetime_modified']
+
+admin.site.register($1, $1Admin)
+$0
+endsnippet
+
+snippet fieldsets
+fieldsets = (
+    (None, {
+        'fields': (${1:items or nested tuples})
+    }),
+    ('${2:fieldset title}', {
+        'fields': ($3),
+        'classes': ('collapse',)
+)
 endsnippet
 
 snippet adminaction
@@ -745,7 +764,7 @@ snippet modelform "Django ModelForm Stub" b
 class ${1:My}Form(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super($1, self).__init__(*args, **kwargs)
+        super($1Form, self).__init__(*args, **kwargs)
         self.fields['${2:fieldname}'].required = True
 
     class Meta(object):
@@ -965,6 +984,10 @@ from ${3:myapp}.listeners import ${4:mylistener}
 $2.connect($4, sender=$5)
 $0
 endsnippet
+
+
+snippet signal "Django Signal Send" b
+${1:signal_name}.send(sender=${2:self}, ${3:kwargs})
 # }}}
 # Email: {{{
 
@@ -1206,4 +1229,45 @@ except template.VariableDoesNotExist, e:
     return ''
 endsnippet
 # }}}
+
+
+# ----------------
+# South:
+# ----------------
+snippet southfield "South Field Introspection" b
+try:
+    from south.modelsinspector import add_introspection_rules
+except ImportError:
+    add_introspection_rules = False
+
+if add_introspection_rules:
+    add_introspection_rules([
+        (
+            [${1:Foo}Field],
+            [],              # Positional arguments (not used)
+            {                # Keyword arguments
+                "${2:kwarg}": ["${3:attribute_name($2)}", {${4:options}}],
+            },
+        ),
+    ], ["^${5:appname}\.fields\.$1Field"])
+
+# options is a dictionary. You can safely leave it blank, but to make things
+# nicer, we can use it to specify the default value of this keyword - if the
+# value South finds matches this, it will leave out this keyword from the
+# frozen definition. This helps keep the frozen definitions shorter and more
+# readable.
+endsnippet
+
+snippet southfield "South Field Introspection - No extra kwargs added" b
+try:
+    from south.modelsinspector import add_introspection_rules
+except ImportError:
+    add_introspection_rules = False
+
+if add_introspection_rules:
+    add_introspection_rules([], ["^${1:appname}\.fields\.${2:Foo}Field"])
+
+# Use this if your custom field adds no extra keyword arguments to the field it
+# inherits from
+endsnippet
 
