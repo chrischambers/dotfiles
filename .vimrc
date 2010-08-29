@@ -536,7 +536,7 @@ endfunction
 " --------------------------------------------------------------------------
 " Python Project Specific:
 " We're really not interested in these binary files for the most part:
-let NERDTreeIgnore=['\.py\(c\|o\)$', '\.swp', '\~$', '^#.*#$', '\.gif', '\.jpg','\.png','\.jpeg','\.ico', '\.psd', '\.flv', '\.swf', '\.pdf', '\.doc']
+let NERDTreeIgnore=['\.py\(c\|o\)$', '\.swp', '\~$', '^#.*#$', '\.gif', '\.jpg','\.png','\.jpeg','\.ico', '\.psd', '\.flv', '\.swf', '\.pdf', '\.doc', '\.bmp']
 " python files will take precedence over .csv, .log, .txt, etc.
 let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
 " --------------------------------------------------------------------------
