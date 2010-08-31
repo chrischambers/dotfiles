@@ -425,6 +425,7 @@ endsnippet
 # Imports: {{{
 snippet modeli "Django Model Imports stub" b
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from datetime import datetime
 $0
 endsnippet
@@ -491,24 +492,23 @@ class ${1:ModelName}(models.Model):
     ${3:# fields}
 
     # metadata
-    datetime_created = models.DateTimeField(editable=False)
-    datetime_modifed = models.DateTimeField(editable=False)
+    datetime_created = models.DateTimeField(
+        _('Created'), default=datetime.now, editable=False)
+    datetime_modified = models.DateTimeField(_('Last Modified'), editable=False)
+
 
     class Meta(object):
+        verbose_name = _('$1')
+        verbose_name_plural = _('$1s')
         ordering = ['-datetime_created']
         get_latest_by = 'datetime_created'
 
     def __unicode__(self):
-        return u"${4:unicode string}" % (${5:subs},)
+        return u"${4:%s}" % (${5:subs},)
 
-    def save(self, force_insert=False, force_update=False):
-        now = datetime.now()
-        if not self.id:
-            self.datetime_created = now
-        self.datetime_modified = now
-        ${1/[^.]*/\L$0\E/} = super($1, self).save(force_insert, force_update)
-        ${1/[^.]*/\L$0\E/}.save_m2m() # only if commit=False
-        return ${1/[^.]*/\L$0\E/}
+    def save(self, *args, **kwargs):
+        self.datetime_modified = datetime.now()
+        return super($1, self).save(*args, **kwargs)
 
     @models.permalink
     def get_absolute_url(self):
@@ -523,105 +523,112 @@ endsnippet
 # }}}
 # Model Fields: {{{
 snippet mchar
-${1:fieldname} = models.CharField('$1', blank=True, max_length=${2:255})
+#`!p
+# res = insert_variable_assignment(t[1]) if cur == "" else ""
+# res = insert_variable_assignment(t[1])
+# variable_already_assigned = int(vim.eval("! empty(GetPythonVariable())"))
+# res = '' if variable_already_assigned else t[1] + ' = '
+# res = t[1] + ' = ' if not variable_already_assigned else ''
+#`
+models.CharField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }max_length=${3:255}$4)
 $0
 endsnippet
 
 snippet mtext
-${1:fieldname} = models.TextField('$1', blank=True, max_length=${2:255})
+models.TextField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }$3)
 $0
 endsnippet
 
 snippet mslug
-${1:fieldname} = models.SlugField('$1', blank=True, max_length=${2:50})
+models.SlugField(_('${1:`!v GetPythonVariable()`}'), unique=True$2)
 $0
 endsnippet
 
 snippet mcsi
-${1:fieldname} = models.CommaSeparatedIntegerField('${2}', max_length=${3:255})
+models.CommaSeparatedIntegerField(_('${1:`!v GetPythonVariable()`}'), max_length=${2:255}$3)
 $0
 endsnippet
 
 snippet memail
-${1:fieldname} = models.EmailField('$1', blank=True)
+models.EmailField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }$3)
 $0
 endsnippet
 
 snippet murl
-${1:fieldname} = models.UrlField('$1', blank=True, verify_exists=${2:True})
+models.UrlField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }verify_exists=${3:True}$4)
 $0
 endsnippet
 
 snippet mxml
-${1:fieldname} = models.XMLField('$1', blank=True, schema_path=${2:None})
+models.XMLField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }schema_path=${3:None}$4)
 $0
 endsnippet
 
 snippet mint
-${1:fieldname} = models.IntegerField('$1', null=True, blank=True)
+models.IntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mintsmall
-${1:fieldname} = models.SmallIntegerField('$1', null=True, blank=True)
+models.SmallIntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mintpos
-${1:fieldname} = models.PositiveIntegerField('$1', null=True, blank=True)
+models.PositiveIntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mintpossmall
-${1:fieldname} = models.PositiveSmallIntegerField('$1', null=True, blank=True)
+models.PositiveSmallIntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mfloat
-${1:fieldname} = models.FloatField('$1', null=True, blank=True, decimal_places=${2})
+models.FloatField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}, }decimal_places=$5)
 $0
 endsnippet
 
 snippet mdec
-${1:fieldname} = models.DecimalField('$1', blank=True, null=True,
-    max_digits=${2:None},
-    decimal_places=${3:2}
+models.DecimalField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}},
+    decimal_places=${5:2}, max_digits=${6:None}
 )
-$0
 endsnippet
 
 snippet mip
-${1:fieldname} = models.IPAddressField('$1', null=True, blank=True)
+models.IPAddressField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mfk
-${1:fieldname} = models.ForeignKey('${2:App.RelatedModel}',
-    ${3:null=True, blank=True, }${4:verbose_name='$1', related_name='$2${3}'}
+models.ForeignKey(${1:Model}, verbose_name=_('${2:`!v GetPythonVariable()`}'),
+    ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
 )
 $0
 endsnippet
 
 snippet m2m
-${1:fieldname} = models.ManyToManyField('${2:App.RelatedModel}',
-    null=True, verbose_name='$1', related_name='${3}'
+models.ManyToManyField(${1:Model}, verbose_name=_('${2:`!v GetPythonVariable()`}'),
+    ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
 )
 $0
 endsnippet
 
 snippet o2o
-${1:fieldname} = models.OneToOneField('${2:App.RelatedModel}',
-    null=True, verbose_name='$1', related_name='${3}'
+models.OneToOneField(${1:Model}, verbose_name=_('${2:`!v GetPythonVariable()`}'),
+    ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
 )
 $0
 endsnippet
 
 snippet mbool
-${1:fieldname} = models.BooleanField('${2}')
+models.BooleanField(_('${1:`!v GetPythonVariable()`}'), ${2:default=${3:False}}$4)
+$0
 endsnippet
 
 snippet mboolnull
-${1:fieldname} = models.NullBooleanField('${2}')
+models.NullBooleanField(_('${1:`!v GetPythonVariable()`}'), ${2:default=${3:False}}$4)
+$0
 endsnippet
 
 snippet mfield
@@ -629,37 +636,36 @@ ${1:fieldname} = models.${2:FieldType}Field('${3:verbose_name}', ${4:other_param
 endsnippet
 
 snippet mff
-${1:fieldname} = models.FileField('$1', upload_to=None)
-${2}
+models.FileField(upload_to=None)
+$0
 endsnippet
 
 snippet mif
-${1:fieldname} = models.ImageField('$1', upload_to=None, height_field=None, width_field=None, max_length=100)
-${2}
+models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+$0
 endsnippet
 
 snippet mfpf
-${1:fieldname} = models.FilePathField('$1',
-    path=${2:unix_style_path},
+models.FilePathField(path=${1:unix_style_path},
     match=r'${3:regex_for_basename}',
     recursive=${4:False}
 )
-${5}
+$0
 endsnippet
 
 snippet mdate
-${1:fieldname} = models.DateField('$1')
-${2}
+models.DateField(_('${1:`!v GetPythonVariable()`}'), $2)
+$0
 endsnippet
 
 snippet mdt
-${1:fieldname} = models.DateTimeField('$1')
-${2}
+models.DateField(_('${1:`!v GetPythonVariable()`}'), $2)
+$0
 endsnippet
 
 snippet mtime
-${1:fieldname} = models.TimeField('$1')
-${2}
+models.TimeField(_('${1:`!v GetPythonVariable()`}'), $2)
+$0
 endsnippet
 # Iabbr addmodel class <>(meta.Model):<CR><><CR><CR>def __repr__(self):<CR>return "%s" % (<>)<CR><CR>class META:<CR>admin = meta.Admin()
 # Iabbr mif meta.ImageField(upload_to='<>')<CR><>

@@ -1437,3 +1437,29 @@ endif
 
 " --------------------------------------------------------------------------
 " }}}
+
+" Utility functions for ultisnips python snippets: not yet organised.
+function! GrabLineBeforeCursor()
+  let currline = getline('.')
+  let cursorpos = col('.')
+  return currline[:cursorpos - 2]
+endfunction
+
+function! GetPythonVariable()
+    let currline = getline('.')
+    " let currline = GrabLineBeforeCursor()
+    let line_containing_variable_pat = '^ *\([^=]\{-1,}\) *=.\+'
+    if match(currline, line_containing_variable_pat) != -1
+      let result = substitute(currline, line_containing_variable_pat, '\1', '')
+    else
+      let result = ''
+    endif
+    return result
+endfunction
+
+function! PrependVariableToModelFields()
+    let currline = getline('.')
+    let varname = matchstr(currline, '_(''\([^'']\{-1,}\)'')')
+    call setline('.', varname . " = " . currline)
+    return varname
+endfunction
