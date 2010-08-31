@@ -69,3 +69,6 @@ $endif
 # Two escapes clear command line.
 # "\e\e": "\e0\C-ki"
 
+# enable single tab completion (esp. for django-bash-completion):
+set show-all-if-ambiguous on
+

@@ -3,6 +3,7 @@
 # System Specific Variables:
 # --------------------------
 virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper_bashrc
+django_bash_completion=$HOME/src/py/django/django/extras/django_bash_completion
 
 # Pre OS-specific Customisation Tweaks: {{{
 # ----------------------------------------------------------------------------
@@ -294,6 +295,9 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 
 # Django Specific: {{{
 # ----------------------------------------------------------------------------
+# Enable pimping django bash-completion:
+source $django_bash_completion
+
 if [[ ${OSTYPE:0:6} = 'darwin' ]]; then
     tests_completed_notification() {
         growlnotify -a 'Languagelab Campfire' -st 'Tests Completed'  -m 'Django has finished running your testsuite'
