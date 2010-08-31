@@ -1255,7 +1255,7 @@ if add_introspection_rules:
                 "${2:kwarg}": ["${3:attribute_name($2)}", {${4:options}}],
             },
         ),
-    ], ["^${5:appname}\.fields\.$1Field"])
+    ], [r"^${5:appname}\.fields\.$1Field"])
 
 # options is a dictionary. You can safely leave it blank, but to make things
 # nicer, we can use it to specify the default value of this keyword - if the
@@ -1271,7 +1271,7 @@ except ImportError:
     add_introspection_rules = False
 
 if add_introspection_rules:
-    add_introspection_rules([], ["^${1:appname}\.fields\.${2:Foo}Field"])
+    add_introspection_rules([], [r"^${1:appname}\.fields\.${2:Foo}Field"])
 
 # Use this if your custom field adds no extra keyword arguments to the field it
 # inherits from
