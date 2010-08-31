@@ -512,7 +512,7 @@ class ${1:ModelName}(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('${6:url_name}', ${7:[]}`!p
+        return ('${1/\w+/\L$0\E/}_detail', ${7:[$8]}`!p
 if t[7] == '[]':
     res = ', {}'
 else:
@@ -522,7 +522,6 @@ else:
 endsnippet
 # }}}
 # Model Fields: {{{
-snippet mchar
 #`!p
 # res = insert_variable_assignment(t[1]) if cur == "" else ""
 # res = insert_variable_assignment(t[1])
@@ -530,6 +529,7 @@ snippet mchar
 # res = '' if variable_already_assigned else t[1] + ' = '
 # res = t[1] + ' = ' if not variable_already_assigned else ''
 #`
+snippet mchar
 models.CharField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }max_length=${3:255}$4)
 $0
 endsnippet
