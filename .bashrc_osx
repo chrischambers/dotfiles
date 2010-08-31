@@ -24,6 +24,7 @@ alias mysqlstart='sudo /opt/local/bin/mysqld_safe5 &'
 alias mysqlstop='/opt/local/bin/mysqladmin5 -u root -p shutdown'
 
 # Postgres Configuration (via Macports)
+# Necessary before installing psycopg2, so that pg_config lives on the path
 export PATH="/opt/local/lib/postgresql84/bin:$PATH"
 # ----------------------------------------------------------------------------
 # }}}
