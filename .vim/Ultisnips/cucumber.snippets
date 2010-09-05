@@ -8,9 +8,14 @@ I want to ${4:take a certain action}
 endsnippet
 
 snippet s "Scenario" b
-Scenario: ${1:Describe your scenario here}
-    Given ${2:a particular condition/action/state}
+Scenario: ${1:terse description of what's different}
+    Given ${2:the bare-minimum context/state}
     ${3:When ${4:some kind of action happens}
-    }Then ${4:some result should occur}
+    }Then ${5:some result should occur}
+endsnippet
+
+snippet defs "Step Definitions" b
+Using step definitions from: '${1:steps}'${2:, '${3:relative-path}'}
+$0
 endsnippet
 
