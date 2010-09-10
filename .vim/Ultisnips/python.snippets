@@ -635,13 +635,13 @@ snippet mfield
 ${1:fieldname} = models.${2:FieldType}Field('${3:verbose_name}', ${4:other_params})
 endsnippet
 
-snippet mff
-models.FileField(upload_to=None)
+snippet mfile
+models.FileField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'),upload_to="${2:`!v GetPythonVariable()`s}")
 $0
 endsnippet
 
-snippet mif
-models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+snippet mimg
+models.ImageField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=True, blank=True, }upload_to="${3:`!v GetPythonVariable()`s}"${4:, height_field=${5:None}, width_field=${6:None}, max_length=${7:100}})
 $0
 endsnippet
 
@@ -745,7 +745,7 @@ snippet adminaction
 def ${1:make_action_happen}(modeladmin, request, queryset):
     for ${2:obj} in queryset:
         ${3:# do something}
-$1.short_description = "${4:$1}"
+$1.short_description = "${4:`!p res = t[1].replace('_', ' ').capitalize()`}"
 $0
 endsnippet
 
@@ -1051,6 +1051,20 @@ urlpatterns += patterns('${1:django.views.generic}',
 )
 ${3}
 endsnippet
+
+
+snippet staticserve "Serve static files in development" b
+from django.conf import settings
+
+# Serve Static Files on Development Machines:
+# -- See http://docs.djangoproject.com/en/dev/howto/static-files/
+if settings.DEBUG:
+    urlpatterns += patterns('',
+    (r'^${1:media}/(?P<path>.*)$', 'django.views.static.serve',
+    {'document_root': settings.MEDIA_ROOT${2:, 'show_indexes': True}}),
+)
+endsnippet
+
 # }}}
 # Testing Django: {{{
 # ---------------

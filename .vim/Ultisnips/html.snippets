@@ -61,6 +61,12 @@ snippet htmlstub "HTML file stub" b
 </html>
 endsnippet
 
+snippet form "Form stub" b!
+<form ${1:enctype="multipart/form-data" }method="${2:post}" action="${3:.}">
+  $4
+</form>$0
+endsnippet
+
 snippet submit "Form submit input" w
 <input type="submit" value="${1:Submit}" />
 $0
