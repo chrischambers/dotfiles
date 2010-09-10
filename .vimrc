@@ -1463,3 +1463,21 @@ function! PrependVariableToModelFields()
     call setline('.', varname . " = " . currline)
     return varname
 endfunction
+
+
+if has("autocmd")
+  augroup cucumber_setup
+    au!
+    " Fold scenarios
+    " autocmd FileType cucumber syn region cucScenFold start="\zsScenario" end="\zeScenario" keepend transparent fold
+    " autocmd FileType cucumber syn region cucFeatFold start="\zsFeature" end="\zeFeature" keepend transparent fold
+    " autocmd FileType cucumber setl foldmethod=syntax
+    autocmd FileType cucumber syn region cucScenFold start="\zsScenario" end="\zeScenario" keepend transparent fold
+    autocmd FileType cucumber setl foldmethod=syntax
+    " File configuration
+    autocmd FileType cucumber setl expandtab
+    autocmd FileType cucumber setl softtabstop=2
+    autocmd FileType cucumber setl shiftwidth=2
+    autocmd FileType cucumber setl wrap
+  augroup END
+endif

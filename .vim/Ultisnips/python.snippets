@@ -525,109 +525,109 @@ endsnippet
 #`!p
 # res = insert_variable_assignment(t[1]) if cur == "" else ""
 # res = insert_variable_assignment(t[1])
-# variable_already_assigned = int(vim.eval("! empty(GetPythonVariable())"))
+# variable_already_assigned = int(vim.eval("! empty(tr(GetPythonVariable(), "_", " "))"))
 # res = '' if variable_already_assigned else t[1] + ' = '
 # res = t[1] + ' = ' if not variable_already_assigned else ''
 #`
 snippet mchar
-models.CharField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }max_length=${3:255}$4)
+models.CharField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }max_length=${3:255}$4)
 $0
 endsnippet
 
 snippet mtext
-models.TextField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }$3)
+models.TextField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }$3)
 $0
 endsnippet
 
 snippet mslug
-models.SlugField(_('${1:`!v GetPythonVariable()`}'), unique=True$2)
+models.SlugField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), unique=True$2)
 $0
 endsnippet
 
 snippet mcsi
-models.CommaSeparatedIntegerField(_('${1:`!v GetPythonVariable()`}'), max_length=${2:255}$3)
+models.CommaSeparatedIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), max_length=${2:255}$3)
 $0
 endsnippet
 
 snippet memail
-models.EmailField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }$3)
+models.EmailField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }$3)
 $0
 endsnippet
 
 snippet murl
-models.UrlField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }verify_exists=${3:True}$4)
+models.UrlField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }verify_exists=${3:True}$4)
 $0
 endsnippet
 
 snippet mxml
-models.XMLField(_('${1:`!v GetPythonVariable()`}'), ${2:blank=True, }schema_path=${3:None}$4)
+models.XMLField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }schema_path=${3:None}$4)
 $0
 endsnippet
 
 snippet mint
-models.IntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+models.IntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mintsmall
-models.SmallIntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+models.SmallIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mintpos
-models.PositiveIntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+models.PositiveIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mintpossmall
-models.PositiveSmallIntegerField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+models.PositiveSmallIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mfloat
-models.FloatField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}, }decimal_places=$5)
+models.FloatField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}, }decimal_places=$5)
 $0
 endsnippet
 
 snippet mdec
-models.DecimalField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}},
+models.DecimalField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}},
     decimal_places=${5:2}, max_digits=${6:None}
 )
 endsnippet
 
 snippet mip
-models.IPAddressField(_('${1:`!v GetPythonVariable()`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+models.IPAddressField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
 $0
 endsnippet
 
 snippet mfk
-models.ForeignKey(${1:Model}, verbose_name=_('${2:`!v GetPythonVariable()`}'),
+models.ForeignKey(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
     ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
 )
 $0
 endsnippet
 
 snippet m2m
-models.ManyToManyField(${1:Model}, verbose_name=_('${2:`!v GetPythonVariable()`}'),
+models.ManyToManyField(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
     ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
 )
 $0
 endsnippet
 
 snippet o2o
-models.OneToOneField(${1:Model}, verbose_name=_('${2:`!v GetPythonVariable()`}'),
+models.OneToOneField(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
     ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
 )
 $0
 endsnippet
 
 snippet mbool
-models.BooleanField(_('${1:`!v GetPythonVariable()`}'), ${2:default=${3:False}}$4)
+models.BooleanField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:default=${3:False}}$4)
 $0
 endsnippet
 
 snippet mboolnull
-models.NullBooleanField(_('${1:`!v GetPythonVariable()`}'), ${2:default=${3:False}}$4)
+models.NullBooleanField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:default=${3:False}}$4)
 $0
 endsnippet
 
@@ -635,13 +635,13 @@ snippet mfield
 ${1:fieldname} = models.${2:FieldType}Field('${3:verbose_name}', ${4:other_params})
 endsnippet
 
-snippet mff
-models.FileField(upload_to=None)
+snippet mfile
+models.FileField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'),upload_to="${2:`!v GetPythonVariable()`s}")
 $0
 endsnippet
 
-snippet mif
-models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+snippet mimg
+models.ImageField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=True, blank=True, }upload_to="${3:`!v GetPythonVariable()`s}"${4:, height_field=${5:None}, width_field=${6:None}, max_length=${7:100}})
 $0
 endsnippet
 
@@ -654,17 +654,17 @@ $0
 endsnippet
 
 snippet mdate
-models.DateField(_('${1:`!v GetPythonVariable()`}'), $2)
+models.DateField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), $2)
 $0
 endsnippet
 
 snippet mdt
-models.DateField(_('${1:`!v GetPythonVariable()`}'), $2)
+models.DateTimeField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), $2)
 $0
 endsnippet
 
 snippet mtime
-models.TimeField(_('${1:`!v GetPythonVariable()`}'), $2)
+models.TimeField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), $2)
 $0
 endsnippet
 # Iabbr addmodel class <>(meta.Model):<CR><><CR><CR>def __repr__(self):<CR>return "%s" % (<>)<CR><CR>class META:<CR>admin = meta.Admin()
@@ -745,7 +745,7 @@ snippet adminaction
 def ${1:make_action_happen}(modeladmin, request, queryset):
     for ${2:obj} in queryset:
         ${3:# do something}
-$1.short_description = "${4:$1}"
+$1.short_description = "${4:`!p res = t[1].replace('_', ' ').capitalize()`}"
 $0
 endsnippet
 
@@ -1051,6 +1051,20 @@ urlpatterns += patterns('${1:django.views.generic}',
 )
 ${3}
 endsnippet
+
+
+snippet staticserve "Serve static files in development" b
+from django.conf import settings
+
+# Serve Static Files on Development Machines:
+# -- See http://docs.djangoproject.com/en/dev/howto/static-files/
+if settings.DEBUG:
+    urlpatterns += patterns('',
+    (r'^${1:media}/(?P<path>.*)$', 'django.views.static.serve',
+    {'document_root': settings.MEDIA_ROOT${2:, 'show_indexes': True}}),
+)
+endsnippet
+
 # }}}
 # Testing Django: {{{
 # ---------------
@@ -1255,7 +1269,7 @@ if add_introspection_rules:
                 "${2:kwarg}": ["${3:attribute_name($2)}", {${4:options}}],
             },
         ),
-    ], ["^${5:appname}\.fields\.$1Field"])
+    ], [r"^${5:appname}\.fields\.$1Field"])
 
 # options is a dictionary. You can safely leave it blank, but to make things
 # nicer, we can use it to specify the default value of this keyword - if the
@@ -1271,7 +1285,7 @@ except ImportError:
     add_introspection_rules = False
 
 if add_introspection_rules:
-    add_introspection_rules([], ["^${1:appname}\.fields\.${2:Foo}Field"])
+    add_introspection_rules([], [r"^${1:appname}\.fields\.${2:Foo}Field"])
 
 # Use this if your custom field adds no extra keyword arguments to the field it
 # inherits from
