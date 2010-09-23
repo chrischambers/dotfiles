@@ -340,6 +340,8 @@ djtest() {
 # My Projects: Languagelab: {{{
 # ----------------------------------------------------------------------------
 alias languagelab='screen -S languagelab -c ~/.screenrc.languagelab'
+export PGUSER='llab'
+export PGDATABASE='langlab'
 # ----------------------------------------------------------------------------
 # }}}
 
