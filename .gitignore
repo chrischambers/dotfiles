@@ -28,6 +28,9 @@
 # Specific exceptions:
 /*.vim/.netrwhist
 /*.vim/.VimballRecord
+/*.vim/GetLatest/Installed/*.zip
+/*.vim/GetLatest/Installed/*.tar
+/*.vim/GetLatest/Installed/*.vba
 /*.vimperator/info/**
 *.swp
 *.svn/
