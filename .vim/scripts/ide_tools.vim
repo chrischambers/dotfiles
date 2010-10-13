@@ -66,10 +66,27 @@ function! VimIDEFixEditCmd(path, ...)
   call VimIDEFixOpenCmds(opt)
 endfunction
 
+function! VimIDEFixTagsCmd(path, ...)
+  """ Wrapper function: handles :tj command
+  let opt = (a:0 >= 1 ? a:1 : {})
+  let cmd = get(opt, 'cmd', ':tj')
+  let opt['cmd'] = cmd . ' ' . fnameescape(a:path)
+  call VimIDEFixOpenCmds(opt)
+endfunction
+
+function! VimIDEFixTagsCmd2(path, ...)
+  """ Wrapper Function, handles :ta command
+  let opt = (a:0 >= 1 ? a:1 : {})
+  let opt['cmd'] = ':ta'
+  call VimIDEFixTagsCmd(a:path, opt)
+endfunction
+
 command! Enew call VimIDEFixOpenCmds()
 command! Split call VimIDEFixOpenCmds({'cmd': ':sp'})
 command! VSplit call VimIDEFixOpenCmds({'cmd': ':vsp'})
 command! -nargs=1 -complete=file Edit call VimIDEFixEditCmd(<q-args>)
+command! -nargs=1 -complete=tag Tjump call VimIDEFixTagsCmd(<q-args>)
+command! -nargs=1 -complete=tag Tag call VimIDEFixTagsCmd2(<q-args>)
 
 cnoremap <expr> enew
       \ (getcmdtype() == ':' && getcmdpos()<4 ? 'Enew' : 'enew')
@@ -79,6 +96,10 @@ cnoremap <expr> vsp
       \ (getcmdtype() == ':' && getcmdpos()<3 ? 'VSplit' : 'vsp')
 cnoreabbrev <expr> e
       \ ((getcmdtype() == ':' && getcmdpos() <= 2) ? 'Edit' : 'e')
+cnoremap <expr> tj
+      \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Tjump' : 'tj')
+cnoremap <expr> ta
+      \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Tag' : 'ta')
 
 function! PreventClosingLastWindow()
   """ Prevents closing the last window, *exclusive* of special buffers.
