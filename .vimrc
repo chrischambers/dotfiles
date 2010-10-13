@@ -1189,17 +1189,18 @@ endfunction
 
 " set list listchars=trail:.,extends:>
 " Deactivated temporarily.
-if has("autocmd")
-  augroup python_prettify
-    au!
-    au FileWritePre *.py :silent call PrettifyPythonWhitespace()
-    au FileAppendPre *.py :silent call PrettifyPythonWhitespace()
-    au FilterWritePre *.py :silent call PrettifyPythonWhitespace()
-    au BufWritePre *.py :silent call PrettifyPythonWhitespace()
-  augroup END
-endif
 
-map! <F2> :call TrimWhiteSpace()<CR>
+" if has("autocmd")
+"   augroup python_prettify
+"     au!
+"     au FileWritePre *.py :silent call PrettifyPythonWhitespace()
+"     au FileAppendPre *.py :silent call PrettifyPythonWhitespace()
+"     au FilterWritePre *.py :silent call PrettifyPythonWhitespace()
+"     au BufWritePre *.py :silent call PrettifyPythonWhitespace()
+"   augroup END
+" endif
+
+noremap <leader>pp :call PrettifyPythonWhitespace()<CR>
 " --------------------------------------------------------------------------
 " }}}
 
