@@ -500,7 +500,6 @@ class ${1:ModelName}(models.Model):
     class Meta(object):
         verbose_name = _('$1')
         verbose_name_plural = _('$1s')
-        ordering = ['-datetime_created']
         get_latest_by = 'datetime_created'
 
     def __unicode__(self):
@@ -509,6 +508,38 @@ class ${1:ModelName}(models.Model):
     def save(self, *args, **kwargs):
         self.datetime_modified = datetime.now()
         return super($1, self).save(*args, **kwargs)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('${1/\w+/\L$0\E/}_detail', ${7:[$8]}`!p
+if t[7] == '[]':
+    res = ', {}'
+else:
+    res = ''`)
+
+    ${0: # specify other custom methods here}
+endsnippet
+
+snippet djmod "Time-stamped model; django-extensions" b
+from django_extensions.db.fields import (
+    CreationDateTimeField, ModificationDateTimeField
+)
+
+class ${1:ModelName}(models.Model):
+    ${2:# constants and choices}
+    ${3:# fields}
+
+    # metadata
+    datetime_created = CreationDateTimeField(_('Created'))
+    datetime_modified = ModificationDateTimeField(_('Last Modified'))
+
+    class Meta(object):
+        verbose_name = _('$1')
+        verbose_name_plural = _('$1s')
+        get_latest_by = 'datetime_created'
+
+    def __unicode__(self):
+        return u"${4:%s}" % (${5:subs},)
 
     @models.permalink
     def get_absolute_url(self):
@@ -602,21 +633,21 @@ endsnippet
 
 snippet mfk
 models.ForeignKey(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
-    ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
+    ${3:null=${4:True}, blank=${5:$4}, }related_name='$6'
 )
 $0
 endsnippet
 
 snippet m2m
 models.ManyToManyField(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
-    ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
+    ${3:null=${4:True}, blank=${5:$4}, }related_name='$6'
 )
 $0
 endsnippet
 
 snippet o2o
 models.OneToOneField(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
-    ${3:null=${4:True}, blank=${5:$4}, }related_name=$6
+    ${3:null=${4:True}, blank=${5:$4}, }related_name='$6'
 )
 $0
 endsnippet
@@ -968,7 +999,7 @@ snippet listener "Django post-save Listener" b
 from django.db.models.signals import post_save
 
 def ${1:listener}(sender, instance, created, **kwargs):
-    ${2:if not instance.id:
+    ${2:if created:
         print 'This record is a create, not an update!'
     ${3:# do stuff}}
 post_save.connect($1, sender=$4)
@@ -994,6 +1025,7 @@ endsnippet
 
 snippet signal "Django Signal Send" b
 ${1:signal_name}.send(sender=${2:self}, ${3:kwargs})
+endsnippet
 # }}}
 # Email: {{{
 
@@ -1249,11 +1281,16 @@ except template.VariableDoesNotExist, e:
     return ''
 endsnippet
 # }}}
+# Messaging: {{{
+snippet msg "Send message" b
+messages.add_message(request, messages.${1:INFO}, ${2:MESSAGE_BODY})
+endsnippet
 
-
-# ----------------
-# South:
-# ----------------
+snippet msgi "Message Import" b
+from django.contrib import messages
+endsnippet
+# }}}
+# South: {{{
 snippet southfield "South Field Introspection" b
 try:
     from south.modelsinspector import add_introspection_rules
@@ -1290,4 +1327,5 @@ if add_introspection_rules:
 # Use this if your custom field adds no extra keyword arguments to the field it
 # inherits from
 endsnippet
+# }}}
 
