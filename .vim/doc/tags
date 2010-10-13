@@ -1200,7 +1200,9 @@ txtfmt	txtfmt.txt	/*txtfmt*
 txtfmt-'bcm'	txtfmt.txt	/*txtfmt-'bcm'*
 txtfmt-'bgcolormask'	txtfmt.txt	/*txtfmt-'bgcolormask'*
 txtfmt-'cncl'	txtfmt.txt	/*txtfmt-'cncl'*
+txtfmt-'cocu'	txtfmt.txt	/*txtfmt-'cocu'*
 txtfmt-'conceal'	txtfmt.txt	/*txtfmt-'conceal'*
+txtfmt-'concealcursor'	txtfmt.txt	/*txtfmt-'concealcursor'*
 txtfmt-'esc'	txtfmt.txt	/*txtfmt-'esc'*
 txtfmt-'escape'	txtfmt.txt	/*txtfmt-'escape'*
 txtfmt-'fcm'	txtfmt.txt	/*txtfmt-'fcm'*
@@ -1253,6 +1255,9 @@ txtfmt-color-config	txtfmt.txt	/*txtfmt-color-config*
 txtfmt-color-defaults	txtfmt.txt	/*txtfmt-color-defaults*
 txtfmt-colorschemes	txtfmt.txt	/*txtfmt-colorschemes*
 txtfmt-combining	txtfmt.txt	/*txtfmt-combining*
+txtfmt-conceal-backwards-compatibility	txtfmt.txt	/*txtfmt-conceal-backwards-compatibility*
+txtfmt-conceal-history	txtfmt.txt	/*txtfmt-conceal-history*
+txtfmt-conceal-notes	txtfmt.txt	/*txtfmt-conceal-notes*
 txtfmt-configuration	txtfmt.txt	/*txtfmt-configuration*
 txtfmt-contents	txtfmt.txt	/*txtfmt-contents*
 txtfmt-create-tok-str	txtfmt.txt	/*txtfmt-create-tok-str*
@@ -1353,12 +1358,14 @@ txtfmt-user-map-expansion	txtfmt.txt	/*txtfmt-user-map-expansion*
 txtfmt-user-map-fmt	txtfmt.txt	/*txtfmt-user-map-fmt*
 txtfmt-user-maps	txtfmt.txt	/*txtfmt-user-maps*
 txtfmt-view-tok-map	txtfmt.txt	/*txtfmt-view-tok-map*
+txtfmt-viewing-old-files-without-conceal	txtfmt.txt	/*txtfmt-viewing-old-files-without-conceal*
 txtfmt.txt	txtfmt.txt	/*txtfmt.txt*
 txtfmtAllowxl	txtfmt.txt	/*txtfmtAllowxl*
 txtfmtBgcolormask	txtfmt.txt	/*txtfmtBgcolormask*
 txtfmtBgcolor{}	txtfmt.txt	/*txtfmtBgcolor{}*
 txtfmtColor{}	txtfmt.txt	/*txtfmtColor{}*
 txtfmtConceal	txtfmt.txt	/*txtfmtConceal*
+txtfmtConcealcursor	txtfmt.txt	/*txtfmtConcealcursor*
 txtfmtEscape	txtfmt.txt	/*txtfmtEscape*
 txtfmtFgcolormask	txtfmt.txt	/*txtfmtFgcolormask*
 txtfmtJumptoinactive	txtfmt.txt	/*txtfmtJumptoinactive*
