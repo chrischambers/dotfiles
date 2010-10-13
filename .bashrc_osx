@@ -38,15 +38,11 @@ alias firefox='open /Applications/Firefox.app'
 
 # MacVim Configuration: {{{
 # ----------------------------------------------------------------------------
-# alias vim='/Applications/MacVim-snapshot-47/MacVim.app/Contents/MacOS/Vim'
-# note: can't symlink to the above, ergo using alias to override default
-# OSX vim. Annoyingly, 'which vim' doesn't work in these circumstances.
-
-# For Macvim: (symlinked mvim script in /usr/local/bin/ )--
 export VIM_APP_DIR="/Applications/MacVim/"
-export EDITOR="mvim -v"
-alias vim=$EDITOR
-alias gvim='mvim'
+# Using this alias is superior to a symlink because it creates the correct
+# runtimepath automatically
+alias vim="/Applications/MacVim/MacVim.app/Contents/MacOS/Vim"
+export EDITOR="/Applications/MacVim/MacVim.app/Contents/MacOS/Vim"
 # ----------------------------------------------------------------------------
 # }}}
 
