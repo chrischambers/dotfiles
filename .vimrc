@@ -16,7 +16,7 @@ let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
 let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:baseline_vim_path=""
 let g:pythonpath_fixtures= [ g:vimfiles_path . '/python',
-              \              g:vimfiles_path . '/after/ftplugin/python/' ]
+              \              g:vimfiles_path . '/after/ftplugin/python/pyflakes' ]
 " For overriding these settings or adding sensitive data (such as github
 " token):
 let s:local_vimrc = fnamemodify('~/.vimrc_local', ':p')
