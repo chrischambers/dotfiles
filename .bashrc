@@ -302,7 +302,7 @@ source $django_bash_completion
 
 if [[ ${OSTYPE:0:6} = 'darwin' ]]; then
     tests_completed_notification() {
-        growlnotify -a 'Languagelab Campfire' -st 'Tests Completed'  -m 'Django has finished running your testsuite'
+        growlnotify -a 'Languagelab Campfire' -t 'Tests Completed'  -m 'Django has finished running your testsuite'
     }
 else
     tests_completed_notification() {
