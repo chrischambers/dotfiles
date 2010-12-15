@@ -487,6 +487,7 @@ if has("gui_running")
   highlight SpellBad term=underline gui=undercurl guisp=Orange
   " highlight SpellBad term=reverse ctermbg=12 gui=undercurl guisp=Orange
 endif
+let g:pyflakes_use_quickfix = 0
 " --------------------------------------------------------------------------
 " }}}
 
