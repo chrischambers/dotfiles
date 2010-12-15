@@ -24,7 +24,7 @@ $0
 endsnippet
 # }}}
 # Imports: {{{
-snippet i b
+snippet i "Import" b
 import ${1:module}
 $0
 endsnippet
@@ -148,6 +148,21 @@ endsnippet
 snippet _
 __${1:init}__${2}
 endsnippet
+
+snippet iter "__iter__" b
+def __iter__(self):
+    $0
+endsnippet
+
+snippet getattr "__getattr__" b
+def __getattr__(self, attr):
+    return getattr(self.__class__, attr)
+endsnippet
+
+snippet setattr "__setattr__" b
+def __setattr__(self, attr, value):
+    return setattr(self.__class__, attr, value)
+endsnippet
 # }}}
 # Exception Handling: {{{
 snippet try "Try/Except" b!
@@ -200,9 +215,16 @@ endsnippet
 # Metaclass: {{{
 snippet metaclass
 class ${1:MyMetaClass}(type):
-    def__init__(cls, name, bases, attrs):
+
+    def __new__(cls, name, bases, attrs):
+        # Allocating memory for class
+        return type.__new__(cls, name, bases, attrs)
+
+    def __init__(cls, name, bases, attrs):
+        # Init'ing (configuring) class
         super($1, cls).__init__(name, bases, attrs)
         $2
+
 endsnippet
 # }}}
 # Descriptors: {{{
@@ -851,6 +873,11 @@ ${1:fieldname} = forms.CharField()
 $0
 endsnippet
 
+snippet femail "forms.EmailField" b
+${1:fieldname} = forms.EmailField()
+$0
+endsnippet
+
 snippet fchoice "forms.ChoiceField" b
 ${1:fieldname} = forms.ChoiceField(choices=${2:})
 $0
@@ -951,7 +978,7 @@ endsnippet
 snippet formview "Reusable App" b
 from django.db.models import get_model
 
-def ${1:form_view}(request, FormClass=${2:YourFormClass),
+def ${1:form_view}(request, FormClass=${2:YourFormClass},
                    model_str="${3:appname.modelname}",
                    template_name="${4:path_to_template}.html",
                    success_url=${5:url}, extra_context={}):
