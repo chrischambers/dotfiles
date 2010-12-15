@@ -1,0 +1,57 @@
+# Use OSX's Address book for address completion:
+set query_command="/opt/local/bin/lbdbq '%s'"
+
+# Gmail IMAP Configuration:
+# -------------------------
+# with thanks to the following resources:
+# blog.johnlawrence.net/2007/09/gmail-imap-and-mutt-on-osx/
+# http://lifehacker.com/5574557/how-to-use-the-fast-and-powerful-mutt-email-client-with-gmail
+
+set hostname = gmail.com
+set imap_user = 'magma.chambers@gmail.com'
+set imap_pass = '' # Prompt for password
+set from = "magma.chambers@gmail.com"
+set realname = "Chris Chambers"
+# set smtp_url = "smtp://YOUR.EMAIL@smtp.gmail.com:587/"
+# set smtp_pass = ""
+
+# set editor = "vim"
+
+set mail_check = 120
+set timeout = 300
+set imap_keepalive = 300
+set imap_check_subscribed
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Google Mail]/Drafts"
+set record = "+[Google Mail]/Sent Mail"
+
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+set certificate_file="~/.mutt/certificates"
+
+set move = no
+set include
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set auto_tag = yes
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+alternative_order text/plain text/html *
+auto_view text/html
+#
+# bind editor <Tab> complete-query
+# bind editor ^T complete
+# bind editor <space> noop
+
+# Gmail-style keyboard shortcuts
+# macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+# macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[Google Mail]/Bin\"\n <delete-message>" "Gmail delete message"
+# macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+# macro index,pager ga "<change-folder>=[<tab>/All<tab><enter>" "Go to all mail"
+# macro index,pager gs "<change-folder>=[<tab>Starred<enter>" "Go to starred messages"
+# macro index,pager gd "<change-folder>=[<tab>Drafts<enter>" "Go to drafts"
