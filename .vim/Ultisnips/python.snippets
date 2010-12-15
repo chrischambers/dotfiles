@@ -103,7 +103,7 @@ def ${1:foo}():
         ${3:return self._$1}
     def fset(self, value):
         ${4:self._$1 = value}
-$0
+$1 = property(**$1())
 endsnippet
 # }}}
 # Lambda: {{{
