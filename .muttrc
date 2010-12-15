@@ -1,3 +1,7 @@
+# Macports command for correct mutt installation:
+# -----------------------------------------------
+# sudo port -vc install mutt-devel +gnuregex +gpgme +headercache +imap +sasl +smtp +ssl +tokyocabinet +sidebar
+#
 # Use OSX's Address book for address completion:
 set query_command="/opt/local/bin/lbdbq '%s'"
 
