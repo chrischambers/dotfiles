@@ -2,7 +2,7 @@
 
 # System Specific Variables:
 # --------------------------
-virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper_bashrc
+virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
 django_bash_completion=$HOME/src/py/django/django/extras/django_bash_completion
 
 # Pre OS-specific Customisation Tweaks: {{{
