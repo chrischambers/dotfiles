@@ -483,11 +483,14 @@ endif
 " --------------------------------------------------------------------------
 " Source: <url:http://vim.sourceforge.net/scripts/script.php?script_id=2441>
 " --------------------------------------------------------------------------
+" this clobbers other quickfix results, like :grep search results, for
+" example:
+let g:pyflakes_use_quickfix = 0
+
 if has("gui_running")
   highlight SpellBad term=underline gui=undercurl guisp=Orange
   " highlight SpellBad term=reverse ctermbg=12 gui=undercurl guisp=Orange
 endif
-let g:pyflakes_use_quickfix = 0
 " --------------------------------------------------------------------------
 " }}}
 
