@@ -1059,6 +1059,19 @@ endif
 " --------------------------------------------------------------------------
 " }}}
 
+" Json Specific:
+
+" Autocommand: Prepare Json File Syntax Highlighting: {{{
+" --------------------------------------------------------------------------
+if has("autocmd")
+  augroup json_setup
+    au!
+    autocmd BufRead,BufNewFile *.json setfiletype json
+  augroup END
+endif
+" --------------------------------------------------------------------------
+" }}}
+
 " HTML Specific:
 
 " Autocommand: Prepare HTML File Defaults: {{{
