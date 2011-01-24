@@ -55,7 +55,11 @@ endsnippet
 # }}}
 # Directives: {{{
 #----------------------------------------------------------------------
-snippet image "Image" b
+snippet dir "Directive - General" b
+.. ${1:directive}:: ${2:parameters}
+endsnippet
+
+snippet image "Image Directive" b
 .. image:: ${1:path/to/image.png}
 ${2:
    :height: ${3:200}
@@ -64,6 +68,9 @@ ${2:
 }
 endsnippet
 
+snippet figure "Figure Directive" b
+.. figure:: ${1:path/to/image.png}
+endsnippet
 #----------------------------------------------------------------------
 # }}}
 # Links: {{{
@@ -79,12 +86,21 @@ snippet link "Link - External, embedded" b
 endsnippet
 
 snippet link "Link - Internal" b
-${1:link text}_
+`!p res = "\`" if " " in t[1] else ""`${1:link text}`!p res = "\`" if " " in t[1] else ""`_
 
 .. _$1:
 
 ${2:This is the location that "$1" will jump to.}
 endsnippet
+# Internal hyperlinks point to the element FOLLOWING the target.
+
+snippet link "Link - Anonymous" b
+`!p res = "\`" if " " in t[1] else ""`${1:link text}`!p res = "\`" if " " in t[1] else ""`__
+
+__ ${2:http://www.foo.com}
+endsnippet
+# The amount of Anonymous hyperlinks must match the amount of Anonymous targets
+# (e.g. link text): The nth anonymous hyperlink matches the nth anonymous target.
 
 
 snippet ftnt "Footnote - auto-numbered" i
