@@ -24,7 +24,7 @@ fi
 # ----------------------------------------------------------------------------
 export SVN_EDITOR=$EDITOR
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
-export MANPATH="/Users/ajax/man:$MANPATH"
+export MANPATH="$HOME/man:$MANPATH"
 # ...should contain man1/plod.1 to find manfile for plod, for example.
 # ----------------------------------------------------------------------------
 # }}}
