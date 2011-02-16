@@ -3,6 +3,7 @@
 	ci = commit
 	co = checkout
 	br = branch
+	cp = cherry-pick
 	showremote = !sh -c 'git for-each-ref --format=\"%(upstream:short)\" $(git rev-parse --symbolic-full-name --default HEAD $1)' -
 [user]
 	name = Chris Chambers
