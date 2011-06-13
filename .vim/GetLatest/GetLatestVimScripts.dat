@@ -28,7 +28,7 @@
 # Latest versions won't work with fuzzyfinder-textmate dir-pattern matching!
 # Manually set installation ver to very high number to suppress download.
 1984 9999999 fuzzyfinder.vim
-1788 6727 :AutoInstall: bexec.vim
+1788 14953 :AutoInstall: bexec.vim
 39 8196 :AutoInstall: matchit.vim
 # 2150 8846 :AutoInstall: css_color.vim
 # Note: above plugin belongs in after/syntax,but auto-installed into plugin/
