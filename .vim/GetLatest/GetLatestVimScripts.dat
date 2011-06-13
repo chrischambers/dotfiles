@@ -22,8 +22,8 @@
 294 10110 :AutoInstall: Align.vim
 1343 12473 :AutoInstall: autotag.vim
 642 15781 :AutoInstall: getscript.vim
-1075 11979 :AutoInstall: netrw.vim
-1502 11981 :AutoInstall: vimball.vim
+# 1075 11979 :AutoInstall: netrw.vim
+1502 15362 :AutoInstall: vimball.vim
 489 14117 :AutoInstall: Manpageview.vim
 # Latest versions won't work with fuzzyfinder-textmate dir-pattern matching!
 # Manually set installation ver to very high number to suppress download.
