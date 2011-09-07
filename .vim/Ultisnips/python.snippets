@@ -487,6 +487,15 @@ register = template.Library()
 $0
 endsnippet
 
+snippet testi "Django test imports" b
+from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User, Group, Permission
+
+from django.test import TestCase
+from nose.tools import *
+endsnippet
+
 # }}}
 # Orm: {{{
 snippet oget "get object" b
@@ -613,7 +622,7 @@ $0
 endsnippet
 
 snippet murl
-models.UrlField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }verify_exists=${3:True}$4)
+models.URLField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }verify_exists=${3:True}$4)
 $0
 endsnippet
 
@@ -684,7 +693,7 @@ models.BooleanField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:defaul
 $0
 endsnippet
 
-snippet mboolnull
+snippet mnbool
 models.NullBooleanField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:default=${3:False}}$4)
 $0
 endsnippet
