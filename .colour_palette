@@ -3,6 +3,9 @@
 # Colour Palette: {{{
 # See <url:http://www.ibm.com/developerworks/linux/library/l-tip-prompt/>
 # Color chart for full selection
+
+# Foreground Colours:
+# -------------------
 export black=$'\e[00;30m'
 export dark_grey=$'\e[01;30m'
 export red=$'\e[00;31m'
@@ -20,6 +23,21 @@ export bold_cyan=$'\e[01;36m'
 export bold_grey=$'\e[00;37m'
 export white=$'\e[01;37m'
 export reset=$'\e[0m'
+
+# Note that what is described as yellow may be brown on some terminals, whereas
+# what is described as white may appear gray.
+# In addition to the colors, there # are various special codes:
+
+# * 0 restores the default colors (foreground # and back- ground)
+# * 1 produces brighter colors
+# * 4 produces underlined text,
+# * 5 produces flashing text.
+
+# Often 5 doesn’t work; however, many consider the effect to be distracting so
+# this is really not an issue for most users. Also, keep in mind not all
+# terminals are capable of underlining and as a result code 4 may produce some
+# other effect.
+# Source: From Bash to Z Shell.
 
 export COLOUR_PALETTE="
 ${dark_grey}dark_grey
