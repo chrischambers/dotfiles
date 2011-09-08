@@ -49,6 +49,9 @@ export HISTCONTROL=ignoredups
 export HISTIGNORE="&:[ \t]*:ls:[bf]g:exit:clear:h"
 # Source: <url:http://djangotricks.blogspot.com/2008/09/note-on-python-paths.html>
 export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S - '
+# Enable 'magic space', which will automatically perform history substitution
+# when spacebar is pressed:
+bind '" ": magic-space'
 # ----------------------------------------------------------------------------
 # }}}
 
