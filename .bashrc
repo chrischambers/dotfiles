@@ -57,69 +57,7 @@ bind '" ": magic-space'
 
 # Bash Prompt: {{{
 # ----------------------------------------------------------------------------
-# Colour Palette: {{{
-# See <url:http://www.ibm.com/developerworks/linux/library/l-tip-prompt/>
-# Color chart for full selection
-export black=$'\e[00;30m'
-export dark_grey=$'\e[01;30m'
-export red=$'\e[00;31m'
-export bold_red=$'\e[01;31m'
-export green=$'\e[00;32m'
-export bold_green=$'\e[01;32m'
-export brown=$'\e[00;33m'
-export yellow=$'\e[01;33m'
-export blue=$'\e[00;34m'
-export bold_blue=$'\e[01;34m'
-export purple=$'\e[00;35m'
-export bold_purple=$'\e[01;35m'
-export cyan=$'\e[00;36m'
-export bold_cyan=$'\e[01;36m'
-export bold_grey=$'\e[00;37m'
-export white=$'\e[01;37m'
-export reset=$'\e[0m'
-
-export COLOUR_PALETTE="
-${dark_grey}dark_grey
-${blue}blue
-${bold_blue}bold_blue
-${green}green
-${bold_green}bold_green
-${cyan}cyan
-${bold_cyan}bold_cyan
-${red}red
-${bold_red}bold_red
-${purple}purple
-${bold_purple}bold_purple
-${brown}brown
-${yellow}yellow
-${bold_grey}bold_grey
-${white}white
-${reset}reset
-"
-# We need to surround all non-printing characters with special bash escape
-# sequences, "\[" and "\]". These sequences will tell bash that the enclosed
-# characters don't take up any space on the line, which will allow
-# word-wrapping to continue to work properly. Without them, you'll end up with
-# a nice-looking prompt that will mess up the screen if you happen to type in a
-# command that approaches the extreme right of the terminal.
-# Source: <url:http://www.ibm.com/developerworks/linux/library/l-tip-prompt/>
-BLACK='\[${black}\]'
-DARK_GREY='\[${dark_grey}\]'
-RED='\[${red}\]'
-BOLD_RED='\[${bold_red}\]'
-GREEN='\[${green}\]'
-BOLD_GREEN='\[${bold_green}\]'
-BROWN='\[${brown}\]'
-YELLOW='\[${yellow}\]'
-BLUE='\[${blue}\]'
-BOLD_BLUE='\[${bold_blue}\]'
-PURPLE='\[${purple}\]'
-BOLD_PURPLE='\[${bold_purple}\]'
-CYAN='\[${cyan}\]'
-BOLD_CYAN='\[${bold_cyan}\]'
-BOLD_GREY='\[${bold_grey}\]'
-WHITE='\[${white}\]'
-RESET='\[${reset}\]'
+source ~/.colour_palette
 # }}}
 # Utility Functions for Prompt: {{{
 parse_git_branch() {
