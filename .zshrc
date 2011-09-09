@@ -58,6 +58,15 @@ source $virtualenvwrapper_loc
 alias l='ls -AlhFG'
 # . ~/.zsh_prompt_ft
 source ~/.colour_palette
-PS1='%n@%m %# '
+
+setopt prompt_subst    # Enable substituing variables into prompt
+unsetopt prompt_cr     # Suppress prompt printing carriage return before display
 PS1="${YELLOW}"'['"${GREEN}"'%!'"${YELLOW}"']'"${BLUE}"' %n'"${YELLOW}"'@'"${BLUE}"'%m '"${YELLOW}"'['"${RED}"'%*'"${YELLOW}"']
 ['"${BLUE}"' %~ '"${YELLOW}"'] '"${RED}"'%# '"${RESET}"
+
+setopt correct         # offer spelling suggestion for mistyped command
+                       # [no / yes / abort / edit]
+
+# Default Spelling Correction prompt: placed here for easy editing. Can use any
+# other prompt escapes.
+SPROMPT="zsh: correct '%R' to '%r' [nyae]?"
