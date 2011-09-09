@@ -61,8 +61,21 @@ source ~/.colour_palette
 
 setopt prompt_subst    # Enable substituing variables into prompt
 unsetopt prompt_cr     # Suppress prompt printing carriage return before display
-PS1="${YELLOW}"'['"${GREEN}"'%!'"${YELLOW}"']'"${BLUE}"' %n'"${YELLOW}"'@'"${BLUE}"'%m '"${YELLOW}"'['"${RED}"'%*'"${YELLOW}"']
-['"${BLUE}"' %~ '"${YELLOW}"'] '"${RED}"'%# '"${RESET}"
+
+function zle-keymap-select {
+    VIMODE="${${KEYMAP/vicmd/${RED}}/(main|viins)/}"
+    zle reset-prompt
+}
+
+zle -N zle-keymap-select
+
+
+
+# PS1="${YELLOW}"'['"${GREEN}"'%!'"${YELLOW}"']'"${BLUE}"' %n'"${YELLOW}"'@'"${BLUE}"'%m '"${YELLOW}"'['"${RED}"'%*'"${YELLOW}"']
+# ['"${BLUE}"' %~ '"${YELLOW}"'] '"${RED}"'%# '"${RESET}"
+
+PROMPT='${YELLOW}[${GREEN}%!${YELLOW}]${BLUE} %n${YELLOW}@${BLUE}%m ${YELLOW}[${RED}%*${YELLOW}]
+[${BLUE} %~ ${YELLOW}] ${RED}%# ${RESET}${VIMODE}'
 
 setopt correct         # offer spelling suggestion for mistyped command
                        # [no / yes / abort / edit]
