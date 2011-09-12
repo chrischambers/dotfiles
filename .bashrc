@@ -8,6 +8,7 @@ django_bash_completion=$HOME/src/py/django/django/extras/django_bash_completion
 # Pre OS-specific Customisation Tweaks: {{{
 # ----------------------------------------------------------------------------
 export EDITOR=vim
+alias gvim="vim -g"
 # ----------------------------------------------------------------------------
 # }}}
 
@@ -28,6 +29,8 @@ export MANPATH="$HOME/man:$MANPATH"
 # ...should contain man1/plod.1 to find manfile for plod, for example.
 # ----------------------------------------------------------------------------
 # }}}
+
+shopt -u dotglob # Ensure that * doesn't automatically match hidden files
 
 # Bash History Management: {{{
 # ----------------------------------------------------------------------------
