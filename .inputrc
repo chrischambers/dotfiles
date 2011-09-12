@@ -72,3 +72,5 @@ $endif
 # enable single tab completion (esp. for django-bash-completion):
 set show-all-if-ambiguous on
 
+# Show ``ls -F`` style output when completing:
+set visible-stats on

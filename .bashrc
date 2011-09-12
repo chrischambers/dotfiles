@@ -302,3 +302,6 @@ _pip_completion()
 complete -o default -F _pip_completion pip
 # pip bash completion end
 
+# Disables completion on leading tabs (prevents pasted commands with leading
+# tabs from being interpreted as completions):
+shopt -s no_empty_cmd_completion

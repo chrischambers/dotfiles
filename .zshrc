@@ -35,10 +35,6 @@ setopt hist_reduce_blanks # Remove extraneous whitespace whens storying history
 # Define some aliases.
 alias pu=pushd
 #
-# Load the function-based completion system.
-autoload -U compinit
-compinit
-
 
 # Keybindings: {{{
 # ----------------------------------------------------------------------------
@@ -55,6 +51,7 @@ bindkey -M emacs '\ee' edit-command-line
 
 virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
 source $virtualenvwrapper_loc
+alias ls='ls -G'
 alias l='ls -AlhFG'
 # . ~/.zsh_prompt_ft
 source ~/.colour_palette
@@ -103,6 +100,8 @@ bindkey -M viins "\C-w" backward-kill-word
 bindkey -M viins "\e[A" history-search-backward
 bindkey -M viins "\e[B" history-search-forward
 
+bindkey -M viins "\C-u" undo
+
 set -o vi
 
 KEYTIMEOUT=10  # Default: 40, set lower to reduce escape key delay
@@ -116,3 +115,41 @@ setopt csh_null_glob # # If there are several patterns on the command line, at
 
 setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
                           # on the match (like ``sort -n`` on matched region).
+                          #
+
+# Completion: {{{
+# ----------------------------------------------------------------------------
+autoload -U compinit
+compinit
+unsetopt list_ambiguous   # ``find -ex<TAB>`` will complete up to 'exec', but
+                          # also list the other completions (``-execdir``, in
+                          # this case)
+
+# Infer descriptions for options without descriptions, by introspecting their
+# argument names:
+zstyle ':completion:*' auto-description 'specify: %d'
+
+# Paginate long completions:
+zmodload zsh/complist
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+# Use:
+# * Tab to advance screen
+# * Enter to advance single line
+# * Ctrl-c to exit
+
+# ISSUE: also sends 'q' character after exiting.
+bindkey -M listscroll q send-break  # Emulates Ctrl-C when paging, above.
+
+# Something like vim's 'smartcase' - here, completion is case-insensitive where
+# lowercase letters are used, but not the reverse:
+zstyle ':completion:*:(^approximate):*' matcher-list 'm:{a-z}={A-Z}'
+
+setopt complete_in_word  # Expects characters after cursor to be at the end of
+                         # matches. E.g. completing ``h.html`` with the cursor
+                         # on the dot finds all files starting with h and
+                         # ending in html!
+
+zstyle ':completion:*' insert-tab true # Disables completion on leading tabs
+                                       # (prevents pasted commands with leading
+                                       # tabs from being interpreted as
+                                       # completions):
