@@ -62,20 +62,27 @@ source ~/.colour_palette
 setopt prompt_subst    # Enable substituing variables into prompt
 unsetopt prompt_cr     # Suppress prompt printing carriage return before display
 
+bg_red=$'%{\e[00;41m%}'
+
 function zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/${RED}}/(main|viins)/}"
+    VIMODE="${${KEYMAP}/(main|viins)/}"
     zle reset-prompt
 }
 
 zle -N zle-keymap-select
 
-
+function v {
+    if [[ $VIMODE = 'vicmd' ]]; then
+        echo "$bg_red"
+    fi
+}
 
 # PS1="${YELLOW}"'['"${GREEN}"'%!'"${YELLOW}"']'"${BLUE}"' %n'"${YELLOW}"'@'"${BLUE}"'%m '"${YELLOW}"'['"${RED}"'%*'"${YELLOW}"']
 # ['"${BLUE}"' %~ '"${YELLOW}"'] '"${RED}"'%# '"${RESET}"
 
-PROMPT='${YELLOW}[${GREEN}%!${YELLOW}]${BLUE} %n${YELLOW}@${BLUE}%m ${YELLOW}[${RED}%*${YELLOW}]
-[${BLUE} %~ ${YELLOW}] ${RED}%# ${RESET}${VIMODE}'
+PROMPT='
+${YELLOW}[${GREEN}%!${YELLOW}]${BLUE} $(v)%n${YELLOW}$(v)@${BLUE}$(v)%m${RESET}${YELLOW} [${RED}%*${YELLOW}]
+[${BLUE} %~ ${YELLOW}] ${RED}%# ${RESET}'
 
 setopt correct         # offer spelling suggestion for mistyped command
                        # [no / yes / abort / edit]
@@ -83,3 +90,29 @@ setopt correct         # offer spelling suggestion for mistyped command
 # Default Spelling Correction prompt: placed here for easy editing. Can use any
 # other prompt escapes.
 SPROMPT="zsh: correct '%R' to '%r' [nyae]?"
+
+bindkey -M viins "\C-a" beginning-of-line
+bindkey -M viins "\C-b" backward-char
+bindkey -M viins "\C-d" delete-char
+bindkey -M viins "\C-e" end-of-line
+bindkey -M viins "\C-f" forward-char
+bindkey -M viins "\C-k" kill-line
+bindkey -M viins "\C-n" next-history
+bindkey -M viins "\C-p" previous-history
+bindkey -M viins "\C-w" backward-kill-word
+bindkey -M viins "\e[A" history-search-backward
+bindkey -M viins "\e[B" history-search-forward
+
+set -o vi
+
+KEYTIMEOUT=10  # Default: 40, set lower to reduce escape key delay
+
+setopt noglobdots # Ensure that * doesn't automatically match hidden files
+
+setopt csh_null_glob # # If there are several patterns on the command line, at
+                     # least one must match a file or files; in that case, any
+                     # that don't are removed from the argument list. If no
+                     # pattern matches, an error is reported.
+
+setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
+                          # on the match (like ``sort -n`` on matched region).
