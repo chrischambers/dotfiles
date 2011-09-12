@@ -153,3 +153,6 @@ zstyle ':completion:*' insert-tab true # Disables completion on leading tabs
                                        # (prevents pasted commands with leading
                                        # tabs from being interpreted as
                                        # completions):
+
+source ~/src/vim/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
