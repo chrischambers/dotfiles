@@ -7,6 +7,9 @@
 # it won't delete past the point where insert mode was last entered. (see
 # http://www.cs.elte.hu/zsh-manual/zsh_toc.html#TOC49)
 
+# Moreover, the following line is needed to tell the terminal that ^H is your
+# backspace command:
+stty erase 
 
 # Fink and Macports Configuration: {{{
 # ----------------------------------------------------------------------------
