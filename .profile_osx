@@ -1,3 +1,13 @@
+# Note to self:
+# Remember to set Terminal > Preferences > Advanced > "Delete # sends Ctrl-H"
+# in your terminal settings!
+
+# This allows you to remap the backspace key so that it isn't automatically set
+# to vi-backwards-delete-char when in vi-ins mode, which is frustrating because
+# it won't delete past the point where insert mode was last entered. (see
+# http://www.cs.elte.hu/zsh-manual/zsh_toc.html#TOC49)
+
+
 # Fink and Macports Configuration: {{{
 # ----------------------------------------------------------------------------
 # Automatically added by Fink ==> /sw/bin/pathsetup.sh

@@ -99,6 +99,7 @@ bindkey -M viins "\C-p" previous-history
 bindkey -M viins "\C-w" backward-kill-word
 bindkey -M viins "\e[A" history-search-backward
 bindkey -M viins "\e[B" history-search-forward
+bindkey -M viins "\C-h" backward-delete-char
 
 bindkey -M viins "\C-u" undo
 
