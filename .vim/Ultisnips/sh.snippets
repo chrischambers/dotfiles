@@ -3,7 +3,6 @@ snippet #! "#!/usr/bin/env (!env)" !
 
 $0
 endsnippet
-#!/usr/bin/env bash
 
 snippet temp "Tempfile" !
 ${1:TMPFILE}="$(mktemp -t ${2:`!p res = re.sub(r'[^a-zA-Z]', '_', fn)
@@ -86,5 +85,3 @@ snippet l "local" b
 local ${1:${2:variable}=${3:value}}
 $0
 endsnippet
-
-
