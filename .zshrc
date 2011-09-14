@@ -46,48 +46,6 @@ bindkey -M emacs '\ee' edit-command-line
 # bindkey -M emacs '\e[A': history-search-backward
 # bindkey -M emacs '\e[B': history-search-forward
 
-# ----------------------------------------------------------------------------
-# }}}
-
-# virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
-# source $virtualenvwrapper_loc
-# alias ls='ls -G'
-# alias l='ls -AlhFG'
-# . ~/.zsh_prompt_ft
-# source ~/.colour_palette
-
-setopt prompt_subst    # Enable substituing variables into prompt
-unsetopt prompt_cr     # Suppress prompt printing carriage return before display
-
-bg_red=$'%{\e[00;41m%}'
-
-function zle-keymap-select {
-    VIMODE="${${KEYMAP}/(main|viins)/}"
-    zle reset-prompt
-}
-
-zle -N zle-keymap-select
-
-function v {
-    if [[ $VIMODE = 'vicmd' ]]; then
-        echo "$bg_red"
-    fi
-}
-
-# PS1="${YELLOW}"'['"${GREEN}"'%!'"${YELLOW}"']'"${BLUE}"' %n'"${YELLOW}"'@'"${BLUE}"'%m '"${YELLOW}"'['"${RED}"'%*'"${YELLOW}"']
-# ['"${BLUE}"' %~ '"${YELLOW}"'] '"${RED}"'%# '"${RESET}"
-
-PROMPT='
-${YELLOW}[${GREEN}%!${YELLOW}]${BLUE} $(v)%n${YELLOW}$(v)@${BLUE}$(v)%m${RESET}${YELLOW} [${RED}%*${YELLOW}]
-[${BLUE} %~ ${YELLOW}] ${RED}%# ${RESET}'
-
-setopt correct         # offer spelling suggestion for mistyped command
-                       # [no / yes / abort / edit]
-
-# Default Spelling Correction prompt: placed here for easy editing. Can use any
-# other prompt escapes.
-SPROMPT="zsh: correct '%R' to '%r' [nyae]?"
-
 bindkey -M viins "\C-a" beginning-of-line
 bindkey -M viins "\C-b" backward-char
 bindkey -M viins "\C-d" delete-char
@@ -107,6 +65,11 @@ set -o vi
 
 KEYTIMEOUT=10  # Default: 40, set lower to reduce escape key delay
 
+# ----------------------------------------------------------------------------
+# }}}
+
+# Globbing: {{{
+# ----------------------------------------------------------------------------
 setopt noglobdots # Ensure that * doesn't automatically match hidden files
 
 setopt csh_null_glob # # If there are several patterns on the command line, at
@@ -117,6 +80,8 @@ setopt csh_null_glob # # If there are several patterns on the command line, at
 setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
                           # on the match (like ``sort -n`` on matched region).
                           #
+# ----------------------------------------------------------------------------
+# }}}
 
 # Completion: {{{
 # ----------------------------------------------------------------------------
@@ -155,6 +120,56 @@ zstyle ':completion:*' insert-tab true # Disables completion on leading tabs
                                        # tabs from being interpreted as
                                        # completions):
 
+# ----------------------------------------------------------------------------
+# }}}
+
 source ~/.profile
 source ~/src/vim/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+# Prompt: {{{
+# ----------------------------------------------------------------------------
+# Must occur *after* the sourcing of .profile, which makes the
+# commands/variables which comprise the prompt string available.
+
+# . ~/.zsh_prompt_ft
+
+setopt prompt_subst    # Enable substituing variables into prompt
+unsetopt prompt_cr     # Suppress prompt printing carriage return before display
+
+bg_red=$'%{\e[00;41m%}'
+
+function zle-keymap-select {
+    VIMODE="${${KEYMAP}/(main|viins)/}"
+    zle reset-prompt
+}
+
+zle -N zle-keymap-select
+
+function v {
+    if [[ $VIMODE = 'vicmd' ]]; then
+        echo "$bg_red"
+    fi
+}
+
+setopt correct         # offer spelling suggestion for mistyped command
+                       # [no / yes / abort / edit]
+
+# Default Spelling Correction prompt: placed here for easy editing. Can use any
+# other prompt escapes.
+SPROMPT="zsh: correct '%R' to '%r' [nyae]?"
+
+function prompt_precmd {
+    st=$(cache_exit_status)
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd prompt_precmd
+
+# Disable automatic modification of PS1 (we handle that ourselves!)
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+PROMPT='
+${hist_num} $(v)${user_sys_info}${RESET} ${time_stamp}$(jobs_count)
+$(display_project_env)${cwd_path} $(main_prompt $st)${RESET} '
+# ----------------------------------------------------------------------------
+# }}}
