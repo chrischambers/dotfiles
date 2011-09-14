@@ -177,10 +177,10 @@ if [[ -z $(which beep) ]]; then
     alias beep='printf "\a"'
 fi
 alias h='history | tail -n 10' # previous 10 history lines, for context
-alias ls='ls -FG'     # colorise and use symbolic key for filetypes
-alias tree='tree -FC' # colorise and use symbolic key for filetypes
-alias l="ls -AlhFG"   # colorised, symbolic key, long listing w/ hidden files
-                      # and human-readable file sizes.
+alias ls='ls -FG'              # colorise and use symbolic key for filetypes
+alias tree='tree -FC'          # colorise and use symbolic key for filetypes
+alias l="ls -AlhFG"            # colorised, symbolic key, long listing w/ hidden files
+                               # and human-readable file sizes.
 
 # Git specific:
 alias git-svn='git svn'
