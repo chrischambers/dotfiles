@@ -55,4 +55,3 @@ alias vim="/Applications/MacVim/MacVim.app/Contents/MacOS/Vim"
 export EDITOR="/Applications/MacVim/MacVim.app/Contents/MacOS/Vim"
 # ----------------------------------------------------------------------------
 # }}}
-
