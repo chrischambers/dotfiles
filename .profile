@@ -143,7 +143,7 @@ PROMPT_COMMAND='status=$(cache_exit_status);
 PS1="$(update_titlebar)\n${hist_num} ${user_sys_info} ${time_stamp}$(jobs_count)
 $(display_project_env)${cwd_path} $(main_prompt $status)${RESET} "'
 
-if [[ -z $BASH_VERSION ]]; then
+if [[ -e $ZSH_VERSION ]]; then
     # Make the ZSH prompt work:
 
     function prompt_precmd {
@@ -151,6 +151,9 @@ if [[ -z $BASH_VERSION ]]; then
     }
     autoload -Uz add-zsh-hook
     add-zsh-hook precmd prompt_precmd
+
+    # Disable automatic modification of PS1 (we handle that ourselves!)
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PROMPT='
 ${hist_num} $(v)${user_sys_info}${RESET} ${time_stamp}$(jobs_count)
