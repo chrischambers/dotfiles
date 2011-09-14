@@ -30,11 +30,8 @@ setopt hist_reduce_blanks # Remove extraneous whitespace whens storying history
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line
-bindkey -M emacs '\ee' edit-command-line
-# bindkey -M emacs '\e[A': history-search-backward
-# bindkey -M emacs '\e[B': history-search-forward
 
+bindkey -M vicmd 'v' edit-command-line
 bindkey -M viins "\C-a" beginning-of-line
 bindkey -M viins "\C-b" backward-char
 bindkey -M viins "\C-d" delete-char
@@ -52,6 +49,9 @@ bindkey -M viins "\C-s" history-incremental-search-forward
 
 bindkey -M viins "\C-u" undo
 
+# Integrate this, somehow?
+bindkey -M emacs '\ee' edit-command-line
+
 set -o vi
 
 KEYTIMEOUT=10  # Default: 40, set lower to reduce escape key delay
@@ -66,15 +66,13 @@ setopt extended_glob      # Turn on the more powerful pattern matching
                           # features.
 setopt noglobdots         # Ensure that * doesn't automatically match hidden
                           # files
-
 setopt csh_null_glob      # If there are several patterns on the command line,
                           # at least one must match a file or files; in that
                           # case, any that don't are removed from the argument
                           # list. If no pattern matches, an error is reported.
-
 setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
                           # on the match (like ``sort -n`` on matched region).
-                          #
+
 # ----------------------------------------------------------------------------
 # }}}
 
@@ -92,27 +90,26 @@ unsetopt list_ambiguous   # ``find -ex<TAB>`` will complete up to 'exec', but
 zstyle ':completion:*' auto-description 'specify: %d'
 
 # Paginate long completions:
-zmodload zsh/complist
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 # Use:
 # * Tab to advance screen
 # * Enter to advance single line
 # * Ctrl-c to exit
-
+zmodload zsh/complist
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 bindkey -M listscroll q send-break  # Emulates Ctrl-C when paging, above.
 
 # Something like vim's 'smartcase' - here, completion is case-insensitive where
 # lowercase letters are used, but not the reverse:
 zstyle ':completion:*:(^approximate):*' matcher-list 'm:{a-z}={A-Z}'
 
+# Disables completion on leading tabs (prevents pasted commands with leading
+# tabs from being interpreted as completions):
+zstyle ':completion:*' insert-tab true
+
 setopt complete_in_word  # Expects characters after cursor to be at the end of
                          # matches. E.g. completing ``h.html`` with the cursor
                          # on the dot finds all files starting with h and
                          # ending in html!
-
-# Disables completion on leading tabs (prevents pasted commands with leading
-# tabs from being interpreted as completions):
-zstyle ':completion:*' insert-tab true
 
 # ----------------------------------------------------------------------------
 # }}}

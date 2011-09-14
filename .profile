@@ -107,6 +107,7 @@ main_prompt() {
 
 update_titlebar() {
     # Updates the titlebar for suitable terminals.
+    # Hardcoded for bash,atm.
     case $TERM in
         xterm*|rxvt*)
             local TITLEBAR='\[\033]0;\u@\h:\w\007\]'
@@ -139,6 +140,8 @@ hist_num="${YELLOW}[${BOLD_GREEN}${hist_prompt}${YELLOW}]"
 user_sys_info="${BOLD_BLUE}${user_prompt}${YELLOW}@${BOLD_BLUE}${host_prompt}"
 time_stamp="${YELLOW}[${RED}${timestamp_prompt}${YELLOW}]"
 cwd_path="${YELLOW}[ ${BOLD_BLUE}${cwd_prompt}${YELLOW} ]"
+
+# Bash only:
 PROMPT_COMMAND='status=$(cache_exit_status);
 PS1="$(update_titlebar)\n${hist_num} ${user_sys_info} ${time_stamp}$(jobs_count)
 $(display_project_env)${cwd_path} $(main_prompt $status)${RESET} "'
@@ -179,12 +182,10 @@ alias delpyc='find ./ -type f -name "*.pyc" -exec rm -f {} \;'
 
 # Virtualenv and Pip Configuration: {{{
 # ----------------------------------------------------------------------------
-#workon script
 export WORKON_HOME="$HOME/.virtualenvs"
 source $virtualenvwrapper_loc
 # Note: switching envs seems to undo the PATH manipulation above.
 
-# Pip Stuff:
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 # makes pip detect an active virtualenv and install to it, without having to
 # pass it the -E parameter
