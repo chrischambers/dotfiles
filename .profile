@@ -143,22 +143,8 @@ PROMPT_COMMAND='status=$(cache_exit_status);
 PS1="$(update_titlebar)\n${hist_num} ${user_sys_info} ${time_stamp}$(jobs_count)
 $(display_project_env)${cwd_path} $(main_prompt $status)${RESET} "'
 
-bg_red=$'%{\e[00;41m%}'
-
-
 if [[ -z $BASH_VERSION ]]; then
-    function zle-keymap-select {
-        VIMODE="${${KEYMAP}/(main|viins)/}"
-        zle reset-prompt
-    }
-
-    zle -N zle-keymap-select
-
-    function v {
-        if [[ $VIMODE = 'vicmd' ]]; then
-            echo "$bg_red"
-        fi
-    }
+    # Make the ZSH prompt work:
 
     function prompt_precmd {
         st=$(cache_exit_status)
@@ -166,10 +152,12 @@ if [[ -z $BASH_VERSION ]]; then
     autoload -Uz add-zsh-hook
     add-zsh-hook precmd prompt_precmd
 
-PROMPT='$(v)${VIMODE}${hist_num} ${user_sys_info}${RESET} ${time_stamp}$(jobs_count)
+PROMPT='
+${hist_num} $(v)${user_sys_info}${RESET} ${time_stamp}$(jobs_count)
 $(display_project_env)${cwd_path} $(main_prompt $st)${RESET} '
 
 fi
+
 # Useful Variables: {{{
 # ----------------------------------------------------------------------------
 # export TERM=xterm-color
