@@ -200,6 +200,12 @@ source $virtualenvwrapper_loc
 
 # Pip Stuff:
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
+# makes pip detect an active virtualenv and install to it, without having to
+# pass it the -E parameter
+# Source: <http://www.doughellmann.com/docs/virtualenvwrapper/tips.html>
+export PIP_RESPECT_VIRTUALENV=true
+
+
 # ----------------------------------------------------------------------------
 # }}}
 
