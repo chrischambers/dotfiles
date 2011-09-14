@@ -49,12 +49,12 @@ bindkey -M emacs '\ee' edit-command-line
 # ----------------------------------------------------------------------------
 # }}}
 
-virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
-source $virtualenvwrapper_loc
-alias ls='ls -G'
-alias l='ls -AlhFG'
+# virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
+# source $virtualenvwrapper_loc
+# alias ls='ls -G'
+# alias l='ls -AlhFG'
 # . ~/.zsh_prompt_ft
-source ~/.colour_palette
+# source ~/.colour_palette
 
 setopt prompt_subst    # Enable substituing variables into prompt
 unsetopt prompt_cr     # Suppress prompt printing carriage return before display
@@ -154,5 +154,6 @@ zstyle ':completion:*' insert-tab true # Disables completion on leading tabs
                                        # tabs from being interpreted as
                                        # completions):
 
+source ~/.profile
 source ~/src/vim/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
