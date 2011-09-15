@@ -50,7 +50,8 @@ bindkey -M viins "\C-s" history-incremental-search-forward
 bindkey -M viins "\C-u" undo
 
 # Integrate this, somehow?
-bindkey -M emacs '\ee' edit-command-line
+# bindkey -M emacs '\ee' edit-command-line
+bindkey -M viins "\C-x\C-e" edit-command-line
 
 set -o vi
 
