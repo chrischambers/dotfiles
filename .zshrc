@@ -80,7 +80,7 @@ setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
 # Oh-my-zsh Plugins Setup (Must be Before Completion section)
 # Path to your oh-my-zsh configuration.
 OMZSH=$HOME/src/vim/dotfiles/oh-my-zsh
-plugins=(git pip osx vi-mode)
+plugins=(git github git-flow pip osx macports)
 
 fpath=($OMZSH/functions $OMZSH/completions $fpath)
 autoload colors; colors;                      # vi-mode plugin depends on this
@@ -145,11 +145,12 @@ unsetopt prompt_cr     # Suppress prompt printing carriage return before display
 
 bg_red=$'%{\e[00;41m%}'
 
-function zle-keymap-select {
+function zle-keymap-select zle-line-init {
     VIMODE="${${KEYMAP}/(main|viins)/}"
     zle reset-prompt
 }
 
+zle -N zle-line-init
 zle -N zle-keymap-select
 
 function v {
@@ -157,6 +158,17 @@ function v {
         echo "$bg_red"
     fi
 }
+
+# Stolen from oh-my-zsh vi-mode plugin:
+MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+}
+
+# define right prompt
+if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
+  RPS1='$(vi_mode_prompt_info)'
+fi
 
 function prompt_precmd {
     st=$(cache_exit_status)
@@ -193,9 +205,17 @@ function zsh_stats() {
   history | awk '{print $2}' | sort | uniq -c | sort -rn | head
 }
 
-
 # Color grep results
-# Examples: http://rubyurl.com/ZXv
-#
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
+
+function fix_git_dropbox_synx () {
+    # Untested, but should work fine.
+    # Idea derived from the thread here:
+    # http://forums.dropbox.com/topic.php?id=5203
+    git config core.fileMode false && \
+    git stash save && \
+    git config core.fileMode true && \
+    git reset --hard HEAD && \
+    git stash pop
+}
