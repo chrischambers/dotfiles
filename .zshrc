@@ -76,6 +76,23 @@ setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
 # ----------------------------------------------------------------------------
 # }}}
 
+# Path to your oh-my-zsh configuration.
+OMZSH=$HOME/src/vim/dotfiles/oh-my-zsh
+
+# add a function path
+fpath=($OMZSH/functions $OMZSH/completions $fpath)
+
+# Load all of the config files in ~/oh-my-zsh that end in .zsh
+# TIP: Add files you don't want in git to .gitignore
+for config_file ($OMZSH/lib/*.zsh) source $config_file
+
+plugins=(git pip osx vi-mode)
+
+# Add all defined plugins to fpath
+plugin=${plugin:=()}
+for plugin ($plugins) fpath=($OMZSH/plugins/$plugin $fpath)
+
+
 # Completion: {{{
 # ----------------------------------------------------------------------------
 
@@ -168,3 +185,9 @@ SPROMPT="zsh: correct '%R' to '%r' [nyae]?"
 
 # ----------------------------------------------------------------------------
 # }}}
+
+for plugin ($plugins); do
+  if [ -f $OMZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+    source $OMZSH/plugins/$plugin/$plugin.plugin.zsh
+  fi
+done
