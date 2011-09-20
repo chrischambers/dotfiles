@@ -232,3 +232,8 @@ function fix_git_dropbox_synx () {
     git reset --hard HEAD && \
     git stash pop
 }
+
+# Prompts for confirmation after 'rm *' etc
+# Helps avoid mistakes like 'rm * o' when 'rm *.o' was intended
+# Source: http://matt.blissett.me.uk/linux/zsh/zshrc
+setopt rm_star_wait
