@@ -38,11 +38,11 @@ bindkey -M viins "\C-d" delete-char
 bindkey -M viins "\C-e" end-of-line
 bindkey -M viins "\C-f" forward-char
 bindkey -M viins "\C-k" kill-line
-bindkey -M viins "\C-n" next-history
-bindkey -M viins "\C-p" previous-history
+bindkey -M viins "\C-n" down-line-or-history
+bindkey -M viins "\C-p" up-line-or-history
 bindkey -M viins "\C-w" backward-kill-word
-bindkey -M viins "\e[A" history-search-backward
-bindkey -M viins "\e[B" history-search-forward
+bindkey -M viins "\e[A" history-beginning-search-backward
+bindkey -M viins "\e[B" history-beginning-search-forward
 bindkey -M viins "\C-h" backward-delete-char
 bindkey -M viins "\C-r" history-incremental-search-backward
 bindkey -M viins "\C-s" history-incremental-search-forward
