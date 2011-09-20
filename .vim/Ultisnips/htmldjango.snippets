@@ -2,7 +2,7 @@ extends html
 
 snippet css "link" b!
   <link rel="stylesheet" type="text/css" media="${1:screen}"
-        href="{{ MEDIA_URL }}css/${2:path/to/css}.css" />
+        href="{{ STATIC_URL }}css/${2:path/to/css}.css" />
 endsnippet
 
 snippet css "inline" b
@@ -14,7 +14,7 @@ endsnippet
 
 snippet js "link" b!
 <script type="text/javascript"
-        src="{{ MEDIA_URL }}js/${1:path/to/javascript}"></script>
+        src="{{ STATIC_URL }}js/${1:path/to/javascript}"></script>
 $0
 endsnippet
 
@@ -38,13 +38,13 @@ snippet htmlstub "HTML file stub" b!
   <meta name="author" content="${3:`!v exists('g:user_name') ? g:user_name : ''`}" />
   <meta name="description" content="${4: page description}" />
 
-  <link rel="icon" type="image/x-icon" href="${5:{{ MEDIA_URL }}}favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="${5:{{ STATIC_URL }}}favicon.ico" />
   <link rel="shortcut icon" href="$5favicon.png" type="image/png" />
 
   <link rel="stylesheet" type="text/css" media="all"
-        href="{{ MEDIA_URL }}css/reset.css" />
+        href="{{ STATIC_URL }}css/reset.css" />
   <link rel="stylesheet" type="text/css" media="screen"
-        href="{{ MEDIA_URL }}css/${5:path/to/css}.css" />
+        href="{{ STATIC_URL }}css/${5:path/to/css}.css" />
 </head>
 <body>
   $0
@@ -229,6 +229,8 @@ endsnippet
 
 snippet with
 {% with ${1} as ${2} %}
+${3}
+{% endwith %}
 endsnippet
 
 # Template Filters
