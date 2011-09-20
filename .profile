@@ -51,8 +51,8 @@ parse_active_virtualenv() {
 
 display_project_env() {
     # Displays virtualenv information and VCS branch.
-    local git_branch=`parse_git_branch`
-    local virtualenv=`parse_active_virtualenv`
+    local git_branch="`parse_git_branch`"
+    local virtualenv="`parse_active_virtualenv`"
     # echo $git_branch
     # echo $virtualenv
     if [[ -z $virtualenv ]] && [[ -z $git_branch ]]; then

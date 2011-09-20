@@ -159,6 +159,19 @@ function v {
     fi
 }
 
+function accept_line {
+    # Ensures that hitting return will reset the VIMODE variable - prevents,
+    # say, backwards searching for command and then confirming (with return)
+    # from showing that vi-cmd mode is active in the following prompt.
+
+    # http://pthree.org/2009/03/28/add-vim-editing-mode-to-your-zsh-prompt/
+    VIMODE=''
+    builtin zle .accept-line
+}
+zle -N accept_line
+bindkey -M vicmd "^M" accept_line
+
+
 # Stolen from oh-my-zsh vi-mode plugin:
 MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
 function vi_mode_prompt_info() {
