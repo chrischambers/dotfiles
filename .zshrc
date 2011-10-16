@@ -13,14 +13,14 @@ setopt append_history   # Last shell to exit doesn't clobber history file
 setopt share_history    # Hurrah!
 bindkey ' ' magic-space # Enable 'magic space', which will automatically
                         # perform history substitution when spacebar is
-                        # pressed:
+                        # pressed.
 
 setopt hist_ignore_dups   # Consecutive duplicate lines not saved
 setopt hist_find_no_dups  # When searching backwards through history, encounter
                           # each different command once, even if repeated
                           # multiple times
 setopt hist_ignore_space  # Lines preceded by ' ' character not stored in history
-setopt hist_reduce_blanks # Remove extraneous whitespace whens storying history
+setopt hist_reduce_blanks # Remove extraneous whitespace when storing history
 
 # ----------------------------------------------------------------------------
 # }}}

@@ -26,7 +26,7 @@ export reset=$'\e[0m'
 
 # Note that what is described as yellow may be brown on some terminals, whereas
 # what is described as white may appear gray.
-# In addition to the colors, there # are various special codes:
+# In addition to the colors, there are various special codes:
 
 # * 0 restores the default colors (foreground # and back- ground)
 # * 1 produces brighter colors
