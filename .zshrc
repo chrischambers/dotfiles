@@ -40,6 +40,7 @@ bindkey -M viins "\C-f" forward-char
 bindkey -M viins "\C-k" kill-line
 bindkey -M viins "\C-n" down-line-or-history
 bindkey -M viins "\C-p" up-line-or-history
+bindkey -M viins "\C-o" accept-line-and-down-history
 bindkey -M viins "\C-w" backward-kill-word
 bindkey -M viins "\e[A" history-beginning-search-backward
 bindkey -M viins "\e[B" history-beginning-search-forward
