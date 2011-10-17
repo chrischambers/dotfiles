@@ -1330,6 +1330,19 @@ xnoremap <leader>h :py EvaluateCurrentRange()<CR>
 " its python output.
 " --------------------------------------------------------------------------
 :vnoremap <f5> :!python<CR>
+
+python << EOL
+import vim
+def ReplaceSelectionWithPythonEvaluation():
+  inputs = []
+  for line in vim.current.range:
+    inputs.extend(line.split(';'))
+  print inputs[:-1]
+  execs = [eval(compile(line, '', 'exec')) for line in inputs[:-1]]
+  vim.current.range[:] = [str(eval(inputs[-1]))]
+EOL
+vnoremap <leader>ev :py ReplaceSelectionWithPythonEvaluation()<CR>
+
 " --------------------------------------------------------------------------
 " }}}
 
