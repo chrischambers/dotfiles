@@ -1039,7 +1039,7 @@ runtime! scripts/ide_tools.vim
 if has("autocmd")
   augroup vim_setup
     au!
-    autocmd FileType vim setl shiftwidth=2
+    autocmd FileType vim setl expandtab softtabstop=2 shiftwidth=2 nowrap
   augroup END
 endif
 " }}}
