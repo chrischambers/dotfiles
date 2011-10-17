@@ -1061,6 +1061,19 @@ endif
 " --------------------------------------------------------------------------
 " }}}
 
+" Javascript Specific:
+
+" Autocommand: Prepare Syntax Highlighting: {{{
+" --------------------------------------------------------------------------
+if has("autocmd")
+  augroup javascript_setup
+    au!
+    autocmd BufRead,BufNewFile *.js set ft=javascript
+    autocmd BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+  augroup END
+endif
+" --------------------------------------------------------------------------
+" }}}
 " Json Specific:
 
 " Autocommand: Prepare Json File Syntax Highlighting: {{{
