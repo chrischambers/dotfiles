@@ -1,11 +1,12 @@
-" Variables To Customise:
-" --------------------------------------------------------------------------
 let s:is_win = has("win16") || has("win32") || has("win64")
 let s:is_mac = has("mac") || has("macunix")
 let s:is_linux = has("unix")
 let s:is_cygwin = has("win32unix")
 
+" Variables To Customise:
+" --------------------------------------------------------------------------
 " <url:vimhelp:feature-list>
+
 if s:is_win
     let g:vimfiles_path = fnamemodify('$HOME/vimfiles', ':p')
     let g:vimrc_path    = fnamemodify('$HOME/_vimrc', ':p')
