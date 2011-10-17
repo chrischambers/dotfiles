@@ -17,13 +17,7 @@ endif
 let g:user_name  = "Chris Chambers"
 let g:user_email = "magma.chambers@gmail.com"
 
-if s:is_mac
-  let s:dictionary_location="/Applications/LibreOffice.app/Contents/share/extensions/dict-en/en_GB.dic"
-elseif s:is_win
-  let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
-else
-  let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
-endif
+let s:dictionary_location = g:vimfiles_path . "/dictionary"
 
 let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:baseline_vim_path=""
