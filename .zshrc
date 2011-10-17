@@ -238,3 +238,14 @@ function fix_git_dropbox_synx () {
 # Helps avoid mistakes like 'rm * o' when 'rm *.o' was intended
 # Source: http://matt.blissett.me.uk/linux/zsh/zshrc
 setopt rm_star_wait
+
+# multiple stdin/stdout/stderr redirects (you don't have to use ``tee`` to
+# output to term and a file, for example). This includes pipes::
+#
+#   % echo Script started. >logfile | sed 's/started/stopped/'
+#   Script stopped.
+#   % cat logfile
+#   Script started.
+#
+# Multiple stdin redirects concatenates them in the order specified.
+setopt multios
