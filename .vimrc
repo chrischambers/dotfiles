@@ -1,8 +1,12 @@
 " Variables To Customise:
 " --------------------------------------------------------------------------
+let s:is_win = has("win16") || has("win32") || has("win64")
+let s:is_mac = has("mac") || has("macunix")
+let s:is_linux = has("unix")
+let s:is_cygwin = has("win32unix")
 
 " <url:vimhelp:feature-list>
-if has('win32')
+if s:is_win
     let g:vimfiles_path = fnamemodify('$HOME/vimfiles', ':p')
     let g:vimrc_path    = fnamemodify('$HOME/_vimrc', ':p')
 else
@@ -12,7 +16,15 @@ endif
 
 let g:user_name  = "Chris Chambers"
 let g:user_email = "magma.chambers@gmail.com"
-let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
+
+if s:is_mac
+  let s:dictionary_location="/Applications/LibreOffice.app/Contents/share/extensions/dict-en/en_GB.dic"
+elseif s:is_win
+  let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
+else
+  let s:dictionary_location="/usr/lib/openoffice/share/dict/ooo/en-GB.dic"
+endif
+
 let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:baseline_vim_path=""
 let g:pythonpath_fixtures= [ g:vimfiles_path . '/python',
@@ -244,9 +256,9 @@ if has("gui_running")
     set columns=95
     set lines=57
     " set columns=105 lines=60
-    if has('unix') || has('macunix')
+    if s:is_mac || s:is_linux
       set guifont=Andale\ Mono:h12,Consolas\ 9,Liberation\ Mono\ 8
-    elseif has('win32')
+    elseif s:is_win
       set guifont=Dina:h8:cANSI,Consolas:h9:cANSI
     endif
 endif
@@ -626,7 +638,7 @@ let g:SuperTabLongestHighlight = 1
 " let g:utl_cfg_hdl_scm_http_system = "!firefox '%u#%f' &"
 " FIXME: UTL currently either ignores fragments, or fails when urls with no
 " fragment are used:
-if has("mac")
+if s:is_mac
     " This version play nicely with url fragments, but borks on urls without
     " specified fragments:
     " let g:utl_cfg_hdl_scm_http_system = "silent !open -a Firefox '%u#%f'"
@@ -821,17 +833,17 @@ Arpeggio inoremap jk <Esc>
 let g:gist_detect_filetype = 1
 
 " Command to use to copy to clipboard for ``Gist -c XXXXX``:
-if has("mac")
+if s:is_mac
   let g:gist_clip_command = 'pbcopy'
-elseif has("unix")
+elseif s:is_linux
   let g:gist_clip_command = 'xclip -selection clipboard'
-elseif has("win32") || has("win34")
+elseif s:is_win
   " Not sure here
-elseif has("win32unix") " cygwin
+elseif s:is_cygwin
   let g:gist_clip_command = 'putclip'
 endif
 
-if has("mac")
+if s:is_mac
   let g:gist_open_browser_after_post = 1
   let g:gist_browser_command = "open -a Firefox %URL%"
 endif
