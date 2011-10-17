@@ -81,7 +81,7 @@ setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
 # Oh-my-zsh Plugins Setup (Must be Before Completion section)
 # Path to your oh-my-zsh configuration.
 OMZSH=$HOME/src/vim/dotfiles/oh-my-zsh
-plugins=(git github git-flow pip osx macports)
+plugins=(git github git-flow pip osx macports mercurial)
 
 fpath=($OMZSH/functions $OMZSH/completions $fpath)
 autoload colors; colors;                      # vi-mode plugin depends on this
