@@ -1069,7 +1069,7 @@ if has("autocmd")
   augroup javascript_setup
     au!
     autocmd BufRead,BufNewFile *.js set ft=javascript
-    autocmd BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+    autocmd BufRead,BufNewFile jquery.*.js set ft=jquery.javascript syntax=jquery
   augroup END
 endif
 " --------------------------------------------------------------------------
