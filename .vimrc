@@ -1063,11 +1063,8 @@ endif
 if has("autocmd")
   augroup txt_setup
     au!
-    fun! Txt_wrap()
-      setl textwidth=78
-    endfun
-    au FileType txt call Txt_wrap()
-    au FileType rst call Txt_wrap()
+    autocmd FileType txt setl textwidth=78
+    autocmd FileType rst setl textwidth=78
   augroup END
 endif
 " --------------------------------------------------------------------------
@@ -1086,6 +1083,7 @@ if has("autocmd")
 endif
 " --------------------------------------------------------------------------
 " }}}
+
 " Json Specific:
 
 " Autocommand: Prepare Json File Syntax Highlighting: {{{
