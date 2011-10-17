@@ -308,6 +308,10 @@ set completeopt=menu,longest
 " set foldmethod=syntax " By default, use syntax to determine folds
 " set foldlevelstart=99 " All folds open by default
 set foldmethod=marker
+" Switch foldmethod between marker and syntax: a workaround for the fact that
+" vim doesn't permit multiple foldmethods.
+" Source: http://superuser.com/questions/219667/multiple-foldmethods-in-vim
+nnoremap <silent> <leader>ff :exe (&foldmethod == "marker" ? "let &l:foldmethod = 'syntax'" : "let &l:foldmethod = 'marker'")<CR>
 " --------------------------------------------------------------------------
 " }}}
 
