@@ -1,6 +1,6 @@
 let s:is_win = has("win16") || has("win32") || has("win64")
 let s:is_mac = has("mac") || has("macunix")
-let s:is_linux = has("unix")
+let s:is_linux = has("unix") && !has("mac")
 let s:is_cygwin = has("win32unix")
 
 " Variables To Customise:
@@ -1022,7 +1022,17 @@ cnoremap <expr> bd
 " Superuser Write To File: (Unix/OSX only): {{{
 " :W writes to files which require superuser access to modify.
 if has('unix') " includes OSX
-  command! W w !sudo tee % > /dev/null
+  if has("gui_running")
+    if s:is_mac
+      " Fails:
+      " command! W w !cocoasudo tee % > /dev/null
+    else
+      " Untested!
+      " command! W w !gksudo tee % > /dev/null
+    endif
+  else
+    command! W w !sudo tee % > /dev/null
+  endif
 endif
 " }}}
 
