@@ -8,11 +8,11 @@ let s:is_cygwin = has("win32unix")
 " <url:vimhelp:feature-list>
 
 if s:is_win
-    let g:vimfiles_path = fnamemodify('$HOME/vimfiles', ':p')
-    let g:vimrc_path    = fnamemodify('$HOME/_vimrc', ':p')
+    let g:vimfiles_path = fnamemodify('~/vimfiles', ':p')
+    let g:vimrc_path    = fnamemodify('~/_vimrc', ':p')
 else
-    let g:vimfiles_path = fnamemodify('$HOME/.vim', ':p')
-    let g:vimrc_path    = fnamemodify('$HOME/.vimrc', ':p')
+    let g:vimfiles_path = fnamemodify('~/.vim', ':p')
+    let g:vimrc_path    = fnamemodify('~/.vimrc', ':p')
 endif
 
 let g:user_name  = "Chris Chambers"
@@ -264,6 +264,7 @@ endif
 " --------------------------------------------------------------------------
 set spell
 setlocal spell spelllang=en_gb
+exec "set spellfile=" . g:vimfiles_path . "spell/personal.en.utf-8.add"
 nnoremap <silent> <leader>sp :exe (&spell ? ":set nospell" : ":set spell")<CR>
 " --------------------------------------------------------------------------
 " }}}
