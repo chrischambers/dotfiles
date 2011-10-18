@@ -752,8 +752,8 @@ nnoremap <leader>r :FuzzyFinderMruFile<CR>
 
 " Remap :ta[g] to use fuzzytagfinding. Leave :tj alone though, as that will
 " complete faster if you know the exact tag name / for large tag files:
-cnoreabbrev <expr> ta
-      \ ((getcmdtype() == ':' && getcmdpos() <= 3) ? 'FuzzyFinderTag<CR>' : 'ta')
+" cnoreabbrev <expr> ta
+"       \ ((getcmdtype() == ':' && getcmdpos() <= 3) ? 'FuzzyFinderTag<CR>' : 'ta')
 " --------------------------------------------------------------------------
 " }}}
 

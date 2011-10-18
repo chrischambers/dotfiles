@@ -98,8 +98,8 @@ cnoreabbrev <expr> e
       \ ((getcmdtype() == ':' && getcmdpos() <= 2) ? 'Edit' : 'e')
 cnoremap <expr> tj
       \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Tjump' : 'tj')
-cnoremap <expr> ta
-      \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Tag' : 'ta')
+cnoremap <expr> ta<Space>
+      \ (getcmdtype() == ':' && getcmdpos()<3 ? 'Tag ' : 'ta')
 
 function! PreventClosingLastWindow()
   """ Prevents closing the last window, *exclusive* of special buffers.
