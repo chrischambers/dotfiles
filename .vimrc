@@ -20,12 +20,12 @@ let g:user_email = "magma.chambers@gmail.com"
 
 " Uses the 'web2' file from GNU-miscfiles:
 " Source: http://www.gnu.org/s/miscfiles/
-let s:dictionary_location = g:vimfiles_path . "/dictionary"
+let s:dictionary_location = g:vimfiles_path . "dictionary"
 
 let s:thesaurus_location="$HOME/moby_thesaurus_list-2002-05-01_etxt-3202.txt"
 let s:baseline_vim_path=""
-let g:pythonpath_fixtures= [ g:vimfiles_path . '/python',
-              \              g:vimfiles_path . '/ftplugin/python' ]
+let g:pythonpath_fixtures= [ g:vimfiles_path . 'python',
+              \              g:vimfiles_path . 'ftplugin/python' ]
 
 " For overriding these settings or adding sensitive data (such as github token):
 let s:local_vimrc = fnamemodify('~/.vimrc_local', ':p')
@@ -1144,7 +1144,7 @@ endif
 " --------------------------------------------------------------------------
 
 " Source useful python utility functions: {{{
-exec "source " . g:.vimfiles_path . '/scripts/python.vim'
+exec "source " . g:.vimfiles_path . 'scripts/python.vim'
 " }}}
 "
 " Autocommand: Prepare Python File Defaults: {{{
