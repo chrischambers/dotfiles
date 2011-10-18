@@ -180,6 +180,16 @@ alias delpyc='find ./ -type f -name "*.pyc" -exec rm -f {} \;'
 # ----------------------------------------------------------------------------
 # }}}
 
+
+# Useful functions: {{{
+# ----------------------------------------------------------------------------
+screenload() {
+    ### For loading .screenrc template files located in ~/.screens
+    screen -S $1 -c ~/.screens/${1}
+}
+# ----------------------------------------------------------------------------
+# }}}
+
 # Virtualenv and Pip Configuration: {{{
 # ----------------------------------------------------------------------------
 export WORKON_HOME="$HOME/.virtualenvs"
