@@ -1435,31 +1435,13 @@ endfunc
 " --------------------------------------------------------------------------
 " Prepare Django Environment:
 
-call SetupVirtualEnv('languagelab')
-python << EOF
-os.environ['DJANGO_SETTINGS_MODULE'] = 'llcom.settings'
-sys.path.append(os.path.join(
-    os.path.expanduser('~'),
-    'src', 'py', 'django', '_mine', 'languagelab', 'llab-trunk'
-))
-EOF
-set tags+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/tags
 try
   cs add cscope.out
 catch /^Vim\%((\a\+)\)\=:E563/   " couldn't connect to cscope db
 catch /^Vim\%((\a\+)\)\=:E568/   " duplicate cscope db not added
 endtry
 
-" FIXME: Not finding django via django.pth file when run at startup - may be
-" due to subprocess module not being found.
-" FIXME: PythonPath as WELL as Vim path!
-set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk
-set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/llcom
-set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
-" !source /Users/Chris/.virtualenvwrapper && workon languagelab && python
-" $HOME/src/py/django/_mine/languagelab/llab-trunk/llcom/manage.py validate
 " --------------------------------------------------------------------------
-" Necessary run-time command to activate Django atm:
 " (see http://blog.fluther.com/blog/2008/10/17/django-vim/)
 " DJANGO_SETTINGS_MODULE='llcom.settings' PYTHONPATH='/home/nestor/documents/code/llab' vim -g
 " set tags+=$HOME/.vim/tags/python.ctags
@@ -1484,8 +1466,7 @@ set path+=$HOME/src/py/django/_mine/languagelab/llab-trunk/external_apps
 " Macvim doesn't display italicised or emboldened text.
 " FIXME: SetupVirtualEnv changes:
 " * you need a way of adding extra packages that won't necessarily be in
-"   sys.path by default. For example, the languagelab project contains
-"   external_apps, which should be added to the system path.
+"   sys.path by default.
 " TODO: temporarily add parent dir of current file to pythonpath?
 " FIXME:
 " Re-sourcing .vimrc causes anomalies:
