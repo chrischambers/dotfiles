@@ -3,10 +3,6 @@ let s:is_mac = has("mac") || has("macunix")
 let s:is_linux = has("unix") && !has("mac")
 let s:is_cygwin = has("win32unix")
 
-" Variables To Customise:
-" --------------------------------------------------------------------------
-" <url:vimhelp:feature-list>
-
 if s:is_win
     let g:vimfiles_path = fnamemodify('~/vimfiles', ':p')
     let g:vimrc_path    = fnamemodify('~/_vimrc', ':p')
@@ -15,6 +11,9 @@ else
     let g:vimrc_path    = fnamemodify('~/.vimrc', ':p')
 endif
 
+" Variables To Customise:
+" --------------------------------------------------------------------------
+" <url:vimhelp:feature-list>
 let g:user_name  = "Chris Chambers"
 let g:user_email = "magma.chambers@gmail.com"
 
