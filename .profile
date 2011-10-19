@@ -172,7 +172,6 @@ alias l="ls -AlhFG"            # colorised, symbolic key, long listing w/ hidden
 
 # Git specific:
 alias git-svn='git svn'
-alias dotfiles='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
 # Python specific:
 alias show_site_packages='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'

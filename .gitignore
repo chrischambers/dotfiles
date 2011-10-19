@@ -1,31 +1,4 @@
-# Blanket-exclude ALL files from home directory!
-*
-
-# Crude as this is, it works:
-# Make exceptions for .vim and its containing files, up to 10 levels deep:
-!/*vim/
-!/*.vim/*
-!/*vim/*/**
-!/*vim/*/*/**
-!/*vim/*/*/*/**
-!/*vim/*/*/*/*/**
-!/*vim/*/*/*/*/*/**
-!/*vim/*/*/*/*/*/*/**
-!/*vim/*/*/*/*/*/*/*/**
-!/*vim/*/*/*/*/*/*/*/*/**
-!/*vim/*/*/*/*/*/*/*/*/*/**
-
-# Make exceptions for .vimperator and its containing files, up to 6 levels deep:
-!/*vimperator/
-!/*.vimperator/*
-!/*vimperator/*/**
-!/*vimperator/*/*/**
-!/*vimperator/*/*/*/**
-!/*vimperator/*/*/*/*/**
-!/*vimperator/*/*/*/*/*/**
-!/*vimperator/*/*/*/*/*/*/**
-
-# Specific exceptions:
+.pip/cache/*
 /*.vim/.netrwhist
 /*.vim/.VimballRecord
 /*.vim/GetLatest/Installed/*.zip
