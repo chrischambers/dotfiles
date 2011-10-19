@@ -115,6 +115,7 @@
 :FuzzyFinderTaggedFile	fuzzyfinder.txt	/*:FuzzyFinderTaggedFile*
 :GLVS	pi_getscript.txt	/*:GLVS*
 :GetLatestVimScripts_dat	pi_getscript.txt	/*:GetLatestVimScripts_dat*
+:Gist	gist-vim.txt	/*:Gist*
 :Hexplore	pi_netrw.txt	/*:Hexplore*
 :I	visincr.txt	/*:I*
 :IA	visincr.txt	/*:IA*
@@ -197,6 +198,7 @@ Dsep	Decho.txt	/*Dsep*
 GetLatestVimScripts	pi_getscript.txt	/*GetLatestVimScripts*
 GetLatestVimScripts-copyright	pi_getscript.txt	/*GetLatestVimScripts-copyright*
 GetLatestVimScripts_dat	pi_getscript.txt	/*GetLatestVimScripts_dat*
+Gist.vim	gist-vim.txt	/*Gist.vim*
 IDMY	visincr.txt	/*IDMY*
 IMDY	visincr.txt	/*IMDY*
 IYMD	visincr.txt	/*IYMD*
@@ -861,6 +863,12 @@ getscript-data	pi_getscript.txt	/*getscript-data*
 getscript-history	pi_getscript.txt	/*getscript-history*
 getscript-plugins	pi_getscript.txt	/*getscript-plugins*
 getscript-start	pi_getscript.txt	/*getscript-start*
+gist-vim-install	gist-vim.txt	/*gist-vim-install*
+gist-vim-license	gist-vim.txt	/*gist-vim-license*
+gist-vim-requirements	gist-vim.txt	/*gist-vim-requirements*
+gist-vim-thanks	gist-vim.txt	/*gist-vim-thanks*
+gist-vim-tips	gist-vim.txt	/*gist-vim-tips*
+gist-vim-usage	gist-vim.txt	/*gist-vim-usage*
 global_markfilelist	pi_netrw.txt	/*global_markfilelist*
 glvs	pi_getscript.txt	/*glvs*
 glvs-alg	pi_getscript.txt	/*glvs-alg*

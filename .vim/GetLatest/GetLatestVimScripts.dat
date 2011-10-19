@@ -12,7 +12,7 @@
 # 1643 11533 :AutoInstall: supertab.vim
 1697 12566 :AutoInstall: surround.vim
 293 9060 :AutoInstall: utl.vim
-90 15797 :AutoInstall: vcscommand.vim
+# 90 15797 :AutoInstall: vcscommand.vim
 # # 1112 3570 :AutoInstall: pydoc.vim
 159 3640 :AutoInstall: minibufexpl.vim
 # 2390 10336 :AutoInstall: CSApprox.vim
@@ -24,7 +24,6 @@
 642 15781 :AutoInstall: getscript.vim
 1075 15782 :AutoInstall: netrw.vim
 1502 15362 :AutoInstall: vimball.vim
-489 14117 :AutoInstall: Manpageview.vim
 # Latest versions won't work with fuzzyfinder-textmate dir-pattern matching!
 # Manually set installation ver to very high number to suppress download.
 1984 9999999 fuzzyfinder.vim
@@ -40,7 +39,7 @@
 2208 13946 :AutoInstall: txtfmt.vim
 474 1388 :AutoInstall: SearchComplete.vim
 2908 11992 :AutoInstall: ex.vim
-2423 15452 :AutoInstall: gist.vim
+2423 16692 :AutoInstall: gist.vim
 1905 10530 :AutoInstall: camelcasemotion.vim
 2607 10388 :AutoInstall: tasklist.vim
 52 14880 :AutoInstall: calendar.vim
