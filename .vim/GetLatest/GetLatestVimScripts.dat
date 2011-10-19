@@ -36,7 +36,6 @@
 517 5768 :AutoInstall: TVO.vim
 1542 10872 :AutoInstall: pythoncomplete.vim
 2208 13946 :AutoInstall: txtfmt.vim
-2208 13946 :AutoInstall: txtfmt.vim
 474 1388 :AutoInstall: SearchComplete.vim
 2908 11992 :AutoInstall: ex.vim
 2423 16692 :AutoInstall: gist.vim
