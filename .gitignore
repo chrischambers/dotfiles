@@ -4,7 +4,7 @@
 /*.vim/GetLatest/Installed/*.zip
 /*.vim/GetLatest/Installed/*.tar
 /*.vim/GetLatest/Installed/*.vba
-/*.vimperator/info/**
+/*.pentadactyl/info/**
 *.swp
 *.svn/
 *.pyc

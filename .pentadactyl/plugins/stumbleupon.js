@@ -41,70 +41,70 @@
 // :susignout, :sulogout
 // Sign-out from StumbleUpon
 
-mappings.add([modes.NORMAL], ["<A-Esc>", "<M-Esc>", "<A-`>", "<M-`>"],
+group.mappings.add([modes.NORMAL], ["<A-Esc>", "<M-Esc>", "<A-`>", "<M-`>"],
 	"Show next page from StumbleUpon",
 	function() { stumble(0); });
 
-mappings.add([modes.NORMAL], ["<A-F1>", "<M-F1>", "<A-1>", "<M-1>"],
+group.mappings.add([modes.NORMAL], ["<A-F1>", "<M-F1>", "<A-1>", "<M-1>"],
 	"Add to favourites, show more like this \(StumbleUpon\)",
 	function() { su_rate(1, 0, 0, 0); });
 
-mappings.add([modes.NORMAL], ["<A-F2>", "<M-F2>", "<A-2>", "<M-2>"],
+group.mappings.add([modes.NORMAL], ["<A-F2>", "<M-F2>", "<A-2>", "<M-2>"],
 	"No more like this \(StumbleUpon\)",
 	function() { su_rate(0, 0, 0, 0); });
 
-mappings.add([modes.NORMAL], ["<A-F3>", "<M-F3>", "<A-3>", "<M-3>"],
+group.mappings.add([modes.NORMAL], ["<A-F3>", "<M-F3>", "<A-3>", "<M-3>"],
 	"Show StumbleUpon page review",
 	function() { su_website_info(0,'', 0); });
 
-mappings.add([modes.NORMAL], ["<A-/>", "<M-/>"],
+group.mappings.add([modes.NORMAL], ["<A-/>", "<M-/>"],
 	"Tag this page \(StumbleUpon\)",
 	function() { su_handle_tag_command(true); });
 
-mappings.add([modes.NORMAL], ["<C-F11>"],
+group.mappings.add([modes.NORMAL], ["<C-F11>"],
 	"Toggle StumbleUpon toolbar",
 	function() { su_toggle_toolbar(); });
 
-commands.addUserCommand(["stu[mble]"],
+group.commands.add(["stu[mble]"],
 	"Show next page from StumbleUpon",
 	function() { stumble(0); });
 
-commands.addUserCommand(["tabstu[mble]", "ts[tumble]"],
+group.commands.add(["tabstu[mble]", "ts[tumble]"],
 	"Show next page from StumbleUpon in a new tab",
 	function() { stumble(1); });
 
-commands.addUserCommand(["thumbup", "tu", "like"],
+group.commands.add(["thumbup", "tu", "like"],
 	"Add to favourites, show more like this \(StumbleUpon\)",
 	function() { su_rate(1, 0, 0, 0); });
 
-commands.addUserCommand(["thumbdown", "td", "dislike"],
+group.commands.add(["thumbdown", "td", "dislike"],
 	"No more like this \(StumbleUpon\)",
 	function() { su_rate(0, 0, 0, 0); });
 
-commands.addUserCommand(["nothumb", "nt", "unrate"],
+group.commands.add(["nothumb", "nt", "unrate"],
 	"Remove StumbleUpon rating",
 	function() { su_unrate(); });
 
-commands.addUserCommand(["rev[iew]"],
+group.commands.add(["rev[iew]"],
 	"Show StumbleUpon page review",
 	function() { su_website_info(0,'', 0); });
 
-commands.addUserCommand(["tabrev[iew]", "tr[eview]"],
+group.commands.add(["tabrev[iew]", "tr[eview]"],
 	"Show StumbleUpon page review in a new tab",
 	function() { su_website_info(1,'', 0); });
 
-commands.addUserCommand(["tag"],
+group.commands.add(["tag"],
 	"Tag this page \(StumbleUpon\)",
 	function() { su_handle_tag_command(true); });
 
-commands.addUserCommand(["su[toolbar]", "sutb"],
+group.commands.add(["su[toolbar]", "sutb"],
 	"Toggle StumbleUpon toolbar",
 	function() { su_toggle_toolbar(); });
 
-commands.addUserCommand(["susignin", "sulogin"],
+group.commands.add(["susignin", "sulogin"],
 	"Sign-in to StumbleUpon",
 	function() { su_show_signin_dialog(); });
 
-commands.addUserCommand(["susignout", "sulogout"],
+group.commands.add(["susignout", "sulogout"],
 	"Sign-out from StumbleUpon",
 	function() { su_handle_logout(false); });

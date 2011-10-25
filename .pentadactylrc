@@ -1,0 +1,87 @@
+" Alpha Settings: {{{
+set mapleader=','
+" }}}
+
+"" Guioptions: {{{
+"set guioptions=
+"" add menu bar (no-op on OSX):
+"set guioptions+=m
+"" status bar
+"set guioptions+=s
+"" add Toolbar (i.e. main bar):
+"set guioptions+=T
+"" add Bookmark Bar:
+"set guioptions+=B
+"" add bottom scrollbar:
+"set guioptions+=b
+"" add right scrollbar:
+"set guioptions+=r
+"" numbered tabs (OVER favicons, use lowercase for alongside):
+"set guioptions+=N
+""set guioptions=mTBbrN
+" set guioptions=BCrsTN
+"" }}}
+
+set defsearch=yubnub
+" Avoid automatic focussing on first form-field - i.e., keeps vimp in normal
+" mode unless otherwise specified.
+" set nofocuscontent
+set strictfocus
+" set ignorecase
+" set smartcase
+" set searchcase
+
+" For Mac OSX:
+" Make External commands (!) use the settings from your standard login shells:
+" Source: <url:http://phaseportrait.blogspot.com/2008/12/making-macvim-work-with-vimperators.html>
+:set shellcmdflag='-lc'
+" FIXME: curl-fetching of source files fails very frequently; gF won't match gf
+set editor='bash -lc "vim -gf --remote-silent \$*"'
+set editor="gvim -f +<line> <file>"
+set editor='bash -lc "vim -gf --remote-silent +<line> <file>"'
+
+
+" Custom Mappings: {{{
+nnoremap 0gt g0
+nnoremap $gt g$
+" cnoremap :b$ :tablast<CR>
+
+nnoremap <Leader>bo :tabonly<CR>
+nnoremap U :undoall<CR>
+
+nnoremap <leader>d :tabopen chrome://mozapps/content/downloads/downloads.xul<CR>
+
+" Quick toggle buffers:
+" ---------------------
+" Activate mapping, then type filter-term: this could be part of the buffer
+" name, or part of the url. You can use RET to switch to buffer, or even use
+" tab completion. Also works well in conjunction with gb/gB, which will allow
+" you to cycle between buffers with similar names.
+nnoremap <Leader>, :buffers<CR>:b! 
+" Convenient alias for switching back and forth between alternate buffer:
+nnoremap <Leader>. <C-^>
+
+" Firebug Specific:
+nnoremap <silent> <Leader>fo :emenu Tools.Firebug.Open Firebug<CR>
+" Press RET to cycle through elements:
+nnoremap <Leader>fs :emenu Tools.Firebug.Search<CR>
+" nnoremap <Leader>fi :emenu Tools.Firebug.Inspect Element<CR>
+nnoremap <Leader>fi <M-S-c>
+
+" Web Developer Specific:
+nnoremap <Leader>ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
+" nnoremap <Leader>nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
+nnoremap <Leader>nc  <M-S-s>
+nnoremap <Leader>vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
+nnoremap <Leader>vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
+nnoremap <Leader>vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
+
+" Stumbleupon Specific:
+nnoremap <silent> <Leader>su :stumble<CR>
+
+" Bookmark Organiser Mapping:
+nnoremap <silent> <Leader>bms :sb Bookmarks<CR>
+nnoremap <silent> <Leader>bmo :dia places<CR>
+" }}}
+
+" vim: set ft=vimperator:
