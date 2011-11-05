@@ -220,15 +220,27 @@ function zsh_stats() {
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
-function fix_git_dropbox_synx () {
-    # Untested, but should work fine.
+function fix_git_dropbox_sync () {
     # Idea derived from the thread here:
     # http://forums.dropbox.com/topic.php?id=5203
-    git config core.fileMode false && \
-    git stash save && \
+    # Test for changes from here:
+    # http://stackoverflow.com/questions/5143795/how-can-i-check-in-a-bash-script-if-my-local-git-repo-has-changes-or-not
+
+    if git diff-index --quiet HEAD --; then
+        return                                # No local changes, so no-op
+    fi
+
+    git config core.fileMode false
+    ! git diff-index --quiet HEAD --
+    has_local_changes=$?
+    if [ $has_local_changes = 0 ]; then
+        git stash save
+    fi
     git config core.fileMode true && \
-    git reset --hard HEAD && \
-    git stash pop
+    git reset --hard HEAD
+    if [ $has_local_changes = 0 ]; then
+        git stash pop
+    fi
 }
 
 # Prompts for confirmation after 'rm *' etc
