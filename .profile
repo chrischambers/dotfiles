@@ -36,6 +36,9 @@ export MANPATH="$HOME/man:$MANPATH"
 # ----------------------------------------------------------------------------
 source ~/.colour_palette
 
+# Disable automatic virtualenv modification of PS1 (we handle that ourselves!)
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # Utility Functions for Prompt: {{{
 parse_git_branch() {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'

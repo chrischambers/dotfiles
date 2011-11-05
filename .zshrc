@@ -190,9 +190,6 @@ function prompt_precmd {
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd prompt_precmd
 
-# Disable automatic virtualenv modification of PS1 (we handle that ourselves!)
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
 PROMPT='
 ${hist_num} $(v)${user_sys_info}${RESET} ${time_stamp}$(jobs_count)
 $(display_project_env)${cwd_path} $(main_prompt $st)${RESET} '
