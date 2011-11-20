@@ -36,9 +36,11 @@ set strictfocus
 " Source: <url:http://phaseportrait.blogspot.com/2008/12/making-macvim-work-with-vimperators.html>
 :set shellcmdflag='-lc'
 " FIXME: curl-fetching of source files fails very frequently; gF won't match gf
-set editor='bash -lc "vim -gf --remote-silent \$*"'
-set editor="gvim -f +<line> <file>"
-set editor='bash -lc "vim -gf --remote-silent +<line> <file>"'
+" This approach is better for gF, but is not good for Ctrl-I:
+" set editor='/Applications/MacVim/MacVim.app/Contents/MacOS/Vim -gf --servername Vim1 --remote-wait-silent +<line> +"sil! call cursor(0, <column>)" <file>'
+" This approach works much better for Ctrl-I:
+set editor='/Applications/MacVim/MacVim.app/Contents/MacOS/Vim -gf --servername Pentadactyl +<line> +"sil! call cursor(0, <column>)" <file>'
+" set editor='open -n /Applications/MacVim/MacVim.app/Contents/MacOS/Vim -gf --servername Pentadactyl +<line> +"sil! call cursor(0, <column>)" <file>'
 
 
 " Custom Mappings: {{{
