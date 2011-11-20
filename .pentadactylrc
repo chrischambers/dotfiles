@@ -53,6 +53,10 @@ nnoremap U :undoall<CR>
 
 nnoremap <leader>d :tabopen chrome://mozapps/content/downloads/downloads.xul<CR>
 
+" Stolen from Steve Losh: makes moving up/down more efficient:
+nnoremap j 3j
+nnoremap k 3k
+
 " Quick toggle buffers:
 " ---------------------
 " Activate mapping, then type filter-term: this could be part of the buffer
