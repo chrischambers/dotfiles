@@ -68,19 +68,22 @@ nnoremap <Leader>, :buffers<CR>:b!
 nnoremap <Leader>. <C-^>
 
 " Firebug Specific:
-nnoremap <silent> <Leader>fo :emenu Tools.Firebug.Open Firebug<CR>
+nnoremap <silent> <Leader>fo :emenu Tools.Web Developer.Firebug.Open Firebug<CR>
 " Press RET to cycle through elements:
-nnoremap <Leader>fs :emenu Tools.Firebug.Search<CR>
-" nnoremap <Leader>fi :emenu Tools.Firebug.Inspect Element<CR>
-nnoremap <Leader>fi <M-S-c>
+" nnoremap <Leader>fs :emenu Tools.Web Developer.Firebug.Search<CR>
 
 " Web Developer Specific:
 nnoremap <Leader>ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
-" nnoremap <Leader>nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
-nnoremap <Leader>nc  <M-S-s>
 nnoremap <Leader>vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
 nnoremap <Leader>vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
 nnoremap <Leader>vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
+
+" nnoremap <Leader>nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
+" nnoremap <Leader>fi :emenu Tools.Firebug.Inspect Element<CR>
+" The previous emenu mappings don't work: be sure that the following
+" keymappings correspond to the commands above, to work as expected:
+nnoremap -builtin <Leader>nc <M-S-l>
+nnoremap <Leader>fi <M-S-c>
 
 " Stumbleupon Specific:
 nnoremap <silent> <Leader>su :stumble<CR>
