@@ -1,28 +1,30 @@
 " Alpha Settings: {{{
-set mapleader=','
+" colorscheme mine
+set showtabline=multitab
+set defsearch=yubnub
 " }}}
 
 "" Guioptions: {{{
-"set guioptions=
-"" add menu bar (no-op on OSX):
-"set guioptions+=m
-"" status bar
-"set guioptions+=s
-"" add Toolbar (i.e. main bar):
-"set guioptions+=T
-"" add Bookmark Bar:
-"set guioptions+=B
-"" add bottom scrollbar:
-"set guioptions+=b
-"" add right scrollbar:
-"set guioptions+=r
-"" numbered tabs (OVER favicons, use lowercase for alongside):
-"set guioptions+=N
-""set guioptions=mTBbrN
-" set guioptions=BCrsTN
+set guioptions=
+" Force command line to always display:
+set guioptions+=C
+" set guioptions+=m
+" add menu bar (no-op on OSX):
+" set guioptions+=m
+" status bar
+set guioptions+=s
+" add Toolbar (i.e. main bar):
+" set guioptions+=T
+" add Bookmark Bar:
+" set guioptions+=B
+" add bottom scrollbar:
+set guioptions+=b
+" add right scrollbar:
+set guioptions+=r
+" numbered tabs (OVER favicons, use lowercase for alongside):
+set guioptions+=N
 "" }}}
 
-set defsearch=yubnub
 " Avoid automatic focussing on first form-field - i.e., keeps vimp in normal
 " mode unless otherwise specified.
 " set nofocuscontent
@@ -34,7 +36,7 @@ set strictfocus
 " For Mac OSX:
 " Make External commands (!) use the settings from your standard login shells:
 " Source: <url:http://phaseportrait.blogspot.com/2008/12/making-macvim-work-with-vimperators.html>
-:set shellcmdflag='-lc'
+set shellcmdflag='-c'
 " FIXME: curl-fetching of source files fails very frequently; gF won't match gf
 " This approach is better for gF, but is not good for Ctrl-I:
 " set editor='/Applications/MacVim/MacVim.app/Contents/MacOS/Vim -gf --servername Vim1 --remote-wait-silent +<line> +"sil! call cursor(0, <column>)" <file>'
@@ -48,7 +50,7 @@ nnoremap 0gt g0
 nnoremap $gt g$
 " cnoremap :b$ :tablast<CR>
 
-nnoremap <Leader>bo :tabonly<CR>
+nnoremap ,bo :tabonly<CR>
 nnoremap U :undoall<CR>
 
 nnoremap <leader>d :tabopen chrome://mozapps/content/downloads/downloads.xul<CR>
@@ -63,34 +65,34 @@ nnoremap k 3k
 " name, or part of the url. You can use RET to switch to buffer, or even use
 " tab completion. Also works well in conjunction with gb/gB, which will allow
 " you to cycle between buffers with similar names.
-nnoremap <Leader>, :buffers<CR>:b! 
+nnoremap ,, :buffers<CR>:b! 
 " Convenient alias for switching back and forth between alternate buffer:
-nnoremap <Leader>. <C-^>
+nnoremap ,. <C-^>
 
 " Firebug Specific:
-nnoremap <silent> <Leader>fo :emenu Tools.Web Developer.Firebug.Open Firebug<CR>
+nnoremap <silent> ,fo :emenu Tools.Web Developer.Firebug.Open Firebug<CR>
 " Press RET to cycle through elements:
-" nnoremap <Leader>fs :emenu Tools.Web Developer.Firebug.Search<CR>
+" nnoremap ,fs :emenu Tools.Web Developer.Firebug.Search<CR>
 
 " Web Developer Specific:
-nnoremap <Leader>ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
-nnoremap <Leader>vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
-nnoremap <Leader>vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
-nnoremap <Leader>vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
+nnoremap ,ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
+nnoremap ,vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
+nnoremap ,vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
+nnoremap ,vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
 
-" nnoremap <Leader>nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
-" nnoremap <Leader>fi :emenu Tools.Firebug.Inspect Element<CR>
+" nnoremap ,nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
+" nnoremap ,fi :emenu Tools.Firebug.Inspect Element<CR>
 " The previous emenu mappings don't work: be sure that the following
 " keymappings correspond to the commands above, to work as expected:
-nnoremap -builtin <Leader>nc <M-S-l>
-nnoremap <Leader>fi <M-S-c>
+nnoremap -builtin ,nc <M-S-l>
+nnoremap ,fi <M-S-c>
 
 " Stumbleupon Specific:
-nnoremap <silent> <Leader>su :stumble<CR>
+nnoremap <silent> ,su :stumble<CR>
 
 " Bookmark Organiser Mapping:
-nnoremap <silent> <Leader>bms :sb Bookmarks<CR>
-nnoremap <silent> <Leader>bmo :dia places<CR>
+nnoremap <silent> ,bms :sb Bookmarks<CR>
+nnoremap <silent> ,bmo :dia places<CR>
 " }}}
 
 " vim: set ft=vimperator:
