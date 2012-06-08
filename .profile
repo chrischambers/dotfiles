@@ -260,6 +260,9 @@ djtest() {
 }
 # ----------------------------------------------------------------------------
 # }}}
+
+alias g='gvim --servername Vim1 --remote-silent'
+
 djproject() {
     django-admin.py startproject $1 --verbosity=2 --extension="py,txt,rst,json" --template="$django_project_template"
 }
