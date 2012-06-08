@@ -1,5 +1,5 @@
 " Alpha Settings: {{{
-" colorscheme mine
+colorscheme mine
 set showtabline=multitab
 set defsearch=yubnub
 " }}}
@@ -46,18 +46,18 @@ set editor='/Applications/MacVim/MacVim.app/Contents/MacOS/Vim -gf --servername 
 
 
 " Custom Mappings: {{{
-nnoremap 0gt g0
-nnoremap $gt g$
+nmap -builtin 0gt g0
+nmap -builtin $gt g$
 " cnoremap :b$ :tablast<CR>
 
-nnoremap ,bo :tabonly<CR>
-nnoremap U :undoall<CR>
+nmap -builtin ,bo :tabonly<CR>
+nmap -builtin U :undoall<CR>
 
-nnoremap <leader>d :tabopen chrome://mozapps/content/downloads/downloads.xul<CR>
+nmap -builtin <leader>d :tabopen chrome://mozapps/content/downloads/downloads.xul<CR>
 
 " Stolen from Steve Losh: makes moving up/down more efficient:
-nnoremap j 3j
-nnoremap k 3k
+nmap -builtin j 3j
+nmap -builtin k 3k
 
 " Quick toggle buffers:
 " ---------------------
@@ -65,34 +65,34 @@ nnoremap k 3k
 " name, or part of the url. You can use RET to switch to buffer, or even use
 " tab completion. Also works well in conjunction with gb/gB, which will allow
 " you to cycle between buffers with similar names.
-nnoremap ,, :buffers<CR>:b! 
+nmap -builtin ,, :buffers<CR>:b! 
 " Convenient alias for switching back and forth between alternate buffer:
-nnoremap ,. <C-^>
+nmap -builtin ,. <C-^>
 
 " Firebug Specific:
-nnoremap <silent> ,fo :emenu Tools.Web Developer.Firebug.Open Firebug<CR>
+nmap -builtin <silent> ,fo :emenu Tools.Web Developer.Firebug.Open Firebug<CR>
 " Press RET to cycle through elements:
-" nnoremap ,fs :emenu Tools.Web Developer.Firebug.Search<CR>
+" nmap -builtin ,fs :emenu Tools.Web Developer.Firebug.Search<CR>
 
 " Web Developer Specific:
-nnoremap ,ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
-nnoremap ,vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
-nnoremap ,vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
-nnoremap ,vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
+nmap -builtin ,ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
+nmap -builtin ,vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
+nmap -builtin ,vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
+nmap -builtin ,vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
 
-" nnoremap ,nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
-" nnoremap ,fi :emenu Tools.Firebug.Inspect Element<CR>
+" nmap -builtin ,nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
+" nmap -builtin ,fi :emenu Tools.Firebug.Inspect Element<CR>
 " The previous emenu mappings don't work: be sure that the following
 " keymappings correspond to the commands above, to work as expected:
-nnoremap -builtin ,nc <M-S-l>
-nnoremap ,fi <M-S-c>
+nmap -builtin -builtin ,nc <M-S-l>
+nmap -builtin ,fi <M-S-c>
 
 " Stumbleupon Specific:
-nnoremap <silent> ,su :stumble<CR>
+nmap -builtin <silent> ,su :stumble<CR>
 
 " Bookmark Organiser Mapping:
-nnoremap <silent> ,bms :sb Bookmarks<CR>
-nnoremap <silent> ,bmo :dia places<CR>
+nmap -builtin <silent> ,bms :sb Bookmarks<CR>
+nmap -builtin <silent> ,bmo :dia places<CR>
 " }}}
 
 " vim: set ft=vimperator:
