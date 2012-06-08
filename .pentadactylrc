@@ -1,5 +1,5 @@
 " Alpha Settings: {{{
-colorscheme mine
+" colorscheme mine
 set showtabline=multitab
 set defsearch=yubnub
 " }}}
