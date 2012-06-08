@@ -171,10 +171,18 @@ if [[ -z $(which beep) ]]; then
     alias beep='printf "\a"'
 fi
 alias h='history | tail -n 10' # previous 10 history lines, for context
-alias ls='ls -FG'              # colorise and use symbolic key for filetypes
+
+if ls --color -d . >/dev/null 2>&1; then
+    alias ls='ls -F --color=auto'    # colorise and use symbolic key for filetypes
+    alias l="ls -AlhF --color=auto"  # colorised, symbolic key, long listing w/
+                                     # hidden files and human-readable file sizes.
+elif ls -G -d . >/dev/null 2>&1; then
+    alias ls='ls -FG'                # colorise and use symbolic key for filetypes
+    alias l="ls -AlhFG"              # colorised, symbolic key, long listing w/
+                                     # hidden files and human-readable file sizes.
+fi
+
 alias tree='tree -FC'          # colorise and use symbolic key for filetypes
-alias l="ls -AlhFG"            # colorised, symbolic key, long listing w/ hidden files
-                               # and human-readable file sizes.
 
 # Git specific:
 alias git-svn='git svn'
@@ -184,7 +192,6 @@ alias show_site_packages='python -c "from distutils.sysconfig import get_python_
 alias delpyc='find ./ -type f -name "*.pyc" -exec rm -f {} \;'
 # ----------------------------------------------------------------------------
 # }}}
-
 
 # Useful functions: {{{
 # ----------------------------------------------------------------------------
