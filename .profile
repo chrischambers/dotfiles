@@ -6,6 +6,9 @@
 # --------------------------
 virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
 django_bash_completion=$HOME/src/py/django/django/extras/django_bash_completion
+django_project_template=$HOME/src/py/django/_mine/templates/project
+django_app_template=$HOME/src/py/django/_mine/templates/app
+django_pluggable_app_template=$HOME/src/py/django/_mine/templates/pluggable_app
 
 # Pre OS-specific Customisation Tweaks: {{{
 # ----------------------------------------------------------------------------
@@ -248,3 +251,12 @@ djtest() {
 }
 # ----------------------------------------------------------------------------
 # }}}
+djproject() {
+    django-admin.py startproject $1 --verbosity=2 --extension="py,txt,rst,json" --template="$django_project_template"
+}
+djapp() {
+    django-admin.py startapp $1 --verbosity=2 --extension="py,txt,rst,json" --template="$django_app_template"
+}
+djplugapp() {
+    django-admin.py startapp $1 --verbosity=2 --extension="py,txt,rst,json" --template="$django_pluggable_app_template"
+}
