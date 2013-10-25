@@ -35,7 +35,9 @@ shopt -u dotglob # Ensure that * doesn't automatically match hidden files
 # Completion: {{{
 # ----------------------------------------------------------------------------
 # Enable pimping django bash-completion:
-source $django_bash_completion
+if [[ -r $django_bash_completion ]]; then
+    source $django_bash_completion
+fi
 
 # pip bash completion start
 _pip_completion()

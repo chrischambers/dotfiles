@@ -135,6 +135,8 @@ syntax on              " enable per-filetype syntax highlighting
 filetype on            " enable filetype detection
 filetype plugin on     " enable filetype specific plugins
 filetype indent on     " enable filetype-specific indenting where available,
+set enc=utf-8
+" set fenc=utf-8
 
 set background=dark
 colorscheme ir_black   " slightly tweaked to fit, but totally awesome.
@@ -192,7 +194,7 @@ set scrolloff=2       " Keep 2 lines above/below cursor when scrolling up/down
 set sidescrolloff=2   " Keep 2 lines left/right of cursor when scrolling
                       " left/right
 
-set fileformats=unix
+" set fileformats=unix
 set updatecount=100   " Write to swapfile after typing 100 characters
 " from godlygeek:
 set virtualedit=block " Let cursor move past the last char in <C-v> mode
@@ -512,7 +514,7 @@ endif
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1658>
 " --------------------------------------------------------------------------
 " Toggle the following off with 'f'!
-let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$', '\.swp']
+" let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$', '\.swp']
 let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD
 let NERDChristmasTree=1 " Extra-colourful Tree
 let NERDTreeMouseMode=2 " If you do use the mouse, this is probably what you want.
@@ -1076,6 +1078,8 @@ if has("autocmd")
     au!
     autocmd FileType txt setl textwidth=78
     autocmd FileType rst setl textwidth=78
+    " autocmd FileType txt setl fenc='utf-8'
+    " autocmd FileType rst setl fenc='utf-8'
   augroup END
 endif
 " --------------------------------------------------------------------------
@@ -1526,5 +1530,12 @@ if has("autocmd")
     autocmd FileType cucumber setl softtabstop=2
     autocmd FileType cucumber setl shiftwidth=2
     autocmd FileType cucumber setl wrap
+  augroup END
+endif
+
+if has("autocmd")
+  augroup actionscript_setup
+    au!
+    autocmd BufRead,BufNewFile *.as set ft=actionscript
   augroup END
 endif

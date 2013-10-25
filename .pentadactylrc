@@ -5,24 +5,26 @@ set defsearch=yubnub
 " }}}
 
 "" Guioptions: {{{
-set guioptions=
-" Force command line to always display:
-set guioptions+=C
-" set guioptions+=m
-" add menu bar (no-op on OSX):
-" set guioptions+=m
-" status bar
-set guioptions+=s
-" add Toolbar (i.e. main bar):
-" set guioptions+=T
-" add Bookmark Bar:
-" set guioptions+=B
-" add bottom scrollbar:
-set guioptions+=b
-" add right scrollbar:
-set guioptions+=r
-" numbered tabs (OVER favicons, use lowercase for alongside):
-set guioptions+=N
+" set guioptions=
+" " Force command line to always display:
+" set guioptions+=C
+" " set guioptions+=m
+" " add menu bar (no-op on OSX):
+" " set guioptions+=m
+" " status bar
+" set guioptions+=s
+" " add Toolbar (i.e. main bar):
+" " set guioptions+=T
+" " add Bookmark Bar:
+" " set guioptions+=B
+" " add bottom scrollbar:
+" set guioptions+=b
+" " add right scrollbar:
+" set guioptions+=r
+" " numbered tabs (OVER favicons, use lowercase for alongside):
+" set guioptions+=N
+
+set guioptions=CsbrN
 "" }}}
 
 " Avoid automatic focussing on first form-field - i.e., keeps vimp in normal

@@ -88,6 +88,9 @@ autoload colors; colors;                      # vi-mode plugin depends on this
 plugin=${plugin:=()}
 for plugin ($plugins) fpath=($OMZSH/plugins/$plugin $fpath)
 
+# Re-aliasing overriden g:
+alias g='gvim --servername Vim1 --remote-silent'
+
 
 # Completion: {{{
 # ----------------------------------------------------------------------------

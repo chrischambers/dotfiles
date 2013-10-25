@@ -13,6 +13,8 @@ django_pluggable_app_template=$HOME/src/py/django/_mine/templates/pluggable_app
 # Pre OS-specific Customisation Tweaks: {{{
 # ----------------------------------------------------------------------------
 export EDITOR=vim
+export VISUAL="vim -g"
+export GIT_EDITOR="vim"
 alias gvim="vim -g"
 # ----------------------------------------------------------------------------
 # }}}
@@ -207,7 +209,9 @@ screenload() {
 # Virtualenv and Pip Configuration: {{{
 # ----------------------------------------------------------------------------
 export WORKON_HOME="$HOME/.virtualenvs"
-source $virtualenvwrapper_loc
+if [[ -r $virtualenvwrapper_loc ]]; then
+    source $virtualenvwrapper_loc
+fi
 # Note: switching envs seems to undo the PATH manipulation above.
 
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
@@ -272,3 +276,8 @@ djapp() {
 djplugapp() {
     django-admin.py startapp $1 --verbosity=2 --extension="py,txt,rst,json" --template="$django_pluggable_app_template"
 }
+
+tst() {
+    nosetests --with-django --django-settings sequin.settings --with-spec --spec-color $1
+}
+

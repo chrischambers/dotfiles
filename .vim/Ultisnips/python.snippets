@@ -463,7 +463,7 @@ $0
 endsnippet
 
 snippet urli "Django URL Imports stub" b
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, include, url
 $0
 endsnippet
 
@@ -1105,13 +1105,13 @@ ${3:}
 endsnippet
 
 snippet url "Include"
-(r"${1:url_prefix}", include('${2:path.to.urlconf}')),
+(r"^${1:url_prefix}/", include('${2:path.to.urlconf}')),
 ${3:}
 endsnippet
 
 
 snippet urlp "Set"
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, include, url
 urlpatterns = patterns('${1:django.views.generic}',
     ${2}
 )

@@ -54,7 +54,11 @@ alias firefox='open /Applications/Firefox.app'
 export VIM_APP_DIR="/Applications/MacVim/"
 # Using this alias is superior to a symlink because it creates the correct
 # runtimepath automatically
-alias vim="/Applications/MacVim/MacVim.app/Contents/MacOS/Vim"
-export EDITOR="/Applications/MacVim/MacVim.app/Contents/MacOS/Vim"
+vim="/Applications/MacVim/MacVim.app/Contents/MacOS/Vim"
+alias vim="$vim"
+export EDITOR="$vim"
+# export VISUAL="$vim -g --servername Vim1 --remote-silent"
+export VISUAL="$vim" # Necessary for command-line editing in vim mode (v)
+export GIT_EDITOR="$vim"
 # ----------------------------------------------------------------------------
 # }}}
