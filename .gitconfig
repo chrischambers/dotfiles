@@ -28,3 +28,5 @@
         #
         # Source:
         # http://borisdusek.blogspot.com/2010/10/git-send-email-on-mac-os-x-with-smtp.html
+[push]
+	default = simple
