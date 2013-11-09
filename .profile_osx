@@ -38,7 +38,9 @@ alias mysqlstop='/opt/local/bin/mysqladmin5 -u root -p shutdown'
 
 # Postgres Configuration (via Macports)
 # Necessary before installing psycopg2, so that pg_config lives on the path
-export PATH="/opt/local/lib/postgresql84/bin:$PATH"
+export PATH="/opt/local/lib/postgresql92/bin:$PATH"
+# For Geodjango:
+export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib:/opt/local/lib/postgresql83
 # ----------------------------------------------------------------------------
 # }}}
 
