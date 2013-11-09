@@ -1,11 +1,15 @@
 #!/usr/bin/env zsh
 
+# To profile startup time for zsh, use::
+# /usr/bin/time zsh -i -c exit
+
 # Zsh History Management: {{{
 # ----------------------------------------------------------------------------
 
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
+skip_global_compinit=1
 setopt extended_history # Adds extra information to history (timestamps, etc.)
 setopt histverify       # History substitutions placed on cli for editing,
                         # not run automatically.
@@ -78,19 +82,19 @@ setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
 # ----------------------------------------------------------------------------
 # }}}
 
-# Oh-my-zsh Plugins Setup (Must be Before Completion section)
-# Path to your oh-my-zsh configuration.
-OMZSH=$HOME/src/vim/dotfiles/oh-my-zsh
-plugins=(git github git-flow pip osx macports mercurial)
-
-fpath=($OMZSH/functions $OMZSH/completions $fpath)
-autoload colors; colors;                      # vi-mode plugin depends on this
-plugin=${plugin:=()}
-for plugin ($plugins) fpath=($OMZSH/plugins/$plugin $fpath)
-
-# Re-aliasing overriden g:
-alias g='gvim --servername Vim1 --remote-silent'
-
+# # Oh-my-zsh Plugins Setup (Must be Before Completion section)
+# # Path to your oh-my-zsh configuration.
+# OMZSH=$HOME/src/vim/dotfiles/oh-my-zsh
+# plugins=(git-flow pip osx macports mercurial)
+#
+# fpath=($OMZSH/functions $OMZSH/completions $fpath)
+# autoload colors; colors;                      # vi-mode plugin depends on this
+#
+# plugin=${plugin:=()}
+# for plugin ($plugins) fpath=($OMZSH/plugins/$plugin $fpath)
+#
+# # Re-aliasing overriden g:
+# alias g='gvim --servername Vim1 --remote-silent'
 
 # Completion: {{{
 # ----------------------------------------------------------------------------
@@ -177,6 +181,7 @@ bindkey -M vicmd "^M" accept_line
 
 
 # Stolen from oh-my-zsh vi-mode plugin:
+autoload colors; colors;
 MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
 function vi_mode_prompt_info() {
   echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
@@ -207,12 +212,12 @@ SPROMPT="zsh: correct '%R' to '%r' [nyae]?"
 # ----------------------------------------------------------------------------
 # }}}
 
-# Oh-my-zsh Plugins activation
-for plugin ($plugins); do
-  if [ -f $OMZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
-    source $OMZSH/plugins/$plugin/$plugin.plugin.zsh
-  fi
-done
+# # Oh-my-zsh Plugins activation
+# for plugin ($plugins); do
+#   if [ -f $OMZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+#     source $OMZSH/plugins/$plugin/$plugin.plugin.zsh
+#   fi
+# done
 
 # Misc:
 function zsh_stats() {
