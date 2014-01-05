@@ -3,13 +3,17 @@
 # To profile startup time for zsh, use::
 # /usr/bin/time zsh -i -c exit
 
+skip_global_compinit=1  # Performance optimisation, reduces startup time
+REPORTTIME=10           # Operations lasting >= 10 seconds have `time` output
+
 # Zsh History Management: {{{
 # ----------------------------------------------------------------------------
 
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-skip_global_compinit=1
+
+
 setopt extended_history # Adds extra information to history (timestamps, etc.)
 setopt histverify       # History substitutions placed on cli for editing,
                         # not run automatically.
