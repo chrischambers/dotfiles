@@ -281,3 +281,5 @@ tst() {
     nosetests --with-django --django-settings sequin.settings --with-spec --spec-color $1
 }
 
+
+alias vimprof='vim --startuptime /dev/stdout -c "qa" | grep -v "^[^0-9].*" | sort'
