@@ -285,7 +285,7 @@ set wildmode=list:longest,full
 " list:longest    - When > 1 match, list all matches and
 "                   complete till longest common string.
 " full            - enables you to tab through the remaining completions
-set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,*.mp3,*.mov
+set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,*.mp3,*.mov,*.chm
 
 " set complete=.,w,b,u,t,i
 set completeopt=menu,longest
