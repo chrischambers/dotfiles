@@ -103,6 +103,7 @@ setopt numeric_glob_sort  # when using <-> to match ranges, do a numeric sort
 # Completion: {{{
 # ----------------------------------------------------------------------------
 
+fpath=(~/.zshfuncs $fpath)
 autoload -U compinit
 compinit
 unsetopt list_ambiguous   # ``find -ex<TAB>`` will complete up to 'exec', but
