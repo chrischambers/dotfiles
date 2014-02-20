@@ -53,4 +53,3 @@ complete -o default -F _pip_completion pip
 # tabs from being interpreted as completions):
 shopt -s no_empty_cmd_completion
 # }}}
-
