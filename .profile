@@ -262,10 +262,6 @@ djtest() {
         return 1
     fi
 }
-# ----------------------------------------------------------------------------
-# }}}
-
-alias g='gvim --servername Vim1 --remote-silent'
 
 djproject() {
     django-admin.py startproject $1 --verbosity=2 --extension="py,txt,rst,json" --template="$django_project_template"
@@ -280,6 +276,17 @@ djplugapp() {
 tst() {
     nosetests --with-django --django-settings sequin.settings --with-spec --spec-color $1
 }
+# ----------------------------------------------------------------------------
+# }}}
 
+# Ruby Specific: {{{
+# ----------------------------------------------------------------------------
 
+# RVM Configuration:
+PATH=$PATH:$HOME/.rvm/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# ----------------------------------------------------------------------------
+# }}}
+
+alias g='gvim --servername Vim1 --remote-silent'
 alias vimprof='vim --startuptime /dev/stdout -c "qa" | grep -v "^[^0-9].*" | sort'
