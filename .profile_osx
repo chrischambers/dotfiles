@@ -48,6 +48,8 @@ export PATH="/opt/local/lib/postgresql92/bin:$PATH"
 # ----------------------------------------------------------------------------
 alias finder='open /System/Library/CoreServices/Finder.app/'
 alias firefox='open /Applications/Firefox.app'
+alias start_elasttcsearch='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
+alias start_postgres="sudo su postgres -c '/opt/local/lib/postgresql92/bin/postgres -D /opt/local/var/db/postgresql92/defaultdb'"
 # ----------------------------------------------------------------------------
 # }}}
 
