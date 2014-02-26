@@ -6,8 +6,9 @@ if (( $+commands[git] ))
 then
   git="$commands[git]"
 else
-  git="/usr/bin/git"
+  git="/opt/local/bin/git"
 fi
+git="/opt/local/bin/git"
 
 git_branch() {
   echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
