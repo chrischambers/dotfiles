@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 detect_os () {
   # Outputs one of the following, depending on your system:
@@ -35,7 +35,18 @@ source_if_readable () {
   # echo $1
 }
 
-source_before_file_for () { source_if_readable ${1}.before }
-source_platform_specific_file_for () { source_if_readable ${1}.$(detect_os) }
-source_after_file_for () { source_if_readable ${1}.after }
-source_local_file_for () { source_if_readable ${1}.local }
+source_before_file_for () {
+    source_if_readable ${1}.before
+}
+
+source_platform_specific_file_for () {
+    source_if_readable ${1}.$(detect_os)
+}
+
+source_after_file_for () {
+    source_if_readable ${1}.after
+}
+
+source_local_file_for () {
+    source_if_readable ${1}.local
+}

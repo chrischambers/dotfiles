@@ -1,84 +1,60 @@
-autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
+setopt prompt_subst   # Enable substituting variables into prompt
+unsetopt prompt_cr    # Suppress prompt printing carriage return before display
 
-if (( $+commands[git] ))
-then
-  git="$commands[git]"
-else
-  git="/opt/local/bin/git"
-fi
-git="/opt/local/bin/git"
+bg_red=$'%{\e[00;41m%}'
 
-git_branch() {
-  echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+function zle-keymap-select zle-line-init {
+    VIMODE="${${KEYMAP}/(main|viins)/}"
+    zle reset-prompt
 }
 
-git_dirty() {
-  st=$($git status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]
-  then
-    echo ""
-  else
-    if [[ "$st" =~ ^nothing ]]
-    then
-      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
-    else
-      echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+function v {
+    if [[ $VIMODE = 'vicmd' ]]; then
+        echo "$bg_red"
     fi
-  fi
 }
 
-git_prompt_info () {
- ref=$($git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
+function accept_line {
+    # Ensures that hitting return will reset the VIMODE variable - prevents,
+    # say, backwards searching for command and then confirming (with return)
+    # from showing that vi-cmd mode is active in the following prompt.
+
+    # http://pthree.org/2009/03/28/add-vim-editing-mode-to-your-zsh-prompt/
+    VIMODE=''
+    builtin zle .accept-line
+}
+zle -N accept_line
+bindkey -M vicmd "^M" accept_line
+
+
+# Stolen from oh-my-zsh vi-mode plugin:
+autoload colors; colors;
+MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
 }
 
-unpushed () {
-  $git cherry -v @{upstream} 2>/dev/null
-}
+# define right prompt
+if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
+  RPS1='$(vi_mode_prompt_info)'
+fi
 
-need_push () {
-  if [[ $(unpushed) == "" ]]
-  then
-    echo " "
-  else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
-  fi
+function prompt_precmd {
+    st=$(cache_exit_status)
 }
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd prompt_precmd
 
-ruby_version() {
-  if (( $+commands[rbenv] ))
-  then
-    echo "$(rbenv version | awk '{print $1}')"
-  fi
+PROMPT='
+${hist_num} $(v)${user_sys_info}${RESET} ${time_stamp}$(jobs_count)
+$(display_project_env)${cwd_path} $(main_prompt $st)${RESET} '
 
-  if (( $+commands[rvm-prompt] ))
-  then
-    echo "$(rvm-prompt | awk '{print $1}')"
-  fi
-}
+setopt correct         # offer spelling suggestion for mistyped command
+                       # [no / yes / abort / edit]
 
-rb_prompt() {
-  if ! [[ -z "$(ruby_version)" ]]
-  then
-    echo "%{$fg_bold[yellow]%}$(ruby_version)%{$reset_color%} "
-  else
-    echo ""
-  fi
-}
-
-directory_name() {
-  echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
-}
-
-export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
-set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
-}
-
-precmd() {
-  title "zsh" "%m" "%55<...<%~"
-  set_prompt
-}
+# Default Spelling Correction prompt: placed here for easy editing. Can use any
+# other prompt escapes.
+SPROMPT="zsh: correct '%R' to '%r' [nyae]?"

@@ -1,0 +1,22 @@
+#!/bin/env bash
+
+source ~/.shell_common
+
+source_before_file_for ".bashrc"
+source_platform_specific_file_for ".bashrc"
+
+export DOTFILES=$HOME/src/vim/dotfiles/new
+
+for f in $(find $DOTFILES/shell -maxdepth 1 -type f -name "*.sh"); do
+  source $f
+done
+
+for f in $(find $DOTFILES/shell/bash -type f -name "*.bash"); do
+  source $f
+done
+
+source_after_file_for ".bashrc"
+source_local_file_for ".bashrc"
+
+export CURRENT_DOTFILES='new'
+alias switch='source ~/switch.sh'
