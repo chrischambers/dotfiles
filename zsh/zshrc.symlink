@@ -1,5 +1,10 @@
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/vim/dotfiles/new
+export ZSH=$HOME/src/vim/dotfiles/new
+
+. ${ZSH}/shell/common.sh
+
+source_before_file_for ".zshrc"
+source_platform_specific_file_for ".zshrc"
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/src
@@ -38,3 +43,12 @@ do
 done
 
 unset config_files
+
+
+# Temp:
+# ----------------------------------------------------------------------------
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export MANPATH="/opt/local/share/man:$MANPATH"
+
+source_after_file_for ".zshrc"
+source_local_file_for ".zshrc"
