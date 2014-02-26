@@ -45,3 +45,5 @@ export MANPATH="/opt/local/share/man:$MANPATH"
 
 source_after_file_for ".zshrc"
 source_local_file_for ".zshrc"
+
+export CURRENT_DOTFILES='new'
