@@ -1,11 +1,11 @@
-# shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/src/vim/dotfiles/new
-
-. ${ZSH}/shell/common.sh
+source ~/.shell_common
 
 source_before_file_for ".zshrc"
 source_platform_specific_file_for ".zshrc"
 
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/src/vim/dotfiles/new
+#
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/src
 
