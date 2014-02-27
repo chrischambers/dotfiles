@@ -1,5 +1,18 @@
 #!/bin/sh
 
+# ----------------------------------------------------------------------------
+
+export DOTFILES=$HOME/src/vim/dotfiles/new
+# project folder that we can `c [tab]` to
+export PROJECTS=~/src
+
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export MANPATH="/opt/local/share/man:$MANPATH"
+export CURRENT_DOTFILES='new'
+alias switch='source ~/switch.sh'
+
+# ----------------------------------------------------------------------------
+
 detect_os () {
   # Outputs one of the following, depending on your system:
 

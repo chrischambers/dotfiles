@@ -3,21 +3,16 @@ source ~/.shell_common
 source_before_file_for ".zshrc"
 source_platform_specific_file_for ".zshrc"
 
-export DOTFILES=$HOME/src/vim/dotfiles/new
-
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/src
+# load common shell elements
+typeset -U common_shell_files
+common_config_files=($DOTFILES/**/*.sh)
+for file in $common_config_files; do
+  source $file
+done
 
 # all of our zsh files
 typeset -U config_files
-config_files=($DOTFILES/shell/zsh/**/*.zsh)
-
-# load common shell elements
-typeset -U common_shell_files
-common_shell_files=($DOTFILES/shell/*.sh)
-for file in $common_shell_files; do
-  source $file
-done
+config_files=($DOTFILES/**/*.zsh)
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
@@ -43,14 +38,4 @@ done
 
 unset config_files
 
-
-# Temp:
-# ----------------------------------------------------------------------------
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-export MANPATH="/opt/local/share/man:$MANPATH"
-
-source_after_file_for ".zshrc"
 source_local_file_for ".zshrc"
-
-export CURRENT_DOTFILES='new'
-alias switch='source ~/switch.sh'

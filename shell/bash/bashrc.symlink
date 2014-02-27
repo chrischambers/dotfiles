@@ -7,16 +7,15 @@ source_platform_specific_file_for ".bashrc"
 
 export DOTFILES=$HOME/src/vim/dotfiles/new
 
-for f in $(find $DOTFILES/shell -maxdepth 1 -type f -name "*.sh"); do
+common_config_files=$(find $DOTFILES -type f -name "*.sh");
+for f in  $common_config_files; do
   source $f
 done
 
-for f in $(find $DOTFILES/shell/bash -type f -name "*.bash"); do
+config_files=$(find $DOTFILES -type f -name "*.bash")
+for f in $config_files; do
   source $f
 done
 
 source_after_file_for ".bashrc"
 source_local_file_for ".bashrc"
-
-export CURRENT_DOTFILES='new'
-alias switch='source ~/switch.sh'

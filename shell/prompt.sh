@@ -1,5 +1,3 @@
-# Prompt: {{{
-# ----------------------------------------------------------------------------
 source ~/.colour_palette
 
 # Disable automatic virtualenv modification of PS1 (we handle that ourselves!)
@@ -92,5 +90,3 @@ hist_num="${YELLOW}[${BOLD_GREEN}${hist_prompt}${YELLOW}]"
 user_sys_info="${BOLD_BLUE}${user_prompt}${YELLOW}@${BOLD_BLUE}${host_prompt}"
 time_stamp="${YELLOW}[${RED}${timestamp_prompt}${YELLOW}]"
 cwd_path="${YELLOW}[ ${BOLD_BLUE}${cwd_prompt}${YELLOW} ]"
-# ----------------------------------------------------------------------------
-# }}}
