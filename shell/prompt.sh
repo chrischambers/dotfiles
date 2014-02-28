@@ -8,7 +8,7 @@ parse_git_branch() {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-parse_active_virtualenv() {
+active_virtualenv() {
     if [[ -z $VIRTUAL_ENV ]]; then
         echo ''
     else
@@ -16,20 +16,39 @@ parse_active_virtualenv() {
     fi
 }
 
+active_ruby_version() {
+  if [[ -z $(command -v rbenv > /dev/null 2>&1) ]]; then
+    echo "$(rbenv version | awk '{print $1}')"
+  fi
+
+  if [[ -z $(command -v rvm-prompt > /dev/null 2>&1) ]]; then
+    echo "$(rvm-prompt | awk '{print $1}')"
+  fi
+}
+
 display_project_env() {
     # Displays virtualenv information and VCS branch.
     local git_branch="`parse_git_branch`"
-    local virtualenv="`parse_active_virtualenv`"
+    local virtualenv="`active_virtualenv`"
     # echo $git_branch
     # echo $virtualenv
-    if [[ -z $virtualenv ]] && [[ -z $git_branch ]]; then
-        echo ''
-    elif [[ -z $virtualenv ]]; then
-        echo ${WHITE}'('${BOLD_GREEN}${git_branch}${WHITE}') '
-    elif [[ -z $git_branch ]]; then
-        echo ${WHITE}'('${BOLD_BLUE}${virtualenv}${WHITE}') '
+
+    if [[ $RUBY_PROMPT -eq 1 ]]; then
+        if [[ -z $git_branch ]]; then
+            echo ${WHITE}'('${BOLD_BLUE}ruby${WHITE}:${BOLD_BLUE}$(active_ruby_version)${WHITE}')'
+        else
+            echo ${WHITE}'('${BOLD_BLUE}ruby${WHITE}:${BOLD_BLUE}$(active_ruby_version)${WHITE}'/'${BOLD_GREEN}${git_branch}${WHITE}')'
+        fi
     else
-        echo ${WHITE}'('${BOLD_BLUE}${virtualenv}${WHITE}'/'${BOLD_GREEN}${git_branch}${WHITE}') '
+      if [[ -z $virtualenv ]] && [[ -z $git_branch ]]; then
+          echo ''
+      elif [[ -z $virtualenv ]]; then
+          echo ${WHITE}'('${BOLD_GREEN}${git_branch}${WHITE}') '
+      elif [[ -z $git_branch ]]; then
+          echo ${WHITE}'('${BOLD_BLUE}${virtualenv}${WHITE}') '
+      else
+          echo ${WHITE}'('${BOLD_BLUE}${virtualenv}${WHITE}'/'${BOLD_GREEN}${git_branch}${WHITE}') '
+      fi
     fi
 }
 
