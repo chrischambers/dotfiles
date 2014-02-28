@@ -11,6 +11,7 @@ export MANPATH="/opt/local/share/man:$MANPATH"
 export CURRENT_DOTFILES='new'
 alias switch='source ~/switch.sh'
 
+virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
 # ----------------------------------------------------------------------------
 
 detect_os () {
