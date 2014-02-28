@@ -28,4 +28,6 @@ bind '" ": magic-space'
 # Other Bash options: {{{
 # ----------------------------------------------------------------------------
 shopt -u dotglob # Ensure that * doesn't automatically match hidden files
+shopt -s extglob # Enabled extended-glob syntax: see
+                 # http://www.linuxjournal.com/content/bash-extended-globbing
 # }}}
