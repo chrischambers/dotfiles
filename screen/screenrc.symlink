@@ -1,0 +1,56 @@
+# Source: <url:http://lwn.net/Articles/88526/>
+# Change escape key from C-a to backtick:
+escape ``
+
+# Disable splash screen:
+startup_message off
+
+# Provide decent scrollback history size:
+defscrollback 5000
+
+# Disable delay after entering <esc> key in, say, vim sessions:
+# Source: <url:http://www.linuxjournal.com/article/6340#comment-324119>
+#maptimeout 0
+# NOTE: if you set this to 0, you won't be able to perform any
+# <esc><other> combos!
+maptimeout 100
+
+# Turn visual-bell off, because it blows on gnome-terminal: will actually cause
+# a transparent background to redraw!
+# vbell off
+
+# fix scrollback in putty (edit: and for Mac Terminal)
+# Source: <url:http://www.samsarin.com/blog/2007/03/11/gnu-screen-working-with-the-scrollback-buffer/>
+# Totally awesome and essential:
+# altscreen on
+termcapinfo xterm*|xs|rxvt ti@:te@
+
+# Display useful statusbar:
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%w%=%m/%d %c"
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+#caption string '%{= wk}[ %{k}%H %{k}][%= %{= wk}%?%-Lw%?%{r}(%{r}%n*%f%t%?(%u)%?%{r})%{k}%?%+Lw%?%?%= %{k}][%{b} %d/%m %{k}%c %{k}]' # good looking window bar
+#caption always "%{= kw}%-w%{= gW}%n %t%{-}%+w %-= %c %D %M/%d/%Y "
+
+# Keybindings:
+# Source: <url:http://www.hanhuy.com/pfn/integrating_screen_and_clipboard;jsessionid=B9CC24D29ACCBF10682149ACFA7F86D2>
+bind k  focus up
+bind ^k focus up
+bind j  focus down
+bind ^j focus down
+bind 'K' kill
+bind a other
+
+# C-A b to copy scrollback buffer to Mac clipboard:
+# Source: <url:http://www.samsarin.com/blog/2007/03/11/gnu-screen-working-with-the-scrollback-buffer/>
+# Mac:
+bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+# Linux:
+# bind b eval "writebuf" "exec sh -c 'xsel -i -b < /tmp/screen-exchange'"
+
+# Bell in inactive window should generate bell in active window as well,
+# instead of just writing this info out.
+# Source: <url:http://www.linuxjournal.com/article/6340#comment-127323>
+bell_msg '^GBell in window %n'
+activity '^GActivity in window %n'

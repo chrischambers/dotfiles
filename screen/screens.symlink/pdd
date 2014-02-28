@@ -1,0 +1,16 @@
+# read in your full screenrc before anything else...
+source $HOME/.screenrc
+
+screen -t irssi     0
+stuff "irssi"
+screen -t runserver 1
+stuff "workon pdd && ./manage.py runserver 0.0.0.0:8000"
+screen -t ipy       2
+stuff "workon pdd && ./manage.py shell_plus"
+screen -t git       3
+stuff "workon pdd"
+screen -t tests     4
+stuff "workon pdd"
+
+select 3
+
