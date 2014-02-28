@@ -1,47 +1,46 @@
-if [[ -n $SSH_CONNECTION ]]; then
-  export PS1='%m:%3~$(git_info_for_prompt)%# '
-else
-  export PS1='%3~$(git_info_for_prompt)%# '
-fi
+#!/usr/bin/env zsh
+
+# To profile startup time for zsh, use::
+# /usr/bin/time zsh -i -c exit
+
+skip_global_compinit=1  # Performance optimisation, reduces startup time
+REPORTTIME=10           # Operations lasting >= 10 seconds have `time` output
+
+# ----------------------------------------------------------------------------
 
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
+
+# Color grep results
+# export GREP_OPTIONS='--color=auto'
+# export GREP_COLOR='1;32'
 
 fpath=($DOTFILES/functions $fpath)
 
 autoload -U $DOTFILES/functions/*(:t)
 
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-
-setopt NO_BG_NICE # don't nice background tasks
-setopt NO_HUP
-setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
-setopt HIST_VERIFY
-setopt SHARE_HISTORY # share history between sessions ???
-setopt EXTENDED_HISTORY # add timestamps to history
-setopt PROMPT_SUBST
-setopt CORRECT
-setopt COMPLETE_IN_WORD
-
-setopt APPEND_HISTORY # adds history
-setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
-setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
-setopt HIST_REDUCE_BLANKS
+setopt no_bg_nice          # don't nice background tasks
+setopt no_hup              # don't send HUP to running jobs on shell exit
+setopt no_list_beep        # don't beep on ambiguous completion
+setopt local_options       # allow functions to have local options
+setopt local_traps         # allow functions to have local traps
 
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
 setopt complete_aliases
 
-zle -N newtab
+# Prompts for confirmation after 'rm *' etc
+# Helps avoid mistakes like 'rm * o' when 'rm *.o' was intended
+# Source: http://matt.blissett.me.uk/linux/zsh/zshrc
+setopt rm_star_wait
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char
+# multiple stdin/stdout/stderr redirects (you don't have to use ``tee`` to
+# output to term and a file, for example). This includes pipes::
+#
+#   % echo Script started. >logfile | sed 's/started/stopped/'
+#   Script stopped.
+#   % cat logfile
+#   Script started.
+#
+# Multiple stdin redirects concatenates them in the order specified.
+setopt multios
