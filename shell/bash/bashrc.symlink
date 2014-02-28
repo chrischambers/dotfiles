@@ -5,8 +5,6 @@ source ~/.shell_common
 source_before_file_for ".bashrc"
 source_platform_specific_file_for ".bashrc"
 
-export DOTFILES=$HOME/src/vim/dotfiles/new
-
 common_config_files=$(find $DOTFILES -type f -name "*.sh");
 for f in  $common_config_files; do
   source $f
