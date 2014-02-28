@@ -8,13 +8,6 @@ REPORTTIME=10           # Operations lasting >= 10 seconds have `time` output
 
 # ----------------------------------------------------------------------------
 
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export CLICOLOR=true
-
-# Color grep results
-# export GREP_OPTIONS='--color=auto'
-# export GREP_COLOR='1;32'
-
 fpath=($DOTFILES/functions $fpath)
 
 autoload -U $DOTFILES/functions/*(:t)
