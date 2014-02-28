@@ -24,11 +24,6 @@ setopt local_traps         # as above, but for traps (which intercept signals
 #   like: git comm-[tab]
 setopt complete_aliases
 
-# Prompts for confirmation after 'rm *' etc
-# Helps avoid mistakes like 'rm * o' when 'rm *.o' was intended
-# Source: http://matt.blissett.me.uk/linux/zsh/zshrc
-setopt rm_star_wait
-
 # multiple stdin/stdout/stderr redirects (you don't have to use ``tee`` to
 # output to term and a file, for example). This includes pipes::
 #
