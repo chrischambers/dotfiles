@@ -15,8 +15,10 @@ autoload -U $DOTFILES/functions/*(:t)
 setopt no_bg_nice          # don't nice background tasks
 setopt no_hup              # don't send HUP to running jobs on shell exit
 setopt no_list_beep        # don't beep on ambiguous completion
-setopt local_options       # allow functions to have local options
-setopt local_traps         # allow functions to have local traps
+setopt local_options       # any options changed within functions are restored
+                           # to the way they were once those function finish.
+setopt local_traps         # as above, but for traps (which intercept signals
+                           # sent to the shell, e.g. SIGINT (Ctrl-C))
 
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
