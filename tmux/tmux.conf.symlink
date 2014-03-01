@@ -1,0 +1,141 @@
+set -g prefix `
+set -g prefix2 C-b
+bind-key ` last-window
+
+set -g utf8
+set-window-option -g utf8 on
+
+# make tmux display things in 256 colors
+set -g default-terminal "screen-256color"
+
+set-option -g status-fg black
+set-option -g status-bg white
+
+# Bind appropriate commands similar to screen.
+# lockscreen ^X x
+unbind ^X
+bind ^X lock-server
+unbind x
+bind x lock-server
+
+# screen ^C c
+unbind ^C
+bind ^C new-window
+bind c new-window
+
+# detach ^D d
+unbind ^D
+bind ^D detach
+
+# displays *
+unbind *
+bind * list-clients
+
+# next ^@ ^N sp n
+unbind ^@
+bind ^@ next-window
+unbind ^N
+bind ^N next-window
+unbind " "
+bind " " next-window
+unbind n
+bind n next-window
+
+# title A
+unbind A
+bind A command-prompt "rename-window %%"
+
+# other ^A
+unbind ^A
+bind ^A last-window
+
+# prev ^H ^P p ^?
+unbind ^H
+bind ^H previous-window
+unbind ^P
+bind ^P previous-window
+unbind p
+bind p previous-window
+unbind BSpace
+bind BSpace previous-window
+
+# windows ^W w
+unbind ^W
+bind ^W list-windows
+unbind w
+bind w list-windows
+
+# quit \
+unbind \
+bind \ confirm-before "kill-server"
+
+# kill K k
+unbind K
+bind K confirm-before "kill-window"
+# unbind k
+# bind k confirm-before "kill-window"
+
+# redisplay ^L l
+unbind ^L
+bind ^L refresh-client
+
+# More straight forward key bindings for splitting
+unbind %
+bind | split-window -h
+bind v split-window -h
+bind - split-window -v
+# bind h split-window -v
+
+# History
+set -g history-limit 1000
+
+# Terminal emulator window title
+set -g set-titles on
+set -g set-titles-string '#S:#I.#P #W'
+
+# Status Bar
+# set -g status-bg black
+# set -g status-fg white
+# set -g status-interval 1
+# set -g status-left '#[fg=green]'
+# set -g status-right '#[fg=yellow]#(cut -d " " -f 1-4 /proc/loadavg)#[default] #[fg=cyan,bold]%Y-%m-%d %H:%M:%S#[default]'
+
+# Notifying if other windows has activities
+setw -g monitor-activity on
+set -g visual-activity on
+
+# Highlighting the active window in status bar
+# setw -g window-status-current-bg red
+
+# Clock
+setw -g clock-mode-colour green
+setw -g clock-mode-style 24
+
+# " windowlist -b
+unbind '"'
+bind '"' choose-window
+
+set-window-option -g mode-keys vi # vi key
+set-option -g status-keys vi
+
+# ----
+bind -n c-h resize-pane -L 1
+bind -n c-j resize-pane -D 1
+bind -n c-k resize-pane -U 1
+bind -n c-l resize-pane -R 1
+
+bind -r h select-pane -L
+bind -r j select-pane -D
+bind -r k select-pane -U
+bind -r l select-pane -R
+
+setw -g mode-mouse on
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
+set -g mouse-select-window on
+
+set -g pane-active-border-fg white
+set -g pane-border-fg white
+
+# reload config
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
