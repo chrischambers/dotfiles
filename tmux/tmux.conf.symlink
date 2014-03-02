@@ -1,12 +1,16 @@
+unbind -a
+source-file ~/.tmux.conf.defaults
+
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
 set -g prefix `
-bind-key ` send-prefix
+bind ` send-prefix
 # set -g prefix2 C-b
 
 set -g utf8
 setw -g utf8 on
 
 # Encourage tmux to use 256 colors
-# (Note: this seems to have no effect for me.)
 set -g default-terminal "screen-256color"
 
 # Lets have windows and panes start from 1:
@@ -15,62 +19,23 @@ set -g pane-base-index 1
 
 # Shorten delay when sending commands (can interfere with vim):
 set -s escape-time 1
-# ----------------------------------------------------------------------------
-# Screen Analogues: {{{
-# -----------------
-# create ^C c
-unbind ^C
-bind ^C new-window
-bind c new-window
 
-# detach ^D d
-unbind ^D
-bind ^D detach
-
-# list displays *
-unbind *
 bind * list-clients
-
-# next
-unbind n
-bind n next-window
-
-# prev P p
-unbind p
-bind p previous-window
-
-# title A
-unbind A
 bind A command-prompt "rename-window %%"
-
-# other ^A a
-unbind ^A
-bind ^A last-window
-unbind a
 bind a last-window
-
-# windows ^W w
-unbind ^W
-bind ^W list-windows
-unbind w
-bind w list-windows
-
-# quit \
-unbind \
+bind w choose-window
 bind \ confirm-before "kill-server"
+bind ^L refresh-client
+bind S command-prompt -p ssh: "new-window -n %1 'ssh %1'"
+bind z resize-pane -Z \; display-message "Zoom toggled..."
+bind u capture-pane \; save-buffer /tmp/tmux-buffer \; new-window -n "urlview" '$SHELL -c "urlview < /tmp/tmux-buffer"'
 
-# kill K
-unbind K
-bind K confirm-before "kill-window"
+# unbind Tab
+# bind Tab select-pane -t:.+
+# unbind BTab
+# bind BTab select-pane -t:.-
 
-# redisplay L
-unbind L
-bind L refresh-client
-# }}}
-# ----------------------------------------------------------------------------
-
-# More straight forward key bindings for splitting
-unbind %
+# Better split-keys:
 bind | split-window -h
 bind v split-window -h
 bind - split-window -v
@@ -93,20 +58,12 @@ bind '"' choose-window
 setw -g mode-keys vi
 set -g status-keys vi
 
-# # ----
-unbind 'H'
-unbind 'J'
-unbind 'K'
-unbind 'L'
+# Pane Manipulation:
 bind -r H resize-pane -L 1
 bind -r J resize-pane -D 1
 bind -r K resize-pane -U 1
 bind -r L resize-pane -R 1
 
-unbind 'h'
-unbind 'j'
-unbind 'k'
-unbind 'l'
 bind -r h select-pane -L
 bind -r j select-pane -D
 bind -r k select-pane -U
@@ -118,8 +75,6 @@ set -g mouse-resize-pane on
 set -g mouse-select-pane on
 set -g mouse-select-window on
 
-# reload config
-bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
 # Panes:
 set -g pane-border-fg colour235
