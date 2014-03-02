@@ -22,6 +22,12 @@ bindkey -M viins "\C-s" history-incremental-search-forward
 
 bindkey -M viins "\C-u" undo
 
+# Basically essential: by default, backspace is bound to
+# vi-backward-delete-char, which is awful and non-intuitive: "If in insert mode
+# this won't delete past the point where insert mode was last entered." -
+# http://www.cs.elte.hu/zsh-manual/zsh_14.html#SEC45
+bindkey -M viins '^?' backward-delete-char
+
 # Integrate this, somehow?
 # bindkey -M emacs '\ee' edit-command-line
 bindkey -M viins "\C-x\C-e" edit-command-line
