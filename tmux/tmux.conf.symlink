@@ -1,9 +1,9 @@
 set -g prefix `
-# set -g prefix2 C-b
 bind-key ` send-prefix
+# set -g prefix2 C-b
 
 set -g utf8
-set-window-option -g utf8 on
+setw -g utf8 on
 
 # Encourage tmux to use 256 colors
 # (Note: this seems to have no effect for me.)
@@ -90,8 +90,8 @@ setw -g clock-mode-style 24
 unbind '"'
 bind '"' choose-window
 
-set-window-option -g mode-keys vi
-set-option -g status-keys vi
+setw -g mode-keys vi
+set -g status-keys vi
 
 # # ----
 unbind 'H'
@@ -121,55 +121,52 @@ set -g mouse-select-window on
 # reload config
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
-# Backspace Issue:
-# bind -n Bspace send C-h
-
 # Panes:
-set-option -g pane-border-fg colour235
-set-option -g pane-active-border-fg colour235
+set -g pane-border-fg colour235
+set -g pane-active-border-fg colour235
 
 # Informational messages:
-set-option -g message-bg colour234
-set-option -g message-fg colour208
+set -g message-bg colour234
+set -g message-fg colour208
 
 # ----------------------------------------------------------------------------
 # Status Bar: {{{
 # -----------
-set-option -g status on              # turn the status bar on
-set -g status-utf8 on                # set utf-8 for the status bar
-set -g status-interval 5             # set update frequency (default 15s)
-# set-option -g status-position top  # position the status bar at top of screen
+set -g status on              # turn the status bar on
+set -g status-utf8 on         # set utf-8 for the status bar
+set -g status-interval 5      # set update frequency (default 15s)
+# set -g status-position top  # position the status bar at top of screen
 
 # visual notification of activity in other windows
 setw -g monitor-activity on
 set -g visual-activity on
 
 # set color for status bar
-set-option -g status-bg colour234
-set-option -g status-fg yellow
-set-option -g status-attr dim
+set -g status-bg colour234
+set -g status-fg yellow
+set -g status-attr dim
 
-set-window-option -g window-status-fg brightblue
-set-window-option -g window-status-bg colour234
-set-window-option -g window-status-attr dim
+setw -g window-status-fg brightblue
+setw -g window-status-bg colour234
+setw -g window-status-attr dim
 
-set-window-option -g window-status-bell-fg colour208
-set-window-option -g window-status-bell-bg colour234
-set-window-option -g window-status-bell-attr blink
+setw -g window-status-bell-fg colour208
+setw -g window-status-bell-bg colour234
+setw -g window-status-bell-attr blink
 
-set-window-option -g window-status-content-fg colour208
-set-window-option -g window-status-content-bg colour234
-set-window-option -g window-status-content-attr blink
+setw -g window-status-content-fg colour208
+setw -g window-status-content-bg colour234
+setw -g window-status-content-attr blink
 
-set-window-option -g window-status-activity-fg colour208
-set-window-option -g window-status-activity-bg colour234
-set-window-option -g window-status-activity-attr blink
+setw -g window-status-activity-fg colour208
+setw -g window-status-activity-bg colour234
+setw -g window-status-activity-attr blink
 
-set-window-option -g window-status-format ' #I: #W#[fg=yellow] '
-set-window-option -g window-status-current-format ' #I: #W#[fg=yellow] '
-set-window-option -g window-status-current-fg colour208
-set-window-option -g window-status-current-bg colour233
-set-window-option -g window-status-current-attr bright
+setw -g window-status-format ' #I: #W#[fg=yellow] '
+setw -g window-status-current-format ' #I: #W#[fg=yellow] '
+setw -g window-status-current-fg colour208
+setw -g window-status-current-bg colour233
+setw -g window-status-current-attr bright
 
 set -g status-left-length 70  # maximum length
 set -g status-right-length 60  # maximum length
