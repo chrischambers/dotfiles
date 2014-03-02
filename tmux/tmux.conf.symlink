@@ -5,21 +5,14 @@ bind-key ` last-window
 set -g utf8
 set-window-option -g utf8 on
 
-# make tmux display things in 256 colors
-# Note: this seems to have no effect for me.
+# Encourage tmux to use 256 colors
+# (Note: this seems to have no effect for me.)
 set -g default-terminal "screen-256color"
 
-set-option -g status-fg black
-set-option -g status-bg white
-
-# Bind appropriate commands similar to screen.
-# lockscreen ^X x
-unbind ^X
-bind ^X lock-server
-unbind x
-bind x lock-server
-
-# screen ^C c
+# ----------------------------------------------------------------------------
+# Screen Analogues: {{{
+# -----------------
+# create ^C c
 unbind ^C
 bind ^C new-window
 bind c new-window
@@ -28,35 +21,27 @@ bind c new-window
 unbind ^D
 bind ^D detach
 
-# displays *
+# list displays *
 unbind *
 bind * list-clients
 
-# next ^@ ^N sp n
-unbind ^@
-bind ^@ next-window
-unbind ^N
-bind ^N next-window
-unbind " "
-bind " " next-window
+# next
 unbind n
 bind n next-window
+
+# prev P p
+unbind p
+bind p previous-window
 
 # title A
 unbind A
 bind A command-prompt "rename-window %%"
 
-# other ^A
+# other ^A a
 unbind ^A
 bind ^A last-window
-
-# prev ^P p ^?
-unbind ^P
-bind ^P previous-window
-unbind p
-bind p previous-window
-unbind BSpace
-bind BSpace previous-window
+unbind a
+bind a last-window
 
 # windows ^W w
 unbind ^W
@@ -68,22 +53,21 @@ bind w list-windows
 unbind \
 bind \ confirm-before "kill-server"
 
-# kill K k
+# kill K
 unbind K
 bind K confirm-before "kill-window"
-# unbind k
-# bind k confirm-before "kill-window"
 
-# redisplay ^L l
-unbind ^L
-bind ^L refresh-client
+# redisplay L
+unbind L
+bind L refresh-client
+# }}}
+# ----------------------------------------------------------------------------
 
 # More straight forward key bindings for splitting
 unbind %
 bind | split-window -h
 bind v split-window -h
 bind - split-window -v
-# bind h split-window -v
 
 # History
 set -g history-limit 1000
@@ -91,20 +75,6 @@ set -g history-limit 1000
 # Terminal emulator window title
 set -g set-titles on
 set -g set-titles-string '#S:#I.#P #W'
-
-# Status Bar
-# set -g status-bg black
-# set -g status-fg white
-# set -g status-interval 1
-# set -g status-left '#[fg=green]'
-# set -g status-right '#[fg=yellow]#(cut -d " " -f 1-4 /proc/loadavg)#[default] #[fg=cyan,bold]%Y-%m-%d %H:%M:%S#[default]'
-
-# Notifying if other windows has activities
-setw -g monitor-activity on
-set -g visual-activity on
-
-# Highlighting the active window in status bar
-# setw -g window-status-current-bg red
 
 # Clock
 setw -g clock-mode-colour green
@@ -118,55 +88,50 @@ set-window-option -g mode-keys vi # vi key
 set-option -g status-keys vi
 
 # # ----
-# unbind '^H'
-# unbind '^J'
-# unbind '^K'
-# unbind '^L'
+unbind '^H'
+unbind '^J'
+unbind '^K'
+unbind '^L'
 bind ^H resize-pane -L 1
 bind ^J resize-pane -D 1
 bind ^K resize-pane -U 1
 bind ^L resize-pane -R 1
 
-# unbind 'h'
-# unbind 'j'
-# unbind 'k'
-# unbind 'l'
+unbind 'h'
+unbind 'j'
+unbind 'k'
+unbind 'l'
 bind -r h select-pane -L
 bind -r j select-pane -D
 bind -r k select-pane -U
 bind -r l select-pane -R
 
+# Mouse Mode:
 setw -g mode-mouse on
 set -g mouse-resize-pane on
 set -g mouse-select-pane on
 set -g mouse-select-window on
 
-set -g pane-active-border-fg white
-set -g pane-border-fg white
-
 # reload config
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
-bind -n Bspace send C-h
+# Backspace Issue:
+# bind -n Bspace send C-h
 
-# ----------------------
-# set some pretty colors
-# ----------------------
-# set pane colors - hilight the active pane
-set-option -g pane-border-fg colour235 #base02
-set-option -g pane-active-border-fg colour240 #base01
+# Panes:
+set-option -g pane-border-fg colour235
+set-option -g pane-active-border-fg colour235
 
-# colorize messages in the command line
-set-option -g message-bg black #base02
-set-option -g message-fg brightred #orange
+# Informational messages:
+set-option -g message-bg colour234
+set-option -g message-fg colour208
 
-# ----------------------
-# Status Bar
-# -----------------------
+# ----------------------------------------------------------------------------
+# Status Bar: {{{
+# -----------
 set-option -g status on              # turn the status bar on
 set -g status-utf8 on                # set utf-8 for the status bar
 set -g status-interval 5             # set update frequency (default 15s)
-set -g status-justify centre         # center window list for clarity
 # set-option -g status-position top  # position the status bar at top of screen
 
 # visual notification of activity in other windows
@@ -174,24 +139,23 @@ setw -g monitor-activity on
 set -g visual-activity on
 
 # set color for status bar
-set-option -g status-bg colour235 #base02
-set-option -g status-fg yellow #yellow
+set-option -g status-bg colour234
+set-option -g status-fg yellow
 set-option -g status-attr dim
 
-# set window list colors - red for active and cyan for inactive
 set-window-option -g window-status-fg brightblue #base0
-set-window-option -g window-status-bg colour236
+set-window-option -g window-status-bg colour235
 set-window-option -g window-status-attr dim
 
-set-window-option -g window-status-current-fg brightred #orange
-set-window-option -g window-status-current-bg colour236
+set-window-option -g window-status-format ' #I: #W#[fg=yellow] '
+set-window-option -g window-status-current-format ' #I: #W#[fg=yellow] '
+set-window-option -g window-status-current-fg colour208
+set-window-option -g window-status-current-bg colour233
 set-window-option -g window-status-current-attr bright
 
-# show host name and IP address on left side of status bar
-set -g status-left-length 70
-set -g status-left "#[fg=green]: #h : #[fg=brightblue]#(curl icanhazip.com) #[fg=yellow]#(ifconfig en0 | grep 'inet ' | awk '{print \"en0 \" $2}') #(ifconfig en1 | grep 'inet ' | awk '{print \"en1 \" $2}') #[fg=red]#(ifconfig tun0 | grep 'inet ' | awk '{print \"vpn \" $2}') "
-
-# show session name, window & pane number, date and time on right side of
-# status bar
-set -g status-right-length 60
-set -g status-right "#[fg=blue]#S #I:#P #[fg=yellow]:: %d %b %Y #[fg=green]:: %l:%M %p :: #(date -u | awk '{print $4}')::"
+set -g status-left-length 70  # maximum length
+set -g status-right-length 60  # maximum length
+set -g status-left "#[fg=green] [#S]"
+set -g status-right "#[fg=yellow]%d %b %Y #[fg=green]::%l:%M %p  "
+# }}}
+# ----------------------------------------------------------------------------
