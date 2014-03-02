@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Note to self:
-# Remember to set Terminal > Preferences > Advanced > "Delete # sends Ctrl-H"
-# in your terminal settings!
+# When using Terminal.App, rather than Iterm2, remember to set Terminal >
+# Preferences > Advanced > "Delete sends Ctrl-H" in your terminal settings!
 
 # This allows you to remap the backspace key so that it isn't automatically set
 # to vi-backwards-delete-char when in vi-ins mode, which is frustrating because
@@ -11,4 +11,5 @@
 
 # Moreover, the following line is needed to tell the terminal that ^H is your
 # backspace command:
+
 stty erase 
