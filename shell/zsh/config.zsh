@@ -7,10 +7,12 @@ skip_global_compinit=1  # Performance optimisation, reduces startup time
 REPORTTIME=10           # Operations lasting >= 10 seconds have `time` output
 
 # ----------------------------------------------------------------------------
+# Activate functions via autoload:
 
 fpath=($DOTFILES/functions $fpath)
-
 autoload -U $DOTFILES/functions/*(:t)
+
+# ----------------------------------------------------------------------------
 
 setopt no_bg_nice          # don't nice background tasks
 setopt no_hup              # don't send HUP to running jobs on shell exit
