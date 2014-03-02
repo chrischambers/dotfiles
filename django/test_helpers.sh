@@ -6,18 +6,9 @@ if [[ -z $(command -v beep > /dev/null 2>&1) ]]; then
     alias beep='printf "\a"'
 fi
 
-if [[ ${OSTYPE:0:6} = 'darwin' ]]; then
-    tests_completed_notification() {
-        growlnotify -a 'Languagelab Campfire' \
-                    -t 'Tests Completed'  \
-                    -m 'Django has finished running your testsuite'
-    }
-else
-    tests_completed_notification() {
-        echo 'Define a global_notification function for your platform'\
-        '- and check $OSTYPE, numbnuts!'
-    }
-fi
+tests_completed_notification() {
+    echo 'Define a global_notification function for your platform'
+}
 
 djtest() {
     ### Provides a friendly wrapper for Django's test runner; includes global
@@ -52,3 +43,5 @@ tst() {
     nosetests --with-django --django-settings sequin.settings \
               --with-spec --spec-color $1
 }
+
+source_platform_specific_file_for "$DOTFILES/django/test_helpers.sh"

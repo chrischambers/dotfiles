@@ -1,0 +1,7 @@
+#!/bin/sh
+
+tests_completed_notification() {
+    growlnotify -a 'Languagelab Campfire' \
+                -t 'Tests Completed'  \
+                -m 'Django has finished running your testsuite'
+}
