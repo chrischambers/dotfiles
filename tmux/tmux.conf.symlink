@@ -147,19 +147,19 @@ set -g status-fg yellow
 set -g status-attr dim
 
 setw -g window-status-fg brightblue
-setw -g window-status-bg colour234
+setw -g window-status-bg default
 setw -g window-status-attr dim
 
 setw -g window-status-bell-fg colour208
-setw -g window-status-bell-bg colour234
+setw -g window-status-bell-bg default
 setw -g window-status-bell-attr blink
 
 setw -g window-status-content-fg colour208
-setw -g window-status-content-bg colour234
+setw -g window-status-content-bg default
 setw -g window-status-content-attr blink
 
 setw -g window-status-activity-fg colour208
-setw -g window-status-activity-bg colour234
+setw -g window-status-activity-bg default
 setw -g window-status-activity-attr blink
 
 setw -g window-status-format ' #I: #W#[fg=yellow] '
