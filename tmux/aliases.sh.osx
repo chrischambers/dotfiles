@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [[ -n $ITERM_PROFILE ]]; then
+  alias tmux='tmux -2'
+fi
