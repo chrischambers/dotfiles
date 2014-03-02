@@ -49,9 +49,7 @@ bind A command-prompt "rename-window %%"
 unbind ^A
 bind ^A last-window
 
-# prev ^H ^P p ^?
-unbind ^H
-bind ^H previous-window
+# prev ^P p ^?
 unbind ^P
 bind ^P previous-window
 unbind p
@@ -118,12 +116,20 @@ bind '"' choose-window
 set-window-option -g mode-keys vi # vi key
 set-option -g status-keys vi
 
-# ----
-bind -n c-h resize-pane -L 1
-bind -n c-j resize-pane -D 1
-bind -n c-k resize-pane -U 1
-bind -n c-l resize-pane -R 1
+# # ----
+# unbind '^H'
+# unbind '^J'
+# unbind '^K'
+# unbind '^L'
+bind ^H resize-pane -L 1
+bind ^J resize-pane -D 1
+bind ^K resize-pane -U 1
+bind ^L resize-pane -R 1
 
+# unbind 'h'
+# unbind 'j'
+# unbind 'k'
+# unbind 'l'
 bind -r h select-pane -L
 bind -r j select-pane -D
 bind -r k select-pane -U
@@ -139,3 +145,5 @@ set -g pane-border-fg white
 
 # reload config
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+bind -n Bspace send C-h
