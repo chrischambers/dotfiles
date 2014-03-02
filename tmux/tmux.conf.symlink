@@ -1,5 +1,5 @@
 set -g prefix `
-set -g prefix2 C-b
+# set -g prefix2 C-b
 bind-key ` send-prefix
 
 set -g utf8
@@ -9,9 +9,12 @@ set-window-option -g utf8 on
 # (Note: this seems to have no effect for me.)
 set -g default-terminal "screen-256color"
 
-# Lets have windows start from 1:
+# Lets have windows and panes start from 1:
 set -g base-index 1
+set -g pane-base-index 1
 
+# Shorten delay when sending commands (can interfere with vim):
+set -s escape-time 1
 # ----------------------------------------------------------------------------
 # Screen Analogues: {{{
 # -----------------
@@ -87,18 +90,18 @@ setw -g clock-mode-style 24
 unbind '"'
 bind '"' choose-window
 
-set-window-option -g mode-keys vi # vi key
+set-window-option -g mode-keys vi
 set-option -g status-keys vi
 
 # # ----
-unbind '^H'
-unbind '^J'
-unbind '^K'
-unbind '^L'
-bind ^H resize-pane -L 1
-bind ^J resize-pane -D 1
-bind ^K resize-pane -U 1
-bind ^L resize-pane -R 1
+unbind 'H'
+unbind 'J'
+unbind 'K'
+unbind 'L'
+bind -r H resize-pane -L 1
+bind -r J resize-pane -D 1
+bind -r K resize-pane -U 1
+bind -r L resize-pane -R 1
 
 unbind 'h'
 unbind 'j'
@@ -174,3 +177,5 @@ set -g status-left "#[fg=green] [#S]"
 set -g status-right "#[fg=yellow]%d %b %Y #[fg=green]::%l:%M %p  "
 # }}}
 # ----------------------------------------------------------------------------
+
+if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux.conf.osx'
