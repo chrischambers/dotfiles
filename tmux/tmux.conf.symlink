@@ -1,6 +1,5 @@
 unbind -a
 source-file ~/.tmux.conf.defaults
-
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
 set -g prefix `
@@ -10,7 +9,7 @@ bind ` send-prefix
 set -g utf8
 setw -g utf8 on
 
-# Encourage tmux to use 256 colors
+# Tell tmux to use 256 colors:
 set -g default-terminal "screen-256color"
 
 # Lets have windows and panes start from 1:
@@ -74,7 +73,6 @@ setw -g mode-mouse on
 set -g mouse-resize-pane on
 set -g mouse-select-pane on
 set -g mouse-select-window on
-
 
 # Panes:
 set -g pane-border-fg colour235
