@@ -2,17 +2,15 @@
 
 # MacVim Configuration: {{{
 # ----------------------------------------------------------------------------
-export VIM_APP_DIR="/Applications/MacVim/"
-
-# Using this alias is superior to a symlink because it creates the correct
-# runtimepath automatically
-vim="${VIM_APP_DIR}MacVim.app/Contents/MacOS/Vim"
-
+vim="mvim -v"
+alias vi="$vim"
 alias vim="$vim"
 export EDITOR="$vim"
-export VISUAL="$vim"     # Necessary for command-line editing in vim mode (v)
+export VISUAL="$vim -f --servername Vim1 --remote-silent"
 export GIT_EDITOR="$vim"
-
-# export VISUAL="$vim -g --servername Vim1 --remote-silent"
+alias gvim="mvim"
+function g () {
+    mvim -f --servername Vim1 --remote-silent $1 &
+}
 # ----------------------------------------------------------------------------
 # }}}
