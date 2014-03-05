@@ -75,10 +75,8 @@ nnoremap <leader>f :<C-u>Unite
       \ -start-insert
       \ -toggle
       \ file_rec<CR>
-
 nnoremap <leader>r :<C-u>Unite
       \ -no-split
-      \ -buffer-name=mru
       \ -profile-name=mru
       \ -start-insert
       \ -toggle
@@ -89,7 +87,7 @@ nnoremap <leader>, :<C-u>Unite
       \ -quick-match
       \ -toggle
       \ buffer<CR>
-nnoremap <leader>F :<C-u>Unite -no-split -buffer-name=files   -toggle file<CR>
+nnoremap <leader>F :<C-u>Unite -no-split -buffer-name=files -toggle file<CR>
 nnoremap <leader>o :<C-u>Unite
       \ -no-split
       \ -buffer-name=outline
