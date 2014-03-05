@@ -90,7 +90,12 @@ nnoremap <leader>, :<C-u>Unite
       \ -toggle
       \ buffer<CR>
 nnoremap <leader>F :<C-u>Unite -no-split -buffer-name=files   -toggle file<CR>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -toggle outline<CR>
+nnoremap <leader>o :<C-u>Unite
+      \ -no-split
+      \ -buffer-name=outline
+      \ -no-start-insert
+      \ -toggle
+      \ outline<CR>
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
 nnoremap <leader><C-r> :source ~/dotfiles/vimrc-builder/dotfiles/dot.vimrc<C-m>
 
