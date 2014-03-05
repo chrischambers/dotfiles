@@ -36,6 +36,7 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'davidhalter/jedi-vim'
 
+NeoBundle 'christoomey/vim-tmux-navigator'
 
 
 
