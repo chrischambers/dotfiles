@@ -63,7 +63,7 @@ set complete=.,w,b,u,t,i
 
 " encoding settings {{{
 set encoding=utf-8
-set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
+set fileencodings=utf-8,iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,ucs-bom,euc-jp,eucjp-ms,cp932
 set fileencoding=utf-8
 set fileformat=unix
 "}}}
