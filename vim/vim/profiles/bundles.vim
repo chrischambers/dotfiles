@@ -38,6 +38,7 @@ NeoBundle 'davidhalter/jedi-vim'
 
 NeoBundle 'christoomey/vim-tmux-navigator'
 
+NeoBundle 'tpope/vim-git'
 
 
 filetype plugin on
