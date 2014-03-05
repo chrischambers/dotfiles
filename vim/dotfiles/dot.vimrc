@@ -113,4 +113,12 @@ set wildmode=list:longest,full
 set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,*.mp3,*.mov,*.chm
 " --------------------------------------------------------------------------
 " }}}
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <c-s-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-s-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-s-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-s-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-s-/> :TmuxNavigatePrevious<cr>
 " vim: foldmethod=marker
