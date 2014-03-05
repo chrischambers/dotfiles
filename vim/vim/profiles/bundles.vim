@@ -17,6 +17,7 @@ NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git'
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+NeoBundle 'git://github.com/Shougo/neomru.vim'
 
 NeoBundle 'git://github.com/kana/vim-surround.git'
 NeoBundle 'git://github.com/kana/vim-textobj-indent.git'
