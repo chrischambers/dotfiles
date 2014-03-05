@@ -32,6 +32,8 @@ NeoBundle 'git://github.com/Sixeight/unite-grep.git'
 NeoBundle 'git://github.com/tacroe/unite-mark.git'
 
 NeoBundle 'git://github.com/h1mesuke/unite-outline.git'
+NeoBundle 'jmcantrell/vim-virtualenv'
+
 
 
 filetype plugin on
