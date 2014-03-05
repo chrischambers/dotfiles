@@ -11,27 +11,28 @@ if has('vim_starting')
   call neobundle#rc(expand('~/.bundle'))
 endif
 
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/Shougo/unite.vim.git'
-NeoBundle 'git://github.com/Shougo/vimfiler.git'
-NeoBundle 'git://github.com/Shougo/vimshell.git'
-NeoBundle 'git://github.com/Shougo/vimproc.git'
-NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-NeoBundle 'git://github.com/Shougo/neomru.vim'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neomru.vim'
 
-NeoBundle 'git://github.com/kana/vim-surround.git'
-NeoBundle 'git://github.com/kana/vim-textobj-indent.git'
-NeoBundle 'git://github.com/kana/vim-textobj-user.git'
-NeoBundle 'git://github.com/kana/vim-operator-replace.git'
-NeoBundle 'git://github.com/kana/vim-operator-user.git'
+NeoBundle 'kana/vim-surround'
+NeoBundle 'kana/vim-textobj-indent'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-operator-replace'
+NeoBundle 'kana/vim-operator-user'
 
-NeoBundle 'git://github.com/thinca/vim-unite-history.git'
+NeoBundle 'thinca/vim-unite-history'
 
-NeoBundle 'git://github.com/Sixeight/unite-grep.git'
+NeoBundle 'Sixeight/unite-grep'
 
-NeoBundle 'git://github.com/tacroe/unite-mark.git'
+NeoBundle 'tacroe/unite-mark'
 
-NeoBundle 'git://github.com/h1mesuke/unite-outline.git'
+NeoBundle 'h1mesuke/unite-outline'
+
 NeoBundle 'jmcantrell/vim-virtualenv'
 
 
