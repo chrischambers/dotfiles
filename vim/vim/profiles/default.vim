@@ -42,6 +42,7 @@ nnoremap <silent> <SID>(load-gvimrc) :<C-u>source $MYGVIMRC<CR>
 " syntax completion settings {{{
 filetype on
 filetype plugin on
+filetype plugin indent on
 
 " syntax completetion on any language {{{
 autocmd VimrcAutoCmd FileType *

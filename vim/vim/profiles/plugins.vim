@@ -95,6 +95,9 @@ endif
 
 " neocomplcache settings {{{
 if globpath(&rtp, 'plugin/neocomplcache.vim') != ''
+  " Note: now requires jedi-vim. Make sure you install jedi in your global
+  " python site-packages.
+
   " Disable AutoComplPop.
   let g:acp_enableAtStartup = 0
   " Use neocomplcache.
@@ -157,17 +160,29 @@ if globpath(&rtp, 'plugin/neocomplcache.vim') != ''
   autocmd VimrcAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd VimrcAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd VimrcAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd VimrcAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd VimrcAutoCmd FileType python setlocal omnifunc=jedi#completions
   autocmd VimrcAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
   " Enable heavy omni completion.
+  let g:neocomplcache_force_overwrite_completefunc = 1
+
   if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
   endif
+
+  if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
+  endif
+
   let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
   "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
   let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+
 endif
+
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
 "}}}
 
 " quickrun settings {{{
