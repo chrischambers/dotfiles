@@ -72,6 +72,9 @@ set shiftround    " Rounds indent to multiple of shiftwidth
 " Statusline: {{{
 " --------------------------------------------------------------------------
 set laststatus=2  " always include status line, even if only one window
+" " Source: <url:http://www.linux.com/archive/feature/120126>
+" " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] 
+" set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)
 let &statusline = '%<%f %m%r%h%w[%{(&fenc!=""?&fenc:&enc)}][%{&ff}]%= %l,%c%V%8P'
 " --------------------------------------------------------------------------
 " }}}
@@ -103,6 +106,7 @@ set smartcase     " unless uppercase letters are used in the regex.
 " --------------------------------------------------------------------------
 set spell
 setlocal spell spelllang=en_gb
+nnoremap <silent> <leader>sp :exe (&spell ? ":set nospell" : ":set spell")<CR>
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
@@ -136,6 +140,60 @@ set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,
 if has("python")
   py import os, sys, vim
   py from pprint import pprint as pp
+endif
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
+" Command Line Mode: {{{
+" --------------------------------------------------------------------------
+    set cmdheight=2 " Sets command-line height
+" --------------------------------------------------------------------------
+    " Emacs Mappings At Command Line: {{{
+    " For Emacs-style editing on the command-line: <url:vimhelp:emacs-keys>
+    " See: <url:http://www.vim.org/scripts/script.php?script_id=2908> for the
+    " core functionality.
+        " recall newer command-line
+        :cnoremap <C-N>        <Down>
+        " recall previous (older) command-line
+        :cnoremap <C-P>        <Up>
+        " back one word
+        :cnoremap <Esc><C-B>    <S-Left>
+        " forward one word
+        :cnoremap <Esc><C-F>    <S-Right>
+    " }}}
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
+" Show Invisible Characters: {{{
+" --------------------------------------------------------------------------
+" from godlygeek:
+if &enc =~ '^u\(tf\|cs\)' " When running in a Unicode environment,
+  set list " visually represent certain invisible characters:
+  let s:arr = nr2char(9655) " using U+25B7 (▷) for an arrow, and
+  let s:dot = nr2char(8901) " using U+22C5 (⋅) for a very light dot,
+  " display tabs as an arrow followed by some dots (▷⋅⋅⋅⋅⋅⋅⋅),
+  exe "set listchars=tab:" . s:arr . s:dot
+  " and display trailing and non-breaking spaces as U+22C5 (⋅).
+  exe "set listchars+=trail:" . s:dot
+  exe "set listchars+=nbsp:" . s:dot
+  " Also show an arrow+space (↪ ) at the beginning of any wrapped long lines?
+  " I don't like this, but I probably would if I didn't use line numbers.
+  let &sbr=nr2char(8618).' '
+endif
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
+" Resume Last Editing Spot When Reading File: {{{
+" --------------------------------------------------------------------------
+if has("autocmd")
+  " Try to jump to the last spot the cursor was at in a file when reading it.
+  augroup resume_last_editing_spot
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ exe "normal g`\"" |
+        \ endif
+  augroup END
 endif
 " --------------------------------------------------------------------------
 " }}}

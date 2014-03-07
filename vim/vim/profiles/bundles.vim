@@ -43,6 +43,9 @@ NeoBundle 'tpope/vim-tbone'
 
 NeoBundle 'SirVer/ultisnips'
 
+NeoBundle 'vim-scripts/Enhanced-Ex'
+
+
 
 filetype plugin on
 filetype indent on
