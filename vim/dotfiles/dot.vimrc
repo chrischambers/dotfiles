@@ -121,4 +121,13 @@ nnoremap <silent> <c-s-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-s-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-s-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-s-/> :TmuxNavigatePrevious<cr>
+
+" Ultisnips Options: {{{
+" --------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+nnoremap <leader>ue :UltiSnipsEdit<CR>
+" --------------------------------------------------------------------------
+" }}}
 " vim: foldmethod=marker
