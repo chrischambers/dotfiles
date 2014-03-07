@@ -41,6 +41,8 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'tpope/vim-git'
 NeoBundle 'tpope/vim-tbone'
 
+NeoBundle 'SirVer/ultisnips'
+
 
 filetype plugin on
 filetype indent on
