@@ -1,23 +1,13 @@
-colorschem desert
-let mapleader = ','                 " Only affects subsequent <leader> commands
-set smartcase
+let mapleader = ','
 
 " add local .vim directory to runtimepath
 let s:local_dot_vim_dir_path = expand('<sfile>:h:h') . '/vim/config'
 execute 'set runtimepath+=' . s:local_dot_vim_dir_path
 
-" initial settings (edit for yourself){{{
-" your mapleader (default '\')
-"let mapleader = ' '
-
-" your favorite color theme (default 'default')
-"colorscheme elflord
-"}}}
-
 " setup sample settings{{{
 " local settings
 let s:profiles_dir_path = expand('<sfile>:h:h') . '/vim/profiles/'
-let s:profile_names = [ 'bundles', 'default', 'unite', 'plugins' ]
+let s:profile_names = [ 'bundles', 'core', 'functions', 'unite', 'plugins' ] " 'default'
 
 " local functions {{{
 function! s:source_profile(name)"{{{
@@ -96,23 +86,6 @@ nnoremap <leader>o :<C-u>Unite
       \ outline<CR>
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
 nnoremap <leader><C-r> :source ~/dotfiles/vimrc-builder/dotfiles/dot.vimrc<C-m>
-
-" Shell Like Filename Completion: {{{
-" --------------------------------------------------------------------------
-" By default, pressing <TAB> in command mode will choose the first possible
-" completion with no indication of how many others there might be. The
-" following configuration lets you see what your other options are:
-set wildmenu
-" To have the completion behave similarly to a shell, i.e. complete only up to
-" the point of ambiguity (while still showing you what your options are), also
-" add the following:
-set wildmode=list:longest,full
-" list:longest    - When > 1 match, list all matches and
-"                   complete till longest common string.
-" full            - enables you to tab through the remaining completions
-set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,*.mp3,*.mov,*.chm
-" --------------------------------------------------------------------------
-" }}}
 
 let g:tmux_navigator_no_mappings = 1
 
