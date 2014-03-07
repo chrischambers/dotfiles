@@ -45,6 +45,7 @@ NeoBundle 'SirVer/ultisnips'
 
 NeoBundle 'vim-scripts/Enhanced-Ex'
 
+NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
 
 
 filetype plugin on
