@@ -95,6 +95,8 @@ nnoremap <silent> <c-s-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-s-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-s-/> :TmuxNavigatePrevious<cr>
 
+let g:jedi#rename_command = "<leader>pr"
+
 " Ultisnips Options: {{{
 " --------------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger="<tab>"
