@@ -51,6 +51,3 @@ NeoBundle 'groenewege/vim-less'
 
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
-
-filetype plugin on
-filetype indent on
