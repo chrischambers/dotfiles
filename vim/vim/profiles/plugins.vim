@@ -270,4 +270,6 @@ nnoremap <leader>ue :UltiSnipsEdit<CR>
 " --------------------------------------------------------------------------
 " }}}
 
+let g:syntastic_always_populate_loc_list = 1
+
 " vim: expandtab softtabstop=2 shiftwidth=2
