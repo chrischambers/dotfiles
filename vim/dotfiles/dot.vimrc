@@ -1,13 +1,14 @@
-let mapleader = ','
-let g:tmux_navigator_no_mappings = 1
-" Ultisnips Options: {{{
+let s:is_win    = has("win16") || has("win32") || has("win64")
+let s:is_mac    = has("mac") || has("macunix")
+let s:is_linux  = has("unix") && !has("mac")
+let s:is_cygwin = has("win32unix")
+
 " --------------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<Enter>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-nnoremap <leader>ue :UltiSnipsEdit<CR>
+set nocompatible                    " Force this at the start of the file
+                                    " (changes subsequent options)
+let mapleader = ','                 " Only affects subsequent <leader> commands
+
 " --------------------------------------------------------------------------
-" }}}
 
 " add local .vim directory to runtimepath
 let s:local_dot_vim_dir_path = expand('<sfile>:h:h') . '/vim/config'
@@ -16,7 +17,7 @@ execute 'set runtimepath+=' . s:local_dot_vim_dir_path
 " setup sample settings{{{
 " local settings
 let s:profiles_dir_path = expand('<sfile>:h:h') . '/vim/profiles/'
-let s:profile_names = [ 'bundles', 'core', 'functions', 'unite', 'plugins' ] " 'default'
+let s:profile_names = ['core', 'functions', 'unite', 'plugins' ] " 'default'
 
 " local functions {{{
 function! s:source_profile(name)"{{{
@@ -87,6 +88,7 @@ nnoremap <leader>, :<C-u>Unite
       \ -toggle
       \ buffer<CR>
 nnoremap <leader>F :<C-u>Unite -no-split -buffer-name=files -toggle file<CR>
+
 nnoremap <leader>o :<C-u>Unite
       \ -no-split
       \ -buffer-name=outline
@@ -96,7 +98,7 @@ nnoremap <leader>o :<C-u>Unite
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
 nnoremap <leader><C-r> :source ~/dotfiles/vimrc-builder/dotfiles/dot.vimrc<C-m>
 
-
+let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <c-s-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-s-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-s-k> :TmuxNavigateUp<cr>
