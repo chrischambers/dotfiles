@@ -125,4 +125,13 @@ if has("gui_running")
     endif
 
 endif
+
+hi clear SpellBad
+hi clear SpellLocal
+hi clear SpellRare
+hi clear SpellCap
+hi SpellBad ctermbg=52 gui=undercurl guisp=#FF5522
+hi SpellCap ctermbg=53 gui=undercurl guisp=SlateBlue
+hi SpellRare ctermbg=55 gui=undercurl guisp=purple
+
 " vim: foldmethod=marker
