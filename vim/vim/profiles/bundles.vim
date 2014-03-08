@@ -47,6 +47,7 @@ NeoBundle 'vim-scripts/Enhanced-Ex'
 
 NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
 
+NeoBundle 'groenewege/vim-less'
 
 filetype plugin on
 filetype indent on
