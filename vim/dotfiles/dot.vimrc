@@ -1,4 +1,13 @@
 let mapleader = ','
+let g:tmux_navigator_no_mappings = 1
+" Ultisnips Options: {{{
+" --------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger="<Enter>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+nnoremap <leader>ue :UltiSnipsEdit<CR>
+" --------------------------------------------------------------------------
+" }}}
 
 " add local .vim directory to runtimepath
 let s:local_dot_vim_dir_path = expand('<sfile>:h:h') . '/vim/config'
@@ -87,7 +96,6 @@ nnoremap <leader>o :<C-u>Unite
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
 nnoremap <leader><C-r> :source ~/dotfiles/vimrc-builder/dotfiles/dot.vimrc<C-m>
 
-let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <c-s-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-s-j> :TmuxNavigateDown<cr>
@@ -97,12 +105,4 @@ nnoremap <silent> <c-s-/> :TmuxNavigatePrevious<cr>
 
 let g:jedi#rename_command = "<leader>pr"
 
-" Ultisnips Options: {{{
-" --------------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-nnoremap <leader>ue :UltiSnipsEdit<CR>
-" --------------------------------------------------------------------------
-" }}}
 " vim: foldmethod=marker
