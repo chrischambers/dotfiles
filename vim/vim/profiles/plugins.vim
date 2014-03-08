@@ -226,10 +226,7 @@ function! NERDTreeVisible()
 endfunction
 
 function! NERDToggle()
-  if !exists('s:gui_active')
-    let s:gui_active = has('gui_running')
-  endif
-  if !s:gui_active
+  if !has('gui_running')
     NERDTreeToggle
     return
   endif
