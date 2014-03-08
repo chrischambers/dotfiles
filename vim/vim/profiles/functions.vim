@@ -43,3 +43,24 @@ nnoremap <leader><S-u> :call Underline("=")<CR>
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
+" Highlight Overlength Lines: {{{
+" --------------------------------------------------------------------------
+" Provides subtle red-highlighting for lines with a length that exceeds 80
+" characters.
+" Source: <url:http://stackoverflow.com/questions/235439/vim-80-column-layout-concerns>
+" --------------------------------------------------------------------------
+if has("autocmd")
+  augroup highlight
+  au!
+  fun! Highlight_overlength()
+    if !exists("b:no_highlight_overlength")
+      highlight OverLength ctermbg=52 ctermfg=white guibg=#592929
+      match OverLength /\%81v.*/
+    endif
+  endfun
+  autocmd BufRead * call Highlight_overlength()
+  augroup END
+endif
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
