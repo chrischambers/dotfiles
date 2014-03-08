@@ -181,7 +181,7 @@ if globpath(&rtp, 'plugin/neocomplete.vim') != ''
 
   " call neocomplete#custom#source('_', 'sorters', ['sorter_word', 'sorter_rank'])
   " Disable sorting: leave to jedi
-  call neocomplete#custom#source('_', 'sorters', [])
+  call neocomplete#custom#source('python', 'sorters', [])
   let g:neocomplete#force_omni_input_patterns.python =
       \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 endif
