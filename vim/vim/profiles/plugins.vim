@@ -206,4 +206,59 @@ if globpath(&rtp, 'plugin/quickrun.vim') != ''
 endif
 "}}}
 
+" NERDTree Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=1658>
+" --------------------------------------------------------------------------
+" Toggle the following off with 'f'!
+" let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$', '\.swp']
+let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD
+let NERDChristmasTree=1 " Extra-colourful Tree
+let NERDTreeMouseMode=2 " If you do use the mouse, this is probably what you want.
+if has('gui_running')
+  set guioptions-=L
+endif
+
+function! NERDTreeVisible()
+  let l:visible_buffers = map(tabpagebuflist(), 'bufname(v:val)')
+  call filter(l:visible_buffers, 'v:val =~# "NERD_tree"')
+  return !empty(l:visible_buffers)
+endfunction
+
+function! NERDToggle()
+  if !exists('s:gui_active')
+    let s:gui_active = has('gui_running')
+  endif
+  if !s:gui_active
+    NERDTreeToggle
+    return
+  endif
+
+  if NERDTreeVisible()
+  " if count(l:visible_buffers, 'NERD_tree_1')
+    NERDTreeToggle
+    exec 'set columns-=' . g:NERDTreeWinSize
+  else
+    NERDTreeToggle
+    exec 'set columns+=' . g:NERDTreeWinSize
+  endif
+endfunction
+nnoremap <leader>d :call NERDToggle()<CR>
+nnoremap <leader><S-d> :call NERDTreeFromBookmark()<CR>
+
+function! NERDTreeFromBookmark()
+  if !NERDTreeVisible()
+      call NERDToggle()
+  endif
+  call feedkeys(":NERDTreeFromBookmark \<C-D>", "n")
+endfunction
+" --------------------------------------------------------------------------
+" Python Project Specific:
+" We're really not interested in these binary files for the most part:
+let NERDTreeIgnore=['\.py\(c\|o\)$', '\.swp', '\~$', '^#.*#$', '\.gif', '\.jpg','\.png','\.jpeg','\.ico', '\.psd', '\.flv', '\.swf', '\.pdf', '\.doc', '\.bmp', '..DS_Store']
+" python files will take precedence over .csv, .log, .txt, etc.
+let NERDTreeSortOrder=['\/$', '\.py', '*', '\.swp$',  '\.bak$', '\~$']
+" --------------------------------------------------------------------------
+" }}}
+
 " vim: expandtab softtabstop=2 shiftwidth=2
