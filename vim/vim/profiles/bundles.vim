@@ -49,5 +49,5 @@ NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
 
 NeoBundle 'groenewege/vim-less'
 
-NeoBundle 'scrooloose/nerdtree'
+NeoBundleLazy 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'

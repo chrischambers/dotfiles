@@ -240,8 +240,9 @@ function! NERDToggle()
     exec 'set columns+=' . g:NERDTreeWinSize
   endif
 endfunction
-nnoremap <leader>d :call NERDToggle()<CR>
-nnoremap <leader><S-d> :call NERDTreeFromBookmark()<CR>
+
+nnoremap <leader>d :NeoBundleSource nerdtree <Bar> :call NERDToggle()<CR>
+nnoremap <leader><S-d> :NeoBundleSource nerdtree <Bar> :call NERDTreeFromBookmark()<CR>
 
 function! NERDTreeFromBookmark()
   if !NERDTreeVisible()
