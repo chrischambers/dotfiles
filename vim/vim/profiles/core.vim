@@ -8,6 +8,11 @@ set nocompatible                    " Force this at the start of the file
                                     " (changes subsequent options)
 let mapleader = ','                 " Only affects subsequent <leader> commands
 
+if exists('*NERDTreeVisible') && NERDTreeVisible()
+  " This file has already been sourced once and NERDTree is still open -
+  " deactivate it!
+  call NERDToggle()
+endif
 " --------------------------------------------------------------------------
 " File-type highlighting and configuration.
 " Run :filetype (without args) to see what you may have
