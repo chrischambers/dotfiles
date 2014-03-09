@@ -268,6 +268,12 @@ nnoremap <leader>ue :UltiSnipsEdit<CR>
 " --------------------------------------------------------------------------
 " }}}
 
+if has("autocmd")
+  augroup lazyload
+  au!
+  au BufWritePre * :NeoBundleSource syntastic
+  augroup END
+endif
 let g:syntastic_always_populate_loc_list = 1
 
 " vim: expandtab softtabstop=2 shiftwidth=2
