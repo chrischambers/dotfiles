@@ -159,7 +159,7 @@ if globpath(&rtp, 'plugin/neocomplete.vim') != ''
 
   " Enable omni completion.
   autocmd VimrcAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd VimrcAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd VimrcAutoCmd FileType htmldjango,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
   autocmd VimrcAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   autocmd VimrcAutoCmd FileType python setlocal omnifunc=jedi#completions
   autocmd VimrcAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -268,6 +268,8 @@ nnoremap <leader>ue :UltiSnipsEdit<CR>
 " --------------------------------------------------------------------------
 " }}}
 
+" Syntastic Options: {{{
+" --------------------------------------------------------------------------
 if has("autocmd")
   augroup lazyload
   au!
@@ -275,5 +277,23 @@ if has("autocmd")
   augroup END
 endif
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_filetype_map = { 'htmldjango.html': 'htmldjango' }
+"
+" --------------------------------------------------------------------------
+" }}}
+
+" Html5 Vim Options: {{{
+" --------------------------------------------------------------------------
+if has("autocmd")
+  augroup html5_completion_for_htmldjango
+  au!
+  autocmd FileType htmldjango set ft=htmldjango.html
+  autocmd FileType htmldjango let b:html_omni_flavor = 'html'
+  autocmd FileType htmldjango call htmlcomplete#CheckDoctype()
+  augroup END
+endif
+" --------------------------------------------------------------------------
+" }}}
 
 " vim: expandtab softtabstop=2 shiftwidth=2
