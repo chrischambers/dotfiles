@@ -14,32 +14,34 @@ let mapleader = ','                 " Only affects subsequent <leader> commands
 " to turn on yourself, or just set them all to be sure.
 " NOTE: These define autocmds, so they should come before any other autocmds.
 " That way, a later autocmd can override the result of one defined here.
-syntax on              " enable per-filetype syntax highlighting
-filetype on            " enable filetype detection
-filetype plugin on     " enable filetype specific plugins
-filetype indent on     " enable filetype-specific indenting where available,
+syntax on             " enable per-filetype syntax highlighting
+filetype on           " enable filetype detection
+filetype plugin on    " enable filetype specific plugins
+filetype indent on    " enable filetype-specific indenting where available,
 
 set backspace=indent,eol,start " Intuitive backspacing in insert mode
-set nu            " line numbering
-set nocul         " disable cursor-line highlighting
-set nowrap        " prevent lines from wrapping automatically
 
-set showcmd       " Show (partial) command in status line.
-set showmatch     " Show matching brackets...
-set matchtime=2   " for only .2 seconds.
+set nu                " line numbering
+set nocul             " disable cursor-line highlighting
+set nowrap            " prevent lines from wrapping automatically
 
-"set autoread      " Watch for file changes and update accordingly
-                  " Note: the above change updates the file without prompting
-                  " the user. This could potentially overwrite work.
-set autowrite     " Automatically save before commands like :next and :make
-set hidden        " Allows you to switch to different buffers without
-                  " having to save changes.
-                  " * The current buffer can be put to the background without
-                  "   writing to disk;
-                  " * When a background buffer becomes current again, marks
-                  "   and undo-history are remembered.
-set history=200   " Command history length.
-set tags=tags;/   " Look for tags file up through dirs until one is found.
+set showcmd           " Show (partial) command in status line.
+set showmatch         " Show matching brackets...
+set matchtime=2       " for only .2 seconds.
+
+"set autoread         " Watch for file changes and update accordingly. Note:
+                      " "the above change updates the file without prompting
+                      " the user. This could potentially overwrite work.
+set autowrite         " Automatically save before commands like :next and :make
+set hidden            " Allows you to switch to different buffers without
+                      " having to save changes:
+                      "
+                      " * The current buffer can be put to the background
+                      "   without writing to disk
+                      " * When a background buffer becomes current again, marks
+                      "   and undo-history are remembered.
+set history=200       " Command history length.
+set tags=tags;/       " Look for tags file up through dirs until one is found.
 
 set scrolloff=2       " Keep 2 lines above/below cursor when scrolling up/down
 set sidescrolloff=2   " Keep 2 lines left/right of cursor when scrolling
@@ -52,12 +54,12 @@ let g:jellybeans_background_color = "black"
 let g:jellybeans_background_color_256 = 232
 let g:jellybeans_overrides = {
 \    'VertSplit':    { 'guifg': '262626', 'guibg': '262626',
-\                      'ctermfg': 'darkgray', 'ctermbg': 'darkgray'},
+\                      'ctermfg': 'darkgray', 'ctermbg': 'darkgray' },
 \    'StatusLine':   { 'guifg': 'CCCCCC', 'guibg': '262626', 'gui': 'italic',
-\                      'ctermfg': 'white', 'ctermbg': '234'},
+\                      'ctermfg': 'white', 'ctermbg': '234' },
 \    'StatusLineNC': { 'guifg': '444444', 'guibg': '262626',
-\                      'ctermfg': 'blue', 'ctermbg': '234'},
-\    'CursorLine':   { 'guibg': '1c1c1c', 'ctermbg': '1c1c1c'},
+\                      'ctermfg': 'blue', 'ctermbg': '234' },
+\    'CursorLine':   { 'guibg': '1c1c1c', 'ctermbg': '1c1c1c' },
 \}
 colorscheme jellybeans
 " --------------------------------------------------------------------------
@@ -174,8 +176,6 @@ endif
         :cnoremap <Esc><C-B>    <S-Left>
         " forward one word
         :cnoremap <Esc><C-F>    <S-Right>
-    " }}}
-" --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
 " Show Invisible Characters: {{{
