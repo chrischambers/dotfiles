@@ -13,7 +13,7 @@ endif
 
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
-" NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neocomplete'
