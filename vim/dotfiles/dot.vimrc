@@ -102,7 +102,7 @@ nnoremap <leader>o :<C-u>Unite
       \ -no-start-insert
       \ -toggle
       \ outline<CR>
-nnoremap <leader>y :<C-u>Unite history/yank<CR>
+nnoremap <leader>p :<C-u>Unite -quick-match history/yank<CR>
 nnoremap <leader><C-r> :source ~/dotfiles/vimrc-builder/dotfiles/dot.vimrc<C-m>
 
 let g:tmux_navigator_no_mappings = 1
