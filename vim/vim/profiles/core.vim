@@ -21,7 +21,7 @@ filetype indent on     " enable filetype-specific indenting where available,
 
 set backspace=indent,eol,start " Intuitive backspacing in insert mode
 set nu            " line numbering
-" set nocul         " disable cursor-line highlighting
+set nocul         " disable cursor-line highlighting
 set nowrap        " prevent lines from wrapping automatically
 
 set showcmd       " Show (partial) command in status line.
@@ -57,6 +57,7 @@ let g:jellybeans_overrides = {
 \                      'ctermfg': 'white', 'ctermbg': '234'},
 \    'StatusLineNC': { 'guifg': '444444', 'guibg': '262626',
 \                      'ctermfg': 'blue', 'ctermbg': '234'},
+\    'CursorLine':   { 'guibg': '1c1c1c', 'ctermbg': '1c1c1c'},
 \}
 colorscheme jellybeans
 " --------------------------------------------------------------------------
