@@ -254,3 +254,6 @@ set fileencoding=utf-8
 set fileformat=unix
 
 set foldmethod=marker
+
+" Mine:
+nnoremap <silent> <leader>ff :exe (&foldmethod == "marker" ? "let &l:foldmethod = 'syntax'" : "let &l:foldmethod = 'marker'")<CR>
