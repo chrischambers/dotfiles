@@ -84,9 +84,16 @@ nnoremap <leader>r :<C-u>Unite
 nnoremap <leader>, :<C-u>Unite
       \ -no-split
       \ -buffer-name=buffers
-      \ -quick-match
+      \ -start-insert
       \ -toggle
       \ buffer<CR>
+" LustyJuggler style:
+" nnoremap <leader>, :<C-u>Unite
+"       \ -no-split
+"       \ -buffer-name=buffers
+"       \ -quick-match
+"       \ -toggle
+"       \ buffer<CR>
 nnoremap <leader>F :<C-u>Unite -no-split -buffer-name=files -toggle file<CR>
 
 nnoremap <leader>o :<C-u>Unite
