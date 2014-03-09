@@ -51,3 +51,5 @@ NeoBundle 'groenewege/vim-less'
 
 NeoBundleLazy 'scrooloose/nerdtree'
 NeoBundleLazy 'scrooloose/syntastic'
+
+NeoBundleLazy 'guns/xterm-color-table.vim'
