@@ -1,12 +1,12 @@
-snippet s "Inner snippet" i
+snippet "(?<!vi)s" "Inner snippet" r
 ${${1:1}${2/(.*)/(?1:\::)/}${2:body}}
 endsnippet
 
-snippet t "Transformation" i
+snippet trans "Transformation" i
 $\{${1:1}/${2:foo}/${3:bar}/\}$0
 endsnippet
 
-snippet t "Transformation with conditional group match" i
+snippet trans "Transformation with conditional group match" i
 $\{${1:1}/(${2:\w+})/(?${3:1}:${4:match}:${5:nomatch})/\}$0
 endsnippet
 
@@ -16,3 +16,15 @@ $6
 `!p snip.rv = 'endsnippet'`
 $0
 endsnippet
+
+snippet "^gl?o?b?a?l?" "Global snippet" r
+`!p snip.rv = "global"` !p
+$0
+`!p snip.rv = "endglobal"`
+endsnippet
+
+snippet vis "${VISUAL}" i
+\$\{VISUAL${1:${2:default}${3:/transform/}}\}
+endsnippet
+
+# vim:ft=snippets:
