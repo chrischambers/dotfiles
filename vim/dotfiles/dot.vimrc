@@ -113,7 +113,8 @@ nnoremap <silent> <c-s-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <c-s-/> :TmuxNavigatePrevious<cr>
 
 let g:jedi#rename_command = "<leader>pr"
-let g:jedi#goto_definitions_command = "<leader>pd"
+let g:jedi#goto_definitions_command = "gd"
+let g:jedi#use_tabs_not_buffers = 0
 
 " Note: when using NERDTree, you want to ensure your force the minibufexpl
 " window to be active at all times:
