@@ -57,3 +57,6 @@ NeoBundleLazy 'scrooloose/syntastic'
 NeoBundleLazy 'guns/xterm-color-table.vim'
 
 NeoBundle 'othree/html5.vim'
+
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'

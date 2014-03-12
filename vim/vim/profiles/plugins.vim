@@ -1,5 +1,9 @@
-" plugins
-" any plugin settings
+let s:is_win    = has("win16") || has("win32") || has("win64")
+let s:is_mac    = has("mac") || has("macunix")
+let s:is_linux  = has("unix") && !has("mac")
+let s:is_cygwin = has("win32unix")
+
+" --------------------------------------------------------------------------
 
 " operator replace setting {{{
 if globpath(&rtp, 'plugin/operator/replace.vim') != ''
@@ -283,25 +287,54 @@ let g:syntastic_filetype_map = { 'htmldjango.html': 'htmldjango' }
 " --------------------------------------------------------------------------
 " }}}
 
-function! SetupHtmlCompletion ()
-  let b:html_omni_flavor = 'html5'
-  let b:html_doctype = 1
-  if exists('g:xmldata_'.b:html_omni_flavor)
-    exe 'let b:html_omni = g:xmldata_'.b:html_omni_flavor
-  else
-    exe 'runtime! autoload/xml/'.b:html_omni_flavor.'.vim'
-    exe 'let b:html_omni = g:xmldata_'.b:html_omni_flavor
-  endif
-endfunction
-
 " Html5 Vim Options: {{{
 " --------------------------------------------------------------------------
-if has("autocmd")
-  augroup html5_completion_for_htmldjango
-  au!
-  " autocmd FileType htmldjango,htmldjango.* set ft=htmldjango.html
-  autocmd FileType htmldjango,htmldjango.* call SetupHtmlCompletion()
-  augroup END
+if globpath(&rtp, 'autoload/xml/html5.vim') != ''
+  function! SetupHtmlCompletion ()
+    let b:html_omni_flavor = 'html5'
+    let b:html_doctype = 1
+    if exists('g:xmldata_'.b:html_omni_flavor)
+      exe 'let b:html_omni = g:xmldata_'.b:html_omni_flavor
+    else
+      exe 'runtime! autoload/xml/'.b:html_omni_flavor.'.vim'
+      exe 'let b:html_omni = g:xmldata_'.b:html_omni_flavor
+    endif
+  endfunction
+
+  if has("autocmd")
+    augroup html5_completion_for_htmldjango
+    au!
+    " autocmd FileType htmldjango,htmldjango.* set ft=htmldjango.html
+    autocmd FileType htmldjango,htmldjango.* call SetupHtmlCompletion()
+    augroup END
+  endif
+endif
+" --------------------------------------------------------------------------
+" }}}
+
+" Gist Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=2423>
+" --------------------------------------------------------------------------
+if globpath(&rtp, 'plugin/gist.vim') != ''
+  " Detect syntax-colorisation to use based on filetype:
+  let g:gist_detect_filetype = 1
+
+  " Command to use to copy to clipboard for ``Gist -c XXXXX``:
+  if s:is_mac
+    let g:gist_clip_command = 'pbcopy'
+  elseif s:is_linux
+    let g:gist_clip_command = 'xclip -selection clipboard'
+  elseif s:is_win
+    " Not sure here
+  elseif s:is_cygwin
+    let g:gist_clip_command = 'putclip'
+  endif
+
+  if s:is_mac
+    let g:gist_open_browser_after_post = 1
+    let g:gist_browser_command = "open -a Firefox %URL%"
+  endif
 endif
 " --------------------------------------------------------------------------
 " }}}
