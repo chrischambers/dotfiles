@@ -1,1 +1,25 @@
 extends python
+
+snippet csv "CSV write - short" b
+import csv
+fout = open('$1', '${2:w}')
+wrtr = csv.writer(fout)
+${3/[^.]*/\L$0\Es/} = ${3:User}.objects.all()
+wrtr.writerows([(
+    ${3/([A-Z])[a-z]*/\l$1/g}$4
+) for ${3/([A-Z])[a-z]*/\l$1/g} in ${3/[^.]*/\L$0\Es/}])
+fout.close()
+endsnippet
+
+snippet csv "CSV write - loop" b
+import csv
+fout = open('$1', '${2:w}')
+wrtr = csv.writer(fout)
+${3/[^.]*/\L$0\Es/} = ${3:User}.objects.all()
+for ${3/[^.]*/\L$0\E/} in ${3/[^.]*/\L$0\Es/}:
+    data = [
+        $4
+    ]
+    wrtr.writerows(data)
+fout.close()
+endsnippet
