@@ -64,3 +64,60 @@ endif
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
+" Prettify Python Files on Save: {{{
+" --------------------------------------------------------------------------
+function! RegulateClassDefSpacing()
+  """ For algorithm, see comments below.
+  """
+  """ Possible improvement: factor out common regex components, and use some
+  """ kind of string interpolation. Note that we're using the "very magic"
+  """ option to keep the regexes a little cleaner.
+  """
+  """ Function/class definition:        ((\s*def |\s*class )[^\(]+\([^\)]+\):)
+  """ Class definition:                 ((\s*class )[^\(]+\([^\)]+\):)
+  """ Blank line (ending):              (\s*\n)
+
+  try
+    " First, squeeze all concurrent blank lines at EOF down to 1:
+    %s/\v(^\s*\n)*%$//
+    " ...and append an empty line to the end of the file, if required.
+    " if !empty(getline('$'))
+    "    %s/\%$//g
+    " endif
+    " trim all class/function definitions so that they have only a single
+    " preceding blank line:
+    %s/\v^(\s*\n){2,}((.+\n)*)((\s*def |\s*class )[^\(]+\([^\)]+\):)/\2\4/g
+    "%s/\v^(\s*\n){2,}((.+\n)*)(\s*def|\s*class)/\2\4/g
+    " if a class/function definition line is immediately followed by blank
+    " lines, remove them:
+    %s/\v((\s*def |\s*class )[^\(]+\([^\)]+\):)(\s*\n)+/\1/g
+    " ensure all classes definitions now have 2 preceding blank lines:
+    %s/\v^(\s*\n)+((.+\n)*)((\s*class )[^\(]+\([^\)]+\):)/\2\4/g
+  catch /^Vim\%((\a\+)\)\=:E486/   " regex didn't match
+  endtry
+endfunction
+
+function! PrettifyPythonWhitespace()
+  let cursor_position = getpos('.')
+  silent call TrimWhiteSpace()
+  silent call RegulateClassDefSpacing()
+  call setpos('.', cursor_position)
+endfunction
+
+" set list listchars=trail:.,extends:>
+" Deactivated temporarily.
+
+" if has("autocmd")
+"   augroup python_prettify
+"     au!
+"     au FileWritePre *.py :silent call PrettifyPythonWhitespace()
+"     au FileAppendPre *.py :silent call PrettifyPythonWhitespace()
+"     au FilterWritePre *.py :silent call PrettifyPythonWhitespace()
+"     au BufWritePre *.py :silent call PrettifyPythonWhitespace()
+"   augroup END
+" endif
+
+noremap <leader>pp :call PrettifyPythonWhitespace()<CR>
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
