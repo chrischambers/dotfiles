@@ -19,7 +19,6 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neomru.vim'
 
-NeoBundle 'kana/vim-surround'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-operator-replace'
@@ -34,12 +33,15 @@ NeoBundle 'tacroe/unite-mark'
 NeoBundle 'h1mesuke/unite-outline'
 
 NeoBundle 'jmcantrell/vim-virtualenv'
+
 NeoBundle 'davidhalter/jedi-vim'
 
 NeoBundle 'christoomey/vim-tmux-navigator'
 
 NeoBundle 'tpope/vim-git'
 NeoBundle 'tpope/vim-tbone'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
 
 NeoBundle 'SirVer/ultisnips'
 
