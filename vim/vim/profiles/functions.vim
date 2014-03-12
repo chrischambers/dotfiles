@@ -64,6 +64,20 @@ endif
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
+" Trim Trailing WhiteSpace: {{{
+" --------------------------------------------------------------------------
+" autocmd BufWritePre * normal m`:%s/\s\+$//e`
+" autocmd BufWritePre *.py normal m`:%s/\s\+$//e`
+
+function! TrimWhiteSpace() range
+""" Removes trailing spaces
+  let start = a:firstline == a:lastline ? 1 : a:firstline
+  let end   = a:firstline == a:lastline ? line('$') : a:lastline
+  exe start . "," . end . 's/\s*$//'
+endfunction
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
 " Prettify Python Files on Save: {{{
 " --------------------------------------------------------------------------
 function! RegulateClassDefSpacing()
