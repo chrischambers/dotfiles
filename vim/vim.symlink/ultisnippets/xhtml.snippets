@@ -1,0 +1,103 @@
+priority -70
+
+global !p
+def x(snip):
+  if snip.ft.startswith("x"):
+    snip.rv = '/'
+  else:
+    snip.rv = ""
+endglobal
+
+############
+# Doctypes #
+############
+snippet doctype "DocType XHTML 1.0 Strict" b
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+endsnippet
+
+snippet doctype "DocType XHTML 1.0 Transitional" b
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+endsnippet
+
+snippet doctype "DocType XHTML 1.1" b
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+endsnippet
+
+snippet doctype "HTML - 4.0 Transitional (doctype)" b
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+
+endsnippet
+
+
+###########
+#  Other  #
+###########
+
+snippet input "XHTML <input>" w
+<input type="${1:text/submit/hidden/button}" name="${2:some_name}" value="$3"${4: id="${5:$2}"}`!p x(snip)`>
+endsnippet
+
+snippet img "<img>" w
+<img src="$1" ${2:height="$3" width="£4" }alt="$5" />$0
+endsnippet
+
+snippet css "link" b
+<link rel="stylesheet" type="text/css" media="${1:screen}"
+      href="${2:path/to/your/css}.css" />
+$0
+endsnippet
+
+snippet head "XHTML <head>"
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"`!p x(snip)`>
+  <title>${1:`!p snip.rv = snip.basename or "Page Title"`}</title>
+  $0
+</head>
+endsnippet
+
+snippet link "XHTML <link>" w
+<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" title="${4:no title}" charset="${5:utf-8}"`!p x(snip)`>
+endsnippet
+
+snippet meta "XHTML <meta>" w
+<meta name="${1:name}" content="${2:content}"`!p x(snip)`>
+endsnippet
+
+snippet table "XHTML <table>" w
+<table border="${1:0}"${2: cellspacing="${3:5}" cellpadding="${4:5}"}>
+  <tr><th>${5:Header}</th></tr>
+  <tr><td>${0:Data}</td></tr>
+</table>
+endsnippet
+
+snippet stub "HTML file stub" b
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>${1:page_title}</title>
+  <meta name="author" content="${2:`!v exists('g:user_name') ? g:user_name : ''`}" />
+  <meta name="description" content="${3: page description}" />
+
+  <link rel="icon" type="image/x-icon" href="${4:media/path/}favicon.ico" />
+  <link rel="shortcut icon" href="$4/favicon.png" type="image/png" />
+
+  <link rel="stylesheet" type="text/css" media="all"
+        href="$4/css/reset.css" />
+  <link rel="stylesheet" type="text/css" media="screen"
+        href="$4${5:your_css}.css" />
+</head>
+<body>
+  $0
+</body>
+</html>
+endsnippet
