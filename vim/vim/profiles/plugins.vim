@@ -283,14 +283,24 @@ let g:syntastic_filetype_map = { 'htmldjango.html': 'htmldjango' }
 " --------------------------------------------------------------------------
 " }}}
 
+function! SetupHtmlCompletion ()
+  let b:html_omni_flavor = 'html5'
+  let b:html_doctype = 1
+  if exists('g:xmldata_'.b:html_omni_flavor)
+    exe 'let b:html_omni = g:xmldata_'.b:html_omni_flavor
+  else
+    exe 'runtime! autoload/xml/'.b:html_omni_flavor.'.vim'
+    exe 'let b:html_omni = g:xmldata_'.b:html_omni_flavor
+  endif
+endfunction
+
 " Html5 Vim Options: {{{
 " --------------------------------------------------------------------------
 if has("autocmd")
   augroup html5_completion_for_htmldjango
   au!
-  autocmd FileType htmldjango set ft=htmldjango.html
-  autocmd FileType htmldjango let b:html_omni_flavor = 'html'
-  autocmd FileType htmldjango call htmlcomplete#CheckDoctype()
+  " autocmd FileType htmldjango,htmldjango.* set ft=htmldjango.html
+  autocmd FileType htmldjango,htmldjango.* call SetupHtmlCompletion()
   augroup END
 endif
 " --------------------------------------------------------------------------
