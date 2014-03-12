@@ -24,6 +24,10 @@ snippet _
 __${1:init}__${2}
 endsnippet
 
+snippet super "Super"  b!
+super(`!v GetPythonClassName()`, self).`!v GetPythonFunctionName()`(`!v substitute(GetPythonFunctionSignature(), 'self\(, \)\?', '', '')`)
+endsnippet
+
 snippet traceback "Traceback stub" b
 import sys, traceback
 
