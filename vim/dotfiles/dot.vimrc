@@ -17,7 +17,7 @@ execute 'set runtimepath+=' . s:local_dot_vim_dir_path
 " setup sample settings{{{
 " local settings
 let s:profiles_dir_path = expand('<sfile>:h:h') . '/vim/profiles/'
-let s:profile_names = ['core', 'functions', 'unite', 'plugins' ] " 'default'
+let s:profile_names = ['core', 'functions', 'unite', 'plugins', 'filetypes'] " 'default'
 
 " local functions {{{
 function! s:source_profile(name)"{{{
