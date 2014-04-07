@@ -7,7 +7,6 @@ let s:is_cygwin = has("win32unix")
 set nocompatible                    " Force this at the start of the file
                                     " (changes subsequent options)
 let mapleader = ','                 " Only affects subsequent <leader> commands
-
 " --------------------------------------------------------------------------
 
 " add local .vim directory to runtimepath
@@ -46,10 +45,10 @@ augroup END
 
 " source bundles at first
 call s:source_profile('bundles')
-" source sample profiles
+" source profiles
 call s:source_profiles(s:profile_names)
 
-" source local settings at last
+" source local settings last
 let g:path_to_vimrc_profile = '~/.vimrc_profile'
 if filereadable(expand(g:path_to_vimrc_profile))
   execute printf('source %s', expand(g:path_to_vimrc_profile))
