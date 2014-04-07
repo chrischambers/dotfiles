@@ -105,11 +105,11 @@ nnoremap <leader>p :<C-u>Unite -quick-match history/yank<CR>
 nnoremap <leader><C-r> :source ~/dotfiles/vimrc-builder/dotfiles/dot.vimrc<C-m>
 
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-s-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-s-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-s-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-s-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <c-s-/> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <C-S-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-S-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-S-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-S-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-S-/> :TmuxNavigatePrevious<cr>
 
 let g:jedi#rename_command = "<leader>pr"
 let g:jedi#goto_definitions_command = "gd"
