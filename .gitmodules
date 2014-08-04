@@ -1,0 +1,3 @@
+[submodule "vim/vim.symlink/Ultisnips"]
+	path = vim/vim.symlink/Ultisnips
+	url = git@github.com:chrischambers/ultisnippets.git
