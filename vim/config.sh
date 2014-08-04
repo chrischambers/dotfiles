@@ -8,4 +8,4 @@ alias gvim="vim -g"
 alias g='gvim --servername Vim1 --remote-silent'
 alias vimprof='vim --startuptime /dev/stdout -c "qa" | grep -v "^[^0-9].*" | sort'
 
-source_platform_specific_file_for "$DOTFILES/vim/config.sh"
+source_platform_specific_file_for "vim/config.sh"

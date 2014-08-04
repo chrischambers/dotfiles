@@ -36,12 +36,41 @@ detect_os () {
   fi
 }
 
-source_if_readable () {
-  if [[ -r $1 ]]; then
-    source $1
-    # echo "sourced $1"
+source_dotfiles_variant_if_readable () {
+  fname=$DOTFILES/${1}
+  # echo $fname
+  if [[ -r $fname ]]; then
+    source $fname
+    echo "sourced $fname"
   fi
-  # echo $1
+}
+
+source_home_variant_if_readable () {
+  # If the filename does *not* have a leading dot, then its parent directory
+  # will be prefixed to the filename, separated by an underscore, and with a
+  # leading dot prefix. For example:
+  #
+  #   "zsh/.zshrc" will attempt to source "$HOME/.zshrc", but
+  #   "zsh/zshrc"  will attempt to source "$HOME/.zsh_zshrc"
+
+  prefix=$(basename $(dirname $1))
+  first_character=$(echo `basename $1` | sed 's/\(.\).*/\1/')
+  [[ $first_character = '.' ]]; filename_has_dot_prefix=$?
+  if [[ $prefix != '.' && $filename_has_dot_prefix -eq 1 ]]; then
+    fname=~/.${prefix}_$(basename $1)
+  else
+    fname=~/$(basename $1)
+  fi
+  echo $fname
+  if [[ -r $fname ]]; then
+    source $fname
+    echo "sourced $fname"
+  fi
+}
+
+source_if_readable () {
+    source_dotfiles_variant_if_readable $1
+    source_home_variant_if_readable $1
 }
 
 source_before_file_for () {

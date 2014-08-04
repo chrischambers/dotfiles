@@ -12,4 +12,4 @@ fi
 
 alias tree='tree -FC'             # colorise and use symbolic key for filetypes
 
-source_platform_specific_file_for "$DOTFILES/shell/aliases.sh"
+source_platform_specific_file_for "shell/aliases.sh"

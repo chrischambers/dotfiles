@@ -44,4 +44,4 @@ tst() {
               --with-spec --spec-color $1
 }
 
-source_platform_specific_file_for "$DOTFILES/django/test_helpers.sh"
+source_platform_specific_file_for "django/test_helpers.sh"

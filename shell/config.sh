@@ -16,4 +16,4 @@ export PAGER=less
 export LESS=-r    # Outputs raw control characters: necessary if you're piping
                   # in colourised output (as ipython does)
 
-source_platform_specific_file_for "$DOTFILES/shell/config.sh"
+source_platform_specific_file_for "shell/config.sh"

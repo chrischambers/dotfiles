@@ -2,8 +2,9 @@
 
 source ~/.shell_common
 
-source_before_file_for ".bashrc"
-source_platform_specific_file_for ".bashrc"
+source_if_readable ".profile"
+source_before_file_for "bash/.bashrc"
+source_platform_specific_file_for "bash/.bashrc"
 
 common_config_files=$(find -L $DOTFILES -type f -name "*.sh");
 # echo $common_config_files
@@ -17,5 +18,5 @@ for f in $config_files; do
   source $f
 done
 
-source_after_file_for ".bashrc"
-source_local_file_for ".bashrc"
+source_after_file_for "bash/.bashrc"
+source_local_file_for "bash/.bashrc"

@@ -1,7 +1,10 @@
+#!/bin/env zsh
+
 source ~/.shell_common
 
-source_before_file_for ".zshrc"
-source_platform_specific_file_for ".zshrc"
+source_if_readable ".profile"
+source_before_file_for "zsh/.zshrc"
+source_platform_specific_file_for "zsh/.zshrc"
 
 # load common shell elements
 typeset -U common_shell_files
@@ -38,4 +41,5 @@ done
 
 unset config_files
 
-source_local_file_for ".zshrc"
+source_after_file_for "zsh/.zshrc"
+source_local_file_for "zsh/.zshrc"
