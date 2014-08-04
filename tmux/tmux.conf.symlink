@@ -12,6 +12,9 @@ setw -g utf8 on
 # Tell tmux to use 256 colors:
 set -g default-terminal "screen-256color"
 
+# Permit distinctions between Ctrl+Key and, say, Shift+Ctrl+Key
+set -gw xterm-keys on
+
 # Lets have windows and panes start from 1:
 set -g base-index 1
 set -g pane-base-index 1
