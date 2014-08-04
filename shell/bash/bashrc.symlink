@@ -5,12 +5,14 @@ source ~/.shell_common
 source_before_file_for ".bashrc"
 source_platform_specific_file_for ".bashrc"
 
-common_config_files=$(find $DOTFILES -type f -name "*.sh");
-for f in  $common_config_files; do
+common_config_files=$(find -L $DOTFILES -type f -name "*.sh");
+# echo $common_config_files
+for f in $common_config_files; do
   source $f
 done
 
-config_files=$(find $DOTFILES -type f -name "*.bash")
+config_files=$(find -L $DOTFILES -type f -name "*.bash")
+# echo $config_files
 for f in $config_files; do
   source $f
 done
