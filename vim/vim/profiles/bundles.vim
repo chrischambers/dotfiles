@@ -67,3 +67,5 @@ NeoBundle 'othree/html5.vim'
 
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+
+NeoBundle 'vim-scripts/BufOnly.vim'
