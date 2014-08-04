@@ -16,9 +16,11 @@ if __name__ == '__main__':
 endsnippet
 
 snippet def "Function Definition" b!
-def ${1:fname}(`!v indent(search('^ \{-}def [^:]*: \{-}$', 'bcWn')) ? 'self' : ''`):
-    ${0:pass}
+def ${1:fname}(`!v indent(search('^ \{-}def [^:]*: \{-}$', 'bcWn')) ? 'self' : ''`$2):
+    ${3:pass}
+$0
 endsnippet
+# `!v search('(self', '', line('.')) ? ', ' : ''`
 
 snippet _
 __${1:init}__${2}
@@ -39,7 +41,7 @@ endsnippet
 
 snippet log "Basic Logging" b
 import logging
-log = logging.getLogger('$1`!p res = os.path.splitext(fn)[0].strip().lower().replace(' ', '_')`')
+log = logging.getLogger('${1:`!p snip.rv = os.path.splitext(fn)[0].strip().lower().replace(' ', '_')`}')
 $0
 endsnippet
 
@@ -181,28 +183,35 @@ endglobal
 # Class & Special Method Name Snippets #
 ########################################
 
-snippet class "class with docstrings" b
+# snippet class "class with docstrings" b
+# class ${1:MyClass}(${2:object}):
+# 
+#     `!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
+# 
+#     def __init__(self$4):
+#         `!p snip.rv = triple_quotes(snip)`${5:@todo: to be defined1.}`!p
+# snip.rv = ""
+# snip >> 2
+# 
+# args = get_args(t[4])
+# 
+# write_docstring_args(args, snip)
+# if args:
+#     snip.rv += '\n' + snip.mkline('', indent='')
+#     snip += '{0}'.format(triple_quotes(snip))
+# 
+# write_init_body(args, t[2], snip)
+# `
+#         $0
+# endsnippet
+
+snippet class "smart class" b!
 class ${1:MyClass}(${2:object}):
-
-    `!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
-
-    def __init__(self$4):
-        `!p snip.rv = triple_quotes(snip)`${5:@todo: to be defined1.}`!p
-snip.rv = ""
-snip >> 2
-
-args = get_args(t[4])
-
-write_docstring_args(args, snip)
-if args:
-    snip.rv += '\n' + snip.mkline('', indent='')
-    snip += '{0}'.format(triple_quotes(snip))
-
-write_init_body(args, t[2], snip)
-`
-        $0
+${3:    """${4:Docstring for $1}"""
+}
+    def __init__(self${5/([^,])?(.*)/(?1:, )/}${5:arg}):
+${2/object$|(.+)/(?1:        super\($1, self\).__init__\(\)\n\n)/}${5/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2)/g}
 endsnippet
-
 
 snippet slotclass "class with slots and docstrings" b
 class ${1:MyClass}(${2:object}):
