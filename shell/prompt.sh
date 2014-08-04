@@ -77,8 +77,8 @@ cache_exit_status() {
 
 main_prompt() {
     # Takes the cached exit status as its only argument; returns an
-    # appropriately coloured prompt, using the appropriate symbol ($ for
-    # standard user, # for root user).
+    # appropriately coloured prompt, using the correct symbol (i.e. $ or %
+    # for a standard user, depending on shell type, and # for the root user).
     if [[ -n $BASH_VERSION ]]; then
         main_prompt='\$'
     else
