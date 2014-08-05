@@ -25,6 +25,7 @@ NeoBundle 'Shougo/vimproc.vim', {
       \ }
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-outline'
 
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-user'
@@ -36,8 +37,6 @@ NeoBundle 'thinca/vim-unite-history'
 NeoBundle 'Sixeight/unite-grep'
 
 NeoBundle 'tacroe/unite-mark'
-
-NeoBundle 'h1mesuke/unite-outline'
 
 NeoBundle 'jmcantrell/vim-virtualenv'
 
