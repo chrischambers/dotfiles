@@ -149,7 +149,7 @@ set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,
 " set complete=.,w,b,u,t,i
 " set completeopt=menu,longest
 " preview:         displays python help files when using omni-completion:
-"                  (awesome, but induces a performance hit).
+"                  (awesome, but results in a performance hit).
 " longest:         only tab-completes up to the common elements, if any:
 "                  allows you to hit tab, type to reduce options, hit tab to
 "                  complete.

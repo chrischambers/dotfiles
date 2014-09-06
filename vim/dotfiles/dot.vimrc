@@ -115,7 +115,7 @@ let g:jedi#rename_command = "<leader>pr"
 let g:jedi#goto_definitions_command = "gd"
 let g:jedi#use_tabs_not_buffers = 0
 
-" Note: when using NERDTree, you want to ensure your force the minibufexpl
+" Note: when using NERDTree, you want to ensure you force the minibufexpl
 " window to be active at all times:
 let g:miniBufExplBuffersNeeded = 0
 
