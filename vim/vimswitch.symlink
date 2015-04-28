@@ -22,8 +22,10 @@ for f in ~/.vimrc ~/.vim; do
 done
 
 for f in ~/.vimrc ~/.vim; do
-    echo "removing symlink $f"
-    rm $f
+    if [[ -e $f && -L $f ]]; then
+        echo "removing symlink $f"
+        rm $f
+    fi
 done
 
 echo ""
