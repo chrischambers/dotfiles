@@ -141,4 +141,12 @@ hi SpellBad ctermbg=52 gui=undercurl guisp=#FF5522
 hi SpellCap ctermbg=53 gui=undercurl guisp=SlateBlue
 hi SpellRare ctermbg=55 gui=undercurl guisp=purple
 
+" Set Grep Program To Ag: {{{
+" --------------------------------------------------------------------------
+" Note: Ensure ag is installed and in your path
+" --------------------------------------------------------------------------
+set grepprg=ag\ --column
+set grepformat=%f:%l:%c:%m
+" --------------------------------------------------------------------------
+" }}}
 " vim: foldmethod=marker
