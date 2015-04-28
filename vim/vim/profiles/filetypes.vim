@@ -16,6 +16,7 @@ if has("autocmd")
   augroup txt_setup
     au!
     autocmd FileType txt setl textwidth=78
+    autocmd BufRead,BufNewFile *.txt set filetype=rst
     autocmd FileType rst setl textwidth=78
     " autocmd FileType txt setl fenc='utf-8'
     " autocmd FileType rst setl fenc='utf-8'
