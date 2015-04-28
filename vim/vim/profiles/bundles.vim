@@ -52,6 +52,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'SirVer/ultisnips'
 
 NeoBundle 'vim-scripts/Enhanced-Ex'
+NeoBundle 'vim-scripts/ShowMarks'
 
 NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
 

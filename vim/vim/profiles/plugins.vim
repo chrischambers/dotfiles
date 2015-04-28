@@ -344,4 +344,22 @@ endif
 nmap <silent> <leader>bo :BufOnly<CR>
 " --------------------------------------------------------------------------
 " }}}
+
+" Showmarks Options: {{{
+" --------------------------------------------------------------------------
+" Source: <url:http://www.vim.org/scripts/script.php?script_id=152>
+" --------------------------------------------------------------------------
+let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+let g:showmarks_enable = 1
+" For marks a-z
+highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=Blue
+" For marks A-Z
+highlight ShowMarksHLu gui=bold guibg=LightRed guifg=DarkRed
+" For all other marks
+highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
+" For multiple marks on the same line.
+highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+" --------------------------------------------------------------------------
+" }}}
+"
 " vim: expandtab softtabstop=2 shiftwidth=2
