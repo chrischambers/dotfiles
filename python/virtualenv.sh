@@ -1,3 +1,5 @@
+source_platform_specific_file_for "python/virtualenv.sh"
+
 # Virtualenv and Pip Configuration: {{{
 # ----------------------------------------------------------------------------
 export WORKON_HOME="$HOME/.virtualenvs"

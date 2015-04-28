@@ -1,11 +1,8 @@
 #!/bin/sh
 
 # ----------------------------------------------------------------------------
-
 export DOTFILES=$HOME/dotfiles/mine
 export PROJECTS=~/src                 # project folder that we can `c [tab]` to
-virtualenvwrapper_loc=$HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
-
 alias vimswitch="source ~/.vimswitch"
 # ----------------------------------------------------------------------------
 
