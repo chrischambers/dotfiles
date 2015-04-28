@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # Heroku configuration
-export PATH="/usr/local/heroku/bin:$PATH"
+prepend_to_path "/usr/local/heroku/bin"

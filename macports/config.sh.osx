@@ -1,6 +1,7 @@
 #!/bin/sh
 
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+prepend_to_path "/opt/local/sbin"
+prepend_to_path "/opt/local/bin"
 export MANPATH="/opt/local/share/man:$MANPATH"
 
 # Activate bash-completion from ports, if BASH shell is active:
@@ -13,7 +14,7 @@ fi
 # -----------------------------------
 # Fix for "EnvironmentError: mysql_config not found" error message when
 # easy_installing python-mysql
-export PATH="/opt/local/lib/mysql5/bin:$PATH"
+prepend_to_path "/opt/local/lib/mysql5/bin"
 alias start_mysql='sudo /opt/local/bin/mysqld_safe5 &'
 alias stop_mysql='/opt/local/bin/mysqladmin5 -u root -p shutdown'
 # }}}
@@ -21,7 +22,7 @@ alias stop_mysql='/opt/local/bin/mysqladmin5 -u root -p shutdown'
 # Postgres Configuration (via Macports): {{{
 # --------------------------------------
 # Necessary before installing psycopg2, so that pg_config lives on the path
-export PATH="/opt/local/lib/postgresql92/bin:$PATH"
+prepend_to_path "/opt/local/lib/postgresql92/bin"
 # For Geodjango:
 # export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib:/opt/local/lib/postgresql83
 

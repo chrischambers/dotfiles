@@ -1,7 +1,7 @@
 # Common Configuration:
 # ---------------------
 
-export PATH="$HOME/bin:$PATH"
+prepend_to_path "$HOME/bin"
 export MANPATH="$HOME/man:$MANPATH"
 # ...should contain man1/plod.1 to find manfile for plod, for example.
 

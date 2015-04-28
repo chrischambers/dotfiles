@@ -2,6 +2,9 @@
 
 source ~/.shell_common
 
+# Force entries in the PATH environment variable to be unique:
+typeset -aU path
+
 source_if_readable ".profile"
 source_before_file_for "zsh/.zshrc"
 source_platform_specific_file_for "zsh/.zshrc"
