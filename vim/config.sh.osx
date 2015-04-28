@@ -5,10 +5,15 @@
 vim="mvim -v"
 alias vi="$vim"
 alias vim="$vim"
+alias gvim="mvim -f"
+
+function visvim () {
+    mvim -v $1
+}
 export EDITOR="$vim"
-export VISUAL="$vim -f --servername Vim1 --remote-silent"
+export VISUAL="visvim"
+
 export GIT_EDITOR="$vim"
-alias gvim="mvim"
 function g () {
     mvim -f --servername Vim1 --remote-silent $1 &
 }
