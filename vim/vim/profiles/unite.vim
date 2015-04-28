@@ -8,7 +8,7 @@ let g:unite_enable_start_insert = 1
 
 " unite prefix key
 nnoremap [unite] <Nop>
-nmap <Leader><Leader> [unite]
+nmap <Leader>g [unite]
 
 " maps {{{
 nmap [unite]u     <SID>(normally)

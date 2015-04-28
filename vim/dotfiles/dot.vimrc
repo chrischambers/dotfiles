@@ -74,7 +74,7 @@ nnoremap <leader>f :<C-u>Unite
       \ -buffer-name=files
       \ -start-insert
       \ -toggle
-      \ file_rec<CR>
+      \ file_rec/async<CR>
 nnoremap <leader>r :<C-u>Unite
       \ -no-split
       \ -profile-name=mru
