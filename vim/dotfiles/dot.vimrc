@@ -150,4 +150,19 @@ set grepprg=ag\ --column
 set grepformat=%f:%l:%c:%m
 " --------------------------------------------------------------------------
 " }}}
+
+" By default, these mru ignore patterns include "/media/", but when directly
+" accessing (or even following a symlink) to networked drives on a linux
+" installation the file/directory paths will generally include "/media/", so
+" let's change that default:
+let g:unite_source_file_mru_ignore_pattern =
+      \'\~$\|\.\%(o\|exe\|dll\|bak\|zwc\|pyc\|sw[po]\)$'.
+      \'\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'.
+      \'\|^\%(\\\\\|/mnt/\|/temp/\|/tmp/\|\%(/private\)\=/var/folders/\)'.
+      \'\|\%(^\%(fugitive\)://\)'.
+      \'\|\%(^\%(term\)://\)'
+let g:unite_source_directory_mru_ignore_pattern =
+      \'\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'.
+      \'\|^\%(\\\\\|/mnt/\|/temp/\|/tmp/\|\%(/private\)\=/var/folders/\)'
+
 " vim: foldmethod=marker
