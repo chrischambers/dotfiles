@@ -19,5 +19,27 @@ alias vimprof="vim --startuptime /dev/stdout -c \"qa\" | grep -v \"^[^0-9].*\" |
 function g () {
     # Should ensure that only one GUI is created and that subsequently opened
     # files will be opened within that one GUI.
-    $gvim --nofork --servername Vim1 --remote-silent "$@" &
+
+    # Launch server if needed
+    servername="GVIM1"
+    serverlist=`"$gvim" --serverlist`
+    if [ -z $serverlist ]; then
+      "$gvim" --servername $servername
+    fi
+
+    if [ $1 ]; then
+      "$gvim" --servername $servername --remote-silent "$@"
+    fi
+    focus_application $servername
+}
+
+function focus_application () {
+  # Currently hard-coded as "MacVim" for OSX - this is a flaw.
+  servername=$1
+  os=`detect_os`
+  if [[ $os == "linux" ]]; then
+    wmctrl -a $servername
+  # elif [[ $os == "osx" ]]; then
+  #   open -a "MacVim"
+  fi
 }
