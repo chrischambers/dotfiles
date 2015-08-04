@@ -178,4 +178,8 @@ let g:unite_source_directory_mru_ignore_pattern =
       \'\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'.
       \'\|^\%(\\\\\|/mnt/\|/temp/\|/tmp/\|\%(/private\)\=/var/folders/\)'
 
+if s:is_linux
+  let g:netrw_browsex_viewer="firefox"
+endif
+
 " vim: foldmethod=marker
