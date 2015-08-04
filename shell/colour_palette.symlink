@@ -6,23 +6,23 @@
 
 # Foreground Colours:
 # -------------------
-export black=$'\e[00;30m'
-export dark_grey=$'\e[01;30m'
-export red=$'\e[00;31m'
-export bold_red=$'\e[01;31m'
-export green=$'\e[00;32m'
-export bold_green=$'\e[01;32m'
-export brown=$'\e[00;33m'
-export yellow=$'\e[01;33m'
-export blue=$'\e[00;34m'
-export bold_blue=$'\e[01;34m'
-export purple=$'\e[00;35m'
-export bold_purple=$'\e[01;35m'
-export cyan=$'\e[00;36m'
-export bold_cyan=$'\e[01;36m'
-export bold_grey=$'\e[00;37m'
-export white=$'\e[01;37m'
-export reset=$'\e[0m'
+black=$'\e[00;30m'
+dark_grey=$'\e[01;30m'
+red=$'\e[00;31m'
+bold_red=$'\e[01;31m'
+green=$'\e[00;32m'
+bold_green=$'\e[01;32m'
+brown=$'\e[00;33m'
+yellow=$'\e[01;33m'
+blue=$'\e[00;34m'
+bold_blue=$'\e[01;34m'
+purple=$'\e[00;35m'
+bold_purple=$'\e[01;35m'
+cyan=$'\e[00;36m'
+bold_cyan=$'\e[01;36m'
+bold_grey=$'\e[00;37m'
+white=$'\e[01;37m'
+reset=$'\e[0m'
 
 # Note that what is described as yellow may be brown on some terminals, whereas
 # what is described as white may appear gray.
@@ -33,30 +33,12 @@ export reset=$'\e[0m'
 # * 4 produces underlined text,
 # * 5 produces flashing text.
 
-# Often 5 doesn’t work; however, many consider the effect to be distracting so
+# Often 5 doesn't work; however, many consider the effect to be distracting so
 # this is really not an issue for most users. Also, keep in mind not all
 # terminals are capable of underlining and as a result code 4 may produce some
 # other effect.
 # Source: From Bash to Z Shell.
-
-export COLOUR_PALETTE="
-${dark_grey}dark_grey
-${blue}blue
-${bold_blue}bold_blue
-${green}green
-${bold_green}bold_green
-${cyan}cyan
-${bold_cyan}bold_cyan
-${red}red
-${bold_red}bold_red
-${purple}purple
-${bold_purple}bold_purple
-${brown}brown
-${yellow}yellow
-${bold_grey}bold_grey
-${white}white
-${reset}reset
-"
+# ----------------------------------------------------------------------------
 
 # We need to surround all non-printing characters with special escape
 # sequences. These sequences will tell the shell that the enclosed
@@ -79,20 +61,39 @@ else
     escape_off='\]'
 fi
 
-BLACK="${escape_on}${black}${escape_off}"
-DARK_GREY="${escape_on}${dark_grey}${escape_off}"
-RED="${escape_on}${red}${escape_off}"
-BOLD_RED="${escape_on}${bold_red}${escape_off}"
-GREEN="${escape_on}${green}${escape_off}"
-BOLD_GREEN="${escape_on}${bold_green}${escape_off}"
-BROWN="${escape_on}${brown}${escape_off}"
-YELLOW="${escape_on}${yellow}${escape_off}"
-BLUE="${escape_on}${blue}${escape_off}"
-BOLD_BLUE="${escape_on}${bold_blue}${escape_off}"
-PURPLE="${escape_on}${purple}${escape_off}"
-BOLD_PURPLE="${escape_on}${bold_purple}${escape_off}"
-CYAN="${escape_on}${cyan}${escape_off}"
-BOLD_CYAN="${escape_on}${bold_cyan}${escape_off}"
-BOLD_GREY="${escape_on}${bold_grey}${escape_off}"
-WHITE="${escape_on}${white}${escape_off}"
-RESET="${escape_on}${reset}${escape_off}"
+export BLACK="${escape_on}${black}${escape_off}"
+export DARK_GREY="${escape_on}${dark_grey}${escape_off}"
+export RED="${escape_on}${red}${escape_off}"
+export BOLD_RED="${escape_on}${bold_red}${escape_off}"
+export GREEN="${escape_on}${green}${escape_off}"
+export BOLD_GREEN="${escape_on}${bold_green}${escape_off}"
+export BROWN="${escape_on}${brown}${escape_off}"
+export YELLOW="${escape_on}${yellow}${escape_off}"
+export BLUE="${escape_on}${blue}${escape_off}"
+export BOLD_BLUE="${escape_on}${bold_blue}${escape_off}"
+export PURPLE="${escape_on}${purple}${escape_off}"
+export BOLD_PURPLE="${escape_on}${bold_purple}${escape_off}"
+export CYAN="${escape_on}${cyan}${escape_off}"
+export BOLD_CYAN="${escape_on}${bold_cyan}${escape_off}"
+export BOLD_GREY="${escape_on}${bold_grey}${escape_off}"
+export WHITE="${escape_on}${white}${escape_off}"
+export RESET="${escape_on}${reset}${escape_off}"
+
+export COLOUR_PALETTE="
+${dark_grey}DARK_GREY
+${blue}BLUE
+${bold_blue}BOLD_BLUE
+${green}GREEN
+${bold_green}BOLD_GREEN
+${cyan}CYAN
+${bold_cyan}BOLD_CYAN
+${red}RED
+${bold_red}BOLD_RED
+${purple}PURPLE
+${bold_purple}BOLD_PURPLE
+${brown}BROWN
+${yellow}YELLOW
+${bold_grey}BOLD_GREY
+${white}WHITE
+${reset}RESET
+"
