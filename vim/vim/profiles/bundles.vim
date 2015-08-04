@@ -8,7 +8,7 @@ if has('vim_starting')
   else
     finish
   endif
-  call neobundle#rc(expand('~/.bundle'))
+  call neobundle#begin(expand('~/.bundle'))
 endif
 
 NeoBundle 'Shougo/neobundle.vim'
@@ -69,3 +69,5 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 
 NeoBundle 'vim-scripts/BufOnly.vim'
+
+call neobundle#end()
