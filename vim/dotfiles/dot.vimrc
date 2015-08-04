@@ -143,12 +143,24 @@ hi SpellBad ctermbg=52 gui=undercurl guisp=#FF5522
 hi SpellCap ctermbg=53 gui=undercurl guisp=SlateBlue
 hi SpellRare ctermbg=55 gui=undercurl guisp=purple
 
-" Set Grep Program To Ag: {{{
+let s:viml_functions = "~/.vim/UltiSnips/viml_functions.vim"
+if filereadable(s:viml_functions)
+  execute 'source ' . s:viml_functions
+endif
+let g:localvimrc_sandbox = 0
+let g:localvimrc_whitelist = '/Users/ajax/src/py/django/_mine/[^/]*/'
+
+" Set Grep Program to Ag or Ack: {{{
 " --------------------------------------------------------------------------
-" Note: Ensure ag is installed and in your path
-" --------------------------------------------------------------------------
-set grepprg=ag\ --column
-set grepformat=%f:%l:%c:%m
+" Modified heavily from original source:
+" <url:http://weblog.jamisbuck.org/2008/11/17/vim-follow-up>
+if executable('ag')
+  set grepprg=ag\ --column
+  set grepformat=%f:%l:%c:%m
+elseif executable('ack') || executable('ack-grep')
+  set grepprg=ack
+  set grepformat=%f:%l:%m
+endif
 " --------------------------------------------------------------------------
 " }}}
 
