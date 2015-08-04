@@ -1,3 +1,30 @@
+[user]
+        name = Chris Chambers
+        email = magma.chambers@gmail.com
+[color]
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
+[core]
+        pager = less -FRSX
+        # Avoids using pager if output fits onscreen
+[sendemail]
+        smtpencryption = tls
+        smtpserver = smtp.gmail.com
+        smtpuser = magma.chambers@gmail.com
+        smtpserverport = 587
+        suppresscc = self
+        # Packages required:for git-send-email on OSX:
+        # sudo port install p5-authen-sasl p5-mime-base64 p5-io-socket-ssl
+        # sudo -H cpan Net::SMTP::SSL
+        #
+        # Source:
+        # http://borisdusek.blogspot.com/2010/10/git-send-email-on-mac-os-x-with-smtp.html
+[push]
+        default = simple
+[github]
+        user = chrischambers
 [alias]
         st = status
         ci = commit
@@ -42,30 +69,3 @@
         l    = "!. ~/.githelpers && pretty_git_log"
         la   = !git l --all
         # -----------------------------------------------------------------
-[user]
-        name = Chris Chambers
-        email = magma.chambers@gmail.com
-[color]
-        branch = auto
-        diff = auto
-        interactive = auto
-        status = auto
-[core]
-        pager = less -FRSX
-        # Avoids using pager if output fits onscreen
-[sendemail]
-        smtpencryption = tls
-        smtpserver = smtp.gmail.com
-        smtpuser = magma.chambers@gmail.com
-        smtpserverport = 587
-        suppresscc = self
-        # Packages required:for git-send-email on OSX:
-        # sudo port install p5-authen-sasl p5-mime-base64 p5-io-socket-ssl
-        # sudo -H cpan Net::SMTP::SSL
-        #
-        # Source:
-        # http://borisdusek.blogspot.com/2010/10/git-send-email-on-mac-os-x-with-smtp.html
-[push]
-        default = simple
-[github]
-        user = chrischambers
