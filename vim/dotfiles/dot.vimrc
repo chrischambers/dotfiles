@@ -126,12 +126,13 @@ if has("gui_running")
     set columns=95
     set lines=57
     " set columns=105 lines=60
-    if s:is_mac || s:is_linux
+    if s:is_mac
       set guifont=Source\ Code\ Pro:h11,Andale\ Mono:h12,Consolas\ 9,Liberation\ Mono\ 8
+    elseif s:is_linux
+      set guifont=Droid\ Sans\ Mono\ 10
     elseif s:is_win
       set guifont=Dina:h8:cANSI,Consolas:h9:cANSI
     endif
-
 endif
 
 hi clear SpellBad
