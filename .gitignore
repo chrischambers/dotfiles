@@ -5,6 +5,8 @@
 .DS_Store
 pentadactyl/pentadactyl.symlink/info/**
 
+vim/vim.symlink/.netrwhist
+
 # Vimproc C Files/Headers:
 # ------------------------
 vim/vim.symlink/autoload/*.c
