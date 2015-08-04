@@ -66,7 +66,7 @@ call unite#custom#source('buffer,file,file_rec,file_rec/async',
       \'sorters', 'sorter_rank')
 call unite#custom#source('buffer,file,file_rec,file_rec/async',
       \'max_candidates', '0')
-call unite#custom#profile('mru', 'ignorecase', 1)
+call unite#custom#profile('mru', 'context.ignorecase', 1)
 call unite#custom#profile('mru', 'filters', 'sorter_rank')
 
 nnoremap <leader>f :<C-u>Unite
