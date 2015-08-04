@@ -27,7 +27,7 @@
         user = chrischambers
 [alias]
         st = status
-        ci = commit
+        ci = commit --verbose
         co = checkout
         br = branch
         cp = cherry-pick
