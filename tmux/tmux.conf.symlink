@@ -131,8 +131,6 @@ set -g status-right "#[fg=yellow]%d %b %Y #[fg=green]::%l:%M %p  "
 # }}}
 # ----------------------------------------------------------------------------
 
-if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux.conf.osx'
-
 # Pretend our terminal doesn't support alternative screens, and thus all text
 # should be placed into the scrollback buffer when it goes off the top of the
 # screen.
@@ -141,3 +139,6 @@ if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux.conf.osx'
 set-option -g terminal-overrides 'xterm*:smcup@:rmcup@'
 
 setw -g aggressive-resize on
+
+if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux.conf.osx'
+if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux.conf.linux'

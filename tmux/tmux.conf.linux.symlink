@@ -1,0 +1,2 @@
+set -g prefix '\'
+bind '\' send-prefix
