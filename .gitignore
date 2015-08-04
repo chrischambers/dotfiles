@@ -4,3 +4,13 @@
 **~
 .DS_Store
 pentadactyl/pentadactyl.symlink/info/**
+
+# Vimproc C Files/Headers:
+# ------------------------
+vim/vim.symlink/autoload/*.c
+vim/vim.symlink/autoload/*.h
+vim/vim.symlink/autoload/vimproc_*
+
+vim/vim.symlink/autoload/vimproc.vim
+vim/vim.symlink/autoload/vimproc/*
+vim/vim.symlink/plugin/vimproc.vim
