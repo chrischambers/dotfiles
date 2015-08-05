@@ -82,6 +82,6 @@
         la   = !git l --all
         # -----------------------------------------------------------------
 [status]
-	submoduleSummary = true
+    submoduleSummary = true
 [diff]
     submodule = log
