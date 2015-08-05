@@ -2,10 +2,7 @@
 
 # Defaults:
 vim=vim
-# gvim="vim -g"
-# This requires $=gvim to make the substitution work, so we can instead use an
-# array:
-gvim=(vim -g)
+gvim="vim -g"
 
 source_platform_specific_file_for "vim/config.sh"
 

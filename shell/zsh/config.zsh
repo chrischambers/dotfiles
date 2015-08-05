@@ -21,6 +21,24 @@ setopt local_options       # any options changed within functions are restored
                            # to the way they were once those function finish.
 setopt local_traps         # as above, but for traps (which intercept signals
                            # sent to the shell, e.g. SIGINT (Ctrl-C))
+setopt sh_word_split       # enables the following::
+
+                           #     foo="-a -l" && ls $foo
+                           #     bar="vim -g" && $bar +5 -c "echo awesome"
+                           #
+                           # Without this option, we need to use the following
+                           # approaches::
+
+                           #     foo="-a -l" && ls ${=foo}
+                           #     bar="vim -g" && $=bar +5 -c "echo awesome"
+
+                           # Or we have to use arrays:
+                           #     foo=(-a -l) && ls $foo
+                           #     bar=(vim -g) && $bar +5 -c "echo awesome"
+
+                           # The latter two approaches are not bash compatible.
+
+# see http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion
 
 # don't expand aliases _before_ completion has finished
 #   like: git comm-[tab]
