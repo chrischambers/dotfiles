@@ -19,7 +19,7 @@ export VISUAL=visvim
 export GIT_EDITOR="$vim"
 
 # Vim Profiler:
-alias vimprof="vim --startuptime /dev/stdout -c \"qa\" | grep -v \"^[^0-9].*\" | sort"
+alias vimprof="$vim --startuptime /dev/stdout -c \"qa\" | grep -v \"^[^0-9].*\" | sort"
 
 function g () {
     # Should ensure that only one GUI is created and that subsequently opened
