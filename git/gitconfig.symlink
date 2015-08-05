@@ -31,7 +31,8 @@
         co = checkout
         br = branch
         cp = cherry-pick
-        dc = diff --cached
+        ds = diff --staged
+
         showremote = !sh -c 'git for-each-ref --format=\"%(upstream:short)\" $(git rev-parse --symbolic-full-name --default HEAD $1)' -
 
         # -----------------------------------------------------------------
