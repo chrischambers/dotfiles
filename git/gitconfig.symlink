@@ -34,6 +34,17 @@
         ds = diff --staged
 
         showremote = !sh -c 'git for-each-ref --format=\"%(upstream:short)\" $(git rev-parse --symbolic-full-name --default HEAD $1)' -
+        # "showremote" has two usages:
+        # 1). $ git showremote
+        #       shows whether the branch you are currently on tracks any remote branch
+        # 2). $ git showremote [somebranch]
+        #       shows whether your local branch [somebranch] tracks any remote branch
+        # Each returns an empty line if they don't.
+
+        # Thanks go to wereHamster, doener and idletask (irc, freenode #git)
+
+        aa = add --all
+        fa = fetch --all
 
         # -----------------------------------------------------------------
         # Stolen from Gary Bernhardt:
