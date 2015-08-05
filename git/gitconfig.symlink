@@ -90,3 +90,5 @@
     submodule = log
 [fetch]
     recurseSubmodules = on-demand
+[pull]
+    rebase = preserve
