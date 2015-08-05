@@ -25,6 +25,11 @@ function g () {
     # Should ensure that only one GUI is created and that subsequently opened
     # files will be opened within that one GUI.
 
+    # Idea from Derek Wyatt (http://derekwyatt.org/):
+    # https://vimeo.com/4446112
+    # Implementation adapted from:
+    # http://stackoverflow.com/questions/936501/let-gvim-always-run-a-single-instance
+
     # Launch server if needed
     servername="GVIM1"
     serverlist=`$gvim --serverlist`
