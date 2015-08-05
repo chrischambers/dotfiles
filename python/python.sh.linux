@@ -1,0 +1,9 @@
+# Switching to Python3
+
+# Some setup instructions:
+# sudo apt-get install ipython3 easy_install3
+# sudo easy_install3 pip
+# pip install virtualenv virtualenvwrapper
+
+alias python="python3"
+alias ipython="ipython3"
