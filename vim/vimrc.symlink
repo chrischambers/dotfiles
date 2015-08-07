@@ -1,4 +1,4 @@
-let g:vimrc_builder = fnameescape(fnamemodify(expand($DOTFILES), ':p:h:h') . '/vimrc-builder/dotfiles/dot.vimrc')
-if filereadable(g:vimrc_builder)
-  execute 'source ' . g:vimrc_builder
+let core_vimfile = '~/.vim/core.vimrc'
+if filereadable(core_vimfile)
+  execute 'source ' . core_vimfile
 endif
