@@ -102,4 +102,5 @@ elseif executable('ack-grep')
   \ '-i --no-heading --no-color -k -H'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
 " vim: expandtab softtabstop=2 shiftwidth=2
