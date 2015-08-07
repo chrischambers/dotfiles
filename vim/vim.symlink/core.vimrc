@@ -9,40 +9,44 @@ set nocompatible                    " Force this at the start of the file
 let mapleader = ','                 " Only affects subsequent <leader> commands
 " --------------------------------------------------------------------------
 
-" echo s:script_location
-" echo fnamemodify(s:script_location, ':h')
+let s:local_mods_file = '~/.vimrc.local'
 let s:script_location = fnamemodify(resolve(expand('<sfile>')), ':h')
-" add local .vim directory to runtimepath
-" let s:local_dot_vim_dir_path = fnamemodify(s:script_location, ':h') . '/config'
-" echo s:local_dot_vim_dir_path
-" execute 'set runtimepath+=' . s:local_dot_vim_dir_path
+let s:config_files = filter(split(
+\    glob('~/.vim/config/**')),
+\    'v:val !~ "/config/after"'
+\ )
+let s:post_config_files = filter(split(
+\    glob('~/.vim/config/**')),
+\    'v:val =~ "/after/"'
+\ )
 
-" setup sample settings{{{
-" local settings
-let s:config_dir_path = s:script_location . '/config/'
-let s:config_names = ['core', 'functions', 'unite', 'plugins', 'filetypes'] " 'default'
+function! s:Source_bundles()
+  execute printf('source %s/%s', s:script_location, 'bundles.vim')
+endfunction
 
-" local functions {{{
-function! s:source_config(name)"{{{
-  let l:path = printf('%s%s.vim', s:config_dir_path, a:name)
-  if filereadable(l:path)
-    execute printf('source %s', l:path)
-  endif
-endfunction"}}}
-
-function! s:source_configs(names)"{{{
-  for l:name in a:names
-    call s:source_config(l:name)
+function! s:Source_configs(list)
+  for l:path in a:list
+    if filereadable(l:path)
+      execute printf('source %s', l:path)
+    endif
   endfor
-endfunction"}}}
+endfunction
 
-function! s:call_source_configs(args)"{{{
-  call s:source_configs(split(a:args, '[, :]'))
-endfunction"}}}
-command! -nargs=+ LoadConfigs call s:call_source_configs(<q-args>)
-"}}}
+function! s:Source_local_modifications(local_mods_file)
+  let l:file = expand(a:local_mods_file)
+  if filereadable(l:file)
+    execute printf('source %s', l:file)
+  endif
+endfunction
 
-" initialize VimrcAutoCmd Auto-Command Group:
+function! s:Main()
+  call s:Source_bundles()
+  call s:Source_configs(s:config_files)
+  call s:Source_configs(s:post_config_files)
+  call s:Source_local_modifications(s:local_mods_file)
+endfunction
+
+" initialize VimrcAutoCmd Auto-Command Group: {{{
 
 " Whenever you create autocommands, you should place them within this group.
 " Vim will combine subsequent groups with the same name (they aren't
@@ -53,18 +57,11 @@ command! -nargs=+ LoadConfigs call s:call_source_configs(<q-args>)
 augroup VimrcAutoCmd
   autocmd!
 augroup END
+" }}}
 
-" source bundles at first
-execute 'source ' . s:script_location . '/bundles.vim'
-" source config
-call s:source_configs(s:config_names)
+call s:Main()
 
-" source local settings last
-let g:path_to_vimrc_profile = '~/.vimrc_profile'
-if filereadable(expand(g:path_to_vimrc_profile))
-  execute printf('source %s', expand(g:path_to_vimrc_profile))
-endif
-"}}}
+" --------------------------------------------------------------------------
 
 let g:vimshell_editor_command = expand($EDITOR)
 if empty(g:vimshell_editor_command)
