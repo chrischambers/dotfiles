@@ -55,8 +55,7 @@ set sidescrolloff=2   " Keep 2 lines left/right of cursor when scrolling
 " Colorscheme: {{{
 " --------------------------------------------------------------------------
 set background=dark
-let g:jellybeans_background_color = "black"
-let g:jellybeans_background_color_256 = 232
+let g:jellybeans_use_lowcolor_black = 1
 let g:jellybeans_overrides = {
 \    'VertSplit':    { 'guifg': '262626', 'guibg': '262626',
 \                      'ctermfg': 'darkgray', 'ctermbg': 'darkgray' },
