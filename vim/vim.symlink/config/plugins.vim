@@ -1,10 +1,3 @@
-let s:is_win    = has("win16") || has("win32") || has("win64")
-let s:is_mac    = has("mac") || has("macunix")
-let s:is_linux  = has("unix") && !has("mac")
-let s:is_cygwin = has("win32unix")
-
-" --------------------------------------------------------------------------
-
 " operator replace setting {{{
 if globpath(&rtp, 'plugin/operator/replace.vim') != ''
   " operator replace
@@ -321,17 +314,17 @@ if globpath(&rtp, 'plugin/gist.vim') != ''
   let g:gist_detect_filetype = 1
 
   " Command to use to copy to clipboard for ``Gist -c XXXXX``:
-  if s:is_mac
+  if g:is_mac
     let g:gist_clip_command = 'pbcopy'
-  elseif s:is_linux
+  elseif g:is_linux
     let g:gist_clip_command = 'xclip -selection clipboard'
-  elseif s:is_win
+  elseif g:is_win
     " Not sure here
-  elseif s:is_cygwin
+  elseif g:is_cygwin
     let g:gist_clip_command = 'putclip'
   endif
 
-  if s:is_mac
+  if g:is_mac
     let g:gist_open_browser_after_post = 1
     let g:gist_browser_command = "open -a Firefox %URL%"
   endif

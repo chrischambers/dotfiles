@@ -1,3 +1,4 @@
+" --------------------------------------------------------------------------
 " Aliases for Identifying Platform (windows, *nix, osx, etc.) {{{
 " --------------------------------------------------------------------------
 let g:is_win    = has("win16") || has("win32") || has("win64")
@@ -6,6 +7,7 @@ let g:is_linux  = has("unix") && !has("mac")
 let g:is_cygwin = has("win32unix")
 " --------------------------------------------------------------------------
 " }}}
+" --------------------------------------------------------------------------
 " Core: {{{
 " --------------------------------------------------------------------------
 set nocompatible                    " Force this at the start of the file
@@ -13,22 +15,19 @@ set nocompatible                    " Force this at the start of the file
 let mapleader = ','                 " Only affects subsequent <leader> commands
 " --------------------------------------------------------------------------
 "  }}}
-" File-type highlighting and configuration. {{{
-" Run :filetype (without args) to see what you may have
-" to turn on yourself, or just set them all to be sure.
-syntax on             " enable per-filetype syntax highlighting
-filetype on           " enable filetype detection
-filetype plugin on    " enable filetype specific plugins
-filetype indent on    " enable filetype-specific indenting where available,
-" }}}
+" --------------------------------------------------------------------------
 " Initiate vim with a single NERDTree only: {{{
+" --------------------------------------------------------------------------
 if exists('*NERDTreeVisible') && NERDTreeVisible()
   " This file has already been sourced once and NERDTree is still open -
   " deactivate it!
   call NERDToggle()
 endif
+" --------------------------------------------------------------------------
 " }}}
+" --------------------------------------------------------------------------
 " Initialize VimrcAutoCmd Auto-Command Group: {{{
+" --------------------------------------------------------------------------
 
 " Whenever you create autocommands, you should place them within this group.
 " Vim will combine subsequent groups with the same name (they aren't
@@ -40,6 +39,7 @@ augroup VimrcAutoCmd
   autocmd!
 augroup END
 " }}}
+" --------------------------------------------------------------------------
 
 " --------------------------------------------------------------------------
 " Bootstrap: {{{
@@ -83,5 +83,16 @@ endfunction
 " }}}
 
 call s:Bootstrap()
+" --------------------------------------------------------------------------
+" File-type highlighting and configuration. {{{
+" --------------------------------------------------------------------------
+" Run :filetype (without args) to see what you may have
+" to turn on yourself, or just set them all to be sure.
+syntax on             " enable per-filetype syntax highlighting
+filetype on           " enable filetype detection
+filetype plugin on    " enable filetype specific plugins
+filetype indent on    " enable filetype-specific indenting where available,
+" }}}
+" --------------------------------------------------------------------------
 
 " vim: foldmethod=marker
