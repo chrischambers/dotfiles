@@ -39,7 +39,14 @@ endfunction"}}}
 command! -nargs=+ ResourceProfile call s:call_source_profiles(<q-args>)
 "}}}
 
-" initialize VimrcAutoCmd augroup
+" initialize VimrcAutoCmd Auto-Command Group:
+
+" Whenever you create autocommands, you should place them within this group.
+" Vim will combine subsequent groups with the same name (they aren't
+" overwritten). As this file will always be run first, and the first
+" instruction is to clear the previous commands in this group (autocmd!),
+" re-sourcing this file will make each autocommand active ONCE, as you would
+" expect.
 augroup VimrcAutoCmd
   autocmd!
 augroup END
