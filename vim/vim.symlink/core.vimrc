@@ -10,13 +10,14 @@ let mapleader = ','                 " Only affects subsequent <leader> commands
 " --------------------------------------------------------------------------
 
 let s:local_mods_file = '~/.vimrc.local'
+" Example script_location- "~/dotfiles/mine/vim" (note lack of terminal slash):
 let s:script_location = fnamemodify(resolve(expand('<sfile>')), ':h')
 let s:config_files = filter(split(
-\    glob('~/.vim/config/**')),
+\    glob(printf('%s/config/**', s:script_location))),
 \    'v:val !~ "/config/after"'
 \ )
 let s:post_config_files = filter(split(
-\    glob('~/.vim/config/**')),
+\    glob(printf('%s/config/**', s:script_location))),
 \    'v:val =~ "/after/"'
 \ )
 
