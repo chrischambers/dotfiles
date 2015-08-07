@@ -9,8 +9,10 @@ set nocompatible                    " Force this at the start of the file
 let mapleader = ','                 " Only affects subsequent <leader> commands
 " --------------------------------------------------------------------------
 
-" add local .vim directory to runtimepath
+" echo s:script_location
+" echo fnamemodify(s:script_location, ':h')
 let s:script_location = resolve(expand('<sfile>'))
+" add local .vim directory to runtimepath
 " let s:local_dot_vim_dir_path = fnamemodify(s:script_location, ':h') . '/config'
 " echo s:local_dot_vim_dir_path
 " execute 'set runtimepath+=' . s:local_dot_vim_dir_path
@@ -53,7 +55,7 @@ augroup VimrcAutoCmd
 augroup END
 
 " source bundles at first
-call s:source_config('bundles')
+execute 'source ' . fnamemodify(s:script_location, ':h') . '/bundles.vim'
 " source config
 call s:source_configs(s:config_names)
 
