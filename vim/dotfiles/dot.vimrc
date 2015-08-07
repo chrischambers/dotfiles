@@ -63,7 +63,10 @@ if filereadable(expand(g:path_to_vimrc_profile))
 endif
 "}}}
 
-let g:vimshell_editor_command = "mvim -v"
+let g:vimshell_editor_command = expand($EDITOR)
+if empty(g:vimshell_editor_command)
+  let g:vimshell_editor_command = 'vim'
+endif
 
 let g:unite_source_history_yank_enable = 1
 let g:unite_enable_short_source_names = 1
