@@ -11,7 +11,7 @@ let mapleader = ','                 " Only affects subsequent <leader> commands
 
 " echo s:script_location
 " echo fnamemodify(s:script_location, ':h')
-let s:script_location = resolve(expand('<sfile>'))
+let s:script_location = fnamemodify(resolve(expand('<sfile>')), ':h')
 " add local .vim directory to runtimepath
 " let s:local_dot_vim_dir_path = fnamemodify(s:script_location, ':h') . '/config'
 " echo s:local_dot_vim_dir_path
@@ -19,7 +19,7 @@ let s:script_location = resolve(expand('<sfile>'))
 
 " setup sample settings{{{
 " local settings
-let s:config_dir_path = fnamemodify(s:script_location, ':h') . '/config/'
+let s:config_dir_path = s:script_location . '/config/'
 let s:config_names = ['core', 'functions', 'unite', 'plugins', 'filetypes'] " 'default'
 
 " local functions {{{
@@ -55,7 +55,7 @@ augroup VimrcAutoCmd
 augroup END
 
 " source bundles at first
-execute 'source ' . fnamemodify(s:script_location, ':h') . '/bundles.vim'
+execute 'source ' . s:script_location . '/bundles.vim'
 " source config
 call s:source_configs(s:config_names)
 
