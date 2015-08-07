@@ -1,4 +1,4 @@
-let core_vimfile = '~/.vim/core.vimrc'
-if filereadable(core_vimfile)
-  execute 'source ' . core_vimfile
+let s:core_vimfile = fnamemodify('~/.vim/core.vimrc', ':p')
+if filereadable(s:core_vimfile)
+  execute 'source ' . s:core_vimfile
 endif

@@ -11,12 +11,13 @@ let mapleader = ','                 " Only affects subsequent <leader> commands
 
 " add local .vim directory to runtimepath
 let s:script_location = resolve(expand('<sfile>'))
-let s:local_dot_vim_dir_path = fnamemodify(s:script_location, ':h:h') . '/vim/config'
+let s:local_dot_vim_dir_path = fnamemodify(s:script_location, ':h') . '/config'
+echo s:local_dot_vim_dir_path
 execute 'set runtimepath+=' . s:local_dot_vim_dir_path
 
 " setup sample settings{{{
 " local settings
-let s:profiles_dir_path = fnamemodify(s:script_location, ':h:h') . '/vim/profiles/'
+let s:profiles_dir_path = fnamemodify(s:script_location, ':h') . '/profiles/'
 let s:profile_names = ['core', 'functions', 'unite', 'plugins', 'filetypes'] " 'default'
 
 " local functions {{{
