@@ -17,27 +17,27 @@ let s:script_location = resolve(expand('<sfile>'))
 
 " setup sample settings{{{
 " local settings
-let s:profiles_dir_path = fnamemodify(s:script_location, ':h') . '/profiles/'
-let s:profile_names = ['core', 'functions', 'unite', 'plugins', 'filetypes'] " 'default'
+let s:config_dir_path = fnamemodify(s:script_location, ':h') . '/config/'
+let s:config_names = ['core', 'functions', 'unite', 'plugins', 'filetypes'] " 'default'
 
 " local functions {{{
-function! s:source_profile(name)"{{{
-  let l:path = printf('%s%s.vim', s:profiles_dir_path, a:name)
+function! s:source_config(name)"{{{
+  let l:path = printf('%s%s.vim', s:config_dir_path, a:name)
   if filereadable(l:path)
     execute printf('source %s', l:path)
   endif
 endfunction"}}}
 
-function! s:source_profiles(names)"{{{
+function! s:source_configs(names)"{{{
   for l:name in a:names
-    call s:source_profile(l:name)
+    call s:source_config(l:name)
   endfor
 endfunction"}}}
 
-function! s:call_source_profiles(args)"{{{
-  call s:source_profiles(split(a:args, '[, :]'))
+function! s:call_source_configs(args)"{{{
+  call s:source_configs(split(a:args, '[, :]'))
 endfunction"}}}
-command! -nargs=+ ResourceProfile call s:call_source_profiles(<q-args>)
+command! -nargs=+ LoadConfigs call s:call_source_configs(<q-args>)
 "}}}
 
 " initialize VimrcAutoCmd Auto-Command Group:
@@ -53,9 +53,9 @@ augroup VimrcAutoCmd
 augroup END
 
 " source bundles at first
-call s:source_profile('bundles')
-" source profiles
-call s:source_profiles(s:profile_names)
+call s:source_config('bundles')
+" source config
+call s:source_configs(s:config_names)
 
 " source local settings last
 let g:path_to_vimrc_profile = '~/.vimrc_profile'
