@@ -150,10 +150,12 @@ hi SpellBad ctermbg=52 gui=undercurl guisp=#FF5522
 hi SpellCap ctermbg=53 gui=undercurl guisp=SlateBlue
 hi SpellRare ctermbg=55 gui=undercurl guisp=purple
 
-let s:viml_functions = "~/.vim/UltiSnips/viml_functions.vim"
+let g:UltiSnipsSnippetDirectories = ["ultisnippets"]
+let s:viml_functions = "~/.vim/ultisnippets/viml_functions.vim"
 if filereadable(s:viml_functions)
   execute 'source ' . s:viml_functions
 endif
+
 let g:localvimrc_sandbox = 0
 let g:localvimrc_whitelist = '/Users/ajax/src/py/django/_mine/[^/]*/'
 
