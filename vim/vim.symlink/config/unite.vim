@@ -103,4 +103,65 @@ elseif executable('ack-grep')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
+" --------------------------------------------------------------------------
+
+let g:unite_source_history_yank_enable = 1
+let g:unite_enable_short_source_names = 1
+let g:unite_matcher_fuzzy_max_input_length = 200
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source('buffer,file,file_rec,file_rec/async',
+      \'sorters', 'sorter_rank')
+call unite#custom#source('buffer,file,file_rec,file_rec/async',
+      \'max_candidates', '0')
+call unite#custom#profile('mru', 'context.ignorecase', 1)
+call unite#custom#profile('mru', 'filters', 'sorter_rank')
+
+nnoremap <leader>f :<C-u>Unite
+      \ -no-split
+      \ -buffer-name=files
+      \ -start-insert
+      \ -toggle
+      \ file_rec/async<CR>
+nnoremap <leader>r :<C-u>Unite
+      \ -no-split
+      \ -profile-name=mru
+      \ -start-insert
+      \ -toggle
+      \ file_mru<CR>
+nnoremap <leader>, :<C-u>Unite
+      \ -no-split
+      \ -buffer-name=buffers
+      \ -start-insert
+      \ -toggle
+      \ buffer<CR>
+" LustyJuggler style:
+" nnoremap <leader>, :<C-u>Unite
+"       \ -no-split
+"       \ -buffer-name=buffers
+"       \ -quick-match
+"       \ -toggle
+"       \ buffer<CR>
+nnoremap <leader>F :<C-u>Unite -no-split -buffer-name=files -toggle file<CR>
+
+nnoremap <leader>o :<C-u>Unite
+      \ -no-split
+      \ -buffer-name=outline
+      \ -no-start-insert
+      \ -toggle
+      \ outline<CR>
+
+" By default, these mru ignore patterns include "/media/", but when directly
+" accessing (or even following a symlink) to networked drives on a linux
+" installation the file/directory paths will generally include "/media/", so
+" let's change that default:
+let g:unite_source_file_mru_ignore_pattern =
+      \'\~$\|\.\%(o\|exe\|dll\|bak\|zwc\|pyc\|sw[po]\)$'.
+      \'\|\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'.
+      \'\|^\%(\\\\\|/mnt/\|/temp/\|/tmp/\|\%(/private\)\=/var/folders/\)'.
+      \'\|\%(^\%(fugitive\)://\)'.
+      \'\|\%(^\%(term\)://\)'
+let g:unite_source_directory_mru_ignore_pattern =
+      \'\%(^\|/\)\.\%(hg\|git\|bzr\|svn\)\%($\|/\)'.
+      \'\|^\%(\\\\\|/mnt/\|/temp/\|/tmp/\|\%(/private\)\=/var/folders/\)'
+
 " vim: expandtab softtabstop=2 shiftwidth=2
