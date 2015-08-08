@@ -16,16 +16,6 @@ let mapleader = ','                 " Only affects subsequent <leader> commands
 " --------------------------------------------------------------------------
 "  }}}
 " --------------------------------------------------------------------------
-" Initiate vim with a single NERDTree only: {{{
-" --------------------------------------------------------------------------
-if exists('*NERDTreeVisible') && NERDTreeVisible()
-  " This file has already been sourced once and NERDTree is still open -
-  " deactivate it!
-  call NERDToggle()
-endif
-" --------------------------------------------------------------------------
-" }}}
-" --------------------------------------------------------------------------
 " Initialize VimrcAutoCmd Auto-Command Group: {{{
 " --------------------------------------------------------------------------
 
@@ -85,17 +75,3 @@ if !exists('s:loaded_my_vimrc')
   call s:Bootstrap()
   let s:loaded_my_vimrc = 1
 endif
-
-" --------------------------------------------------------------------------
-" File-type highlighting and configuration. {{{
-" --------------------------------------------------------------------------
-" Run :filetype (without args) to see what you may have
-" to turn on yourself, or just set them all to be sure.
-syntax on             " enable per-filetype syntax highlighting
-filetype on           " enable filetype detection
-filetype plugin on    " enable filetype specific plugins
-filetype indent on    " enable filetype-specific indenting where available,
-" }}}
-" --------------------------------------------------------------------------
-
-" vim: foldmethod=marker

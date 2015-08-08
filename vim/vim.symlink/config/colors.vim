@@ -1,3 +1,14 @@
+" --------------------------------------------------------------------------
+" File-Type Highlighting and Configuration. {{{
+" --------------------------------------------------------------------------
+" Run :filetype (without args) to see what you may have
+" to turn on yourself, or just set them all to be sure.
+syntax on             " enable per-filetype syntax highlighting
+filetype on           " enable filetype detection
+filetype plugin on    " enable filetype specific plugins
+filetype indent on    " enable filetype-specific indenting where available,
+" }}}
+" --------------------------------------------------------------------------
 " Colorscheme: {{{
 " --------------------------------------------------------------------------
 set background=dark
@@ -14,3 +25,4 @@ let g:jellybeans_overrides = {
 colorscheme jellybeans
 " --------------------------------------------------------------------------
 " }}}
+" --------------------------------------------------------------------------
