@@ -327,6 +327,9 @@ if globpath(&rtp, 'plugin/gist.vim') != ''
   if g:is_mac
     let g:gist_open_browser_after_post = 1
     let g:gist_browser_command = "open -a Firefox %URL%"
+  elseif g:is_linux
+    let g:gist_open_browser_after_post = 1
+    let g:gist_browser_command = "xdg-open %URL%"
   endif
 endif
 " --------------------------------------------------------------------------
