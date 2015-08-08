@@ -39,7 +39,6 @@ augroup VimrcAutoCmd
   autocmd!
 augroup END
 " }}}
-" --------------------------------------------------------------------------
 
 " --------------------------------------------------------------------------
 " Bootstrap: {{{
@@ -82,7 +81,11 @@ function! s:Bootstrap()
 endfunction
 " }}}
 
-call s:Bootstrap()
+if !exists('s:loaded_my_vimrc')
+  call s:Bootstrap()
+  let s:loaded_my_vimrc = 1
+endif
+
 " --------------------------------------------------------------------------
 " File-type highlighting and configuration. {{{
 " --------------------------------------------------------------------------
