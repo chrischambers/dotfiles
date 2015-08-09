@@ -13,21 +13,26 @@ function! g:GetBufferNames()
   return bufnames
 endfunction
 
-function! g:HasUniteBuffer()
+function! g:TabHasUniteBuffer()
   let has_unite_buffer = GetBufferNames()
   call filter(has_unite_buffer, 'v:val =~ "\\[unite\\]"')
   return !empty(has_unite_buffer)
 endfunction
+
+function! g:TabHasUniteBufferActive()
+  return bufname('%') =~ '\[unite\]'
+endfunction
+
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
 " Unite Dynamic Settings: {{{
 " --------------------------------------------------------------------------
-function! s:RestoreNerdtree()
+function! s:RestoreNERDTree()
   " echom bufname('%')
   " echom bufnr('$')
-  let l:has_unite_buffer = g:HasUniteBuffer()
-  if !has_unite_buffer && exists('g:restore_nerdtree') && g:restore_nerdtree
+  let l:unite_buffer_active = g:TabHasUniteBufferActive()
+  if !l:unite_buffer_active && exists('g:restore_nerdtree') && g:restore_nerdtree
     call NERDToggle()
     let g:restore_nerdtree = 0
   endif
@@ -48,7 +53,7 @@ function! s:unite_settings()
   endif
 endfunction
 autocmd VimrcAutoCmd FileType unite call s:unite_settings()
-autocmd VimrcAutoCmd WinEnter * call s:RestoreNerdtree()
+autocmd VimrcAutoCmd WinEnter * call s:RestoreNERDTree()
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
