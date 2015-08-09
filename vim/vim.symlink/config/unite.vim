@@ -45,9 +45,8 @@ function! s:unite_settings()
   imap <buffer> qq    <Plug>(unite_exit)
 
   " let unite = unite#get_current_unite()
-  " let context = unite#get_context()
-  if exists('*NERDTreeVisible') && NERDTreeVisible()
-    " echom "Context Vertical: " . context.vertical
+  let context = unite#get_context()
+  if context.vertical && exists('*NERDTreeVisible') && NERDTreeVisible()
     call NERDToggle()
     let g:restore_nerdtree = 1
   endif
