@@ -255,11 +255,11 @@ nnoremap <silent> <SID>(star-search) :<C-u>
       \ <CR>
 
 nnoremap <silent> <expr> <SID>(grep-cword)
-      \ ':Unite grep:' . expand('%:h') .
-      \ "<CR>" . expand('<cword>') . "<CR>"
+      \ ':Unite grep:' . expand('%:h') .  "<CR>" .
+      \ expand('<cword>') . "<CR>"
 
 nnoremap <silent> <expr> <SID>(grep-prompt)
-      \ ':Unite grep:' . expand('%:h') .  "<CR>"
+      \ ':Unite grep:' . getcwd() .  "<CR>"
 
 nnoremap <silent> <SID>(tab) :<C-u>Unite
       \ -buffer-name=tab
