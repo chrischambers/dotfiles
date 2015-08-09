@@ -5,12 +5,30 @@ endif
 " --------------------------------------------------------------------------
 " Unite Buffer Mappings: {{{
 " --------------------------------------------------------------------------
-function! s:Restore_nerdtree()
-    if exists('g:restore_nerdtree') && g:restore_nerdtree
-      let g:restore_nerdtree = 0
-      " call NERDToggle()
-    endif
+function! g:GetBufferNames()
+  let bufnames = []
+  for num in tabpagebuflist(tabpagenr())
+    :call add(bufnames, bufname(num))
+  endfor
+  return bufnames
 endfunction
+
+function! g:HasUniteBuffer()
+  let has_unite_buffer = GetBufferNames()
+  :call filter(has_unite_buffer, 'v:val =~ "\\[unite\\]"')
+  return !empty(has_unite_buffer)
+endfunction
+
+function! s:Restore_nerdtree()
+  " echom bufname('%')
+  " echom bufnr('$')
+  let l:has_unite_buffer = g:HasUniteBuffer()
+  if !has_unite_buffer && exists('g:restore_nerdtree') && g:restore_nerdtree
+    let g:restore_nerdtree = 0
+    call NERDToggle()
+  endif
+endfunction
+
 function! s:unite_settings()
   nmap <buffer> <ESC> <Plug>(unite_exit)
   imap <buffer> jj    <Plug>(unite_insert_leave)
@@ -18,19 +36,15 @@ function! s:unite_settings()
   imap <buffer> qq    <Plug>(unite_exit)
 
   " let unite = unite#get_current_unite()
-  let context = unite#get_context()
-  " echo context.vertical
+  " let context = unite#get_context()
   if exists('*NERDTreeVisible') && NERDTreeVisible()
-    echom "Context Vertical: " . context.vertical
+    " echom "Context Vertical: " . context.vertical
     call NERDToggle()
     let g:restore_nerdtree = 1
   endif
-  augroup ReToggleNerdTree
-    autocmd! * <buffer>
-    autocmd VimrcAutoCmd WinLeave <buffer> call s:Restore_nerdtree()
-  augroup end
 endfunction
 autocmd VimrcAutoCmd FileType unite call s:unite_settings()
+autocmd VimrcAutoCmd WinEnter * call s:Restore_nerdtree()
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
