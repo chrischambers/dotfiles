@@ -3,29 +3,33 @@ if globpath(&rtp, 'plugin/unite.vim') == ''
 endif
 
 " --------------------------------------------------------------------------
-" Unite Buffer Mappings: {{{
+" Utility Functions: {{{
 " --------------------------------------------------------------------------
 function! g:GetBufferNames()
   let bufnames = []
   for num in tabpagebuflist(tabpagenr())
-    :call add(bufnames, bufname(num))
+    call add(bufnames, bufname(num))
   endfor
   return bufnames
 endfunction
 
 function! g:HasUniteBuffer()
   let has_unite_buffer = GetBufferNames()
-  :call filter(has_unite_buffer, 'v:val =~ "\\[unite\\]"')
+  call filter(has_unite_buffer, 'v:val =~ "\\[unite\\]"')
   return !empty(has_unite_buffer)
 endfunction
-
-function! s:Restore_nerdtree()
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
+" Unite Dynamic Settings: {{{
+" --------------------------------------------------------------------------
+function! s:RestoreNerdtree()
   " echom bufname('%')
   " echom bufnr('$')
   let l:has_unite_buffer = g:HasUniteBuffer()
   if !has_unite_buffer && exists('g:restore_nerdtree') && g:restore_nerdtree
-    let g:restore_nerdtree = 0
     call NERDToggle()
+    let g:restore_nerdtree = 0
   endif
 endfunction
 
@@ -44,7 +48,7 @@ function! s:unite_settings()
   endif
 endfunction
 autocmd VimrcAutoCmd FileType unite call s:unite_settings()
-autocmd VimrcAutoCmd WinEnter * call s:Restore_nerdtree()
+autocmd VimrcAutoCmd WinEnter * call s:RestoreNerdtree()
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
@@ -168,6 +172,32 @@ nnoremap <silent> <leader>F :<C-u>Unite
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
+" Select Best Grep Source For Unite: {{{
+" --------------------------------------------------------------------------
+if executable('ag')
+  " https://github.com/ggreer/the_silver_searcher
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+  " https://github.com/monochromegane/the_platinum_searcher
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '-i --nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  " http://beyondgrep.com/
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+else
+  " Fall back to basic grep
+  let g:unite_source_grep_default_opts = '-iRHn'
+endif
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
 
 " The rest of this file is inherited from vimrc-builder and being
 " tweaked/tested:
@@ -198,10 +228,6 @@ nmap [unite]s     <SID>(show-unite-sources)
 nmap [unite]nbin  <SID>(neobundle-install)
 nmap [unite]Nbin  <SID>(neobundle-install-individually)
 nmap [unite]nbin! <SID>(neobundle-install!)
-" --------------------------------------------------------------------------
-" }}}
-" --------------------------------------------------------------------------
-" Unite Custom Commands For Mappings: {{{
 
 nnoremap <silent> <SID>(search) :<C-u>Unite
       \ -buffer-name=search
@@ -260,32 +286,6 @@ nnoremap <silent> <SID>(neobundle-install-individually) :<C-u>Unite
 nnoremap <silent> <SID>(neobundle-install!) :<C-u>Unite
       \ neobundle/install:!
       \ <CR>
-" --------------------------------------------------------------------------
-" }}}
-" --------------------------------------------------------------------------
-" Select Best Grep Source For Unite: {{{
-" --------------------------------------------------------------------------
-if executable('ag')
-  " https://github.com/ggreer/the_silver_searcher
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts =
-  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
-  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-  let g:unite_source_grep_recursive_opt = ''
-elseif executable('pt')
-  " https://github.com/monochromegane/the_platinum_searcher
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '-i --nogroup --nocolor'
-  let g:unite_source_grep_recursive_opt = ''
-elseif executable('ack-grep')
-  " http://beyondgrep.com/
-  let g:unite_source_grep_command = 'ack-grep'
-  let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
-  let g:unite_source_grep_recursive_opt = ''
-else
-  " Fall back to basic grep
-  let g:unite_source_grep_default_opts = '-iRHn'
-endif
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
