@@ -31,8 +31,8 @@ endfunction
 function! s:RestoreNERDTree()
   " echom bufname('%')
   " echom bufnr('$')
-  let l:unite_buffer_active = g:TabHasUniteBufferActive()
-  if !l:unite_buffer_active && exists('g:restore_nerdtree') && g:restore_nerdtree
+  let l:has_unite_buffer = g:TabHasUniteBuffer()
+  if !l:has_unite_buffer && exists('g:restore_nerdtree') && g:restore_nerdtree
     call NERDToggle()
     let g:restore_nerdtree = 0
   endif
