@@ -214,7 +214,8 @@ nmap [unite]t     <SID>(tab)
 nmap [unite]/     <SID>(search)
 nmap [unite]*     <SID>(star-search)
 
-nmap [unite]g    <SID>(grep)
+nmap [unite]g    <SID>(grep-cword)
+nmap [unite]G    <SID>(grep-prompt)
 
 nmap [unite]o     <SID>(outline)
 nmap [unite]m     <SID>(mark)
@@ -251,9 +252,12 @@ nnoremap <silent> <SID>(star-search) :<C-u>
       \ line
       \ <CR>
 
-nnoremap <silent> <expr> <SID>(grep)
-    \ ':Unite -no-quit grep:' . expand('%:h') .
-    \ "<CR>" . expand('<cword>') . "<CR>"
+nnoremap <silent> <expr> <SID>(grep-cword)
+      \ ':Unite -no-quit grep:' . expand('%:h') .
+      \ "<CR>" . expand('<cword>') . "<CR>"
+
+nnoremap <silent> <expr> <SID>(grep-prompt)
+      \ ':Unite -no-quit grep:' . expand('%:h') .  "<CR>"
 
 nnoremap <silent> <SID>(tab) :<C-u>Unite
       \ -buffer-name=tab
