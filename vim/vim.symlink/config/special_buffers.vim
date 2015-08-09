@@ -30,7 +30,8 @@ function! PreventClosingLastWindow()
     " call feedkeys("\<C-W>c", "n")
     " Better alternative: issue the command that the mapping points to
     " directly. feedkeys is only resolved once the entire mapping is finished,
-    " so any subsequent commands are not fired.
+    " so any commands following this invocation will actually fire *before* the
+    " feedkeys command, not after.
     :close
   endif
 endfunction
