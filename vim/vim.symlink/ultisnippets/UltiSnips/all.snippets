@@ -1,0 +1,18 @@
+snippet s "Inner snippet" i
+${${1:1}${2/(.*)/(?1:\::)/}${2:body}}
+endsnippet
+
+snippet t "Transformation" i
+$\{${1:1}/${2:foo}/${3:bar}/\}$0
+endsnippet
+
+snippet t "Transformation with conditional group match" i
+$\{${1:1}/(${2:\w+})/(?${3:1}:${4:match}:${5:nomatch})/\}$0
+endsnippet
+
+snippet snip "Snippet Expansion" b
+`!p snip.rv = 'snippet'` ${1:name}${2: "${3:description}"${5/(.+)/(?1: :)/}${5: b!}}
+$6
+`!p snip.rv = 'endsnippet'`
+$0
+endsnippet

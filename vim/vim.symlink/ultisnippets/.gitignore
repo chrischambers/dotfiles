@@ -1,0 +1,6 @@
+*.swp
+*.svn/
+*.pyc
+**~
+.DS_Store
+pentadactyl/pentadactyl.symlink/info/**
