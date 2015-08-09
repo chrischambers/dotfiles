@@ -78,7 +78,7 @@ endfunction
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
-" Prettify Python Files on Save: {{{
+" Prettify Python Files On Save: {{{
 " --------------------------------------------------------------------------
 function! RegulateClassDefSpacing()
   """ For algorithm, see comments below.
