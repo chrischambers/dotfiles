@@ -240,7 +240,6 @@ nnoremap <silent> <SID>(search) :<C-u>Unite
       \ -auto-preview
       \ -vertical
       \ -direction=topleft
-      \ -no-quit
       \ line
       \ <CR>
 
@@ -252,16 +251,15 @@ nnoremap <silent> <SID>(star-search) :<C-u>
       \ -vertical
       \ -direction=topleft
       \ -no-start-insert
-      \ -no-quit
       \ line
       \ <CR>
 
 nnoremap <silent> <expr> <SID>(grep-cword)
-      \ ':Unite -no-quit grep:' . expand('%:h') .
+      \ ':Unite grep:' . expand('%:h') .
       \ "<CR>" . expand('<cword>') . "<CR>"
 
 nnoremap <silent> <expr> <SID>(grep-prompt)
-      \ ':Unite -no-quit grep:' . expand('%:h') .  "<CR>"
+      \ ':Unite grep:' . expand('%:h') .  "<CR>"
 
 nnoremap <silent> <SID>(tab) :<C-u>Unite
       \ -buffer-name=tab
