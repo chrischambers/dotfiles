@@ -5,11 +5,30 @@ endif
 " --------------------------------------------------------------------------
 " Unite Buffer Mappings: {{{
 " --------------------------------------------------------------------------
+function! s:Restore_nerdtree()
+    if exists('g:restore_nerdtree') && g:restore_nerdtree
+      let g:restore_nerdtree = 0
+      " call NERDToggle()
+    endif
+endfunction
 function! s:unite_settings()
   nmap <buffer> <ESC> <Plug>(unite_exit)
   imap <buffer> jj    <Plug>(unite_insert_leave)
   imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
   imap <buffer> qq    <Plug>(unite_exit)
+
+  " let unite = unite#get_current_unite()
+  let context = unite#get_context()
+  " echo context.vertical
+  if exists('*NERDTreeVisible') && NERDTreeVisible()
+    echom "Context Vertical: " . context.vertical
+    call NERDToggle()
+    let g:restore_nerdtree = 1
+  endif
+  augroup ReToggleNerdTree
+    autocmd! * <buffer>
+    autocmd VimrcAutoCmd WinLeave <buffer> call s:Restore_nerdtree()
+  augroup end
 endfunction
 autocmd VimrcAutoCmd FileType unite call s:unite_settings()
 " --------------------------------------------------------------------------
