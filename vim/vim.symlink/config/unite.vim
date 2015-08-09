@@ -171,12 +171,12 @@ nmap [unite]nbin! <SID>(neobundle-install!)
 " Unite Custom Commands For Mappings: {{{
 
 nnoremap <silent> <SID>(search) :<C-u>Unite
-      \ -buffer-name=search -
-      \ prompt=search> -
-      \ auto-preview -
-      \ vertical -
-      \ direction=topleft -
-      \ no-quit
+      \ -buffer-name=search
+      \ -prompt=search>
+      \ -auto-preview
+      \ -vertical
+      \ -direction=topleft
+      \ -no-quit
       \ line
       \ <CR>
 
