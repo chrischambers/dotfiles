@@ -46,7 +46,8 @@ function! s:unite_settings()
 
   " let unite = unite#get_current_unite()
   let context = unite#get_context()
-  if context.vertical && exists('*NERDTreeVisible') && NERDTreeVisible()
+  if context.vertical && context.split &&
+        \ exists('*NERDTreeVisible') && NERDTreeVisible()
     call NERDToggle()
     let g:restore_nerdtree = 1
   endif
@@ -239,6 +240,8 @@ nnoremap <silent> <SID>(search) :<C-u>Unite
       \ -prompt=search>
       \ -auto-preview
       \ -vertical
+      \ -no-split
+      \ -no-resize
       \ -direction=topleft
       \ line
       \ <CR>
