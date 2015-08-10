@@ -11,6 +11,11 @@ filetype indent on    " enable filetype-specific indenting where available,
 " --------------------------------------------------------------------------
 " Colorscheme: {{{
 " --------------------------------------------------------------------------
+
+" This is necessary for gnome terminal, which otherwise gets confused and uses
+" low-colour.
+set t_Co=256
+
 set background=dark
 let g:jellybeans_use_lowcolor_black = 1
 let g:jellybeans_overrides = {
@@ -23,7 +28,16 @@ let g:jellybeans_overrides = {
 \    'CursorLine':   { 'guifg': '222222', 'guibg': 'bcff7a',
 \                      'ctermfg': '222222', 'ctermbg': 'bcff7a' },
 \}
+
 colorscheme jellybeans
+
+hi clear SpellBad
+hi clear SpellLocal
+hi clear SpellRare
+hi clear SpellCap
+hi SpellBad ctermbg=52 gui=undercurl guisp=#FF5522
+hi SpellCap ctermbg=53 gui=undercurl guisp=SlateBlue
+hi SpellRare ctermbg=55 gui=undercurl guisp=purple
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
