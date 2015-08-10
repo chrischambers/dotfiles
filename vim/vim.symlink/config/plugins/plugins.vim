@@ -207,6 +207,7 @@ endif
 " --------------------------------------------------------------------------
 " Source: <url:http://www.vim.org/scripts/script.php?script_id=1658>
 " --------------------------------------------------------------------------
+if globpath(&rtp, 'plugin/NERD_tree.vim') != ''
 " Toggle the following off with 'f'!
 " let NERDTreeIgnore=['\.pyc$', '\~$', '^#.*#$', '\.swp']
 let NERDTreeChDirMode=2 " Tree root ALWAYS equal to CWD

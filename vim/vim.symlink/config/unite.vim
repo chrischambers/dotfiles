@@ -258,11 +258,13 @@ nnoremap <silent> <SID>(star-search) :<C-u>
       \ <CR>
 
 nnoremap <silent> <expr> <SID>(grep-cword)
-      \ ':Unite grep:' . expand('%:h') .  "<CR>" .
+      \ ':Unite -no-start-insert grep:' .
+      \ expand('%:h') .  "<CR>" .
       \ expand('<cword>') . "<CR>"
 
 nnoremap <silent> <expr> <SID>(grep-prompt)
-      \ ':Unite grep:' . getcwd() .  "<CR>"
+      \ ':Unite -no-start-insert grep:' .
+      \ getcwd() .  "<CR>"
 
 nnoremap <silent> <SID>(tab) :<C-u>Unite
       \ -buffer-name=tab
