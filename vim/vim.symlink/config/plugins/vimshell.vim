@@ -55,6 +55,12 @@ if globpath(&rtp, 'plugin/vimshell.vim') != ''
 
     return a:cmdline
   endfunction
+
+  let g:vimshell_editor_command = expand($EDITOR)
+  if empty(g:vimshell_editor_command)
+    let g:vimshell_editor_command = 'vim'
+  endif
+
 endif
 " --------------------------------------------------------------------------
 "}}}
