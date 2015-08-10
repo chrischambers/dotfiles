@@ -165,10 +165,10 @@ nnoremap <silent> <leader>F :<C-u>Unite
 "
 " The only way to set them to seems to be via #custom#source, e.g.:
 "
-" call unite#custom#source(
-" \   'file_mru,dir_mru',
-" \   'sorters', ['sorter_selecta']
-" \ )
+call unite#custom#source(
+\   'file_mru,dir_mru',
+\   'sorters', ['sorter_rank']
+\ )
 "
 " call unite#custom#source(
 " \    'file_mru,dir_mru',
