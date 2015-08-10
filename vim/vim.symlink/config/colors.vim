@@ -20,8 +20,8 @@ let g:jellybeans_overrides = {
 \                      'ctermfg': 'white', 'ctermbg': '234' },
 \    'StatusLineNC': { 'guifg': '444444', 'guibg': '262626',
 \                      'ctermfg': 'blue', 'ctermbg': '234' },
-\    'CursorLine':   { 'guifg': '222222', 'guibg': 'ceffaa',
-\                      'ctermfg': '222222', 'ctermbg': 'ceffaa' },
+\    'CursorLine':   { 'guifg': '222222', 'guibg': 'bcff7a',
+\                      'ctermfg': '222222', 'ctermbg': 'bcff7a' },
 \}
 colorscheme jellybeans
 " --------------------------------------------------------------------------
