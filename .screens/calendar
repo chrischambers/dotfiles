@@ -1,20 +1,0 @@
-# read in your full screenrc before anything else...
-source $HOME/.screenrc
-
-screen -t swing-rs 0
-stuff "workon calendar && cd ../../django-swingtime/demo/ && python manage.py runserver 0.0.0.0:8001"
-screen -t agenda-rs   1
-stuff "workon calendar && export PYTHONPATH='/Users/ajax/Dropbox/code/django-agenda'; cd ../../django-agenda/demo/ && python manage.py runserver 0.0.0.0:8002"
-screen -t sched-rs    2
-stuff "workon calendar && export PYTHONPATH='/Users/ajax/Dropbox/code/django-schedule'; cd ../../django-schedule/project_sample/ && python manage.py runserver 0.0.0.0:8003"
-screen -t mine-rs     3
-stuff "workon calendar && cd ../projects/basic && python manage.py runserver 0.0.0.0:8000"
-screen -t mine-shell  4
-stuff "workon calendar && cd ../projects/basic && python manage.py shell_plus"
-screen -t mine-git    5
-stuff "workon calendar"
-screen -t mine-tests  6
-stuff "workon calendar && cd tests "
-
-select 5
-

@@ -1,1 +1,0 @@
-/Users/ajax/src/vim/vim-cucumber/ftplugin/cucumber.vim
