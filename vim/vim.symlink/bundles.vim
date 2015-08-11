@@ -71,4 +71,6 @@ NeoBundle 'mattn/gist-vim'
 
 NeoBundle 'vim-scripts/BufOnly.vim'
 
+NeoBundle 'ap/vim-css-color'
+
 call neobundle#end()
