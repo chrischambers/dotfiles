@@ -64,6 +64,7 @@ call unite#custom#profile('default', 'context', {
 \     'start_insert': 1,
 \     'toggle': 1,
 \     'split': 1,
+\     'prompt': '➜ '
 \ })
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
