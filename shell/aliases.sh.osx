@@ -1,0 +1,4 @@
+#!/bin/sh
+
+alias finder='open /System/Library/CoreServices/Finder.app/'
+alias firefox='open /Applications/Firefox.app'

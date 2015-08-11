@@ -1,0 +1,98 @@
+#!/bin/sh
+
+# ----------------------------------------------------------------------------
+export DOTFILES=$HOME/dotfiles/mine
+export PROJECTS=~/src                 # project folder that we can `c [tab]` to
+alias vimswitch="source ~/.vimswitch"
+# ----------------------------------------------------------------------------
+
+# TTD: Create pathogen-style path manipulation script which is both zsh/bash
+# compatible, doesn't require any other tools preferably, and allows you to
+# shift indices, prepend/append if non-existent, force prepend/append, etc.
+prepend_to_path () {
+  path=( $1 $path )
+  # if [[ -z $(echo $PATH | grep "$1") ]]; then
+  #     export PATH="$1:$PATH"
+  # # else if [[ $2 == "force" ]]; then
+  # fi
+}
+
+detect_os () {
+  # Outputs one of the following, depending on your system:
+
+  # * linux
+  # * osx
+  # * cygwin
+  # * windows
+  # * freebsd
+  # * unknown (fallback)
+
+  # http://stackoverflow.com/questions/394230/detect-the-os-from-a-bash-script
+
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+      echo linux
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+      echo osx
+  elif [[ "$OSTYPE" == "cygwin" ]]; then
+      echo cygwin
+  elif [[ "$OSTYPE" == "win32" ]]; then
+      echo windows
+  elif [[ "$OSTYPE" == "freebsd"* ]]; then
+      echo freebsd
+  else
+      echo unknown
+  fi
+}
+
+source_dotfiles_variant_if_readable () {
+  fname=$DOTFILES/${1}
+  # echo $fname
+  if [[ -r $fname ]]; then
+    source $fname
+    echo "sourced $fname"
+  fi
+}
+
+source_home_variant_if_readable () {
+  # If the filename does *not* have a leading dot, then its parent directory
+  # will be prefixed to the filename, separated by an underscore, and with a
+  # leading dot prefix. For example:
+  #
+  #   "zsh/.zshrc" will attempt to source "$HOME/.zshrc", but
+  #   "zsh/zshrc"  will attempt to source "$HOME/.zsh_zshrc"
+
+  prefix=$(basename $(dirname $1))
+  first_character=$(echo `basename $1` | sed 's/\(.\).*/\1/')
+  [[ $first_character = '.' ]]; filename_has_dot_prefix=$?
+  if [[ $prefix != '.' && $filename_has_dot_prefix -eq 1 ]]; then
+    fname=~/.${prefix}_$(basename $1)
+  else
+    fname=~/$(basename $1)
+  fi
+  echo $fname
+  if [[ -r $fname ]]; then
+    source $fname
+    echo "sourced $fname"
+  fi
+}
+
+source_if_readable () {
+    source_dotfiles_variant_if_readable $1
+    source_home_variant_if_readable $1
+}
+
+source_before_file_for () {
+    source_if_readable ${1}.before
+}
+
+source_platform_specific_file_for () {
+    source_if_readable ${1}.$(detect_os)
+}
+
+source_after_file_for () {
+    source_if_readable ${1}.after
+}
+
+source_local_file_for () {
+    source_if_readable ${1}.local
+}

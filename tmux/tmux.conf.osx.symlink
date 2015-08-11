@@ -1,0 +1,35 @@
+# Ensure you've already run the following command:
+#
+#     port install tmux-pasteboard
+#
+
+set -g default-command "reattach-to-user-namespace -l zsh"
+
+# Unfortunately you cannot hook into the mouse-select-pane events (see
+# http://superuser.com/questions/666836/tmux-copy-pipe-with-mouse-selection for
+# a great explanation as to why). Consequently, there are 2 workarounds:
+#
+# 1. If using iTerm2, hold alt to enable its selection mode. This works well
+#    if you don't have horizontal panes - if you do, it will copy content
+#    across both of them, as though the pane divider weren't there.
+# 2. Use the standard select-mode, then follow it up with PREFIX b to copy to
+#    the system clipboard, via the command below:
+
+bind b run "tmux save-buffer - | reattach-to-user-namespace pbcopy" \; display-message "Copied to system clipboard"
+
+# http://robots.thoughtbot.com/tmux-copy-paste-on-os-x-a-better-future
+# Setup 'v' to begin selection as in Vim
+bind -t vi-copy v begin-selection
+
+# Update 'y' and default binding of `Enter` to use copy-pipe
+unbind -t vi-copy Enter
+bind -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+bind -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+
+# Smart pane switching with awareness of vim splits
+# https://github.com/christoomey/vim-tmux-navigator
+bind -n M-Left run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim(diff)?$' && tmux send-keys C-h) || tmux select-pane -L"
+bind -n M-Down run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim(diff)?$' && tmux send-keys C-j) || tmux select-pane -D"
+bind -n M-Up run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim(diff)?$' && tmux send-keys C-k) || tmux select-pane -U"
+bind -n M-Right run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim(diff)?$' && tmux send-keys C-l) || tmux select-pane -R"
+# bind -n C-/ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim(diff)?$' && tmux send-keys 'C-\\') || tmux select-pane -l"

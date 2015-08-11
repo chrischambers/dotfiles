@@ -1,13 +1,20 @@
-.pip/cache/*
-/*.vim/.netrwhist
-/*.vim/.VimballRecord
-/*.vim/GetLatest/Installed/*.zip
-/*.vim/GetLatest/Installed/*.tar
-/*.vim/GetLatest/Installed/*.vba
-/*.pentadactyl/info/**
 *.swp
 *.svn/
 *.pyc
 **~
 .DS_Store
-.screens/*
+pentadactyl/pentadactyl.symlink/info/**
+
+vim/vim.symlink/config/after/trial.vim
+vim/vim.symlink/config/trial.vim
+vim/vim.symlink/.netrwhist
+
+# Vimproc C Files/Headers:
+# ------------------------
+vim/vim.symlink/autoload/*.c
+vim/vim.symlink/autoload/*.h
+vim/vim.symlink/autoload/vimproc_*
+
+vim/vim.symlink/autoload/vimproc.vim
+vim/vim.symlink/autoload/vimproc/*
+vim/vim.symlink/plugin/vimproc.vim

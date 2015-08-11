@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Heroku configuration
+prepend_to_path "/usr/local/heroku/bin"

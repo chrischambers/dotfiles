@@ -1,0 +1,2 @@
+# Force tmux to assume terminal supports 256 colours
+alias tmux="tmux -2"

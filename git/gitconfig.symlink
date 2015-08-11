@@ -1,0 +1,94 @@
+[user]
+        name = Chris Chambers
+        email = magma.chambers@gmail.com
+[color]
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
+[core]
+        pager = less -FRSX
+        # Avoids using pager if output fits onscreen
+[sendemail]
+        smtpencryption = tls
+        smtpserver = smtp.gmail.com
+        smtpuser = magma.chambers@gmail.com
+        smtpserverport = 587
+        suppresscc = self
+        # Packages required:for git-send-email on OSX:
+        # sudo port install p5-authen-sasl p5-mime-base64 p5-io-socket-ssl
+        # sudo -H cpan Net::SMTP::SSL
+        #
+        # Source:
+        # http://borisdusek.blogspot.com/2010/10/git-send-email-on-mac-os-x-with-smtp.html
+[push]
+        default = simple
+[github]
+        user = chrischambers
+[alias]
+        st = status
+        ci = commit --verbose
+        co = checkout
+        br = branch
+        cp = cherry-pick
+        ds = diff --staged
+
+        showremote = !sh -c 'git for-each-ref --format=\"%(upstream:short)\" $(git rev-parse --symbolic-full-name --default HEAD $1)' -
+        # "showremote" has two usages:
+        # 1). $ git showremote
+        #       shows whether the branch you are currently on tracks any remote branch
+        # 2). $ git showremote [somebranch]
+        #       shows whether your local branch [somebranch] tracks any remote branch
+        # Each returns an empty line if they don't.
+
+        # Thanks go to wereHamster, doener and idletask (irc, freenode #git)
+
+        aa = add --all
+        fa = fetch --all
+
+        # -----------------------------------------------------------------
+        # Stolen from Gary Bernhardt:
+        # https://github.com/garybernhardt/dotfiles/blob/master/.gitconfig
+
+        # Divergence
+        # ~~~~~~~~~~
+        # (commits we added and commits remote added)
+
+        div = divergence
+
+        # Goodness
+        # ~~~~~~~~
+        # (summary of diff lines added/removed/total):
+
+        gn = goodness
+        gnc = goodness --cached
+
+        # Fancy logging:
+        # ~~~~~~~~~~~~~
+
+        #   h    = head
+        #   hp   = head with patch
+        #   r    = recent commits, only current branch
+        #   ra   = recent commits, all reachable refs
+        #   l    = all commits, only current branch
+        #   la   = all commits, all reachable refs
+
+        head = !git r -1
+        h    = !git head
+        hp   = "!. ~/.githelpers && show_git_head"
+        r    = !GIT_NO_PAGER=1 git l -30
+        ra   = !git r --all
+        l    = "!. ~/.githelpers && pretty_git_log"
+        la   = !git l --all
+
+        # -----------------------------------------------------------------
+
+        tidy = rebase -i @{upstream}..
+[status]
+    submoduleSummary = true
+[diff]
+    submodule = log
+[fetch]
+    recurseSubmodules = on-demand
+[pull]
+    rebase = preserve

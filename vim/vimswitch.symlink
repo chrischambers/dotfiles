@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+if [[ "$CURRENT_VIM" == "old" ]]; then
+    new_vimrc="/Users/ajax/dotfiles/mine/vim/vimrc.symlink"
+    new_vim_folder="/Users/ajax/dotfiles/mine/vim/vim.symlink"
+    export CURRENT_VIM="mine"
+else
+    new_vimrc="/Users/ajax/dotfiles/old/vimrc.symlink"
+    new_vim_folder="/Users/ajax/dotfiles/old/vim.symlink"
+    export CURRENT_VIM="old"
+fi
+
+echo "Switching vim configs..."
+echo ""
+
+for f in ~/.vimrc ~/.vim; do
+    if [[ -e $f && ! -L $f ]]; then
+        echo "All vimfiles must be symbolic links. $f is not."
+    fi
+done
+
+for f in ~/.vimrc ~/.vim; do
+    if [[ -e $f && -L $f ]]; then
+        echo "removing symlink $f"
+        rm $f
+    fi
+done
+
+echo ""
+
+echo "linking $new_vimrc to ~/.vimrc"
+ln -s $new_vimrc ~/.vimrc
+echo "linking $new_vim_folder to ~/.vim"
+ln -s $new_vim_folder ~/.vim

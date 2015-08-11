@@ -1,0 +1,48 @@
+#!/bin/env zsh
+
+source ~/.shell_common
+
+# Force entries in the PATH environment variable to be unique:
+typeset -aU path
+
+source_if_readable ".profile"
+source_before_file_for "zsh/.zshrc"
+source_platform_specific_file_for "zsh/.zshrc"
+
+# load common shell elements
+typeset -U common_shell_files
+common_config_files=($DOTFILES/**/*.sh)
+for file in $common_config_files; do
+  source $file
+done
+
+# all of our zsh files
+typeset -U config_files
+config_files=($DOTFILES/**/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}
+do
+  source $file
+done
+
+# load everything but the path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
+  source $file
+done
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
+# load every completion after autocomplete loads
+for file in ${(M)config_files:#*/completion.zsh}
+do
+  source $file
+done
+
+unset config_files
+
+source_after_file_for "zsh/.zshrc"
+source_local_file_for "zsh/.zshrc"

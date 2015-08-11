@@ -1,0 +1,369 @@
+extends python.magic
+
+global !p
+
+endglobal
+
+snippet #! "Shebang" b!
+#!/usr/bin/env python
+# encoding: utf-8
+$0
+endsnippet
+
+snippet ifmain "If name == main" b!
+$0
+if __name__ == '__main__':
+    main()
+endsnippet
+
+snippet def "Function Definition" b!
+def ${1:fname}(`!v indent(search('^ \{-}def [^:]*: \{-}$', 'bcWn')) ? 'self' : ''`$2):
+    ${3:pass}
+$0
+endsnippet
+# `!v search('(self', '', line('.')) ? ', ' : ''`
+
+snippet _
+__${1:init}__${2}
+endsnippet
+
+snippet super "Super"  b!
+super(`!v GetPythonClassName()`, self).`!v GetPythonFunctionName()`(`!v substitute(GetPythonFunctionSignature(), 'self\(, \)\?', '', '')`)
+endsnippet
+
+snippet traceback "Traceback stub" b
+import sys, traceback
+
+exc_type, exc_value, tb = sys.exc_info()
+error_output = "Type: <%s>\n%s\n\nTraceback:\n%s" % (
+    exc_type.__name__, exc_value, "\n".join(traceback.format_tb(tb))
+)
+endsnippet
+
+snippet log "Basic Logging" b
+import logging
+log = logging.getLogger('${1:`!p snip.rv = os.path.splitext(fn)[0].strip().lower().replace(' ', '_')`}')
+$0
+endsnippet
+
+# Os: {{{
+snippet walk
+for path, dirs, files in os.walk('${1:relevant/path}'):
+    $0
+endsnippet
+# }}}
+
+# Subprocess: {{{
+snippet shell "Open a shell subprocess" b
+import subprocess
+proc = subprocess.Popen(
+    '${1:command}',
+    shell=True,
+    stdout=subprocess.PIPE
+)
+out, returned = proc.communicate()
+endsnippet
+# }}}
+
+# Distutils: {{{
+snippet distsetup "Distuils Setup" b
+from distutils.core import setup
+
+setup(
+    name="$1",
+    version=${2:1.0},
+    description="$3",
+    author="`!v g:user_name`",
+    author_email="`!v g:user_email`",
+    py_modules=["$4"],
+)
+endsnippet
+# }}}
+
+snippet d "Decimal" w
+D("$1")$2
+endsnippet
+
+snippet patch
+@patch('$1')
+$2
+endsnippet
+
+##########
+# COMMON #
+##########
+
+# The smart def and smart class snippets use a global option called
+# "g:ultisnips_python_style" which, if set to "doxygen" will use doxygen
+# style comments in docstrings.
+
+global !p
+
+NORMAL  = 0x1
+DOXYGEN = 0x2
+SPHINX  = 0x3
+
+SINGLE_QUOTES = 0x1
+DOUBLE_QUOTES = 0x2
+
+def get_args(arglist):
+    args = [arg.split('=')[0].strip() for arg in arglist.split(',') if arg]
+    args = [arg for arg in args if arg and arg != "self"]
+
+    return args
+
+
+def get_quoting_style(snip):
+    style = snip.opt("g:ultisnips_python_quoting_style", "double")
+    if style == 'single':
+        return SINGLE_QUOTES
+    return DOUBLE_QUOTES
+
+def triple_quotes(snip):
+    if get_quoting_style(snip) == SINGLE_QUOTES:
+        return "'''"
+    return '"""'
+
+def get_style(snip):
+    style = snip.opt("g:ultisnips_python_style", "normal")
+
+    if    style == "doxygen": return DOXYGEN
+    elif  style == "sphinx": return SPHINX
+    else: return NORMAL
+
+
+def format_arg(arg, style):
+    if style == DOXYGEN:
+        return "@param %s @todo" % arg
+    elif style == SPHINX:
+        return ":param %s: @todo" % arg
+    elif style == NORMAL:
+        return ":%s: @todo" % arg
+
+
+def format_return(style):
+    if style == DOXYGEN:
+        return "@return: @todo"
+    elif style in (NORMAL, SPHINX):
+        return ":returns: @todo"
+
+
+def write_docstring_args(args, snip):
+    if not args:
+        snip.rv += ' {0}'.format(triple_quotes(snip))
+        return
+
+    snip.rv += '\n' + snip.mkline('', indent='')
+
+    style = get_style(snip)
+
+    for arg in args:
+        snip += format_arg(arg, style)
+
+
+def write_init_body(args, parents, snip):
+    parents = [p.strip() for p in parents.split(",")]
+    parents = [p for p in parents if p != 'object']
+
+    for p in parents:
+        snip += p + ".__init__(self)"
+
+    if parents:
+        snip.rv += '\n' + snip.mkline('', indent='')
+
+    for arg in args:
+        snip += "self._%s = %s" % (arg, arg)
+
+
+def write_slots_args(args, snip):
+    args = ['"_%s"' % arg for arg in args]
+    snip += '__slots__ = (%s,)' % ', '.join(args)
+
+endglobal
+
+########################################
+# Class & Special Method Name Snippets #
+########################################
+
+# snippet class "class with docstrings" b
+# class ${1:MyClass}(${2:object}):
+# 
+#     `!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
+# 
+#     def __init__(self$4):
+#         `!p snip.rv = triple_quotes(snip)`${5:@todo: to be defined1.}`!p
+# snip.rv = ""
+# snip >> 2
+# 
+# args = get_args(t[4])
+# 
+# write_docstring_args(args, snip)
+# if args:
+#     snip.rv += '\n' + snip.mkline('', indent='')
+#     snip += '{0}'.format(triple_quotes(snip))
+# 
+# write_init_body(args, t[2], snip)
+# `
+#         $0
+# endsnippet
+
+snippet class "smart class" b!
+class ${1:MyClass}(${2:object}):
+${3:    """${4:Docstring for $1}"""
+}
+    def __init__(self${5/([^,])?(.*)/(?1:, )/}${5:arg}):
+${2/object$|(.+)/(?1:        super\($1, self\).__init__\(\)\n\n)/}${5/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2)/g}
+endsnippet
+
+snippet slotclass "class with slots and docstrings" b
+class ${1:MyClass}(${2:object}):
+
+    `!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
+`!p
+snip >> 1
+args = get_args(t[4])
+write_slots_args(args, snip)
+`
+
+    def __init__(self$4):
+        `!p snip.rv = triple_quotes(snip)`${5:@todo: to be defined.}`!p
+snip.rv = ""
+snip >> 2
+
+args = get_args(t[4])
+
+write_docstring_args(args, snip)
+if args:
+    snip.rv += '\n' + snip.mkline('', indent='')
+    snip += triple_quotes(snip)
+
+write_init_body(args, t[2], snip)
+`
+        $0
+endsnippet
+
+
+# snippet def "function with docstrings" b
+# def ${1:function}(`!p
+# if snip.indent:
+#     snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
+#     `!p snip.rv = triple_quotes(snip)`${4:@todo: Docstring for $1.}`!p
+# snip.rv = ""
+# snip >> 1
+# 
+# args = get_args(t[2])
+# if args:
+#     write_docstring_args(args, snip)
+# 
+# style = get_style(snip)
+# snip += format_return(style)
+# snip.rv += '\n' + snip.mkline('', indent='')
+# snip += triple_quotes(snip) `
+#     ${0:pass}
+# endsnippet
+
+
+# doesn't expand when there is a word in front
+snippet /(^|(?<=\W))\./ "self." r
+self.
+endsnippet
+
+snippet from "from module import name" b
+from ${1:module} import ${2:Stuff}
+endsnippet
+
+
+##############
+# PROPERTIES #
+##############
+snippet roprop "Read Only Property" b
+@property
+def ${1:name}(self):
+    ${2:return self._$1}$0
+endsnippet
+
+##########################
+# Try / Except / Finally #
+##########################
+snippet try "Try / Except" b
+try:
+    ${1:pass}
+except ${2:Exception}, ${3:e}:
+    ${4:raise $3}
+endsnippet
+
+snippet try "Try / Except / Else" b
+try:
+    ${1:pass}
+except ${2:Exception}, ${3:e}:
+    ${4:raise $3}
+else:
+    ${5:pass}
+endsnippet
+
+snippet try "Try / Except / Finally" b
+try:
+    ${1:pass}
+except ${2:Exception}, ${3:e}:
+    ${4:raise $3}
+finally:
+    ${5:pass}
+endsnippet
+
+snippet try "Try / Except / Else / Finally" b
+try:
+    ${1:pass}
+except${2: ${3:Exception}, ${4:e}}:
+    ${5:raise}
+else:
+    ${6:pass}
+finally:
+    ${7:pass}
+endsnippet
+
+
+######################
+# Assertions & Tests #
+######################
+
+snippet ipdb "Set IPDB breakpoint" b
+import ipdb; ipdb.set_trace()
+endsnippet
+
+snippet ae "Assert equal" b
+self.assertEqual(${1:first},${2:second})
+endsnippet
+
+snippet at "Assert True" b
+self.assertTrue(${0:exp})
+endsnippet
+
+snippet af "Assert False" b
+self.assertFalse(${1:expression})
+endsnippet
+
+snippet aae "Assert almost equal" b
+self.assertAlmostEqual(${1:first},${2:second})
+endsnippet
+
+snippet ar "Assert raises" b
+self.assertRaises(${1:exception}, ${2:func}${3/.+/, /}${3:arguments})
+endsnippet
+
+snippet testcase "testcase" b
+class Test${1:Class}(${2:unittest.TestCase}):
+    ${3:`!p snip.rv = triple_quotes(snip)`${4:Test case docstring.}`!p snip.rv = triple_quotes(snip)`}
+
+    def setUp(self):
+        ${5:pass}
+
+    def tearDown(self):
+        ${0:pass}
+endsnippet
+
+snippet test "description"  b!
+def test_${1:something}(self):
+    ${0:pass}
+endsnippet
+
+# vim:ft=snippets foldmethod=marker

@@ -1,0 +1,99 @@
+#!/bin/sh
+
+# Colour Palette: {{{
+# See <url:http://www.ibm.com/developerworks/linux/library/l-tip-prompt/>
+# Color chart for full selection
+
+# Foreground Colours:
+# -------------------
+black=$'\e[00;30m'
+dark_grey=$'\e[01;30m'
+red=$'\e[00;31m'
+bold_red=$'\e[01;31m'
+green=$'\e[00;32m'
+bold_green=$'\e[01;32m'
+brown=$'\e[00;33m'
+yellow=$'\e[01;33m'
+blue=$'\e[00;34m'
+bold_blue=$'\e[01;34m'
+purple=$'\e[00;35m'
+bold_purple=$'\e[01;35m'
+cyan=$'\e[00;36m'
+bold_cyan=$'\e[01;36m'
+bold_grey=$'\e[00;37m'
+white=$'\e[01;37m'
+reset=$'\e[0m'
+
+# Note that what is described as yellow may be brown on some terminals, whereas
+# what is described as white may appear gray.
+# In addition to the colors, there are various special codes:
+
+# * 0 restores the default colors (foreground # and back- ground)
+# * 1 produces brighter colors
+# * 4 produces underlined text,
+# * 5 produces flashing text.
+
+# Often 5 doesn't work; however, many consider the effect to be distracting so
+# this is really not an issue for most users. Also, keep in mind not all
+# terminals are capable of underlining and as a result code 4 may produce some
+# other effect.
+# Source: From Bash to Z Shell.
+# ----------------------------------------------------------------------------
+
+# We need to surround all non-printing characters with special escape
+# sequences. These sequences will tell the shell that the enclosed
+# characters don't take up any space on the line, which will allow
+# word-wrapping to continue to work properly. Without them, you'll end up with
+# a nice-looking prompt that will mess up the screen if you happen to type in a
+# command that approaches the extreme right of the terminal.
+
+# Modifications have been made such the shell will detect if it's not a bash
+# shell, and **will then assume it's an instance of zsh**, and use the
+# appropriate escapes according to the shell-type.
+
+# Source: <url:http://www.ibm.com/developerworks/linux/library/l-tip-prompt/>
+
+if [[ -z $BASH_VERSION ]]; then
+    escape_on='%{'
+    escape_off='%}'
+else
+    escape_on='\['
+    escape_off='\]'
+fi
+
+BLACK="${escape_on}${black}${escape_off}"
+DARK_GREY="${escape_on}${dark_grey}${escape_off}"
+RED="${escape_on}${red}${escape_off}"
+BOLD_RED="${escape_on}${bold_red}${escape_off}"
+GREEN="${escape_on}${green}${escape_off}"
+BOLD_GREEN="${escape_on}${bold_green}${escape_off}"
+BROWN="${escape_on}${brown}${escape_off}"
+YELLOW="${escape_on}${yellow}${escape_off}"
+BLUE="${escape_on}${blue}${escape_off}"
+BOLD_BLUE="${escape_on}${bold_blue}${escape_off}"
+PURPLE="${escape_on}${purple}${escape_off}"
+BOLD_PURPLE="${escape_on}${bold_purple}${escape_off}"
+CYAN="${escape_on}${cyan}${escape_off}"
+BOLD_CYAN="${escape_on}${bold_cyan}${escape_off}"
+BOLD_GREY="${escape_on}${bold_grey}${escape_off}"
+WHITE="${escape_on}${white}${escape_off}"
+RESET="${escape_on}${reset}${escape_off}"
+
+export COLOUR_PALETTE="
+${dark_grey}DARK_GREY
+${blue}BLUE
+${bold_blue}BOLD_BLUE
+${green}GREEN
+${bold_green}BOLD_GREEN
+${cyan}CYAN
+${bold_cyan}BOLD_CYAN
+${red}RED
+${bold_red}BOLD_RED
+${purple}PURPLE
+${bold_purple}BOLD_PURPLE
+${brown}BROWN
+${yellow}YELLOW
+${bold_grey}BOLD_GREY
+${white}WHITE
+${reset}RESET
+"

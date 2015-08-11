@@ -1,0 +1,5 @@
+export VIRTUALENV_PYTHON="/usr/bin/python3"
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv-3.4"
+
+export virtualenvwrapper_loc="/usr/local/bin/virtualenvwrapper.sh"
