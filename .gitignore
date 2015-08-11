@@ -1,0 +1,5 @@
+*.swp
+*.svn/
+*.pyc
+**~
+.DS_Store
