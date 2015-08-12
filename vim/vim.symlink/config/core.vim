@@ -26,6 +26,7 @@ set scrolloff=2       " Keep 2 lines above/below cursor when scrolling up/down
 set sidescrolloff=2   " Keep 2 lines left/right of cursor when scrolling
                       " left/right
                       "
+set fileformat=unix   " we can't have trailing ^R characters creeping in.
 set encoding=utf-8    " applies to text in the buffers, registers, Strings in
                       " expressions, text stored in the viminfo file, etc.
 " --------------------------------------------------------------------------
