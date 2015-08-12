@@ -1,33 +1,35 @@
 let g:is_win = has("win16") || has("win32") || has("win64")
 
-" Windows Compatible {
-    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-    " across (heterogeneous) systems easier.
+let g:vimrc     = "~/.vimrc"
+let g:gvimrc    = "~/.gvimrc"
+let g:vimfiles  = "~/.vim"
+
+" --------------------------------------------------------------------------
+" Windows Compatible: {{{
+" --------------------------------------------------------------------------
+    " On Windows, we cannot reliably use'.vim' instead of 'vimfiles'. We'll
+    " instead update our vimscript settings accordingly.
   if g:is_win
+    let g:vimrc     = $HOME . pathogen#slash() . "_vimrc"
+    let g:gvimrc    = $HOME . pathogen#slash() . "_gvimrc"
+    let g:vimfiles  = $HOME . pathogen#slash() . 'vimfiles'
+
     set runtimepath+=$VIMRUNTIME
     call pathogen#surround($VIM  . pathogen#slash() . 'vimfiles')
-    call pathogen#surround($HOME . pathogen#slash() . 'vimfiles')
-    " The following doesn't work, so let's manually manipulate the pathname:
-    " call pathogen#surround($HOME . pathogen#slash() . '.vim')
-    let s:rtp = pathogen#split(&rtp)
-    call insert(s:rtp, $HOME . pathogen#slash() . '.vim')
-    call add(s:rtp, $HOME . pathogen#slash() . '.vim' . pathogen#slash() . 'after')
-    let &rtp = pathogen#join(s:rtp)
-    " Except there's general screwiness with the .vim folder, besides pathogen
-    " playing up. It seems the files within it aren't added to the runtimepath
-    " properly!
-
+    call pathogen#surround(g:vimfiles)
   endif
-
-if g:is_win
-  source ~/_vimrc
-else
-  source ~/.vimrc
-endif
-
+" --------------------------------------------------------------------------
+" }}}
+" --------------------------------------------------------------------------
+" Avoid Opening NERDTree In System32 Folder On Windows: {{{
+" --------------------------------------------------------------------------
 if g:is_win && getcwd() =~ '\\Windows\\system32'
   cd $HOME
 endif
+" --------------------------------------------------------------------------
+" }}}
+
+execute "source " . g:vimrc
 
 if has("gui_running")
     set guioptions-=T " disables Toolbar
