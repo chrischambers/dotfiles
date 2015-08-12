@@ -1,4 +1,11 @@
-let s:core_vimfile = fnamemodify('~/.vim/core.vimrc', ':p')
+let g:is_win = has("win16") || has("win32") || has("win64")
+
+if g:is_win
+  let s:core_vimfile = fnamemodify('~/vimfiles/core.vimrc', ':p')
+else
+  let s:core_vimfile = fnamemodify('~/.vim/core.vimrc', ':p')
+endif
+
 if filereadable(s:core_vimfile)
   execute 'source ' . s:core_vimfile
 endif

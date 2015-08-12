@@ -1,4 +1,33 @@
-source ~/.vimrc
+let g:is_win = has("win16") || has("win32") || has("win64")
+
+" Windows Compatible {
+    " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+    " across (heterogeneous) systems easier.
+  if g:is_win
+    set runtimepath+=$VIMRUNTIME
+    call pathogen#surround($VIM  . pathogen#slash() . 'vimfiles')
+    call pathogen#surround($HOME . pathogen#slash() . 'vimfiles')
+    " The following doesn't work, so let's manually manipulate the pathname:
+    " call pathogen#surround($HOME . pathogen#slash() . '.vim')
+    let s:rtp = pathogen#split(&rtp)
+    call insert(s:rtp, $HOME . pathogen#slash() . '.vim')
+    call add(s:rtp, $HOME . pathogen#slash() . '.vim' . pathogen#slash() . 'after')
+    let &rtp = pathogen#join(s:rtp)
+    " Except there's general screwiness with the .vim folder, besides pathogen
+    " playing up. It seems the files within it aren't added to the runtimepath
+    " properly!
+
+  endif
+
+if g:is_win
+  source ~/_vimrc
+else
+  source ~/.vimrc
+endif
+
+if g:is_win && getcwd() =~ '\\Windows\\system32'
+  cd $HOME
+endif
 
 if has("gui_running")
     set guioptions-=T " disables Toolbar
