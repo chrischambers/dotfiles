@@ -1,0 +1,3 @@
+# Force tmux to assume terminal supports 256 colours
+alias tmux="tmux -2"
+# alias tmux="TERM=xterm-256color tmux"

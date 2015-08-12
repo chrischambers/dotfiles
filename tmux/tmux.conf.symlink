@@ -149,3 +149,15 @@ setw -g aggressive-resize on
 
 if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux.conf.osx'
 if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux.conf.linux'
+
+# ----------------------------------------------------------------------------
+# Note: all of the commented-out "if-shell" tests below cause tmux to behave
+# very strangely - it basically fails to launch and completely messes up the
+# prompt. I'm not sure why, but at least there's a test that reliably works.
+# ----------------------------------------------------------------------------
+# if-shell 'test "$(uname)" = "CYGWIN_NT-6.1"' 'source ~/.tmux.conf.cygwin'
+# if-shell 'test "$(uname)" = "CYGWIN_NT-6.1"' 'source-file .tmux.conf.cygwin'
+# if-shell 'test "${OS}" = "Windows_NT"' 'source ~/.tmux.conf.cygwin'
+# if-shell '[ "$(uname)" = "CYGWIN_NT-6.1" ]' 'source ~/.tmux.conf.cygwin'
+
+if-shell "uname | grep -q CYGWIN" "source ~/.tmux.conf.cygwin"
