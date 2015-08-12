@@ -1,10 +1,22 @@
-let g:is_win = has("win16") || has("win32") || has("win64")
+let g:vimrc     = "~/.vimrc"
+let g:gvimrc    = "~/.gvimrc"
+let g:vimfiles  = "~/.vim"
 
-if g:is_win
-  let s:core_vimfile = fnamemodify('~/vimfiles/core.vimrc', ':p')
-else
-  let s:core_vimfile = fnamemodify('~/.vim/core.vimrc', ':p')
-endif
+" --------------------------------------------------------------------------
+" Windows Compatible: {{{
+" --------------------------------------------------------------------------
+    " On Windows, we cannot reliably use'.vim' instead of 'vimfiles'. We'll
+    " instead update our vim settings accordingly.
+  let g:is_win = has("win16") || has("win32") || has("win64")
+  if g:is_win
+    let g:vimrc     = $HOME . '\' . "_vimrc"
+    let g:gvimrc    = $HOME . '\' . "_gvimrc"
+    let g:vimfiles  = $HOME . '\' . 'vimfiles'
+  endif
+" --------------------------------------------------------------------------
+" }}}
+
+let s:core_vimfile = fnamemodify(g:vimfiles . '/core.vimrc', ':p')
 
 if filereadable(s:core_vimfile)
   execute 'source ' . s:core_vimfile

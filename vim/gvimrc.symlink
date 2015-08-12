@@ -1,5 +1,3 @@
-let g:is_win = has("win16") || has("win32") || has("win64")
-
 let g:vimrc     = "~/.vimrc"
 let g:gvimrc    = "~/.gvimrc"
 let g:vimfiles  = "~/.vim"
@@ -8,24 +6,13 @@ let g:vimfiles  = "~/.vim"
 " Windows Compatible: {{{
 " --------------------------------------------------------------------------
     " On Windows, we cannot reliably use'.vim' instead of 'vimfiles'. We'll
-    " instead update our vimscript settings accordingly.
+    " instead update our vim settings accordingly.
+  let g:is_win = has("win16") || has("win32") || has("win64")
   if g:is_win
-    let g:vimrc     = $HOME . pathogen#slash() . "_vimrc"
-    let g:gvimrc    = $HOME . pathogen#slash() . "_gvimrc"
-    let g:vimfiles  = $HOME . pathogen#slash() . 'vimfiles'
-
-    set runtimepath+=$VIMRUNTIME
-    call pathogen#surround($VIM  . pathogen#slash() . 'vimfiles')
-    call pathogen#surround(g:vimfiles)
+    let g:vimrc     = $HOME . '/' . "_vimrc"
+    let g:gvimrc    = $HOME . '/' . "_gvimrc"
+    let g:vimfiles  = $HOME . '/' . 'vimfiles'
   endif
-" --------------------------------------------------------------------------
-" }}}
-" --------------------------------------------------------------------------
-" Avoid Opening NERDTree In System32 Folder On Windows: {{{
-" --------------------------------------------------------------------------
-if g:is_win && getcwd() =~ '\\Windows\\system32'
-  cd $HOME
-endif
 " --------------------------------------------------------------------------
 " }}}
 

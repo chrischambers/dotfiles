@@ -48,6 +48,12 @@ function! s:Source_bundles()
   execute printf('source %s/%s', s:script_location, 'bundles.vim')
 endfunction
 
+function! s:Source_windows_modifications()
+  if g:is_win
+    execute printf('source %s/%s', s:script_location, 'windows.vim')
+  endif
+endfunction
+
 function! s:Source_configs(list)
   for l:path in a:list
     if filereadable(l:path)
@@ -65,6 +71,7 @@ endfunction
 
 function! s:Bootstrap()
   call s:Source_bundles()
+  call s:Source_windows_modifications()
   call s:Source_configs(s:config_files)
   call s:Source_configs(s:post_config_files)
   call s:Source_local_modifications(s:local_mods_file)
