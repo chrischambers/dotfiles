@@ -7,7 +7,7 @@ export MANPATH="$HOME/man:$MANPATH"
 # ...should contain man1/plod.1 to find manfile for plod, for example.
 
 # Colour grep results - regex match in green
-export GREP_OPTIONS='--color=auto'
+alias grep="grep --color=auto"
 export GREP_COLOR='1;32'
 
 # export TERM=xterm-color
