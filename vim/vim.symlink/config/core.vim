@@ -25,6 +25,9 @@ set tags=tags;/       " Look for tags file up through dirs until one is found.
 set scrolloff=2       " Keep 2 lines above/below cursor when scrolling up/down
 set sidescrolloff=2   " Keep 2 lines left/right of cursor when scrolling
                       " left/right
+                      "
+set encoding=utf-8    " applies to text in the buffers, registers, Strings in
+                      " expressions, text stored in the viminfo file, etc.
 " --------------------------------------------------------------------------
 " Show Invisible Characters: {{{
 " --------------------------------------------------------------------------
