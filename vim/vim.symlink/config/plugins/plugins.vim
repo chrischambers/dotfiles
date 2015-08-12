@@ -293,5 +293,11 @@ highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 " --------------------------------------------------------------------------
 " }}}
 
+" Minibufexpl Options: {{{
+" --------------------------------------------------------------------------
+let g:miniBufExplAutoStart = 1
+let g:miniBufExplBuffersNeeded = 0
+" --------------------------------------------------------------------------
+" }}}
 
 " vim: expandtab softtabstop=2 shiftwidth=2
