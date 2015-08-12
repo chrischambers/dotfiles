@@ -4,9 +4,9 @@ if globpath(&rtp, 'plugin/UltiSnips.vim') != ''
   " ---------
   " Settings:
   " ---------
-  let g:UltiSnipsSnippetsDir = $HOME . '/.vim/ultisnippets'
+  let g:UltiSnipsSnippetsDir = g:vimfiles . '/ultisnippets'
   let g:UltiSnipsSnippetDirectories = [
-  \    $HOME . '/.vim/ultisnippets'
+  \    g:vimfiles . '/ultisnippets'
   \ ]
 
   " ---------
