@@ -14,3 +14,10 @@ if getcwd() =~ '\\Windows\\system32'
 endif
 " --------------------------------------------------------------------------
 " }}}
+" --------------------------------------------------------------------------
+" Configure Grep For Windows: {{{
+" --------------------------------------------------------------------------
+" set grepprg=findstr\ /n\ /s"
+" Depends on fs.bat: https://github.com/jeyoung/fs.bat
+set grepprg=C:\Windows\fs.bat
+" }}}
