@@ -14,10 +14,16 @@ vim-install-bundle:
 	git clone git://github.com/Shougo/neobundle.vim.git ~/.bundle/neobundle.vim
 
 vim-make-vimproc-linux:
-	cd ~/.bundle/vimproc/ && make -f make_gcc.mak
+	cd ~/.bundle/vimproc.vim/ && make -f make_gcc.mak
 
 vim-make-vimproc-mac:
-	cd ~/.bundle/vimproc/ && make -f make_mac.mak
+	cd ~/.bundle/vimproc.vim/ && make -f make_mac.mak
+
+vim-make-vimproc-windows:
+	cd ~/.bundle/vimproc.vim/ && make -f make_mingw32.mak CC=mingw32-gcc
+
+vim-make-vimproc-cygwin:
+	cd ~/.bundle/vimproc.vim/ && make -f make_cygwin.mak
 
 install: vim-install-plugins
 
