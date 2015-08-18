@@ -160,4 +160,6 @@ if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux.conf.linux'
 # if-shell 'test "${OS}" = "Windows_NT"' 'source ~/.tmux.conf.cygwin'
 # if-shell '[ "$(uname)" = "CYGWIN_NT-6.1" ]' 'source ~/.tmux.conf.cygwin'
 
-if-shell "uname | grep -q CYGWIN" "source ~/.tmux.conf.cygwin"
+# These work:
+# if-shell "uname | grep -q CYGWIN" "source ~/.tmux.conf.cygwin"
+if-shell "[[ $(uname -o) == Cygwin ]]" "source ~/.tmux.conf.cygwin"
