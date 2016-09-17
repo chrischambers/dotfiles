@@ -1,0 +1,51 @@
+set gui=nonavigation
+set defsearch=yubnub
+
+" Custom Mappings: {{{
+ nmap 0gt g0
+ nmap $gt g$
+" cnoremap :b$ :tablast<CR>
+
+ nmap ,bo :tabonly<CR>
+ nmap U :undoall<CR>
+
+" Quick toggle buffers:
+" ---------------------
+" Activate mapping, then type filter-term: this could be part of the buffer
+" name, or part of the url. You can use RET to switch to buffer, or even use
+" tab completion. Also works well in conjunction with gb/gB, which will allow
+" you to cycle between buffers with similar names.
+"  nmap ,, :buffers<CR>:b! 
+ nmap ,, :b! 
+" Convenient alias for switching back and forth between alternate buffer:
+ nmap ,. <C-^>
+
+" Firebug Specific:
+ nmap <silent> ,fo :emenu Tools.Firebug.Open Firebug<CR>
+" Press RET to cycle through elements:
+ nmap ,fs :emenu Tools.Firebug.Search<CR>
+" nmap ,fi :emenu Tools.Firebug.Inspect Element<CR>
+ nmap <M-S-c>
+
+" Web Developer Specific:
+ nmap ,ni :emenu Tools.Web Developer.Images.Disable Images.All Images<CR>
+"  nmap ,nc :emenu Tools.Web Developer.CSS.Disable Styles.All Styles<CR>
+ nmap ,nc  <M-S-s>
+ nmap ,vh :emenu Tools.Web Developer.Tools.Validate Local HTML<CR>
+ nmap ,vc :emenu Tools.Web Developer.Tools.Validate Local CSS<CR>
+ nmap ,vih :emenu Tools.Web Developer.Information.View Response Headers<CR>
+
+ nmap ,cp :emenu Tools.ColorPicker<CR>
+
+" Stumbleupon Specific:
+ nmap <silent> ,su :stumble<CR>
+
+" Bookmark Organiser Mapping:
+ nmap <silent> ,bms :sb Bookmarks<CR>
+ nmap <silent> ,bmo :dia places<CR>
+" }}}
+
+nmap ,ss :emenu Tools.Session Manager.Session Manager.Save Session...<CR>
+nmap ,sl :emenu Tools.Session Manager.Session Manager.Load Session...<CR>
+
+" vim: set ft=vimperator foldmarker={{{,}}} foldlevel=0 foldmethod=marker :

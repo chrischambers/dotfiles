@@ -74,4 +74,6 @@ NeoBundle 'vim-scripts/BufOnly.vim'
 
 NeoBundle 'ap/vim-css-color'
 
+NeoBundle 'vimperator/vimperator.vim'
+
 call neobundle#end()
