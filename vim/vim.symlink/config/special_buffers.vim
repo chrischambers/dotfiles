@@ -138,12 +138,25 @@ function! VimSpecialBufferFixTagsCmd2(path, ...)
   call VimSpecialBufferFixTagsCmd(a:path, opt)
 endfunction
 
+function! VimSpecialBufferFixExit(...)
+  if exists('*NERDTreeVisible') && NERDTreeVisible()
+    call NERDToggle()
+    let g:restore_nerdtree = 1
+  endif
+  exit
+  " let window_is_nerdtree = getbufvar('%', '&ft') == "nerdtree"
+  " if window_is_nerdtree
+  "   quit
+endfunction
+
 command! Enew call VimSpecialBufferFixOpenCmds()
 command! Split call VimSpecialBufferFixOpenCmds({'cmd': ':sp'})
 command! VSplit call VimSpecialBufferFixOpenCmds({'cmd': ':vsp'})
+command! Exit call VimSpecialBufferFixOpenCmds({'cmd': ':x'})
 command! -nargs=1 -complete=file Edit call VimSpecialBufferFixEditCmd(<q-args>)
 command! -nargs=1 -complete=tag Tjump call VimSpecialBufferFixTagsCmd(<q-args>)
 command! -nargs=1 -complete=tag Tag call VimSpecialBufferFixTagsCmd2(<q-args>)
+command! Exit call VimSpecialBufferFixExit(<q-args>)
 
 cnoremap <expr> enew
       \ (getcmdtype() == ':' && getcmdpos()<4 ? 'Enew' : 'enew')
@@ -157,6 +170,8 @@ cnoremap <expr> tj
       \ (getcmdtype() == ':' && getcmdpos()<2 ? 'Tjump' : 'tj')
 cnoremap <expr> ta<Space>
       \ (getcmdtype() == ':' && getcmdpos()<3 ? 'Tag ' : 'ta')
+cnoreabbrev <expr> x
+      \ ((getcmdtype() == ':' && getcmdpos() <= 2) ? 'Exit' : 'x')
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
