@@ -50,10 +50,27 @@ def paren():
 	if has_multiple_args(t[1]) and not parenthesised_already(t[1]):
 		t[1] = "(%s)" % t[1]
 
+def already_braced():
+	cb = vim.current.buffer
+	row = snip.snippet_start[0]
+	line = cb[row]
+	return line.endswith("{")
+
+def brace():
+	if already_braced():
+		return
+	snip.shift(1)
+	m = snip.mkline
+	if "\n" in t[2]:
+		t[2] = "{\n" + m() + t[2] + "\n" + m() + "return\n"
+		snip.unshift(1)
+		t[2] += m() + "}"
+	pass
+
 endglobal
 
 snippet f "Function"  b!
-${1:arg} => `!p paren()`$2
+${1:arg} => `!p paren()`$2`!p brace()`$3
 endsnippet
 
 # vim: ft=snippets :
