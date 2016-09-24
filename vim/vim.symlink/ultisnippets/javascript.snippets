@@ -1,0 +1,59 @@
+# snippet def "function"  b!
+# var ${1:name} = function ($2) {
+#   "use strict";
+#   $3
+# };
+# endsnippet
+
+# add fatarrow?
+
+
+# require.js
+
+# sugared-define:
+# define(function (require) {
+#	 var dependency1 = require('dependency1'),
+#		 dependency2 = require('dependency2');
+#
+#	 return function () {
+#		...
+#	 };
+# });
+
+# snippet require "require.js require"  b!
+# require(["${1:filename}"], function (${1/["']//g}) {
+#   $0
+# }
+# endsnippet
+
+# while, if, for, switch
+
+snippet switch "switch statement"  b!
+switch(${1:expression}) {
+	case ${1:n}:
+		$3
+		break;
+	default:
+		default code block
+}
+$0
+endsnippet
+
+global !p
+def has_multiple_args(string):
+    return len(string.replace(",", " ").split()) > 1
+
+def parenthesised_already(string):
+	return not (string == string.strip("()"))
+
+def paren():
+	if has_multiple_args(t[1]) and not parenthesised_already(t[1]):
+		t[1] = "(%s)" % t[1]
+
+endglobal
+
+snippet f "Function"  b!
+${1:arg} => `!p paren()`$2
+endsnippet
+
+# vim: ft=snippets :
