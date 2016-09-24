@@ -76,4 +76,9 @@ NeoBundle 'ap/vim-css-color'
 
 NeoBundle 'vimperator/vimperator.vim'
 
+NeoBundle 'Konfekt/FastFold'
+
+NeoBundle 'mbbill/vim-seattle'
+
+
 call neobundle#end()
