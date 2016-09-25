@@ -10,12 +10,13 @@ alias vi="$vim"
 alias vim="$vim"
 alias gvim="$gvim"
 
-function visvim () {
-    "$vim" $1
-}
+# function visvim () {
+#     "$vim" "$1"
+# }
+# export VISUAL=visvim
 
 export EDITOR="$vim"
-export VISUAL=visvim
+export VISUAL="$vim"
 export GIT_EDITOR="$vim"
 
 # Vim Profiler:
@@ -32,12 +33,14 @@ function g () {
 
     # Launch server if needed
     servername="GVIM1"
-    serverlist=`$gvim --serverlist`
+    serverlist="`$gvim --serverlist`"
     if [ -z $serverlist ]; then
       $gvim --servername $servername
       # if [[ $os == "osx" ]]; then
       #   sleep 0.1
       # fi
+    else
+        servername="$($gvim --serverlist | head -n 1)"
     fi
 
     if [ $1 ]; then
