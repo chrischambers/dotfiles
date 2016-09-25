@@ -1,14 +1,13 @@
-# snippet def "function"  b!
-# var ${1:name} = function ($2) {
-#   "use strict";
-#   $3
-# };
-# endsnippet
+snippet def "function"  b!
+let ${1:name} = function ($2) {
+	"use strict";
+	$3
+};
+endsnippet
 
-# add fatarrow?
-
-
+# ----------------------------------------------------------------------------
 # require.js
+# ----------------------------------------------------------------------------
 
 # sugared-define:
 # define(function (require) {
@@ -26,18 +25,78 @@
 # }
 # endsnippet
 
-# while, if, for, switch
+# ----------------------------------------------------------------------------
+# Conditionals:
+# ----------------------------------------------------------------------------
+snippet if "If statement"  b
+if (${1:conditional}) {
+	$2
+}
+endsnippet
 
-snippet switch "switch statement"  b!
+snippet elif "Else-if"  w
+else if (${1:conditional}) {
+	$2
+}
+endsnippet
+
+snippet else "Else"  w
+else {
+	$1
+}
+endsnippet
+
+snippet switch "Switch statement"  b!
 switch(${1:expression}) {
-	case ${1:n}:
+	case ${2:n}:
 		$3
 		break;
-	default:
-		default code block
+	${4:default:
+		${5:// finally}}
 }
-$0
 endsnippet
+# ----------------------------------------------------------------------------
+# Loops:
+# ----------------------------------------------------------------------------
+snippet for "Classic for loop"  b
+let i, length = ${1:array.length}
+for (i=0; i < length; i++) {
+	${2:${VISUAL}}
+}
+endsnippet
+
+snippet for "For item of iterable"  b
+for (let ${1:item} of ${2:iterable}) {
+	${3:${VISUAL}}
+}
+endsnippet
+
+snippet for "For item in object"  b
+for (${1:item} in ${2:obj}) {
+	if (obj.hasOwnProperty(item)) {
+		${3:VISUAL}
+	}
+}
+endsnippet
+
+snippet iterable "Make your own objects iterable"  b
+${1:myObject}.prototype[Symbol.iterator] = Array.prototype[Symbol.iteartor]
+endsnippet
+
+# ----------------------------------------------------------------------------
+# Console Manipulation:
+# ----------------------------------------------------------------------------
+snippet clog "Console.log" i
+console.log($1)
+endsnippet
+
+snippet "cerro?r?" "Console.error" ri
+console.error($1)
+endsnippet
+
+# ----------------------------------------------------------------------------
+# ECMAScript 2015 Goodies:
+# ----------------------------------------------------------------------------
 
 global !p
 def has_multiple_args(string):
@@ -48,29 +107,61 @@ def parenthesised_already(string):
 
 def paren():
 	if has_multiple_args(t[1]) and not parenthesised_already(t[1]):
-		t[1] = "(%s)" % t[1]
+		t[1] = "(%s" % t[1]
+		snip.rv = ")"
 
 def already_braced():
-	cb = vim.current.buffer
+	cb = snip.buffer
 	row = snip.snippet_start[0]
 	line = cb[row]
 	return line.endswith("{")
 
-def brace():
+def open_brace():
 	if already_braced():
 		return
 	snip.shift(1)
 	m = snip.mkline
 	if "\n" in t[2]:
-		t[2] = "{\n" + m() + t[2] + "\n" + m() + "return\n"
-		snip.unshift(1)
-		t[2] += m() + "}"
+		t[2] = "{\n" + m(t[2]) + m()
+		snip.rv = "\n" + m("return ")
 	pass
 
+def close_brace():
+	# snip.rv = already_braced()
+	if not already_braced():
+		return
+	if "\n" in t[2]:
+		snip.unshift(1)
+		snip.rv = "\n" + snip.mkline("}")
 endglobal
 
-snippet f "Function"  b!
-${1:arg} => `!p paren()`$2`!p brace()`$3
+
+snippet l "let"  w
+let ${1:variable} = ${2:${VISUAL:value}}
+endsnippet
+
+snippet f "Function"  bm
+${1:arg}`!p paren()` => $2`!p open_brace()`$3`!p close_brace()`
+endsnippet
+
+# Match only if there are is a backtick on the current line:
+# For use with template literals.
+snippet s "String Interpolation" "re.match('^.*`', snip.buffer[snip.line])" we
+${${1:expression}}
+endsnippet
+
+snippet "err?o?r" "throw Error" r
+throw new Error("${1:error message}")
+endsnippet
+
+# ----------------------------------------------------------------------------
+# Promises:
+# ----------------------------------------------------------------------------
+
+snippet promise "Create a new Promise object"  b
+let ${1:promise} = new Promise((resolve, reject) => {
+	$2
+})
 endsnippet
 
 # vim: ft=snippets :
