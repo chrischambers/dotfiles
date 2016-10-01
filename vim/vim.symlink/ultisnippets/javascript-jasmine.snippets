@@ -1,0 +1,47 @@
+snippet "descr?i?b?e?" "Describe (Jasmine)"  r
+describe("${1:something}", () => {
+	$2
+})
+endsnippet
+
+snippet it "It (Jasmine)"  b
+it("${1:something}", function() {
+	$2
+})
+endsnippet
+
+snippet "(?<!\w)ex?" "Expect (Jasmine)"  r
+expect($1).$2
+endsnippet
+
+snippet "befo?r?e?" "Before Each (Jasmine)" r
+beforeEach(function() {
+	this.$1
+});$0
+endsnippet
+
+snippet "afte?r?" "After Each (Jasmine)" r
+afterEach(function() {
+	this.$1
+});$0
+endsnippet
+
+snippet "befo?r?e?al?l?" "Before All (Jasmine)" r
+beforeAll(function() {
+	$0
+});
+endsnippet
+
+snippet "afte?r?al?l?" "After All (Jasmine)" r
+afterAll(function() {
+	$0
+});
+endsnippet
+
+snippet any "Any (Jasmine)" w
+jasmine.any($1)
+endsnippet
+
+# Sources:
+# https://gist.github.com/traviskaufman/11131303#better-jasmine-tests-with-this
+# http://stackoverflow.com/questions/38915090/are-arrow-functions-recommended-in-jasmine-test-cases 

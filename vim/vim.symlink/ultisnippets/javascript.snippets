@@ -1,8 +1,17 @@
+extends javascript-jasmine
+
 snippet def "function"  b!
 let ${1:name} = function ($2) {
 	"use strict";
 	$3
 };
+endsnippet
+
+snippet iife "Instantly Invoked Function Expression (IIFE)"  b
+;(function () {
+	'use strict'
+	$0
+}())
 endsnippet
 
 # ----------------------------------------------------------------------------
@@ -140,7 +149,7 @@ snippet l "let"  w
 let ${1:variable} = ${2:${VISUAL:value}}
 endsnippet
 
-snippet f "Function"  bm
+snippet f "Function" w
 ${1:arg}`!p paren()` => $2`!p open_brace()`$3`!p close_brace()`
 endsnippet
 
@@ -163,5 +172,21 @@ let ${1:promise} = new Promise((resolve, reject) => {
 	$2
 })
 endsnippet
+
+# ----------------------------------------------------------------------------
+# jQuery:
+# ----------------------------------------------------------------------------
+
+snippet j "jQuery" w
+$("$1")$0
+endsnippet
+
+snippet domready "jQuery DOMready"  b
+jQuery(function () {
+	$0
+})
+endsnippet
+
+# add ajax snippet here
 
 # vim: ft=snippets :
