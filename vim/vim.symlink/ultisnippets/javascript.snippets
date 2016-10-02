@@ -144,13 +144,12 @@ def close_brace():
 		snip.rv = "\n" + snip.mkline("}")
 endglobal
 
+snippet f "Function" w
+${1:arg}`!p paren()` => $2`!p open_brace()`$3`!p close_brace()`
+endsnippet
 
 snippet l "let"  w
 let ${1:variable} = ${2:${VISUAL:value}}
-endsnippet
-
-snippet f "Function" w
-${1:arg}`!p paren()` => $2`!p open_brace()`$3`!p close_brace()`
 endsnippet
 
 # Match only if there are is a backtick on the current line:
