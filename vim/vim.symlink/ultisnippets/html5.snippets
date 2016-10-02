@@ -10,7 +10,7 @@ snippet doctype "HTML - 5.0 (doctype)" b
 endsnippet
 
 ###########
-#  Other  #
+#	Other	#
 ###########
 
 snippet img "<img>" w
@@ -20,90 +20,90 @@ endsnippet
 snippet stub "HTML5 stub"
 <!DOCTYPE html>
 <html lang="${1:en}">
-  <head>
-    <title>${2:`!p snip.rv = snip.basename or "Page Title"`}</title>
-    <meta charset="utf-8" />
-  </head>
+	<head>
+		<title>${2:`!p snip.rv = snip.basename or "Page Title"`}</title>
+		<meta charset="utf-8" />
+	</head>
 
-  <body>
-    <header>
-      ${3}
-    </header>
-     $0
-    <footer>
-      ${4}
-    </footer>
-  </body>
+	<body>
+		<header>
+			${3}
+		</header>
+			$0
+		<footer>
+			${4}
+		</footer>
+	</body>
 </html>
 endsnippet
 
 snippet head "<head>"
 <head>
-  <title>${1:`!p snip.rv = snip.basename or "Page Title"`}</title>
-  <meta charset="utf-8" />
-  $2
+	<title>${1:`!p snip.rv = snip.basename or "Page Title"`}</title>
+	<meta charset="utf-8" />
+	$2
 </head>
 $0
 endsnippet
 
-snippet feed "Atom Feed"  b!
+snippet feed "Atom Feed" b!
 <link rel="alternate" type="application/atom+xml"
-      ${3:hreflang="${4:en}"}
-      title="${1:My Weblog feed}"
-      href="${2:/feed/}" />
+			${3:hreflang="${4:en}"}
+			title="${1:My Weblog feed}"
+			href="${2:/feed/}" />
 $0
 endsnippet
 
-snippet section "Section"  b!
+snippet section "Section" b!
 <section`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
-  $2
+	$2
 </section>
 $0
 endsnippet
 
-snippet nav "Nav"  b!
+snippet nav "Nav" b!
 <nav`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
-  $2
+	$2
 </nav>
 $0
 endsnippet
 
-snippet article "Article"  b!
+snippet article "Article" b!
 <article`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
-  $2
+	$2
 </article>
 $0
 endsnippet
 
-snippet aside "Aside"  b!
+snippet aside "Aside" b!
 <aside`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
-  $2
+	$2
 </aside>
 $0
 endsnippet
 
-snippet header "Header"  b!
+snippet header "Header" b!
 <header>
 $1
 </header>
 $0
 endsnippet
 
-snippet footer "Footer"  b!
+snippet footer "Footer" b!
 <footer>
 $0
 </footer>
 endsnippet
 
-snippet mark "Marked text (highlighted)"  w!
+snippet mark "Marked text (highlighted)"	w!
 <mark>${VISUAL}$1</mark>$0
 endsnippet
 
-snippet time "Time Element"  w!
+snippet time "Time Element"	w!
 <time datetime="${1:`!p from datetime import datetime; snip.rv = datetime.now().strftime('%Y-%m-%dT%H:%M:%S%z')`}">
-  ${2:`!p
+	${2:`!p
 if not snip.c:
-  snip.rv = datetime.strptime(t[1], '%Y-%m-%dT%H:%M:%S').strftime('%A, %d, %Y @ %I:%M:%S%p')`}
+	snip.rv = datetime.strptime(t[1], '%Y-%m-%dT%H:%M:%S').strftime('%A, %d, %Y @ %I:%M:%S%p')`}
 <time>
 $0
 endsnippet
