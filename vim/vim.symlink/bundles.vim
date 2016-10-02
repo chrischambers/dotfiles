@@ -80,5 +80,6 @@ NeoBundle 'Konfekt/FastFold'
 
 NeoBundle 'mbbill/vim-seattle'
 
+NeoBundle 'pangloss/vim-javascript'
 
 call neobundle#end()

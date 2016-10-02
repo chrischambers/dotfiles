@@ -38,6 +38,8 @@ hi clear SpellCap
 hi SpellBad ctermbg=52 gui=undercurl guisp=#FF5522
 hi SpellCap ctermbg=53 gui=undercurl guisp=SlateBlue
 hi SpellRare ctermbg=55 gui=undercurl guisp=purple
+hi clear Conceal
+hi Conceal guibg=#262626
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
