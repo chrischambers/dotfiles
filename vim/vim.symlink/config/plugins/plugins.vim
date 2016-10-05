@@ -101,7 +101,7 @@ if globpath(&rtp, 'plugin/neocomplete.vim') != ''
   " Enable omni completion.
   autocmd VimrcAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd VimrcAutoCmd FileType htmldjango,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd VimrcAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd VimrcAutoCmd FileType javascript setlocal omnifunc=tern#Complete
   autocmd VimrcAutoCmd FileType python setlocal omnifunc=jedi#completions
   autocmd VimrcAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -300,4 +300,5 @@ let g:miniBufExplBuffersNeeded = 0
 " --------------------------------------------------------------------------
 " }}}
 
+let g:tern_show_argument_hints = 'on_hold'
 " vim: expandtab softtabstop=2 shiftwidth=2

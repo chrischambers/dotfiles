@@ -82,5 +82,6 @@ NeoBundle 'Konfekt/FastFold'
 NeoBundle 'mbbill/vim-seattle'
 
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'ternjs/tern_for_vim'
 
 call neobundle#end()
