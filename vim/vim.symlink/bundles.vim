@@ -11,7 +11,8 @@ if has('vim_starting')
   call neobundle#begin(expand('~/.bundle'))
 endif
 
-NeoBundle 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 " NeoBundle 'Shougo/vimshell'
