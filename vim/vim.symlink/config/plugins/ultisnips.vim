@@ -6,8 +6,10 @@ if globpath(&rtp, 'plugin/UltiSnips.vim') != ''
   " ---------
   let g:UltiSnipsSnippetsDir = g:vimfiles . '/ultisnippets'
   let g:UltiSnipsSnippetDirectories = [
-  \    g:vimfiles . '/ultisnippets'
+  \    g:vimfiles . '/ultisnippets', 'ultisnippets'
   \ ]
+  " Second list item is a workaround for the following:
+  " https://github.com/SirVer/ultisnips/issues/711
 
   " ---------
   " Mappings:
