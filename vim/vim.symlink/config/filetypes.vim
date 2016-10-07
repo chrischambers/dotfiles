@@ -30,7 +30,9 @@ endif
 if has("autocmd")
   augroup javascript_setup
     au!
-    autocmd BufRead,BufNewFile *.js setl ft=javascript foldmethod=syntax conceallevel=1 concealcursor=nvic
+    autocmd BufRead,BufNewFile *.js setl ft=javascript foldmethod=syntax
+          \ conceallevel=1 concealcursor=nvic
+          \ expandtab softtabstop=2 shiftwidth=2 nowrap
     autocmd BufRead,BufNewFile jquery.*.js setl ft=jquery.javascript syntax=jquery
     let g:javascript_conceal_function       = "λ"
     let g:javascript_conceal_null           = "ø"
