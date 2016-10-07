@@ -82,6 +82,19 @@ NeoBundle 'Konfekt/FastFold'
 NeoBundle 'mbbill/vim-seattle'
 
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'ternjs/tern_for_vim'
+NeoBundle 'ternjs/tern_for_vim', {
+  \ 'build' : {
+  \     'mac' : 'npm install --update',
+  \     'unix' : 'npm install --update',
+  \    },
+  \ }
+
+NeoBundle 'Rykka/colorv.vim'
+NeoBundle 'bigfish/vim-js-context-coloring', {
+  \ 'build' : {
+  \     'mac' : 'npm install --update',
+  \     'unix' : 'npm install --update',
+  \    },
+  \ }
 
 call neobundle#end()
