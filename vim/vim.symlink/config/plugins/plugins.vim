@@ -300,5 +300,24 @@ let g:miniBufExplBuffersNeeded = 0
 " --------------------------------------------------------------------------
 " }}}
 
+" Tern For Vim Options: {{{
+" --------------------------------------------------------------------------
 let g:tern_show_argument_hints = 'on_hold'
+" --------------------------------------------------------------------------
+" }}}
+
+" Netrw Options: {{{
+" --------------------------------------------------------------------------
+" Make sure "gx" works properly on linux:
+
+if g:is_linux
+  let g:netrw_browsex_viewer='firefox'
+  " Use whole "words" when opening URLs.
+  " This avoids cutting off parameters (after '?') and anchors (after '#').
+  " See http://vi.stackexchange.com/q/2801/1631
+  let g:netrw_gx="<cWORD>"
+endif
+" --------------------------------------------------------------------------
+" }}}
+
 " vim: expandtab softtabstop=2 shiftwidth=2
