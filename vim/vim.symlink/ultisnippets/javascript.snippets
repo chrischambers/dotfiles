@@ -8,7 +8,7 @@ let ${1:name} = function ($2) {
 endsnippet
 
 snippet iife "Instantly Invoked Function Expression (IIFE)"  b
-;(function () {
+(function () {
 	'use strict'
 	$0
 }())
@@ -80,10 +80,10 @@ for (let ${1:item} of ${2:iterable}) {
 }
 endsnippet
 
-snippet for "For item in object"  b
-for (${1:item} in ${2:obj}) {
-	if (obj.hasOwnProperty(item)) {
-		${3:VISUAL}
+snippet for "For key in object"  b
+for (${1:key} in ${2:obj}) {
+	if ($2.hasOwnProperty($1)) {
+		${3:${VISUAL}}
 	}
 }
 endsnippet
@@ -126,26 +126,23 @@ def already_braced():
 	return line.endswith("{")
 
 def open_brace():
-	if already_braced():
-		return
-	snip.shift(1)
-	m = snip.mkline
-	if "\n" in t[2]:
-		t[2] = "{\n" + m(t[2]) + m()
-		snip.rv = "\n" + m("return ")
+	if t[2] and "\n" in t[2][0]:
+		snip.rv = "{\n"
 	pass
 
+def add_return_statement():
+	if t[2] and "\n" in t[2][0]:
+		snip.shift(1)
+		snip.rv = "\n" + snip.mkline("return ")
+
 def close_brace():
-	# snip.rv = already_braced()
-	if not already_braced():
-		return
-	if "\n" in t[2]:
+	if t[2] and "\n" in t[2][0]:
 		snip.unshift(1)
 		snip.rv = "\n" + snip.mkline("}")
 endglobal
 
 snippet f "Function" w
-${1:arg}`!p paren()` => $2`!p open_brace()`$3`!p close_brace()`
+${1:arg}`!p paren()` => `!p open_brace()`$2`!p add_return_statement()`$3`!p close_brace()`
 endsnippet
 
 snippet l "let"  w
