@@ -97,5 +97,6 @@ NeoBundle 'bigfish/vim-js-context-coloring', {
   \    },
   \ }
 NeoBundle 'elzr/vim-json'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
 
 call neobundle#end()
