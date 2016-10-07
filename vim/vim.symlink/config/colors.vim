@@ -27,19 +27,17 @@ let g:jellybeans_overrides = {
 \                      'ctermfg': 'blue', 'ctermbg': '234' },
 \    'CursorLine':   { 'guifg': '222222', 'guibg': 'bcff7a',
 \                      'ctermfg': '222222', 'ctermbg': 'bcff7a' },
+\    'SpellBad':     { 'guisp': 'FF5522', 'guibg': '151515', 
+\                      'attr': 'undercurl', 'ctermbg': '52' },
+\    'SpellCap':     { 'guisp': 'SlateBlue', 'guibg': '151515', 
+\                      'attr': 'undercurl', 'ctermbg': '53' },
+\    'SpellRare':     { 'guisp': 'purple', 'guibg': '151515', 
+\                      'attr': 'undercurl', 'ctermbg': '55' },
+\    'Conceal':      { 'guibg': '262626'},
 \}
 
 colorscheme jellybeans
 
-hi clear SpellBad
-hi clear SpellLocal
-hi clear SpellRare
-hi clear SpellCap
-hi SpellBad ctermbg=52 gui=undercurl guisp=#FF5522
-hi SpellCap ctermbg=53 gui=undercurl guisp=SlateBlue
-hi SpellRare ctermbg=55 gui=undercurl guisp=purple
-hi clear Conceal
-hi Conceal guibg=#262626
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
