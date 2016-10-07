@@ -96,5 +96,6 @@ NeoBundle 'bigfish/vim-js-context-coloring', {
   \     'unix' : 'npm install --update',
   \    },
   \ }
+NeoBundle 'elzr/vim-json'
 
 call neobundle#end()
