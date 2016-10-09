@@ -36,6 +36,38 @@ endif
 
 " neocomplete settings {{{
 if globpath(&rtp, 'plugin/neocomplete.vim') != ''
+
+  " ============================================================================
+  " Stolen from the following to make jspc work:
+  " https://github.com/davidosomething/dotfiles/blob/master/vim/plugin/completion.vim
+  " ============================================================================
+  let s:REGEX = {}
+  let s:REGEX.any_word        = '\h\w*'
+  let s:REGEX.nonspace        = '[^-. \t]'
+  let s:REGEX.nonspace_dot    = s:REGEX.nonspace . '\.\w*'
+  let s:REGEX.nonspace_arrow  = s:REGEX.nonspace . '->\w*'
+  let s:REGEX.word_scope_word = s:REGEX.any_word . '::\w*'
+
+  " For jspc.vim
+  let s:REGEX.keychar   = '\k\zs \+'
+  let s:REGEX.parameter = s:REGEX.keychar . '\|' . '(' . '\|' . ':'
+
+  " ----------------------------------------------------------------------------
+  " Regexes to use completion engine
+  " See plugins sections too (e.g. phpcomplete and jspc)
+  " ----------------------------------------------------------------------------
+
+  " Neocomplete
+  " - String or list of vim regex
+  let s:neo_patterns = {}
+  "
+" javascript
+" default: https://github.com/Shougo/neocomplete.vim/blame/34b42e76be30c0f365110ea036c8490b38fcb13e/autoload/neocomplete/sources/omni.vim
+let s:neo_patterns.javascript =
+\          s:REGEX.any_word
+\ . '\|' . s:REGEX.nonspace_dot
+  " ============================================================================
+
   " Note: now requires jedi-vim. Make sure you install jedi in your global
   " python site-packages.
 
@@ -101,7 +133,7 @@ if globpath(&rtp, 'plugin/neocomplete.vim') != ''
   " Enable omni completion.
   autocmd VimrcAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd VimrcAutoCmd FileType htmldjango,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd VimrcAutoCmd FileType javascript setlocal omnifunc=tern#Complete
+  " autocmd VimrcAutoCmd FileType javascript setlocal omnifunc=tern#Complete
   autocmd VimrcAutoCmd FileType python setlocal omnifunc=jedi#completions
   autocmd VimrcAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -110,6 +142,7 @@ if globpath(&rtp, 'plugin/neocomplete.vim') != ''
 
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
+    call extend(g:neocomplete#sources#omni#input_patterns, s:neo_patterns)
   endif
 
   if !exists('g:neocomplete#force_omni_input_patterns')
@@ -125,6 +158,14 @@ if globpath(&rtp, 'plugin/neocomplete.vim') != ''
   call neocomplete#custom#source('python', 'sorters', [])
   let g:neocomplete#force_omni_input_patterns.python =
       \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
+  if !exists('g:neocomplete#sources#omni#functions')
+    let g:neocomplete#sources#omni#functions = {}
+    let g:neocomplete#sources#omni#functions.javascript = [
+        \   'jspc#omni',
+        \   'tern#Complete',
+        \ ]
+    endif
 endif
 
 let g:jedi#completions_enabled = 0
