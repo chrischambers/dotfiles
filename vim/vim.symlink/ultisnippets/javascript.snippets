@@ -14,6 +14,10 @@ snippet iife "Instantly Invoked Function Expression (IIFE)"  b
 }())
 endsnippet
 
+snippet "\b(re|ret|retu|retur|return)" "return statement"  r
+return $0
+endsnippet
+
 # ----------------------------------------------------------------------------
 # require.js
 # ----------------------------------------------------------------------------
@@ -99,7 +103,7 @@ snippet clog "Console.log" i
 console.log($1)
 endsnippet
 
-snippet "cerro?r?" "Console.error" ri
+snippet "cerr?o?r?" "Console.error" ri
 console.error($1)
 endsnippet
 
@@ -155,8 +159,27 @@ snippet s "String Interpolation" "re.match('^.*`', snip.buffer[snip.line])" we
 ${${1:expression}}
 endsnippet
 
-snippet "err?o?r" "throw Error" r
+snippet "\ber?r?o?r" "throw Error" r
 throw new Error("${1:error message}")
+endsnippet
+
+snippet class "" b
+class ${1:Foo}${2: extends ${3:Something}} {
+	${4:constructor (${5:...args}) {
+		super($5)$6
+	}}
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet "met?h?o?d?" "class method" r
+${1:name} ($2) {
+	${0:${VISUAL}}
+}
+endsnippet
+
+snippet "\b(im|imp|impo|impor|import)" "import statement" r
+import { $1 } from '$2'
 endsnippet
 
 # ----------------------------------------------------------------------------
