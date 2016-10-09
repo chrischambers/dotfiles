@@ -62,7 +62,7 @@ NeoBundle 'techlivezheng/vim-plugin-minibufexpl'
 NeoBundle 'groenewege/vim-less'
 
 NeoBundleLazy 'scrooloose/nerdtree'
-NeoBundleLazy 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 
 NeoBundleLazy 'guns/xterm-color-table.vim'
 
