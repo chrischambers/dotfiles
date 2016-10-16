@@ -9,6 +9,11 @@ if [[ -n $BASH_VERSION ]] && [[ -f /opt/local/etc/bash_completion ]]; then
     . /opt/local/etc/bash_completion
 fi
 
+# Install GNU utilities for find, xargs and locate via `port install findutils`:
+alias find='/opt/local/bin/gfind'
+alias xargs='/opt/local/bin/gxargs'
+alias locate='/opt/local/bin/glocate'
+alias updatedb='/opt/local/bin/gupdatedb'
 # ----------------------------------------------------------------------------
 # Mysql Configuration (via Macports): {{{
 # -----------------------------------
