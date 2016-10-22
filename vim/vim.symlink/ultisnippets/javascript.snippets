@@ -14,8 +14,8 @@ snippet iife "Instantly Invoked Function Expression (IIFE)"  b
 }())
 endsnippet
 
-snippet "\b(re|ret|retu|retur|return)" "return statement"  r
-return $0
+snippet "^(\s+)(return|retur|retu|ret|re|r)" "return statement"  r
+`!p snip.rv = match.group(1)`return $0
 endsnippet
 
 # ----------------------------------------------------------------------------
@@ -131,7 +131,7 @@ def already_braced():
 
 def open_brace():
 	if t[2] and "\n" in t[2][0]:
-		snip.rv = "{\n"
+		snip.rv = "{"
 	pass
 
 def add_return_statement():
@@ -149,8 +149,12 @@ snippet f "Function" w
 ${1:arg}`!p paren()` => `!p open_brace()`$2`!p add_return_statement()`$3`!p close_brace()`
 endsnippet
 
-snippet l "let"  w
-let ${1:variable} = ${2:${VISUAL:value}}
+snippet "\ble?t?" "let"  r
+let ${1:variable} = $0
+endsnippet
+
+snippet "\bco?n?s?t?" "const"  r
+const ${1:variable} = $0
 endsnippet
 
 # Match only if there are is a backtick on the current line:
@@ -178,7 +182,7 @@ ${1:name} ($2) {
 }
 endsnippet
 
-snippet "\b(im|imp|impo|impor|import)" "import statement" r
+snippet "^(import|impor|impo|imp|im|i)" "import statement" r
 import { $1 } from '$2'
 endsnippet
 
