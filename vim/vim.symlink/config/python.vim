@@ -6,3 +6,6 @@ if has("python")
 endif
 " --------------------------------------------------------------------------
 " }}}
+
+let g:jedi#rename_command = ""
+" let g:jedi#goto_assignments_command = ""
