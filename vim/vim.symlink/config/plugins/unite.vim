@@ -143,7 +143,7 @@ nnoremap <silent> <leader>r :<C-u>Unite
 " ignore recursing into node_modules and bower_components - far too bulky for
 " large JS projects:
 call unite#custom#source('file_rec/async', 'ignore_globs',
-      \ ['./node_modules/**', './bower_components/**'])
+      \ ['./node_modules/**', './bower_components/**', './tmp/**'])
 "
 " --------------------------------------------------------------------------
 
