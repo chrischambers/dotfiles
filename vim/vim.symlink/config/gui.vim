@@ -8,7 +8,7 @@ if has("gui_running")
     if g:is_mac
       set guifont=Source\ Code\ Pro:h11,Andale\ Mono:h12,Consolas\ 9,Liberation\ Mono\ 8
     elseif g:is_linux
-      set guifont=Droid\ Sans\ Mono\ 10
+      set guifont=Droid\ Sans\ Mono\ 11
     elseif g:is_win
       set guifont=Consolas:h11:cANSI,Dina:h8:cANSI
       set columns=95 lines=48
