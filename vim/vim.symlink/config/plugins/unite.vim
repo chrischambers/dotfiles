@@ -139,6 +139,12 @@ nnoremap <silent> <leader>r :<C-u>Unite
 " Because, "find" command is fastest.
 " Note: In windows environment, you must install file list
 " command and specify the variable.
+
+" ignore recursing into node_modules and bower_components - far too bulky for
+" large JS projects:
+call unite#custom#source('file_rec/async', 'ignore_globs',
+      \ ['./node_modules/**', './bower_components/**'])
+"
 " --------------------------------------------------------------------------
 
 nnoremap <silent> <leader>f :<C-u>Unite
