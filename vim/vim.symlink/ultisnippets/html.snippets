@@ -1,4 +1,4 @@
-extends xhtml, html5
+extends xhtml, html5, html.handlebars
 
 priority -50
 
@@ -92,7 +92,7 @@ endsnippet
 # HTML TAGS #
 #############
 snippet t "Tag"  b!
-<${1:div}>${VISUAL}$2</${1/(\w+).*/\$1/}>
+<${1:div}>${VISUAL}$2</${1/(\w\+).*/\$1/}>
 endsnippet
 
 snippet input "Input with Label" w
@@ -107,9 +107,9 @@ endsnippet
 
 snippet select "Select Box" w
 <select name="${1:some_name}" id="${2:$1}"${3:${4: multiple}${5: onchange="${6:}"}${7: size="${8:1}"}}>
-  <option${9: value="${10:option1}"}>${11:$10}</option>
-  <option${12: value="${13:option2}"}>${14:$13}</option>${15:}
-  $16
+	<option${9: value="${10:option1}"}>${11:$10}</option>
+	<option${12: value="${13:option2}"}>${14:$13}</option>${15:}
+	$16
 </select>
 $0
 endsnippet
@@ -126,14 +126,14 @@ snippet body "<body>"
 <body id="${1:`!p
 snip.rv = snip.fn and 'Hallo' or 'Nothin'
 `}"${2: onload="$3"}>
-  $0
+	$0
 </body>
 endsnippet
 
 snippet div "<div>" b
 <div`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""``!p snip.rv=' class="' if t[2] else ""`${2:name}`!p snip.rv = '"' if t[2] else ""`>
-  ${VISUAL}$0
-</div>
+	${VISUAL}$3
+</div>$0
 endsnippet
 
 snippet a "Link" w
@@ -173,22 +173,22 @@ endsnippet
 
 snippet fieldset "Fieldset" w
 <fieldset id="${1/[\w\d]+|( )/(?1:_:\L$0\E)/g}" ${2:class="${3:}"}>
-  <legend>$1</legend>
-  $0
+	<legend>$1</legend>
+	$0
 </fieldset>
 endsnippet
 
 snippet movie "Embed QT movie (movie)" b
 <object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-  <param name="src" value="$1"`!p x(snip)`>
-  <param name="controller" value="$4"`!p x(snip)`>
-  <param name="autoplay" value="$5"`!p x(snip)`>
-  <embed src="${1:movie.mov}"
-    width="${2:320}" height="${3:240}"
-    controller="${4:true}" autoplay="${5:true}"
-    scale="tofit" cache="true"
-    pluginspage="http://www.apple.com/quicktime/download/"
-  `!p x(snip)`>
+	<param name="src" value="$1"`!p x(snip)`>
+	<param name="controller" value="$4"`!p x(snip)`>
+	<param name="autoplay" value="$5"`!p x(snip)`>
+	<embed src="${1:movie.mov}"
+		width="${2:320}" height="${3:240}"
+		controller="${4:true}" autoplay="${5:true}"
+		scale="tofit" cache="true"
+		pluginspage="http://www.apple.com/quicktime/download/"
+	`!p x(snip)`>
 </object>
 endsnippet
 
@@ -209,7 +209,7 @@ endsnippet
 
 snippet css "inline" b
 <style type="text/css">
-  $1
+	$1
 </style>
 $0
 endsnippet
@@ -221,15 +221,15 @@ endsnippet
 
 snippet js "inline" b
 <script type="text/javascript">
-  ${1:$(function() {
-    $2
-  });}
+	${1:$(function() {
+		$2
+	});}
 </script>
 endsnippet
 
 snippet form "Form stub" b!
 <form ${1:enctype="multipart/form-data" }method="${2:post}" action="${3:.}">
-  $4
+	$4
 </form>$0
 endsnippet
 
@@ -250,6 +250,22 @@ endsnippet
 snippet clear
 <div class="clear">&nbsp;</div>
 $0
+endsnippet
+
+snippet h1 "h1"  b
+<h1>$1</h1>$0
+endsnippet
+
+snippet h2 "h2"  b
+<h2>$1</h2>$0
+endsnippet
+
+snippet h3 "h3"  b
+<h3>$1</h3>$0
+endsnippet
+
+snippet em "Emphasis" w
+<em>$1</em>$0
 endsnippet
 
 # vim:ft=snippets:

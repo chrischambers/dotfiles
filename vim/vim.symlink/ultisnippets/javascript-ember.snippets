@@ -1,0 +1,41 @@
+snippet test "Create an ember test"  b
+test('${1:description}', assert => {
+	$2
+})$0
+endsnippet
+
+snippet v "Visit"  b
+visit('${1:/}')
+endsnippet
+
+snippet and "andThen"  b
+andThen(() => {
+	$1
+})
+endsnippet
+
+snippet a "assert"  b
+assert
+endsnippet
+
+snippet ase "assert equal"  b
+assert.equal(${1:actual}, ${2:expected},
+	'${3:message}')
+endsnippet
+
+snippet cl "click"  b
+click('a:contains("${1:TextContent}")')
+endsnippet
+
+snippet curl "CurrentURL" w
+currentURL()
+endsnippet
+
+snippet find "find function"  w
+find('${1:css-selector expr}')$0
+endsnippet
+
+snippet 'att?r?' "DS.attr()"  r
+DS.attr()
+endsnippet
+

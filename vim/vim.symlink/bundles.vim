@@ -100,4 +100,6 @@ NeoBundle 'elzr/vim-json'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'othree/jspc.vim'
 
+NeoBundle 'mustache/vim-mustache-handlebars'
+
 call neobundle#end()

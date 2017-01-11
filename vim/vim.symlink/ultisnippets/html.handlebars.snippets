@@ -1,0 +1,30 @@
+snippet { "handlebars"  i
+{{$1}}$0
+endsnippet
+
+snippet b "handlebars block"  b
+{{#${1:link-to}$2}}
+	$3
+{{/$1}}$0
+endsnippet
+
+snippet link "link-to"  b
+{{#link-to '${1:routename}'${2: class='button'}}}
+	$3
+{{/link-to}}$0
+endsnippet
+
+snippet each "each"  b
+{{#each ${1:model} as |${2:varname}|}}
+	$3
+{{/each}}$0
+endsnippet
+
+snippet if "if" w
+{{if ${1:condition} ${2:value}}}$0
+endsnippet
+
+snippet action "action" w
+{{action '${1:action-name}'}}$0
+endsnippet
+

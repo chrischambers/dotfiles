@@ -80,6 +80,7 @@ if has("autocmd")
       setl expandtab softtabstop=2 shiftwidth=2 nowrap
     endfun
     au FileType htmldjango,htmldjango.*,html call Html_fold()
+    au FileType html.handlebars call Html_fold()
   augroup END
 endif
 " --------------------------------------------------------------------------
