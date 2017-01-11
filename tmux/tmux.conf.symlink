@@ -78,8 +78,8 @@ set -g mouse-select-pane on
 set -g mouse-select-window on
 
 # Panes:
-set -g pane-border-fg colour235
-set -g pane-active-border-fg colour235
+set -g pane-border-fg colour240
+set -g pane-active-border-fg colour229
 
 # Informational messages:
 set -g message-bg colour234
