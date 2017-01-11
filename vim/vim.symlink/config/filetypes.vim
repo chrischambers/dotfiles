@@ -46,6 +46,9 @@ if has("autocmd")
     " let g:javascript_conceal_arrow_function = "⇒"
   augroup END
 endif
+
+let g:js_context_colors_enabled = 0
+"
 " --------------------------------------------------------------------------
 " }}}
 " --------------------------------------------------------------------------
