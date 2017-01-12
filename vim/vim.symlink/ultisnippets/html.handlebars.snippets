@@ -15,8 +15,8 @@ snippet link "link-to"  b
 endsnippet
 
 snippet each "each"  b
-{{#each ${1:model} as |${2:varname}|}}
-	$3
+{{#each ${1:model} as |${2:varname}${3: ${4:index}}|}}
+	$5
 {{/each}}$0
 endsnippet
 
@@ -27,4 +27,3 @@ endsnippet
 snippet action "action" w
 {{action '${1:action-name}'}}$0
 endsnippet
-

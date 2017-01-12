@@ -39,3 +39,26 @@ snippet 'att?r?' "DS.attr()"  r
 DS.attr()
 endsnippet
 
+snippet create "Ember.Object.create" w
+Ember.Object.create({
+	$1
+})$0
+endsnippet
+
+snippet extend "extend" w
+extend({
+	$1
+})$0
+endsnippet
+
+snippet bind "1-way" w
+Ember.computed.oneWay('${1:user.property}')$0
+endsnippet
+
+snippet bind "2-way" w
+Ember.computed.alias('${1:user.property}')$0
+endsnippet
+
+snippet mget "model-get" w
+${1:varname}: this.get('store').findAll('${2:$1}'),
+endsnippet
