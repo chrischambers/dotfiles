@@ -13,12 +13,12 @@ endsnippet
 snippet ifmain "If name == main" b!
 $0
 if __name__ == '__main__':
-    main()
+	main()
 endsnippet
 
 snippet def "Function Definition" b!
 def ${1:fname}(`!v indent(search('^ \{-}def [^:]*: \{-}$', 'bcWn')) ? 'self' : ''`$2):
-    ${3:pass}
+	${3:pass}
 $0
 endsnippet
 # `!v search('(self', '', line('.')) ? ', ' : ''`
@@ -36,7 +36,7 @@ import sys, traceback
 
 exc_type, exc_value, tb = sys.exc_info()
 error_output = "Type: <%s>\n%s\n\nTraceback:\n%s" % (
-    exc_type.__name__, exc_value, "\n".join(traceback.format_tb(tb))
+	exc_type.__name__, exc_value, "\n".join(traceback.format_tb(tb))
 )
 endsnippet
 
@@ -49,7 +49,7 @@ endsnippet
 # Os: {{{
 snippet walk
 for path, dirs, files in os.walk('${1:relevant/path}'):
-    $0
+	$0
 endsnippet
 # }}}
 
@@ -57,9 +57,9 @@ endsnippet
 snippet shell "Open a shell subprocess" b
 import subprocess
 proc = subprocess.Popen(
-    '${1:command}',
-    shell=True,
-    stdout=subprocess.PIPE
+	'${1:command}',
+	shell=True,
+	stdout=subprocess.PIPE
 )
 out, returned = proc.communicate()
 endsnippet
@@ -70,12 +70,12 @@ snippet distsetup "Distuils Setup" b
 from distutils.core import setup
 
 setup(
-    name="$1",
-    version=${2:1.0},
-    description="$3",
-    author="`!v g:user_name`",
-    author_email="`!v g:user_email`",
-    py_modules=["$4"],
+	name="$1",
+	version=${2:1.0},
+	description="$3",
+	author="`!v g:user_name`",
+	author_email="`!v g:user_email`",
+	py_modules=["$4"],
 )
 endsnippet
 # }}}
@@ -107,77 +107,77 @@ SINGLE_QUOTES = 0x1
 DOUBLE_QUOTES = 0x2
 
 def get_args(arglist):
-    args = [arg.split('=')[0].strip() for arg in arglist.split(',') if arg]
-    args = [arg for arg in args if arg and arg != "self"]
+	args = [arg.split('=')[0].strip() for arg in arglist.split(',') if arg]
+	args = [arg for arg in args if arg and arg != "self"]
 
-    return args
+	return args
 
 
 def get_quoting_style(snip):
-    style = snip.opt("g:ultisnips_python_quoting_style", "double")
-    if style == 'single':
-        return SINGLE_QUOTES
-    return DOUBLE_QUOTES
+	style = snip.opt("g:ultisnips_python_quoting_style", "double")
+	if style == 'single':
+	    return SINGLE_QUOTES
+	return DOUBLE_QUOTES
 
 def triple_quotes(snip):
-    if get_quoting_style(snip) == SINGLE_QUOTES:
-        return "'''"
-    return '"""'
+	if get_quoting_style(snip) == SINGLE_QUOTES:
+	    return "'''"
+	return '"""'
 
 def get_style(snip):
-    style = snip.opt("g:ultisnips_python_style", "normal")
+	style = snip.opt("g:ultisnips_python_style", "normal")
 
-    if    style == "doxygen": return DOXYGEN
-    elif  style == "sphinx": return SPHINX
-    else: return NORMAL
+	if    style == "doxygen": return DOXYGEN
+	elif  style == "sphinx": return SPHINX
+	else: return NORMAL
 
 
 def format_arg(arg, style):
-    if style == DOXYGEN:
-        return "@param %s @todo" % arg
-    elif style == SPHINX:
-        return ":param %s: @todo" % arg
-    elif style == NORMAL:
-        return ":%s: @todo" % arg
+	if style == DOXYGEN:
+	    return "@param %s @todo" % arg
+	elif style == SPHINX:
+	    return ":param %s: @todo" % arg
+	elif style == NORMAL:
+	    return ":%s: @todo" % arg
 
 
 def format_return(style):
-    if style == DOXYGEN:
-        return "@return: @todo"
-    elif style in (NORMAL, SPHINX):
-        return ":returns: @todo"
+	if style == DOXYGEN:
+	    return "@return: @todo"
+	elif style in (NORMAL, SPHINX):
+	    return ":returns: @todo"
 
 
 def write_docstring_args(args, snip):
-    if not args:
-        snip.rv += ' {0}'.format(triple_quotes(snip))
-        return
+	if not args:
+	    snip.rv += ' {0}'.format(triple_quotes(snip))
+	    return
 
-    snip.rv += '\n' + snip.mkline('', indent='')
+	snip.rv += '\n' + snip.mkline('', indent='')
 
-    style = get_style(snip)
+	style = get_style(snip)
 
-    for arg in args:
-        snip += format_arg(arg, style)
+	for arg in args:
+	    snip += format_arg(arg, style)
 
 
 def write_init_body(args, parents, snip):
-    parents = [p.strip() for p in parents.split(",")]
-    parents = [p for p in parents if p != 'object']
+	parents = [p.strip() for p in parents.split(",")]
+	parents = [p for p in parents if p != 'object']
 
-    for p in parents:
-        snip += p + ".__init__(self)"
+	for p in parents:
+	    snip += p + ".__init__(self)"
 
-    if parents:
-        snip.rv += '\n' + snip.mkline('', indent='')
+	if parents:
+	    snip.rv += '\n' + snip.mkline('', indent='')
 
-    for arg in args:
-        snip += "self._%s = %s" % (arg, arg)
+	for arg in args:
+	    snip += "self._%s = %s" % (arg, arg)
 
 
 def write_slots_args(args, snip):
-    args = ['"_%s"' % arg for arg in args]
-    snip += '__slots__ = (%s,)' % ', '.join(args)
+	args = ['"_%s"' % arg for arg in args]
+	snip += '__slots__ = (%s,)' % ', '.join(args)
 
 endglobal
 
@@ -211,22 +211,22 @@ snippet class "smart class" b!
 class ${1:MyClass}(${2:object}):
 ${3:    """${4:Docstring for $1}"""
 }
-    def __init__(self${5/([^,])?(.*)/(?1:, )/}${5:arg}):
+	def __init__(self${5/([^,])?(.*)/(?1:, )/}${5:arg}):
 ${2/object$|(.+)/(?1:        super\($1, self\).__init__\(\)\n\n)/}${5/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2)/g}
 endsnippet
 
 snippet slotclass "class with slots and docstrings" b
 class ${1:MyClass}(${2:object}):
 
-    `!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
+	`!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
 `!p
 snip >> 1
 args = get_args(t[4])
 write_slots_args(args, snip)
 `
 
-    def __init__(self$4):
-        `!p snip.rv = triple_quotes(snip)`${5:@todo: to be defined.}`!p
+	def __init__(self$4):
+		`!p snip.rv = triple_quotes(snip)`${5:@todo: to be defined.}`!p
 snip.rv = ""
 snip >> 2
 
@@ -234,12 +234,12 @@ args = get_args(t[4])
 
 write_docstring_args(args, snip)
 if args:
-    snip.rv += '\n' + snip.mkline('', indent='')
-    snip += triple_quotes(snip)
+	snip.rv += '\n' + snip.mkline('', indent='')
+	snip += triple_quotes(snip)
 
 write_init_body(args, t[2], snip)
 `
-        $0
+		$0
 endsnippet
 
 
@@ -279,7 +279,7 @@ endsnippet
 snippet roprop "Read Only Property" b
 @property
 def ${1:name}(self):
-    ${2:return self._$1}$0
+	${2:return self._$1}$0
 endsnippet
 
 ##########################
@@ -287,38 +287,38 @@ endsnippet
 ##########################
 snippet try "Try / Except" b
 try:
-    ${1:pass}
+	${1:pass}
 except ${2:Exception}, ${3:e}:
-    ${4:raise $3}
+	${4:raise $3}
 endsnippet
 
 snippet try "Try / Except / Else" b
 try:
-    ${1:pass}
+	${1:pass}
 except ${2:Exception}, ${3:e}:
-    ${4:raise $3}
+	${4:raise $3}
 else:
-    ${5:pass}
+	${5:pass}
 endsnippet
 
 snippet try "Try / Except / Finally" b
 try:
-    ${1:pass}
+	${1:pass}
 except ${2:Exception}, ${3:e}:
-    ${4:raise $3}
+	${4:raise $3}
 finally:
-    ${5:pass}
+	${5:pass}
 endsnippet
 
 snippet try "Try / Except / Else / Finally" b
 try:
-    ${1:pass}
+	${1:pass}
 except${2: ${3:Exception}, ${4:e}}:
-    ${5:raise}
+	${5:raise}
 else:
-    ${6:pass}
+	${6:pass}
 finally:
-    ${7:pass}
+	${7:pass}
 endsnippet
 
 
@@ -352,18 +352,18 @@ endsnippet
 
 snippet testcase "testcase" b
 class Test${1:Class}(${2:unittest.TestCase}):
-    ${3:`!p snip.rv = triple_quotes(snip)`${4:Test case docstring.}`!p snip.rv = triple_quotes(snip)`}
+	${3:`!p snip.rv = triple_quotes(snip)`${4:Test case docstring.}`!p snip.rv = triple_quotes(snip)`}
 
-    def setUp(self):
-        ${5:pass}
+	def setUp(self):
+		${5:pass}
 
-    def tearDown(self):
-        ${0:pass}
+	def tearDown(self):
+		${0:pass}
 endsnippet
 
 snippet test "description"  b!
 def test_${1:something}(self):
-    ${0:pass}
+	${0:pass}
 endsnippet
 
 # vim:ft=snippets foldmethod=marker
