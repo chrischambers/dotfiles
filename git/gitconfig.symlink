@@ -92,3 +92,5 @@
     recurseSubmodules = on-demand
 [pull]
     rebase = preserve
+
+# vim:ft=gitconfig foldmethod=marker
