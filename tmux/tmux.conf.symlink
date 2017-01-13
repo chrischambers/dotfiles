@@ -72,10 +72,7 @@ bind -r k select-pane -U
 bind -r l select-pane -R
 
 # Mouse Mode:
-setw -g mode-mouse on
-set -g mouse-resize-pane on
-set -g mouse-select-pane on
-set -g mouse-select-window on
+setw -g mouse on
 
 # Panes:
 set -g pane-border-fg colour240
@@ -109,10 +106,6 @@ setw -g window-status-attr dim
 setw -g window-status-bell-fg colour208
 setw -g window-status-bell-bg default
 setw -g window-status-bell-attr blink
-
-setw -g window-status-content-fg colour208
-setw -g window-status-content-bg default
-setw -g window-status-content-attr blink
 
 setw -g window-status-activity-fg colour208
 setw -g window-status-activity-bg default
