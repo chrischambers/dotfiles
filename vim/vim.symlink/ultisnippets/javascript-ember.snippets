@@ -1,5 +1,5 @@
 snippet test "Create an ember test"  b
-test('${1:description}', assert => {
+test('${1:description}', function (assert) {
 	$2
 })$0
 endsnippet
@@ -65,5 +65,9 @@ endsnippet
 
 snippet 'stor?e?' "description" r
 this.get('store')$0
+endsnippet
+
+snippet route "Ember Route"  b
+this.route("${1:routeName}"${2:, {path: "/${3:$1}"}})
 endsnippet
 
