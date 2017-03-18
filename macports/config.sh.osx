@@ -1,37 +1,37 @@
-#!/bin/sh
-
-prepend_to_path "/opt/local/sbin"
-prepend_to_path "/opt/local/bin"
-export MANPATH="/opt/local/share/man:$MANPATH"
-
-# Activate bash-completion from ports, if BASH shell is active:
-if [[ -n $BASH_VERSION ]] && [[ -f /opt/local/etc/bash_completion ]]; then
-    . /opt/local/etc/bash_completion
-fi
-
-# Install GNU utilities for find, xargs and locate via `port install findutils`:
-alias find='/opt/local/bin/gfind'
-alias xargs='/opt/local/bin/gxargs'
-alias locate='/opt/local/bin/glocate'
-alias updatedb='/opt/local/bin/gupdatedb'
-# ----------------------------------------------------------------------------
-# Mysql Configuration (via Macports): {{{
-# -----------------------------------
-# Fix for "EnvironmentError: mysql_config not found" error message when
-# easy_installing python-mysql
-prepend_to_path "/opt/local/lib/mysql5/bin"
-alias start_mysql='sudo /opt/local/bin/mysqld_safe5 &'
-alias stop_mysql='/opt/local/bin/mysqladmin5 -u root -p shutdown'
-# }}}
-# ----------------------------------------------------------------------------
-# Postgres Configuration (via Macports): {{{
-# --------------------------------------
-# Necessary before installing psycopg2, so that pg_config lives on the path
-prepend_to_path "/opt/local/lib/postgresql92/bin"
-# For Geodjango:
-# export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib:/opt/local/lib/postgresql83
-
-alias start_elasttcsearch='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
-alias start_postgres="sudo su postgres -c '/opt/local/lib/postgresql92/bin/postgres -D /opt/local/var/db/postgresql92/defaultdb'"
-# }}}
-# ----------------------------------------------------------------------------
+## #!/bin/sh
+##
+## prepend_to_path "/opt/local/sbin"
+## prepend_to_path "/opt/local/bin"
+## export MANPATH="/opt/local/share/man:$MANPATH"
+##
+## # Activate bash-completion from ports, if BASH shell is active:
+## if [[ -n $BASH_VERSION ]] && [[ -f /opt/local/etc/bash_completion ]]; then
+##     . /opt/local/etc/bash_completion
+## fi
+##
+## # Install GNU utilities for find, xargs and locate via `port install findutils`:
+## alias find='/opt/local/bin/gfind'
+## alias xargs='/opt/local/bin/gxargs'
+## alias locate='/opt/local/bin/glocate'
+## alias updatedb='/opt/local/bin/gupdatedb'
+## # ----------------------------------------------------------------------------
+## # Mysql Configuration (via Macports): {{{
+## # -----------------------------------
+## # Fix for "EnvironmentError: mysql_config not found" error message when
+## # easy_installing python-mysql
+## prepend_to_path "/opt/local/lib/mysql5/bin"
+## alias start_mysql='sudo /opt/local/bin/mysqld_safe5 &'
+## alias stop_mysql='/opt/local/bin/mysqladmin5 -u root -p shutdown'
+## # }}}
+## # ----------------------------------------------------------------------------
+## # Postgres Configuration (via Macports): {{{
+## # --------------------------------------
+## # Necessary before installing psycopg2, so that pg_config lives on the path
+## prepend_to_path "/opt/local/lib/postgresql92/bin"
+## # For Geodjango:
+## # export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib:/opt/local/lib/postgresql83
+##
+## alias start_elasttcsearch='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
+## alias start_postgres="sudo su postgres -c '/opt/local/lib/postgresql92/bin/postgres -D /opt/local/var/db/postgresql92/defaultdb'"
+## # }}}
+## # ----------------------------------------------------------------------------

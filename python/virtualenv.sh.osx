@@ -1,4 +1,4 @@
-prepend_to_path "/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin/"
+# prepend_to_path "/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin/"
 
-export virtualenvwrapper_loc="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh"
+# export virtualenvwrapper_loc="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh"
 # $HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
