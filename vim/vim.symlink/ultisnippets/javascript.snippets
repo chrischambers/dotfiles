@@ -214,4 +214,15 @@ endsnippet
 
 # add ajax snippet here
 
+# Promises:
+snippet .t "Then"  b
+.then($0)
+endsnippet
+
+snippet .c "Catch"  b
+.catch(error => {
+	${1:console.error(error)}
+})
+endsnippet
+
 # vim: ft=snippets :
