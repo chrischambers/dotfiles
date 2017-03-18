@@ -1,6 +1,7 @@
 # Common Configuration:
 # ---------------------
 
+prepend_to_path "/usr/local/bin"
 prepend_to_path "$HOME/bin"
 prepend_to_path "${DOTFILES}/bin"
 export MANPATH="$HOME/man:$MANPATH"
