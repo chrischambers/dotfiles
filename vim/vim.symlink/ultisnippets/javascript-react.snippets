@@ -1,0 +1,68 @@
+snippet reacti "Main React Imports"  b
+import React from 'react';
+endsnippet
+
+snippet reactni "Main React Native Imports"  b
+import React from 'react';
+import {
+	StyleSheet,
+	Text,
+	View
+} from 'react-native';
+endsnippet
+
+snippet '\bt' "JSX Tag"  r
+<${1:Tagname}>$2</$1>$0
+endsnippet
+
+snippet ss "SetState"  b
+this.setState({${1:key}: ${2:value}})$0
+endsnippet
+
+snippet styles "Create Stylesheet"  b
+const ${1:styles} = StyleSheet.create({
+	${2:type1}: {
+		$0
+	},
+})
+endsnippet
+
+
+
+snippet render "Render method"  b
+render() {
+	return (
+		$1
+	)
+}$0
+endsnippet
+
+snippet hand "handle methods"  b
+handle${1:Change}(${2:event}) {
+	${3:event.preventDefault()}
+}
+endsnippet
+
+snippet fcomp "Create React Component" b
+const ${1:Component} = props => {
+	return (
+		$2
+	);
+}
+endsnippet
+
+snippet comp "Create React Component" b
+export class ${1:Component} extends React.Component {
+	${2:constructor () {
+		super()
+		this.state = {
+			$3
+		}
+	}}
+	render() {
+		return (
+			${4:<div>Hello World</div>}
+		)
+	}
+}$0
+endsnippet
