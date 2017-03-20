@@ -4,12 +4,12 @@ bind '\' send-prefix
 # To copy/paste in gnome terminal: hold the SHIFT key while dragging to
 # highlight, then use SHIFT-CTRL-C to copy.
 
-bind b run "tmux save-buffer - | xclip -i -selection clipboard" \; display-message "Copied to system clipboard"
+# bind b run "tmux save-buffer - | xclip -i -selection clipboard" \; display-message "Copied to system clipboard"
 
 # Setup 'v' to begin selection as in Vim
 bind -t vi-copy v begin-selection
 
 # Update 'y' and default binding of `Enter` to use copy-pipe
 unbind -t vi-copy Enter
-bind -t vi-copy Enter copy-pipe "xclip -selection clipboard"
-bind -t vi-copy y copy-pipe "xclip -selection clipboard"
+# bind -t vi-copy Enter copy-pipe "xclip -selection clipboard"
+# bind -t vi-copy y copy-pipe "xclip -selection clipboard"
