@@ -5,5 +5,8 @@
 # sudo easy_install3 pip
 # pip install virtualenv virtualenvwrapper
 
-alias python="python3"
-alias ipython="ipython3"
+# The following are a bad idea, as it will supercede virtualenv
+# stuff. You're probably better off symlinking into ~/bin.
+#
+# alias python="python3"
+# alias ipython="ipython3"
