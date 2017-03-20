@@ -5,9 +5,9 @@ describe("${1:something}", () => {
 endsnippet
 
 snippet it "It (Jasmine)"  b
-it("${1:something}", function () {
-	$2
-})
+it("${1:something}"${2:, function () {
+	$3
+}})
 endsnippet
 
 snippet "(?<!\w)ex?" "Expect (Jasmine)"  r
@@ -40,6 +40,12 @@ endsnippet
 
 snippet any "Any (Jasmine)" w
 jasmine.any($1)
+endsnippet
+
+snippet context "Context (Mocha)"  b
+context("${1:something}", function() {
+	$2
+})
 endsnippet
 
 # Sources:
