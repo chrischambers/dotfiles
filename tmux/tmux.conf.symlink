@@ -6,8 +6,8 @@ set -g prefix `
 bind ` send-prefix
 # set -g prefix2 C-b
 
-set -g utf8
-setw -g utf8 on
+# set -g utf8
+# setw -g utf8 on
 
 # Tell tmux to use 256 colors:
 set -g default-terminal "screen-256color"
@@ -90,7 +90,7 @@ set -g message-fg colour208
 # Status Bar: {{{
 # -----------
 set -g status on              # turn the status bar on
-set -g status-utf8 on         # set utf-8 for the status bar
+# set -g status-utf8 on         # set utf-8 for the status bar
 set -g status-interval 5      # set update frequency (default 15s)
 # set -g status-position top  # position the status bar at top of screen
 
