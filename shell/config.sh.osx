@@ -12,6 +12,6 @@
 # Moreover, the following line is needed to tell the terminal that ^H is your
 # backspace command:
 
-if [[ -z $ITERM_PROFILE ]]; then
-  stty erase 
-fi
+# if [[ -z $ITERM_PROFILE ]]; then
+#   stty erase 
+# fi
