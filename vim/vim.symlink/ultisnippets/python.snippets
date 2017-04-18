@@ -1,3 +1,4 @@
+extends python.django
 extends python.magic
 
 global !p
@@ -368,6 +369,19 @@ endsnippet
 snippet test "description"  b!
 def test_${1:something}(self):
 	${0:pass}
+endsnippet
+
+snippet de "pytest describe" b
+def describe_${1:something}():
+	$0
+endsnippet
+
+snippet param "pytest parametrize" b
+@pytest.mark.parametrize(
+	'${1:comma,delimited,params}', [
+		$2
+	])
+def ${3:test}($1):
 endsnippet
 
 # vim:ft=snippets foldmethod=marker
