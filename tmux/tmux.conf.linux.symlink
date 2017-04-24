@@ -13,3 +13,5 @@ bind -t vi-copy v begin-selection
 unbind -t vi-copy Enter
 # bind -t vi-copy Enter copy-pipe "xclip -selection clipboard"
 # bind -t vi-copy y copy-pipe "xclip -selection clipboard"
+#
+bind -t vi-copy y copy-pipe "xclip -sel clip -i"
