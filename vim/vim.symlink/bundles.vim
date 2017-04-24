@@ -102,5 +102,6 @@ NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'othree/jspc.vim'
 
 NeoBundle 'mustache/vim-mustache-handlebars'
+NeoBundle 'editorconfig/editorconfig-vim'
 
 call neobundle#end()
