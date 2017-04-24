@@ -51,6 +51,7 @@ NeoBundle 'tpope/vim-git'
 NeoBundle 'tpope/vim-tbone'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-fugitive'
 
 NeoBundle 'SirVer/ultisnips'
 
