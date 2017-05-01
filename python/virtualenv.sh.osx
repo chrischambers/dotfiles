@@ -1,4 +1,10 @@
+# For use with python3 installed via macports:
+# --------------------------------------------
 # prepend_to_path "/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin/"
-
 # export virtualenvwrapper_loc="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh"
 # $HOME/src/py/virtualenvwrapper/virtualenvwrapper.sh
+
+# For use with python3 installed via Homebrew:
+# --------------------------------------------
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
