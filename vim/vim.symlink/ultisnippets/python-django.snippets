@@ -1,0 +1,1381 @@
+# Shebang: {{{
+snippet #! "Shebang" b!
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+$0
+endsnippet
+
+snippet sb "Plain" b!
+#!/usr/bin/env python
+# -*- coding: ${1:UTF-8} -*-
+$0
+endsnippet
+
+snippet sb "Unicode" b
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+$0
+endsnippet
+
+snippet sb "Latin-1" b
+#!/usr/bin/env python
+# -*- coding: Latin-1 -*-
+$0
+endsnippet
+# }}}
+# Docformat: {{{
+snippet docf "Doc Format" b
+__docformat__ = '${1:restructuredtext}'
+endsnippet
+# }}}
+# Imports: {{{
+snippet i "Import" b
+import ${1:module}
+$0
+endsnippet
+
+snippet from "From foo import bar" b!
+from ${1:package/module} import ${2:module/function/class}
+$0
+endsnippet
+# }}}
+# Module Docstring: {{{
+snippet docs "Documentation String for Module" b
+'''
+File: ${1:`!p res=fn`}
+Author: ${2:`!v g:snips_author`}
+Description: ${3}
+'''
+$0
+endsnippet
+# }}}
+# Loops: {{{
+snippet wh "While..." b
+while ${1:True}:
+    ${2:# code...}
+$0
+endsnippet
+
+snippet for "For ..." b
+for ${1:needle} in ${2:haystack}:
+    ${3:# code...}
+$0
+endsnippet
+# }}}
+# Function / Class Creation: {{{
+snippet def "Function Definition" b!
+def ${1:fname}(`!v indent(search('^ \{-}def [^:]*: \{-}$', 'bcWn')) ? 'self' : ''`):
+    ${3:pass}
+$0
+endsnippet
+
+snippet class "smart class" b!
+class ${1:MyClass}(${2:object}):
+${3:    """${4:Docstring for $1}"""
+}
+    def __init__(self${5/([^,])?(.*)/(?1:, )/}${5:arg}):
+${2/object$|(.+)/(?1:        super\($1, self\).__init__\(\)\n\n)/}${5/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2\n)/g}
+endsnippet
+# ${2/object$|(.+)/(?1:        $0.__init__\(self\)\n\n)/}${5/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2\n)/g}
+# super\($0, self).__init__\(\)\n\n
+# }}}
+# Methods: {{{
+snippet meth "Method Definition" b
+def ${1:mname}(self${2:, ${3:args}}):
+    ${4:pass}
+$0
+endsnippet
+
+snippet classmethod "ClassMethod Definition" b
+@classmethod
+def ${1:mname}(cls${2:, ${3:args}}):
+    ${4:pass}
+$0
+endsnippet
+
+snippet staticmethod "StaticMethod Definition" b
+@staticmethod
+def ${1:mname}(${2:args}):
+    ${3:pass}
+$0
+endsnippet
+# }}}
+# Properties: {{{
+snippet property "Property" b
+def ${1:foo}():
+    doc = "${2:The $1 property.}"
+    def fget(self):
+        ${3:return self._$1}
+    def fset(self, value):
+        ${4:self._$1 = value}
+$1 = property(**$1())
+endsnippet
+# }}}
+# Lambda: {{{
+snippet ld
+${1:var} = lambda ${2:vars} : ${3:action}
+endsnippet
+# }}}
+#Super: {{{
+snippet super "Super" b
+$4super(${1:ClassName}, self).${2:__init__}(${3:args_or_kwargs})
+$0
+endsnippet
+# }}}
+
+# Self: {{{
+snippet . "self" b
+self.
+endsnippet
+
+snippet .s "self" i
+self.
+endsnippet
+
+snippet (s "self" i
+(self${1:, $2}):
+    $0
+endsnippet
+# }}}
+# Encoding: {{{
+snippet .e "encoding" i
+.encode('${1:utf8}')$0
+endsnippet
+# }}}
+
+# Magic: {{{
+snippet u "Unicode" b
+def __unicode__(self):
+    return u"$1"${2: % (${3:args},)}
+$0
+endsnippet
+
+snippet _
+__${1:init}__${2}
+endsnippet
+
+snippet iter "__iter__" b
+def __iter__(self):
+    $0
+endsnippet
+
+snippet getattr "__getattr__" b
+def __getattr__(self, attr):
+    return getattr(self.__class__, attr)
+endsnippet
+
+snippet setattr "__setattr__" b
+def __setattr__(self, attr, value):
+    return setattr(self.__class__, attr, value)
+endsnippet
+# }}}
+# Exception Handling: {{{
+snippet try "Try/Except" b!
+try:
+    ${1:pass}
+except ${2:Exception}, ${3:e}:
+    ${4:raise $3}
+$0
+endsnippet
+
+snippet try "Try/Except/Else" b
+try:
+    ${1:pass}
+except ${2:Exception}, ${3:e}:
+    ${4:raise $3}
+else:
+    ${5:pass}
+$0
+endsnippet
+
+snippet try "Try/Except/Finally" b
+try:
+    ${1:pass}
+except ${2:Exception}, ${3:e}:
+    ${4:raise $3}
+finally:
+    ${5:pass}
+$0
+endsnippet
+
+snippet try "Try/Except/Else/Finally" b
+try:
+    ${1:pass}
+except${2: ${3:Exception}, ${4:e}}:
+    ${5:raise}
+else:
+    ${6:pass}
+finally:
+    ${7:pass}
+$0
+endsnippet
+# }}}
+# if __name__ == '__main__': {{{
+snippet ifmain "If name == main" b!
+$0
+if __name__ == '__main__':
+    main()
+endsnippet
+# }}}
+# Metaclass: {{{
+snippet metaclass
+class ${1:MyMetaClass}(type):
+
+    def __new__(cls, name, bases, attrs):
+        # Allocating memory for class
+        return type.__new__(cls, name, bases, attrs)
+
+    def __init__(cls, name, bases, attrs):
+        # Init'ing (configuring) class
+        super($1, cls).__init__(name, bases, attrs)
+        $2
+
+endsnippet
+# }}}
+# Descriptors: {{{
+snippet get "get descriptor" b
+def __get__(self, instance, owner):
+    $0
+endsnippet
+
+snippet set "set descriptor" b
+def __set__(self, instance, value):
+    $0
+endsnippet
+# }}}
+
+# Debugging: {{{
+# ----------
+snippet ipdb "ipdb" b
+import ipdb; ipdb.set_trace()
+endsnippet
+
+snippet pudb "pudb" b
+import pudb; pudb.set_trace()
+endsnippet
+
+snippet traceback "Traceback stub" b
+import sys, traceback
+
+exc_type, exc_value, tb = sys.exc_info()
+error_output = "Type: <%s>\n%s\n\nTraceback:\n%s" % (
+    exc_type.__name__, exc_value, "\n".join(traceback.format_tb(tb))
+)
+endsnippet
+# }}}
+# Module Specific:
+# ----------------
+# Logging: {{{
+snippet log "Basic Logging" b
+import logging
+log = logging.getLogger('$1`!p res = os.path.splitext(fn)[0].strip().lower().replace(' ', '_')`')
+$0
+endsnippet
+
+snippet log "Logging FileHandler" b
+import logging
+handler = logging.FileHandler(
+    filename=$1
+)
+formatter = logging.Formatter("%(asctime)s %(levelname)-8s %(message)s")
+handler.setFormatter(formatter)
+log = logging.getLogger('$2`!p res = os.path.splitext(fn)[0].strip().lower().replace(' ', '_')`')
+log.setLevel(logging.DEBUG)
+log.addHandler(handler)
+$0
+endsnippet
+# }}}
+# CSV: {{{
+snippet csv "CSV write - short" b
+import csv
+fout = open('$1', '${2:w}')
+wrtr = csv.writer(fout)
+${3/[^.]*/\L$0\Es/} = ${3:User}.objects.all()
+wrtr.writerows([(
+    ${3/([A-Z])[a-z]*/\l$1/g}$4
+) for ${3/([A-Z])[a-z]*/\l$1/g} in ${3/[^.]*/\L$0\Es/}])
+fout.close()
+endsnippet
+
+snippet csv "CSV write - loop" b
+import csv
+fout = open('$1', '${2:w}')
+wrtr = csv.writer(fout)
+${3/[^.]*/\L$0\Es/} = ${3:User}.objects.all()
+for ${3/[^.]*/\L$0\E/} in ${3/[^.]*/\L$0\Es/}:
+    data = [
+        $4
+    ]
+    wrtr.writerows(data)
+fout.close()
+endsnippet
+
+# }}}
+# Os: {{{
+snippet walk
+for path, dirs, files in os.walk('${1:relevant/path}'):
+    $0
+endsnippet
+# }}}
+# Optparse: {{{
+snippet optparse "Optparse Stub" b
+from optparse import OptionParser
+
+def main():
+    required_args = [${1:"SOURCE", "DESTINATION"}]
+    usage = "usage: %s [options] %s" % ("%prog", "".join(required_args),)
+    parser = OptionParser(usage)
+
+    parser.add_option("-f", "--file",
+        dest="filename",
+        metavar="FILE",
+        help="read data from FILE"
+    )
+    parser.add_option("-v", "--verbose",
+        action="store_true",
+        dest="verbose",
+        default=True,
+        help="Output logging at DEBUG and above [default: %default]"
+    )
+    parser.add_option("-q", "--quiet",
+        action="store_false",
+        dest="verbose",
+        help="Output logging at WARNING and above"
+    )
+
+    options, args = parser.parse_args()
+    if len(args) != len(required_args):
+        parser.error("%s arguments are required (%s), you specified %s" % (
+            len(required_args), " ".join(required_args), len(args),
+        ))
+    if options.verbose:
+        log.setLevel(logging.DEBUG)
+    else:
+        log.setLevel(logging.WARNING)
+$0
+endsnippet
+
+snippet opt "Optparse option" b
+parser.add_option("-${1:o}", "--${2:option-longhand}",
+    ${3:action="${4:store}",
+    }dest="${5:}"
+)
+$0
+endsnippet
+# }}}
+# Subprocess: {{{
+snippet shell "Open a shell subprocess" b
+import subprocess
+proc = subprocess.Popen(
+    '${1:command}',
+    shell=True,
+    stdout=subprocess.PIPE
+)
+out, returned = proc.communicate()
+endsnippet
+# }}}
+# Distutils: {{{
+snippet distsetup "Distuils Setup" b
+from distutils.core import setup
+
+setup(
+    name="$1",
+    version=${2:1.0},
+    description="$3",
+    author="`!v g:user_name`",
+    author_email="`!v g:user_email`",
+    py_modules=["$4"],
+)
+endsnippet
+
+
+# }}}
+
+# Testing:
+# --------
+# Testcase: {{{
+snippet testcase "TestCase stub" b
+class Test${1:Object}(${2:unittest.TestCase}):
+
+    def setUp(self):
+        ${3:pass}
+
+    def tearDown(self):
+        ${4:pass}
+    $0
+endsnippet
+# }}}
+# Assertions: {{{
+snippet ase "AssertEqual" b
+self.assertEqual(${1:expected}, ${2:actual})
+$0
+endsnippet
+
+snippet as_ "Assert" b
+self.assert_(${1:expression})
+$0
+endsnippet
+
+snippet asne "AssertNotEqual" b
+self.assertNotEqual(${1:first}, ${2:second})
+$0
+endsnippet
+
+snippet asr "AssertRaises" b
+self.assertRaises(${1:Exception}, ${2:callable}, ${3:args_or_kwargs})
+$0
+endsnippet
+
+snippet asnr "AssertNotRaises" b
+try:
+    ${1:#operation}
+except ${2:ValueError}, e:
+    self.fail("${3:failure message}")
+$0
+endsnippet
+
+snippet ast "AssertTrue" b
+self.assertTrue(${1:expression})
+$0
+endsnippet
+
+snippet asf "AssertFalse" b
+self.assertFalse(${1:expression})
+$0
+endsnippet
+# }}}
+
+# ----------------
+# Django:
+# ----------------
+
+# Imports: {{{
+snippet modeli "Django Model Imports stub" b
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from datetime import datetime
+$0
+endsnippet
+
+snippet formi "Django Form Imports stub" b
+from django import forms
+$0
+endsnippet
+
+snippet urli "Django URL Imports stub" b
+from django.conf.urls import patterns, include, url
+$0
+endsnippet
+
+snippet admini "Django Admin Imports stub" b
+from django.contrib import admin
+$0
+endsnippet
+
+snippet viewi "Django View stub" b
+from django.contrib.auth.decorators import login_required, permission_required
+from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponseRedirect, HttpResponseForbidden
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
+$0
+endsnippet
+
+snippet ttagi "Django templatetag stub" b
+from django import template
+register = template.Library()
+$0
+endsnippet
+
+snippet testi "Django test imports" b
+from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User, Group, Permission
+
+from django.test import TestCase
+from nose.tools import *
+endsnippet
+
+# }}}
+# Orm: {{{
+snippet oget "get object" b
+${1:var} = ${2:Model}.${3:objects}.get(${4:id}=${5:value})
+$0
+endsnippet
+
+snippet oget "get object (variable specified)" w
+${1:Model}.${2:objects}.get(${3:id}=${4:value})
+$0
+endsnippet
+
+snippet ogettry "get object or None" b
+try:
+    ${1:var} = ${2:Model}.${3:objects}.get(${4:id}=${5:value})
+except $2.DoesNotExist, e:
+    $1 = ${6:None}
+$0
+endsnippet
+
+snippet ofilter "filter objects" b
+${1:var} = ${2:Model}.${3:objects}.filter(${4:id}=${5:value})
+$0
+endsnippet
+# }}}
+# Model Definition: {{{
+snippet djmod "Time-stamped model" b
+class ${1:ModelName}(models.Model):
+    ${2:# constants and choices}
+    ${3:# fields}
+
+    # metadata
+    datetime_created = models.DateTimeField(
+        _('Created'), default=datetime.now, editable=False)
+    datetime_modified = models.DateTimeField(_('Last Modified'), editable=False)
+
+
+    class Meta(object):
+        verbose_name = _('$1')
+        verbose_name_plural = _('$1s')
+        get_latest_by = 'datetime_created'
+
+    def __unicode__(self):
+        return u"${4:%s}" % (${5:subs},)
+
+    def save(self, *args, **kwargs):
+        self.datetime_modified = datetime.now()
+        return super($1, self).save(*args, **kwargs)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('${1/\w+/\L$0\E/}_detail', ${7:[$8]}`!p
+if t[7] == '[]':
+    res = ', {}'
+else:
+    res = ''`)
+
+    ${0: # specify other custom methods here}
+endsnippet
+
+snippet djmod "Time-stamped model; django-extensions" b
+from django_extensions.db.fields import (
+    CreationDateTimeField, ModificationDateTimeField
+)
+
+class ${1:ModelName}(models.Model):
+    ${2:# constants and choices}
+    ${3:# fields}
+
+    # metadata
+    datetime_created = CreationDateTimeField(_('Created'))
+    datetime_modified = ModificationDateTimeField(_('Last Modified'))
+
+    class Meta(object):
+        verbose_name = _('$1')
+        verbose_name_plural = _('$1s')
+        get_latest_by = 'datetime_created'
+
+    def __unicode__(self):
+        return u"${4:%s}" % (${5:subs},)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('${1/\w+/\L$0\E/}_detail', ${7:[$8]}`!p
+if t[7] == '[]':
+    res = ', {}'
+else:
+    res = ''`)
+
+    ${0: # specify other custom methods here}
+endsnippet
+# }}}
+# Model Fields: {{{
+#`!p
+# res = insert_variable_assignment(t[1]) if cur == "" else ""
+# res = insert_variable_assignment(t[1])
+# variable_already_assigned = int(vim.eval("! empty(tr(GetPythonVariable(), "_", " "))"))
+# res = '' if variable_already_assigned else t[1] + ' = '
+# res = t[1] + ' = ' if not variable_already_assigned else ''
+#`
+snippet mchar
+models.CharField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }max_length=${3:255}$4)
+$0
+endsnippet
+
+snippet mtext
+models.TextField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }$3)
+$0
+endsnippet
+
+snippet mslug
+models.SlugField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), unique=True$2)
+$0
+endsnippet
+
+snippet mcsi
+models.CommaSeparatedIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), max_length=${2:255}$3)
+$0
+endsnippet
+
+snippet memail
+models.EmailField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }$3)
+$0
+endsnippet
+
+snippet murl
+models.URLField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }verify_exists=${3:True}$4)
+$0
+endsnippet
+
+snippet mxml
+models.XMLField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:blank=True, }schema_path=${3:None}$4)
+$0
+endsnippet
+
+snippet mint
+models.IntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+$0
+endsnippet
+
+snippet mintsmall
+models.SmallIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+$0
+endsnippet
+
+snippet mintpos
+models.PositiveIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+$0
+endsnippet
+
+snippet mintpossmall
+models.PositiveSmallIntegerField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+$0
+endsnippet
+
+snippet mfloat
+models.FloatField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}, }decimal_places=$5)
+$0
+endsnippet
+
+snippet mdec
+models.DecimalField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}},
+    decimal_places=${5:2}, max_digits=${6:None}
+)
+endsnippet
+
+snippet mip
+models.IPAddressField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=${3:True}, blank=${4:$3}}$5)
+$0
+endsnippet
+
+snippet mfk
+models.ForeignKey(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
+    ${3:null=${4:True}, blank=${5:$4}, }related_name='$6'
+)
+$0
+endsnippet
+
+snippet m2m
+models.ManyToManyField(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
+    ${3:null=${4:True}, blank=${5:$4}, }related_name='$6'
+)
+$0
+endsnippet
+
+snippet o2o
+models.OneToOneField(${1:Model}, verbose_name=_('${2:`!v tr(GetPythonVariable(), "_", " ")`}'),
+    ${3:null=${4:True}, blank=${5:$4}, }related_name='$6'
+)
+$0
+endsnippet
+
+snippet mbool
+models.BooleanField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:default=${3:False}}$4)
+$0
+endsnippet
+
+snippet mnbool
+models.NullBooleanField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:default=${3:False}}$4)
+$0
+endsnippet
+
+snippet mfield
+${1:fieldname} = models.${2:FieldType}Field('${3:verbose_name}', ${4:other_params})
+endsnippet
+
+snippet mfile
+models.FileField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'),upload_to="${2:`!v GetPythonVariable()`s}")
+$0
+endsnippet
+
+snippet mimg
+models.ImageField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), ${2:null=True, blank=True, }upload_to="${3:`!v GetPythonVariable()`s}"${4:, height_field=${5:None}, width_field=${6:None}, max_length=${7:100}})
+$0
+endsnippet
+
+snippet mfpf
+models.FilePathField(path=${1:unix_style_path},
+    match=r'${3:regex_for_basename}',
+    recursive=${4:False}
+)
+$0
+endsnippet
+
+snippet mdate
+models.DateField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), $2)
+$0
+endsnippet
+
+snippet mdt
+models.DateTimeField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), $2)
+$0
+endsnippet
+
+snippet mtime
+models.TimeField(_('${1:`!v tr(GetPythonVariable(), "_", " ")`}'), $2)
+$0
+endsnippet
+# Iabbr addmodel class <>(meta.Model):<CR><><CR><CR>def __repr__(self):<CR>return "%s" % (<>)<CR><CR>class META:<CR>admin = meta.Admin()
+# Iabbr mif meta.ImageField(upload_to='<>')<CR><>
+# Iabbr mff meta.FileField(upload_to='<>')<CR><>
+
+# Snippet ffld models.FileField(upload_to=<{}>)<CR><{}>
+# Snippet fpfld models.FilePathField(path=<{}>, match="<{""}>", recursive=<{False}>)<CR><{}>
+# Snippet floatfld models.FloatField(max_digits=<{}>, decimal_places=<{}>)<CR><{}>
+# }}}
+# Models: {{{
+snippet choices
+${1:type_of}_CHOICES = (
+    (${2:database_entry}, u'${3:human_readable_name}'),
+    ${4:}
+)
+$0
+endsnippet
+
+snippet msave
+def save(self, *args, **kwargs):
+    # ${1:do_something}
+    ${1:obj} = super(${2:ClassName}, self).save(*args, **kwargs)
+    return $1
+$0
+endsnippet
+# }}}
+# Managers: {{{
+snippet manager "Manager with custom __getattr__" b
+from django.db import models
+
+class ${1:Foo}QuerySet(models.query.QuerySet):
+    pass
+
+class $1Manager(models.Manager):
+    def get_query_set(self):
+        model = models.get_model('${2:appname}', '${3:modelname}')
+        return $1QuerySet(model)
+
+    def __getattr__(self, attr, *args):
+        try:
+            return getattr(self.__class__, attr, *args)
+        except AttributeError:
+            return getattr(self.get_query_set(), attr, *args)
+endsnippet
+
+# }}}
+# Admin: {{{
+# -------
+snippet admin "Vanilla admin" b
+class ${1:ClassName}Admin(admin.ModelAdmin):
+    pass
+
+admin.site.register($1, $1Admin)
+$0
+endsnippet
+
+snippet admin "Time-stamped admin" b
+class ${1:ClassName}Admin(admin.ModelAdmin):
+    readonly_fields = ['datetime_created', 'datetime_modified']
+
+admin.site.register($1, $1Admin)
+$0
+endsnippet
+
+snippet fieldsets
+fieldsets = (
+    (None, {
+        'fields': (${1:items or nested tuples})
+    }),
+    ('${2:fieldset title}', {
+        'fields': ($3),
+        'classes': ('collapse',)
+)
+endsnippet
+
+snippet adminaction
+def ${1:make_action_happen}(modeladmin, request, queryset):
+    for ${2:obj} in queryset:
+        ${3:# do something}
+$1.short_description = "${4:`!p res = t[1].replace('_', ' ').capitalize()`}"
+$0
+endsnippet
+
+snippet admininline
+class ${1:MyModel}Inline(admin.${2:Tabular}Inline):
+    model = $1
+    $0
+endsnippet
+
+snippet prepop "Prepopulated Fields" b
+prepopulated_fields = {'${1:slug}': ['${2:title}']}
+endsnippet
+
+# }}}
+# Forms: {{{
+snippet form "Django Form Stub" b
+class ${1:My}Form(forms.Form):
+    $0
+endsnippet
+
+snippet modelform "Django ModelForm Stub" b
+class ${1:My}Form(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super($1Form, self).__init__(*args, **kwargs)
+        self.fields['${2:fieldname}'].required = True
+
+    class Meta(object):
+        model = ${3:model}
+        $0
+endsnippet
+
+snippet clean "Django Form Clean" b
+def clean(self):
+    if ( "${1:fieldname 1}" in self.cleaned_data and
+         "${2:fieldname 2}" in self.cleaned_data ):
+        if self.cleaned_data["$1"] != self.cleaned_data["$2"]:
+            raise forms.ValidationError("${3:Error Message}")
+    return self.cleaned_data
+endsnippet
+
+snippet cleanf "Django Form Clean Fieldname" b
+def clean_${1:fieldname}(self):
+    $1 = self.cleaned_data['$1']
+    $2
+    return $1
+    $0
+endsnippet
+
+snippet formsave "Django Form Custom Save" b
+def save(self, commit=False, *args, **kwargs):
+    # ${1:do_something}
+    ${2:obj} = super(${3:ClassName}, self).save(commit, *args, **kwargs)
+    # ${4:modify $2}
+    return $2
+    $0
+endsnippet
+# }}}
+# Form Fields: {{{
+snippet fbool "forms.BooleanField" b
+${1:fieldname} = forms.BooleanField(${2:})
+$0
+endsnippet
+
+snippet fnbool "forms.NullBooleanField" b
+${1:fieldname} = forms.NullBooleanField(${2:})
+$0
+endsnippet
+
+snippet fchar "forms.CharField" b
+${1:fieldname} = forms.CharField()
+$0
+endsnippet
+
+snippet femail "forms.EmailField" b
+${1:fieldname} = forms.EmailField()
+$0
+endsnippet
+
+snippet fchoice "forms.ChoiceField" b
+${1:fieldname} = forms.ChoiceField(choices=${2:})
+$0
+endsnippet
+
+snippet ftypedchoice "forms.TypedChoiceField" b
+${1:fieldname} = forms.ChoiceField(coerce=${2:function}, empty=${3:None})
+$0
+endsnippet
+
+snippet fdate "forms.DateField" b
+${1:fieldname} = forms.DateField()
+$0
+endsnippet
+
+snippet fdt "forms.DateTimeField" b
+${1:fieldname} = forms.DateTimeField()
+$0
+endsnippet
+
+snippet ftime "forms.TimeField" b
+${1:fieldname} = forms.TimeField()
+$0
+endsnippet
+
+snippet fdec "forms.DecimalField" b
+${1:fieldname} = forms.DecimalField()
+$0
+endsnippet
+
+snippet femail "forms.EmailField" b
+${1:fieldname} = forms.EmailField()
+$0
+endsnippet
+
+snippet fff "forms.FileField" b
+${1:fieldname} = forms.FileField()
+$0
+endsnippet
+
+snippet ffpf "forms.FilePathField" b
+${1:fieldname} = forms.FilePathField(path="${2:path/to/valid/dir}")
+$0
+endsnippet
+
+snippet fif "forms.ImageField" b
+${1:fieldname} = forms.ImageField()
+$0
+endsnippet
+
+snippet fint "forms.IntegerField" b
+${1:fieldname} = forms.IntegerField()
+$0
+endsnippet
+
+snippet fip "forms.IPAddressField" b
+${1:fieldname} = forms.IPAddressField()
+$0
+endsnippet
+
+snippet fregex "forms.RegexField" b
+${1:fieldname} = forms.RegexField(regex=${2:compiled_re_or_rawstring})
+$0
+endsnippet
+
+snippet furl "forms.URLField" b
+${1:fieldname} = forms.URLField(verify_exists=${2:False})
+$0
+endsnippet
+# }}}
+# Views: {{{
+snippet djview "Vanilla" b
+def ${1:view_name}(request, $2*args, **kwargs):
+    data = {$3}
+    return render_to_response("${4:path_to_template}.html", data,
+                            context_instance=RequestContext(request))
+${5:}
+endsnippet
+
+snippet formview "Vanilla" b
+def ${1:form_view}(request, *args, **kwargs):
+    if request.method == 'POST':
+        form = ${2:FormClass}(${3:}request.POST)
+        if form.is_valid():
+            ${4:form.save()
+            # if applicable, call: form.save_m2m()}
+            return HttpResponseRedirect(reverse("${5:url name}"))
+    else:
+        form = $2($3)
+
+    data = {'form': form, ${6:}}
+
+    return render_to_response("${7:path_to_template}.html", data,
+                            context_instance=RequestContext(request))
+$0
+endsnippet
+
+snippet formview "Reusable App" b
+from django.db.models import get_model
+
+def ${1:form_view}(request, FormClass=${2:YourFormClass},
+                   model_str="${3:appname.modelname}",
+                   template_name="${4:path_to_template}.html",
+                   success_url=${5:url}, extra_context={}):
+    if request.method == 'POST':
+        try:
+            model = get_model(*model_str.split('.'))
+            instance = model._default_manager.get()
+        except model.DoesNotExist:
+            instance = None
+        form = FormClass(request.POST, instance=instance)
+        if form.is_valid():
+            ${6:form.save()
+            # if applicable, call: form.save_m2m()}
+            return HttpResponseRedirect(success_url)
+    else:
+        form = FormClass()
+
+    data = {
+        'form': form,
+    }
+    data.update(extra_context)
+    return render_to_response(template_name, data,
+                              context_instance=RequestContext(request))
+$0
+endsnippet
+
+snippet rr
+return render_to_response("${1:path_to_template}.html", ${2:data},
+                        context_instance=RequestContext(request))
+$0
+endsnippet
+# Snippet formview def <{"form view"}>(request, *args, **kwargs):<CR>if request.method == 'POST':<CR>form = <{form}>(request.POST)<CR><{}>if form.is_valid():<CR><{instructions}><CR>return HttpResponseRedirect(reverse("<{"url name"}>"))<CR><CR>else:<CR>form = <{form}>()<CR><CR>data = { 'form': form, <{}>}<CR><CR>return render_to_response("<{"path to template"}>.html",data,<CR>context_instance=RequestContext(request))<CR><CR><{}>
+# }}}
+# Signals: {{{
+snippet listener "Django Listener" b
+from ${1:django.db.models.signals} import ${2:post_save}
+
+def ${3:listener}(sender, ${4:provided_args} **kwargs):
+    ${5:# do stuff}
+$2.connect($3, sender=$6)
+$0
+endsnippet
+
+snippet listener "Django post-save Listener" b
+from django.db.models.signals import post_save
+
+def ${1:listener}(sender, instance, created, **kwargs):
+    ${2:if created:
+        print 'This record is a create, not an update!'
+    ${3:# do stuff}}
+post_save.connect($1, sender=$4)
+$0
+endsnippet
+
+snippet signal "Django Signal Creation" b
+import django.dispatch
+
+${1:signal_name} = django.dispatch.Signal(
+    providing_args=[$2]
+)
+$0
+endsnippet
+
+snippet signal "Django Signal Connection" b
+from ${1:django.db.models.signals} import ${2:post_save}
+from ${3:myapp}.listeners import ${4:mylistener}
+$2.connect($4, sender=$5)
+$0
+endsnippet
+
+
+snippet signal "Django Signal Send" b
+${1:signal_name}.send(sender=${2:self}, ${3:kwargs})
+endsnippet
+# }}}
+# Email: {{{
+
+snippet djemail
+from django.core.mail import send_mail
+from django.template import Context, loader
+
+template = loader.get_template('${1:email_template_path}')
+data = {
+    ${2},
+}
+send_mail(
+    ${3:email subject} % $4,
+    template.render(Context(data)),
+    ${5:email from},
+    [${6:email recipients}],
+    fail_silently=True
+)
+${7}
+endsnippet
+# }}}
+# Urls: {{{
+snippet url "Full"
+url(r'${1:regex}', '${2:view_function}', name='${3:name_for_view}'),
+${4}
+endsnippet
+
+snippet url "Full with Context"
+url(r'${1:regex}', '${2:view_function}', {${3:extra_context},}, name='${4:name_for_view}'),
+${5}
+endsnippet
+
+snippet url "Barebones"
+(r'${1:regex}', '${2:view_function}',),
+${3:}
+endsnippet
+
+snippet url "Include"
+(r"^${1:url_prefix}/", include('${2:path.to.urlconf}')),
+${3:}
+endsnippet
+
+
+snippet urlp "Set"
+from django.conf.urls import patterns, include, url
+urlpatterns = patterns('${1:django.views.generic}',
+    ${2}
+)
+${3}
+endsnippet
+
+snippet urlp "Extend"
+urlpatterns += patterns('${1:django.views.generic}',
+    ${2}
+)
+${3}
+endsnippet
+
+
+snippet staticserve "Serve static files in development" b
+from django.conf import settings
+
+# Serve Static Files on Development Machines:
+# -- See http://docs.djangoproject.com/en/dev/howto/static-files/
+if settings.DEBUG:
+    urlpatterns += patterns('',
+    (r'^${1:media}/(?P<path>.*)$', 'django.views.static.serve',
+    {'document_root': settings.MEDIA_ROOT${2:, 'show_indexes': True}}),
+)
+endsnippet
+
+# }}}
+# Testing Django: {{{
+# ---------------
+snippet djemailtest
+self.assertEqual(0, len(mail.outbox))
+
+# Run action here
+
+${1:relevant_email} = None
+data = {
+    ${2}
+}
+expected_subject = ${3:expected_subject} % (
+    ${4}
+)
+
+for email in mail.outbox:
+    if email.subject == expected_subject:
+        $1 = email
+        break
+self.assert_($1)
+template = loader.get_template('${5:email_template}')
+self.assertEqual(template.render(Context(data)),
+        $1.body)
+self.assertEqual(${6:expected_sender}, $1.from_email)
+self.assertEqual(${7:expected_recipients},
+         $1.recipients())
+
+expected_email_context = (
+    ${8}
+)
+for c in expected_email_context:
+    self.assertTrue(c in $1.body)
+${9}
+endsnippet
+
+snippet clilogin
+self.assertTrue(self.client.login(username=${1:username}, password='${2:password}'))
+${3}
+endsnippet
+
+snippet clipost
+${4:response} = self.client.post(reverse('${1:urlname}'${2:, args=(,), kwargs={}}), data=${3:data})
+${5}
+endsnippet
+
+snippet cliget
+${4:response} = self.client.get(reverse('${1:urlname}'${2:, args=(,), kwargs={}}), data=${3:data})
+${5}
+endsnippet
+# }}}
+# Django Assertions: {{{
+snippet asfe "AssertFormError" b
+self.assertFormError(${1:response}, '${2:form_name}', ${3:field}, ${4:error_string_or_list})
+$0
+endsnippet
+
+snippet asc "AssertContains" b
+self.assertContains(${1:response}, ${2:text}${3:, count=${4:None}, status_code=200})
+$0
+endsnippet
+
+snippet asnc "AssertNotContains" b
+self.assertNotContains(${1:response}, ${2:text}, ${3:status_code=200})
+$0
+endsnippet
+
+snippet astu "AssertTemplateUsed" b
+self.assertTemplateUsed(${1:response}, '${2:template}.html')
+$0
+endsnippet
+
+snippet astnu "AssertTemplateNotUsed" b
+self.assertTemplateNotUsed(${1:response}, '${2:template}.html')
+$0
+endsnippet
+
+snippet asred "AssertRedirects" b
+self.assertRedirects(${1:response}, reverse('${2:expected_url}'${3:, args=(${4:},), kwargs={${5:}}}), ${6:status_code=302, target_status_code=200})
+$0
+endsnippet
+# }}}
+# Template Filters: {{{
+snippet filter "Basic" b
+def ${1:filter}(value${2/([^,])?(.*)/(?1:, )/}${2:arg=None}):
+    ${3:# always return something; fail silently; if error, return original input or ""}
+$1.is_safe = ${4:True # if doesn't introduce unsafe HTML characters (<>'"& }
+
+register.filter('$1', $1)
+
+endsnippet
+
+snippet filter "Stringfilter" b
+from django.template.defaultfilters import stringfilter
+
+@stringfilter
+def ${1:filter}(value${2/([^,])?(.*)/(?1:, )/}${2:arg=None}):
+    ${3:# always return something; fail silently; if error, return original input or ""}
+$1.is_safe = ${4:True # if doesn't introduce unsafe HTML characters (<>'"& }
+
+register.filter('$1', $1)
+
+endsnippet
+
+snippet filter "Filter w/ Escaping Handled" b
+from django.utils.html import conditional_escape
+from django.utils.safestring import mark_safe
+
+def ${1:filter}(value, autoescape=None):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = $2
+    return mark_safe(result)
+$1.needs_autoescape = True
+
+register.filter('$1', $1)
+
+endsnippet
+# }}}
+# Template Tags: {{{
+snippet ttag "Templatetag Creation" b
+from django import template
+
+class ${1/([^_]*)_?/\u$1/g}Node(template.Node):
+    def __init__(self`!p
+if t[2]:
+    if not t[2].startswith(", "):
+        res = ", %s" % (t[2],)
+    else:
+       res = t[2]
+else:
+    res = ""`):
+`!p
+if not t[2]:
+    res = "        pass\n"
+else:
+    res = ""
+`${2/object$|(.+)//}${2/(\A\s*,\s*\Z)|,?\s*([A-Za-z_][A-Za-z0-9_]*)\s*(=[^,]*)?(,\s*|$)/(?2:        self.$2 = $2\n)/g}
+    def render(self, context):
+        return ${4:# string, without raising exception}
+
+def do_${1:process}(parser, token):
+    try:
+        tag_name${2/([^,])?(.*)/(?1:, )/}${2:arg} = token.split_contents()
+    except ValueError, e:
+        raise template.TemplateSyntaxError("%r requires `!p
+res = len(t[2].split(',')) + 1` arguments" % (
+                token.contents.split()[0],
+        ))
+    ${3:# Pre-process arguments before passing them to node}
+    return ${1/([^_]*)_?/\u$1/g}Node(${2/(, )?(.*)/$2/g})
+$0
+register.tag('$1', do_$1)
+endsnippet
+
+snippet ttag "Simple Tag" b
+
+@register.simple_tag
+def ${1:tag_name}(${2:args}):
+    return ${3:# some kind of string}
+$0
+endsnippet
+
+snippet ttag "Inclusion Tag" b
+
+@register.inclusion_tag('${4:path_to_template}', takes_context=${5:True})
+def ${1:tag_name}(context$2):
+    $:{3# return dictionary for context in $4}
+$0
+endsnippet
+
+snippet tv "Template Variable" w
+template.Variable(${1:variable_name})
+endsnippet
+
+snippet tvresolve "Resolve Template Variable Block" b
+try:
+    ${1:varname} = self.$1.resolve()
+except template.VariableDoesNotExist, e:
+    return ''
+endsnippet
+# }}}
+# Messaging: {{{
+snippet msg "Send message" b
+messages.add_message(request, messages.${1:INFO}, ${2:MESSAGE_BODY})
+endsnippet
+
+snippet msgi "Message Import" b
+from django.contrib import messages
+endsnippet
+# }}}
+# South: {{{
+snippet southfield "South Field Introspection" b
+try:
+    from south.modelsinspector import add_introspection_rules
+except ImportError:
+    add_introspection_rules = False
+
+if add_introspection_rules:
+    add_introspection_rules([
+        (
+            [${1:Foo}Field],
+            [],              # Positional arguments (not used)
+            {                # Keyword arguments
+                "${2:kwarg}": ["${3:attribute_name($2)}", {${4:options}}],
+            },
+        ),
+    ], [r"^${5:appname}\.fields\.$1Field"])
+
+# options is a dictionary. You can safely leave it blank, but to make things
+# nicer, we can use it to specify the default value of this keyword - if the
+# value South finds matches this, it will leave out this keyword from the
+# frozen definition. This helps keep the frozen definitions shorter and more
+# readable.
+endsnippet
+
+snippet southfield "South Field Introspection - No extra kwargs added" b
+try:
+    from south.modelsinspector import add_introspection_rules
+except ImportError:
+    add_introspection_rules = False
+
+if add_introspection_rules:
+    add_introspection_rules([], [r"^${1:appname}\.fields\.${2:Foo}Field"])
+
+# Use this if your custom field adds no extra keyword arguments to the field it
+# inherits from
+endsnippet
+# }}}
+
+
+snippet d "Decimal" w
+D("$1")$2
+endsnippet
+
+snippet patch
+@patch('$1')
+$2
+endsnippet
