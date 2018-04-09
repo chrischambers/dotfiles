@@ -7,4 +7,5 @@
 # For use with python3 installed via Homebrew:
 # --------------------------------------------
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export PROJECT_HOME=~/src/py/_mine
 source /usr/local/bin/virtualenvwrapper.sh
