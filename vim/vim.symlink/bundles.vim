@@ -100,6 +100,7 @@ NeoBundle 'bigfish/vim-js-context-coloring', {
 NeoBundle 'elzr/vim-json'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'othree/jspc.vim'
+NeoBundle 'mxw/vim-jsx'
 
 NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'editorconfig/editorconfig-vim'
