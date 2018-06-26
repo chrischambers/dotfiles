@@ -30,7 +30,7 @@ endif
 if has("autocmd")
   augroup javascript_setup
     au!
-    autocmd BufRead,BufNewFile *.js setl ft=javascript foldmethod=syntax
+    autocmd BufRead,BufNewFile *.js setl ft=javascript.jsx foldmethod=syntax
           \ conceallevel=1 concealcursor=nvic
           \ expandtab softtabstop=2 shiftwidth=2 nowrap
     autocmd BufRead,BufNewFile jquery.*.js setl ft=jquery.javascript syntax=jquery
@@ -47,6 +47,7 @@ if has("autocmd")
   augroup END
 endif
 
+let g:js_context_colors_jsx = 1
 let g:js_context_colors_enabled = 0
 "
 " --------------------------------------------------------------------------
