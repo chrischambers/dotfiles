@@ -40,7 +40,7 @@ NeoBundle 'Sixeight/unite-grep'
 
 NeoBundle 'tacroe/unite-mark'
 
-NeoBundle 'jmcantrell/vim-virtualenv'
+NeoBundle 'plytophogy/vim-virtualenv'
 
 NeoBundle 'davidhalter/jedi-vim'
 
