@@ -2,8 +2,9 @@
 # ---------------------
 
 prepend_to_path "/usr/local/bin"
-prepend_to_path "$HOME/bin"
+prepend_to_path "/usr/local/sbin"
 prepend_to_path "${DOTFILES}/bin"
+prepend_to_path "$HOME/bin"
 export MANPATH="$HOME/man:$MANPATH"
 # ...should contain man1/plod.1 to find manfile for plod, for example.
 
