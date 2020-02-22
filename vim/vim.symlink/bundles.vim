@@ -90,7 +90,7 @@ NeoBundle 'ternjs/tern_for_vim', {
   \    },
   \ }
 
-NeoBundle 'Rykka/colorv.vim'
+" NeoBundle 'Rykka/colorv.vim'
 NeoBundle 'bigfish/vim-js-context-coloring', {
   \ 'build' : {
   \     'mac' : 'npm install --update',
