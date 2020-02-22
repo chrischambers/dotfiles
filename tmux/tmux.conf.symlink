@@ -101,9 +101,7 @@ set -g visual-activity on
 set -g status-style bg=colour234,fg=yellow,dim
 
 setw -g window-status-style fg=brightblue,bg=default,dim
-
 setw -g window-status-bell-style fg=colour208,bg=default,blink
-
 setw -g window-status-activity-style fg=colour208,bg=default,blink
 
 setw -g window-status-format ' #I: #W#[fg=yellow] '
