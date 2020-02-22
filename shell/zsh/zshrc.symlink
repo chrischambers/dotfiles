@@ -46,3 +46,5 @@ unset config_files
 
 source_after_file_for "zsh/.zshrc"
 source_local_file_for "zsh/.zshrc"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
