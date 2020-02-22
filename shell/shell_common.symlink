@@ -10,11 +10,11 @@ alias vimswitch="source ~/.vimswitch"
 # compatible, doesn't require any other tools preferably, and allows you to
 # shift indices, prepend/append if non-existent, force prepend/append, etc.
 prepend_to_path () {
-  path=( $1 $path )
-  # if [[ -z $(echo $PATH | grep "$1") ]]; then
-  #     export PATH="$1:$PATH"
-  # # else if [[ $2 == "force" ]]; then
-  # fi
+    path=( $1 $path )
+    # if [[ -z $(echo $PATH | grep "$1") ]]; then
+    #     export PATH="$1:$PATH"
+    # # else if [[ $2 == "force" ]]; then
+    # fi
 }
 
 detect_os () {
