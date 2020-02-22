@@ -6,6 +6,11 @@
 
 # For use with python3 installed via Homebrew:
 # --------------------------------------------
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export PROJECT_HOME=~/src/py/_mine
-source /usr/local/bin/virtualenvwrapper.sh
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+# export PROJECT_HOME=~/src/py/_mine
+# source /usr/local/bin/virtualenvwrapper.sh
+
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export WORKON_HOME=$HOME/.virtualenvs
+# pyenv virtualenvwrapper_lazy
+pyenv virtualenvwrapper

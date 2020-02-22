@@ -1,0 +1,2 @@
+# prepend_to_path "${HOME}/.pyenv/bin"
+eval "$(pyenv init -)"
