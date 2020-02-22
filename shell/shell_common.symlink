@@ -96,3 +96,9 @@ source_after_file_for () {
 source_local_file_for () {
     source_if_readable ${1}.local
 }
+
+body() {
+    IFS= read -r header
+    printf '%s\n' "$header"
+    "$@"
+}
