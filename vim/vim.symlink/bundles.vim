@@ -105,4 +105,6 @@ NeoBundle 'mxw/vim-jsx'
 NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'editorconfig/editorconfig-vim'
 
+NeoBundle 'gabrielelana/vim-markdown'
+
 call neobundle#end()
