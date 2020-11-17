@@ -1,4 +1,3 @@
-eval "$(rbenv init -)"
 
 rubyprompt() {
   case $1 in
@@ -17,3 +16,5 @@ rubyprompt() {
       ;;
   esac
 }
+
+eval "$(rbenv init -)"

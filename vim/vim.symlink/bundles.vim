@@ -106,5 +106,7 @@ NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'editorconfig/editorconfig-vim'
 
 NeoBundle 'gabrielelana/vim-markdown'
+NeoBundle 'jceb/vim-orgmode'
+NeoBundle 'tpope/vim-speeddating'
 
 call neobundle#end()

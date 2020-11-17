@@ -22,3 +22,4 @@ source_after_file_for "bash/.bashrc"
 source_local_file_for "bash/.bashrc"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(direnv hook zsh)"

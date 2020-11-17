@@ -1,0 +1,34 @@
+#!/usr/local/bin/zsh
+# This hook is sourced after a new virtualenv is activated.
+
+# Style checking:
+pip install rope
+pip install flake8
+pip install autoflake
+pip install pydocstyle
+pip install pyls-mypy
+pip install pyls-isort
+
+pip install pyls-black
+pip install yapf
+
+# Python language server for awesome IDE-style functionality:
+pip install python-language-server[all]
+
+pip install pydoc_utils
+pip install importmagic epc
+
+# For dap-mode debugging:
+pip install "ptvsd>=4.2"
+
+# Essential:
+pip install ipython
+
+# Nicer testing:
+pip install pytest
+pip install pytest-describe
+pip install pytest-spec
+pip install coverage
+
+# For project bootstrap:
+pip install -U cookiecutter

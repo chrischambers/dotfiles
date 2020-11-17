@@ -98,9 +98,9 @@ setw -g monitor-activity on
 set -g visual-activity on
 
 # set color for status bar
-set -g status-style bg=colour234,fg=yellow,dim
+set -g status-style bg=colour234,fg=yellow
 
-setw -g window-status-style fg=brightblue,bg=default,dim
+setw -g window-status-style fg=brightblue,bg=default
 setw -g window-status-bell-style fg=colour208,bg=default,blink
 setw -g window-status-activity-style fg=colour208,bg=default,blink
 
