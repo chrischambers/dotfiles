@@ -402,7 +402,7 @@ c.InteractiveShell.colors = 'Linux'
 
 ## (Provisional API) enables html representation in mime bundles sent to pagers.
 #  Default: False
-# c.InteractiveShell.enable_html_pager = False
+c.InteractiveShell.enable_html_pager = True
 
 ## Total length of command history
 #  Default: 10000
@@ -482,7 +482,7 @@ c.InteractiveShell.colors = 'Linux'
 ## Enables rich html representation of docstrings. (This requires the docrepr
 #  module).
 #  Default: False
-# c.InteractiveShell.sphinxify_docstring = False
+c.InteractiveShell.sphinxify_docstring = True
 
 #  Default: True
 # c.InteractiveShell.wildcards_case_sensitive = True
@@ -561,7 +561,7 @@ c.InteractiveShell.colors = 'Linux'
 #  documentation for more information.
 #  Choices: any of ['column', 'multicolumn', 'readlinelike']
 #  Default: 'multicolumn'
-# c.TerminalInteractiveShell.display_completions = 'multicolumn'
+c.TerminalInteractiveShell.display_completions = 'readlinelike'
 
 ## If True, anything that would be passed to the pager
 #  See also: InteractiveShell.display_page
@@ -569,7 +569,7 @@ c.InteractiveShell.colors = 'Linux'
 
 ## Shortcut style to use at the prompt. 'vi' or 'emacs'.
 #  Default: 'emacs'
-# c.TerminalInteractiveShell.editing_mode = 'emacs'
+c.TerminalInteractiveShell.editing_mode = 'vim'
 
 ## Set the editor used by IPython (default to $EDITOR/vi/notepad).
 #  Default: 'nvim'
@@ -586,7 +586,7 @@ c.InteractiveShell.colors = 'Linux'
 ## Enable vi (v) or Emacs (C-X C-E) shortcuts to open an external editor. This is
 #  in addition to the F2 binding, which is always enabled.
 #  Default: False
-# c.TerminalInteractiveShell.extra_open_editor_shortcuts = False
+c.TerminalInteractiveShell.extra_open_editor_shortcuts = True
 
 ## Provide an alternative handler to be called when the user presses Return. This
 #  is an advanced option intended for debugging, which may be changed or removed
@@ -602,6 +602,7 @@ c.InteractiveShell.colors = 'Linux'
 #  available styles, run `pygmentize -L styles`.
 #  Default: traitlets.Undefined
 # c.TerminalInteractiveShell.highlighting_style = traitlets.Undefined
+c.TerminalInteractiveShell.highlighting_style = "monokai"
 
 ## Override highlighting format for specific tokens
 #  Default: {}
@@ -729,7 +730,7 @@ c.InteractiveShell.colors = 'Linux'
 #  terminal supports true color, the following command should print 'TRUECOLOR'
 #  in orange: printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
 #  Default: False
-# c.TerminalInteractiveShell.true_color = False
+c.TerminalInteractiveShell.true_color = True
 
 #  See also: InteractiveShell.wildcards_case_sensitive
 # c.TerminalInteractiveShell.wildcards_case_sensitive = True
