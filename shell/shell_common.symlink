@@ -2,7 +2,7 @@
 
 # ----------------------------------------------------------------------------
 export DOTFILES=$HOME/dotfiles/mine
-export PROJECTS=~/projects                # project folder that we can `c [tab]` to
+export PROJECTS=~/code                # project folder that we can `c [tab]` to
 alias vimswitch="source ~/.vimswitch"
 # ----------------------------------------------------------------------------
 
